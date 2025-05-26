@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>財務省の考え方と現代のお金の仕組みのズレ：国民生活への影響と法律の問題</title>
+    <style>
+        body {
+            font-family: Meiryo, 'Hiragino Kaku Gothic ProN', 'MS PGothic', sans-serif;
+            line-height: 1.9; /* 行の間を少し広めに */
+            margin: 30px;
+            background-color: #fefefe;
+            color: #222; /* 文字色を少し濃く */
+        }
+        h1 {
+            color: #880000; /* 暗い赤 */
+            text-align: center;
+            border-bottom: 5px solid #880000;
+            padding-bottom: 18px;
+            margin-bottom: 45px;
+            font-size: 2.4em;
+        }
+        h2 {
+            color: #a04040; /* やや明るい赤茶色 */
+            border-bottom: 2px solid #cc8080; /* 薄い赤茶色の下線 */
+            padding-bottom: 12px;
+            margin-top: 55px;
+            margin-bottom: 28px;
+            font-size: 1.9em;
+        }
+        h3 {
+            color: #b06060; /* さらに明るい赤茶色 */
+            margin-top: 40px;
+            margin-bottom: 22px;
+            border-left: 7px solid #cc8080;
+            padding-left: 15px;
+            font-size: 1.5em;
+        }
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        strong, b {
+            color: #d32f2f; /* 明るめの赤 */
+            font-weight: bold;
+        }
+        .keyword {
+             background-color: #fff0f0; /* 薄い赤系のハイライト */
+             padding: 0.18em 0.45em;
+             border-radius: 5px;
+             font-weight: bold;
+             color: #7f0000; /* 暗い赤文字 */
+             border: 1px solid #ffe0e0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #caa; /* 赤系の線 */
+            padding: 15px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #ffebee; /* 薄い赤背景 */
+            font-weight: bold;
+            color: #c62828; /* やや濃い赤文字 */
+        }
+        tr:nth-child(even) td {
+            background-color: #fff8f8; /* ごく薄い赤背景 */
+        }
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 40px;
+        }
+        li {
+            margin-bottom: 12px;
+        }
+        hr {
+            border: 0;
+            height: 2px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(176, 96, 96, 0.75), rgba(0, 0, 0, 0)); /* 赤系のグラデーション線 */
+            margin: 60px 0;
+        }
+        blockquote {
+            border-left: 5px solid #ef9a9a; /* 明るい赤の枠 */
+            padding: 18px 25px;
+            margin: 25px 0;
+            font-style: italic;
+            color: #555;
+            background-color: #fff5f5; /* ごく薄い赤背景 */
+            border-radius: 6px;
+        }
+        .critique { /* 批判的なポイントを示すスタイル */
+            color: #a00000;
+            font-weight: bold;
+        }
+        .emphasis { /* 特に強調したいところ */
+            font-weight: bold;
+            color: #b71c1c;
+            background-color: #fff59d; /* 強調用の黄色ハイライト */
+            padding: 0.1em 0.3em;
+            border-radius: 3px;
+        }
+         /* 用語ハイライトクラス */
+         .term-fiat-money { background-color: #e0f2f7; color: #004a6f; padding: 0.18em 0.45em; border-radius: 4px; font-weight: bold; border: 1px solid #f0f8ff;}
+         .term-fiscal-soundness { background-color: #fce4ec; color: #880e4f; padding: 0.18em 0.45em; borderτ-radius: 4px; font-weight: bold; border: 1px solid #f8bbd0;}
+         .term-pb-target { background-color: #e8f5e9; color: #1b5e20; padding: 0.18em 0.45em; border-radius: 4px; font-weight: bold; border: 1px solid #c8e6c9;}
+         .term-constitution25 { background-color: #fff9c4; color: #3e2723; padding: 0.18em 0.45em; border-radius: 4px; font-weight: bold; border: 1px solid #fff59d;}
+    </style>
+</head>
+<body>
+
+    <h1>財務省の考え方と現代のお金の仕組みのズレ：国民生活への影響と法律の問題</h1>
+
+    <h2>1. はじめに</h2>
+    <p>今の日本の経済を動かす大事な役割を担っているのが財務省です。昔は大蔵省と呼ばれていました。財務省の考え方の中心には、長い間「<strong class="term-fiscal-soundness keyword">財政健全化</strong>」、つまり国の財政をしっかり整えることが置かれてきました。でも、この考え方が、今の日本が使っているお金の仕組みである「<strong class="term-fiat-money keyword">管理通貨制度</strong>」（フィアットシステム）とズレてしまっていて、その結果、日本の経済が長い間停滞したり、国民の生活が苦しくなったりしているのではないか、という声が大きくなっています。この資料では、財務省の昔からの考え方に基づく政策を簡単に説明し、それが現代のお金の仕組みとどう違うのかを比べます。そして、そのズレが国民の生活にどんな影響を与えているのか、「作られた貧困」という視点から考えてみます。さらに、憲法に関わる問題についても触れ、最後に、現代のお金の仕組みに合った理想的な財政のあり方と、それを進めるための法律の課題についてお話しします。</p>
+
+    <h2>2. 財務省の「財政健全化」の考え方とその歴史</h2>
+    <p>財務省の財政を運営する基本的な考え方は、「<strong class="term-fiscal-soundness keyword">財政健全化</strong>」を強く目指すことです。これは健全財政主義とも呼ばれます。その根底には、<strong class="emphasis">昔のお金の仕組みである金本位制のような、家計簿のような考え方</strong>が今でも残っていると言えます。具体的には、次のようなポイントがあります。</p>
+    <ul>
+        <li><strong>「税金はお金の源」：</strong>政府がお金を使うには、税金で集めたお金で賄うべきで、税金の範囲内で使うのが基本だという考えです。</li>
+        <li><strong>「国債は将来への借金」：</strong>国債を発行してお金を借りるのは、将来の世代が税金で返す「借金」であり、できるだけ避けるべきだという考えです。</li>
+        <li><strong>「借金は税金で返す」：</strong>国債を発行したら、最終的には税金を増やして返さなければならず、それが財政のルールを守るために大切だという考えです。</li>
+    </ul>
+    <p>これらの考えは、<strong class="emphasis">お金を自分で作れない個人や企業、地方自治体の財政には当てはまる</strong>ものですが、自分でお金を作れる国の財政にそのまま使うのは、実はおかしい点が多いと後で説明します。それでも、この「健全財政」の考えは、「<strong class="keyword">税金が基本</strong>」という強いルールとして、戦後の日本の財政の歴史にずっと受け継がれてきました。</p>
+    <p>この考え方に基づいて、財務省はこれまで次のような政策を進めてきました。</p>
+    <ul>
+        <li><strong>消費税の導入と引き上げ：</strong>安定してお金を集めるために、1989年に3%で始まり、その後5%、8%、10%と増えてきました。「社会保障のため」と言われますが、貧しい人ほど負担が大きく、買い物が減る影響も指摘されています。</li>
+        <li><strong>公共事業の削減：</strong>バブルが崩壊した後の一時期を除いて、1990年代後半から「無駄をなくす」「財政を立て直す」という理由で、公共事業のお金が減らされてきました。これが道路や橋の老朽化や地方経済の疲弊、災害への対応力の低下につながっています。</li>
+        <li><strong>社会保障費の削減：</strong>高齢者が増える中で、医療費や介護費、年金の削減、自己負担の増加など、いろんな方法で社会保障のお金を抑えてきました。これが国民の安心を支える仕組みを弱くしています。</li>
+        <li><strong>予算の枠決め：</strong>各省庁が使うお金に上限を設けて、全体の支出を抑える方法が長く使われてきました。これが、経済の状況に合わせた柔軟な対応を難しくしています。</li>
+    </ul>
+    <p>これらの政策は、いつも「<strong class="term-fiscal-soundness keyword">財政健全化</strong>」、つまり国の借金を減らし、国債の増え方を抑えるという目標で進められてきたのです。</p>
+
+    <h2>3. プライマリーバランス（PB）の黒字化目標</h2>
+    <p>「<strong class="term-fiscal-soundness">財政健全化</strong>」を具体的に進める目標として、2000年代から特に重視されてきたのが「<strong class="term-pb-target keyword">プライマリーバランス（PB）の黒字化</strong>」です。</p>
+    <p>プライマリーバランス（PB）とは、簡単に言うと、その年の税金などの収入で、国の基本的な支出（社会保障や公共事業、教育、防衛など）をどれだけ賄えているかを示すものです（PB＝税金収入－基本的な支出）。国債の利子や返済を除いた部分で、もし黒字なら、新しく借金をせずに支出を賄えている状態を意味します。</p>
+    <p>このPB黒字化目標は、小泉純一郎さんが首相だった2001年に初めて長期的な目標として掲げられ、その後も政権が変わりながら、達成時期が延びつつも、ずっと大事な目標として続いてきました。財務省がPB黒字化を重視する理由は、次の通りです。</p>
+    <ul>
+        <li><strong>国債の量を安定させる：</strong>PBが黒字なら、新しく発行する国債を少なくでき、将来的に国債の量を増やしすぎずに安定させられるとされています。</li>
+        <li><strong>将来世代への負担を減らす：</strong>今使うお金を将来の税金やサービス削減に押し付けず、今の世代で賄うべきだという、世代間の公平さを求める考えです。</li>
+        <li><strong>国の信頼を守る：</strong>財政のルールを示すことで、国債が安定して売れたり、海外から日本経済への信頼を保てるという考えです。</li>
+    </ul>
+    <p>でも、この「<strong class="term-pb-target keyword">PB黒字化目標</strong>」が、目標そのものが目的になってしまい、経済や国民生活の実情を考えない<strong class="emphasis">お金の使いすぎな締め付け</strong>（支出削減や増税）を正当化する理由に使われてきた、という批判があります。特に、物価が下がるデフレや経済が伸びない状況でPB黒字化を目指すと、需要がさらに減って経済が悪化する（「<strong class="keyword">みんなが同時に節約して失敗する</strong>」状況）可能性が高いのです。</p>
+
+    <h2>4. 現代日本の「お金の仕組み」（<strong class="term-fiat-money">フィアットシステム</strong>）をもう一度見てみる</h2>
+    <p>財務省の「健全財政」やPB黒字化の問題を理解するには、今の日本が使っている「<strong class="term-fiat-money keyword">管理通貨制度（フィアットシステム）</strong>」の基本をもう一度確認することが大事です。</p>
+    <ul>
+        <li><strong>お金を作る権利：</strong>政府と日本銀行は、日本円を独占的に作れる権利を持っています。このお金は、金のような裏付けがない「<strong class="term-fiat-money keyword">ただの紙幣</strong>」で、法律や政府への信頼で価値が保たれています。</li>
+        <li><strong>お金の性質（借金）：</strong>日本銀行が発行するお札は日本銀行の借金であり、銀行が作る預金も銀行の借金です。この「借金」という性質が、お金を経済の中で使えるようにしています。</li>
+        <li><strong>お金の増やし方：</strong>お金の多くは、銀行が貸し出しをする時に「何もないところから」預金を作り出すことで生まれます。</li>
+        <li><strong>国債の性質：</strong>自分でお金を作れる政府にとって、日本円の国債は、返せなくなるリスクがありません。必要な円は日本銀行が供給できるからです。だから、国債の限界は「返済能力」ではなく、<strong class="emphasis">物価が上がりすぎること（インフレ）</strong>です。</li>
+        <li><strong>税金の役割：</strong>この仕組みでの税金は、ただの「お金の源」ではありません。①税金を払う義務で円の需要を作り、②物価が上がりすぎないようにお金を減らし、③お金の分配を調整し、④特定の行動を促したり抑えたりする、いろんな役割があります。</li>
+    </ul>
+    <p>つまり、「<strong class="term-fiat-money keyword">フィアットシステム</strong>」では、政府は個人や企業と違って、使うお金が「税金の収入」に縛られるわけではありません。本当の限界は、物価や国内の生産能力（資源や労働力など）なのです。</p>
+
+    <h2>5. 財務省の考え方と「<strong class="term-fiat-money">フィアットシステム</strong>」の違い</h2>
+    <p>財務省の昔からの考え方と、「<strong class="term-fiat-money">フィアットシステム</strong>」の基本には、次のような大きな違いがあります。</p>
+    <table>
+        <thead>
+            <tr>
+                <th>比べるポイント</th>
+                <th>財務省の昔からの考え方（節約・健全化重視）</th>
+                <th>「<strong class="term-fiat-money">フィアットシステム</strong>」に基づく考え方</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>お金の見方</strong></td>
+                <td>税金など経済から得られる「価値」の代表（昔の金本位制のような考え）。 </td>
+                <td>政府や日本銀行への信頼で成り立つ「借金」。実物の裏付けはない。</td>
+            </tr>
+            <tr>
+                <td><strong>国債の見方</strong></td>
+                <td>将来世代への「借金」。悪いもので、減らすべきもの。</td>
+                <td>政府がお金を集める手段であり、民間に円を供給するもの。返せなくなるリスクはない。</td>
+            </tr>
+            <tr>
+                <td><strong>税金の役割</strong></td>
+                <td>政府が使うお金の主な「源」。</td>
+                <td>いろんな役割（お金の需要作り、物価調整、分配、行動の調整など）。「源」としての役割は小さめ。</td>
+            </tr>
+            <tr>
+                <td><strong>財政の限界</strong></td>
+                <td>「お金の源」（税金）の不足や国債の量。</td>
+                <td>物価の上昇率や国内の生産能力。</td>
+            </tr>
+            <tr>
+                <td><strong>財政の目標</strong></td>
+                <td>「<strong class="term-fiscal-soundness keyword">財政健全化</strong>」（赤字削減、PB黒字化、国債抑制）。</td>
+                <td>物価の安定、みんなが働く環境、国民生活の向上、経済の成長。</td>
+            </tr>
+            <tr>
+                <td><strong>財政の姿勢</strong></td>
+                <td>基本は節約。どんな時も健全化を目指す。</td>
+                <td>経済状況に合わせて柔軟に（デフレや不況なら積極的、インフレなら節約）。</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="critique">この表を見ると、両者の間には、お金や財政についての基本的な考え方に大きなズレがあることがわかります。財務省の考え方は、まるで日本がまだ金本位制のような昔の仕組みのままであるかのような前提に立っていて、「<strong class="term-fiat-money">フィアットシステム</strong>」の力を十分に使えていない、あるいはわざと無視している可能性があります。</p>
+
+    <h2>6. 「作られた貧困」：「<strong class="term-fiscal-soundness">財政健全化</strong>」の結果</h2>
+    <p>「<strong class="term-fiat-money">フィアットシステム</strong>」の基本を無視して、「<strong class="term-fiscal-soundness keyword">財政健全化</strong>」や「<strong class="term-pb-target keyword">PB黒字化</strong>」を最優先してきた結果、日本社会には大きな問題が生まれています。これを「<strong class="keyword critique">作られた貧困</strong>」と呼べるかもしれません。</p>
+    <ul>
+        <li><strong>国民への重い負担：</strong>本来なら国債でお金を賄える部分を、増税や保険料の引き上げで対応しようとするため、<strong class="emphasis">国民負担率</strong>（税金と社会保障の負担の合計が収入に占める割合）が上がりすぎています。これが生活費を圧迫し、買い物を減らす原因になっています。</li>
+        <li><strong>公共サービスやインフラの悪化：</strong>お金を減らす圧力で、教育や医療、介護、防災、インフラ整備への投資が抑えられてきました。その結果、サービスの質が落ちたり、人手が足りなくなったり、古くなったインフラが放置されたりしています。</li>
+        <li><strong>デフレの長期化と経済の停滞：</strong>節約政策が需要を減らし、バブル崩壊後のデフレから抜け出すのを難しくしました。需要が少ないと、企業は投資や給料上げに慎重になり、経済が成長しない悪循環が続いています。過去30年、日本の給料がほとんど増えていないのも、この影響が大きいです。</li>
+        <li><strong>生活の苦しさと格差の拡大：</strong>経済の停滞、重い負担、安心の仕組みの弱さが、特に貧しい人や子育て家庭、非正規で働く人たちの生活を苦しくし、貧困や格差を広げています。</li>
+    </ul>
+    <p>一方で、日本は世界一の「<strong class="keyword">対外純資産</strong>」（海外に持つ資産から借金を引いたもの）があり、国内にも使われていない貯金がたくさんあります。企業の貯め込みも増えています。資源や食料を輸入に頼る課題はありますが、国内の生産能力が大きく壊れている拼多多「<strong class="keyword">財政破綻論</strong>」が現実からかけ離れている可能性が高いことも指摘されています。国の借金で財政が破綻するという話は、「<strong class="term-fiat-money">フィアットシステム</strong>」の仕組みを考えれば、実際を大きく歪めた誤解かもしれません。</p>
+    <p class="critique"><strong class="emphasis">本当の問題は「財政の危機」ではなく、むしろ「財政健全化」を追いすぎた結果の「政策の危機」や「国民生活の危機」ではないでしょうか。</strong>目標が国民の幸せや経済の発展という本来の目的から外れ、PB黒字化という手段が目的になってしまっています。この目標の間違いが、国民を貧困に追い込む「作られた貧困」を生み出しているのです。</p>
+
+    <h2>7. 憲法第25条（生きる権利）との関係</h2>
+    <p>日本国憲法第25条は、国民の「<strong>生きる権利</strong>」について定めています。</p>
+    <blockquote>
+    第一項　すべての国民は、健康で文化的な最低限度の生活を営む権利を有します。<br>
+    第二項　国は、すべての生活面で、社会福祉、社会保障、公衆衛生の向上と増進に努めなければなりません。
+    </blockquote>
+    <p>第一項は、国民が人間らしい生活を送る権利を保障し、第二項は、国がその権利を実現するために積極的に取り組む義務を定めています。これは、国が国民の生活を邪魔しないだけでなく、「健康で文化的な最低限の生活」を守るために、社会保障や困窮者支援、雇用の安定、医療や教育の提供などの必要な対策を取る責任があることを示しています。</p>
+    <p class="critique">でも、「<strong class="term-fiscal-soundness">財政健全化</strong>」を重視しすぎて、社会保障費を減らしたり、公共サービスを削ったり、経済停滞で貧困や格差が広がったりしている現状は、<strong class="term-constitution25 keyword">憲法第25条、特に第二項が国に求める責任</strong>を十分に果たしているとは言えないかもしれません。財政のルールを優先するあまり、国民の生きる権利が軽視され、場合によっては侵害されている疑いさえあります。財政の目標は、憲法が保障する国民の権利を実現するという、より大切な目的の下にあるべきです。</p>
+
+    <h2>8. 「<strong class="term-fiat-money">フィアットシステム</strong>」に基づく理想的な財政のあり方</h2>
+    <p>「<strong class="term-fiat-money">フィアットシステム</strong>」の仕組みを踏まえると、理想的な財政のあり方は、財務省の節約重視の考え方とは大きく異なります。</p>
+    <ul>
+        <li><strong>財政の目標を変える：</strong>財政の最終目標は、「<strong class="term-fiscal-soundness">財政健全化</strong>」や「<strong class="term-pb-target">PB黒字化</strong>」といった数字の改善ではなく、<strong class="emphasis">「物価の安定」「みんなが働く環境」「経済の成長」「生活の向上」「格差の解消」「国土の強化」</strong>など、国民全体の幸せを高めることにあるべきです。PBなどの数字は、あくまでこれらの目標の達成度を測る一つの目安にすぎません。</li>
+        <li><strong>状況に応じた柔軟な対応：</strong>経済の状況に合わせて、お金の使い方や税金を柔軟に調整することが求められます。
+            <ul>
+                <li><strong class="keyword">デフレや不況の時</strong>（需要が少なく、供給が余る）には、物価や需要と供給の差を見ながら、<strong class="emphasis">積極的にお金を使う</strong>（公共事業、家計への支援、減税など）して、経済を回復させ、みんなが働けるようにします。この時、国債が増えたりPBが赤字になっても過度に心配する必要はありません。</li>
+                <li><strong class="keyword">インフレや過熱の時</strong>（需要が多く、供給が追いつかない）には、物価の上昇を抑えるために、<strong class="emphasis">お金の使用を控えたり増税したり</strong>します。</li>
+            </ul>
+        </li>
+        <li><strong>税金の賢い使い方：</strong>税金は単にお金を集めるだけでなく、景気調整、格差の解消、環境保護や技術革新の促進など、いろんな目的に戦略的に使われるべきです。</li>
+        <li><strong>金融政策との協力：</strong>財政政策は、日本銀行の金融政策と協力することで効果を最大化できます。ただし、日本銀行の独立性を尊重しつつ、物価安定や経済成長という共通の目標に向かって一致団結することが大切です。</li>
+    </ul>
+    <p>このような「<strong class="term-fiat-money">フィアットシステム</strong>」に基づく財政は、政府がお金を作る力を国民全体のために最大限使う考え方と言えます。</p>
+
+    <h2>9. 法律の問題とその難しさ</h2>
+    <p>日本で「<strong class="term-fiat-money">フィアットシステム</strong>」に基づく財政に変えるには、今の法律、特に財政法や財務省に関する法律に課題があります。</p>
+    <ul>
+        <li><strong>財政法第4条（国債発行の制限）：</strong><br>この条文は、「国の支出は国債や借金以外のお金で賄うべき」と定め、建設国債以外の国債（赤字国債）を原則禁止しています。でも、実際には毎年特別な法律を作って赤字国債を発行しており、このルールが形だけのものになっています。この条文は、昔の均衡財政の考えを反映したもので、経済状況に合わせた柔軟な財政を前提とする「<strong class="term-fiat-money">フィアットシステム</strong>」と合わない部分があります。<strong class="critique">現代のお金の仕組みに合わせて、財政法を見直す必要がある</strong>と指摘されています。</li>
+        <li><strong>財政法第5条（日本銀行の国債引き受け禁止）：</strong><br>この条文は、日本銀行が政府の国債を直接買うことを原則禁止しています。これは、政府が簡単に国債でお金を賄って物価が急上昇するのを防ぐためです。でも、今、日本銀行は金融緩和で市場から大量の国債を買い入れており、間接的に多くの国債を持っています。この現状と条文の目的との関係や、「<strong class="term-fiat-money">フィアットシステム</strong>」でのリスクとメリットを再評価する必要があります。</li>
+        <li><strong>財務省設置法と役割分担：</strong><br>財務省設置法では、財務省が財政や税金、国庫などを一括管理すると定めています。この体制は効率的ですが、<strong class="critique">増税や節約に偏りやすい構造</strong>になっているとの指摘があります。国民生活や経済成長より、財務省内の論理や数字の改善が優先されがちです。そのため、税金と予算の機能を分離したり、経済全体を見る役割を強化する議論もあります。</li>
+    </ul>
+    <p>でも、これらの法律や組織を変えるのは簡単ではありません。財政規律が失われる懸念や、国民や市場の信頼が下がる恐れがあります。財務省の権限見直しにも政治的な抵抗や調整の難しさがあります。何より、「<strong class="term-fiat-money">フィアットシステム</strong>」への理解を国民に広め、財政のあり方についてみんなの同意を得ることが、改革の第一歩です。</p>
+
+    <h2>10. 結論：国民のための財政へ</h2>
+    <p>この資料でわかったように、財務省が長年守ってきた「<strong class="term-fiscal-soundness">財政健全化</strong>」重視の考えは、現代の「<strong class="term-fiat-money keyword">管理通貨制度（フィアットシステム）</strong>」と大きくズレています。このズレが、「税金が源」「国債は悪い」「PB黒字化が最優先」という<strong class="emphasis">古い固定観念</strong>に縛られ、節約財政を常態化させました。その結果、デフレが長引き、経済が停滞し、公共サービスが悪化し、「<strong class="keyword critique">作られた貧困</strong>」とも呼べる生活の苦しさが生まれました。</p>
+    <p>自分でお金を作れる国にとって、本当の限界は「お金」ではなく「モノ」（生産能力）であり、財政の役割は、それを最大限に使い、物価を調整しながら国民の幸せを高めることです。目標は数字の改善ではなく、<strong class="emphasis">物価安定、みんなが働く環境、生活の向上、経済の成長</strong>に置き、<strong class="term-constitution25">憲法25条</strong>の生きる権利を実現することが基本です。</p>
+    <p>「<strong class="term-fiat-money">フィアットシステム</strong>」を正しく理解し、財政法などの課題を克服し、<strong class="emphasis">「財政のための国民」から「国民のための財政」へ</strong>と変えることが、日本の経済と生活を再生する鍵となるでしょう。</p>
+
+</body>
+</html>

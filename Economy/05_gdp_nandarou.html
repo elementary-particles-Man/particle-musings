@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>GDPって何？ 経済の元気度チェック！</title>
+    <style>
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            margin: 20px;
+            background-color: #f0f8ff; /* 明るい背景色 */
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #ff7f50; /* オレンジ系の見出し色 */
+            text-align: center;
+            border-bottom: 3px solid #ff7f50;
+            padding-bottom: 10px;
+            font-size: 2em;
+        }
+        h2 {
+            color: #ff8c00; /* やや濃いオレンジ */
+            border-left: 5px solid #ff8c00;
+            padding-left: 10px;
+            margin-top: 30px;
+        }
+        .qa-box {
+            margin-bottom: 25px;
+        }
+        .question {
+            background-color: #fff0e1; /* 薄いオレンジ系の背景 */
+            padding: 15px;
+            border-radius: 8px 8px 0 0; /* 上角を丸める */
+            font-weight: bold;
+            color: #d9534f; /* やや赤みがかったオレンジ */
+            border-left: 5px solid #d9534f;
+        }
+        .question::before {
+            content: "Q.";
+            margin-right: 5px;
+            font-size: 1.2em;
+        }
+        .answer {
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #fff0e1; /* Qに合わせた枠線 */
+            border-top: none; /* 上枠線はなし */
+            border-radius: 0 0 8px 8px; /* 下角を丸める */
+        }
+        .answer::before {
+            content: "A.";
+            margin-right: 5px;
+            font-weight: bold;
+            color: #0275d8; /* 青系のA */
+        }
+        strong { /* 強調 */
+            color: #d9534f; /* やや赤みがかったオレンジ */
+            font-weight: bold;
+        }
+        .point { /* ちょっとしたポイント */
+            background-color: #e2f7f3; /* 前回のQA風の色 */
+            border: 1px dashed #17a2b8;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        .point::before{
+            content:"💡POINT:";
+            font-weight: bold;
+            color: #0d6efd;
+            margin-right: 5px;
+        }
+         ul {
+            padding-left: 20px;
+         }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 GDPって何？ ～経済の元気度チェック！～ 📊</h1>
+        <p>
+            ニュースで「今年のGDPは〇〇％成長！」なんて聞くけど、そもそもGDPって何だろう？ 難しそうに聞こえるけど、実は国の経済の元気度を示す、とっても大事な指標なんだ。Q&Aでスッキリ理解しよう！
+        </p>
+
+        <h2>💡 GDPの正体を探る！</h2>
+
+        <div class="qa-box">
+            <div class="question">GDPって、いったい何のこと？</div>
+            <div class="answer">
+                GDPは「<strong>国内総生産（こくないそうせいさん / Gross Domestic Product）</strong>」の略だよ。<br>
+                簡単に言うと、<strong>「一定期間（ふつうは1年間）に、日本国内で新しく生み出されたモノやサービスの価値（付加価値）の合計金額」</strong>のことなんだ。<br><br>
+                例えば…
+                <ul>
+                    <li>パン屋さんがパンを作って売る</li>
+                    <li>農家さんが野菜を作って売る</li>
+                    <li>ゲーム会社が新しいゲームを作って売る</li>
+                    <li>お医者さんが病気を診察する（サービス）</li>
+                    <li>美容師さんが髪を切る（サービス）</li>
+                </ul>
+                こういった、国内で行われた経済活動によって生まれた価値（<strong>付加価値</strong>）を、ぜーんぶ足し合わせたものがGDPなんだ！ 国全体の「儲けの合計」みたいなイメージかな。<br>
+                <div class="point">
+                    前の「信用創造」の話 で、ケーキ屋さんが利益を出したよね？ あの利益（付加価値）もGDPの一部になるんだ。国内の色々な会社やお店、人が生み出した「付加価値」の合計が、その国のGDPになるんだよ。
+                </div>
+            </div>
+        </div>
+
+        <div class="qa-box">
+            <div class="question">「付加価値」って、もうちょっと詳しく教えて？</div>
+            <div class="answer">
+                付加価値は、「<strong>売上高（売った金額）から、原材料費など（仕入れた金額）を引いたもの</strong>」だよ。<br>
+                例えば、パン屋さんが150円でパンを売ったとするね。そのパンを作るのに、小麦粉やバターなどの材料費が50円かかったとしたら…
+                <br><strong>150円（売上） - 50円（材料費） = 100円（付加価値）</strong><br>
+                この100円が、パン屋さんが新しく生み出した価値（付加価値）になるんだ。この付加価値は、パン屋さんの利益になったり、働いている人のお給料になったりするよ。GDPは、こういう付加価値を国全体で合計したものなんだ。
+            </div>
+        </div>
+
+        <h2>📈 どうしてGDPは増えるの？ 増えるとどうなる？</h2>
+
+        <div class="qa-box">
+            <div class="question">GDPはどうやったら増えるの？</div>
+            <div class="answer">
+                GDPが増える（経済が成長する）のは、主に次の４つの要素が活発になったときだよ！
+                <ul>
+                    <li><strong>個人消費（みんなのお買い物）が増える:</strong><br>
+                        みんながモノやサービスをたくさん買うようになると、それを作ったり売ったりする会社の売上が増えて、付加価値が増える。</li>
+                    <li><strong>企業の投資が増える:</strong><br>
+                        会社が新しい工場を建てたり、機械を買ったり（投資）すると、それに関連するモノやサービスが売れて付加価値が増える。将来の生産力もアップ！</li>
+                    <li><strong>政府の支出が増える:</strong><br>
+                        政府が道路や橋を作ったり（公共事業）、教育や医療にお金を使ったりすると、それに関わる会社や人の仕事が増えて付加価値が増える。</li>
+                    <li><strong>輸出が増える（輸入が減る）:</strong><br>
+                        日本のモノやサービスが海外でたくさん売れる（輸出が増える）と、国内で作られた価値が増える。逆に輸入が減っても、国内で作る分が増える可能性があるね。（純輸出＝輸出－輸入）</li>
+                </ul>
+                つまり、<strong>国全体でお金を使う量が増えたり、モノやサービスがたくさん作られて売れたりすると、GDPは増える</strong>んだ。
+            </div>
+        </div>
+
+        <div class="qa-box">
+            <div class="question">GDPが増えると、何が良いことがあるの？</div>
+            <div class="answer">
+                GDPが増える（経済が成長する）と、一般的には次のような良いことがあると考えられているよ。
+                <ul>
+                    <li><strong>仕事が増える:</strong> モノやサービスがたくさん作られて売れるようになると、それを作るための人手が必要になって、働く場所が増える。</li>
+                    <li><strong>お給料が上がりやすくなる:</strong> 会社の利益が増えやすくなるから、働いている人のお給料も上がりやすくなる。</li>
+                    <li><strong>生活が豊かになる:</strong> 新しい商品や便利なサービスが登場したり、選べるものが増えたりして、生活がより豊かになる可能性がある。</li>
+                    <li><strong>税収が増える:</strong> みんなや会社の所得が増えると、国や自治体に入る税金が増える。そうすると、道路や学校、福祉などの公共サービスを充実させることができる。</li>
+                </ul>
+                <div class="point">
+                    もちろん、GDPだけが豊かさの全てじゃないよ。環境問題とか、貧富の差とか、人々の幸福度とか、GDPだけでは測れない大切なものもたくさんある。でも、GDPは経済全体の「元気度」や「体力」を知るための重要なバロメーターなんだ。
+                </div>
+            </div>
+        </div>
+
+        <h2>まとめ</h2>
+        <p>
+            GDPは、国全体が一年間に生み出した<strong>「付加価値」の合計！</strong> みんながお買い物をしたり、会社が投資をしたりすることで増えていく、経済の元気度を表す大事な数字なんだね。<br>
+            GDPが増えると、仕事が増えたり、お給料が上がったり、生活が豊かになったりする良いことがある。だから、ニュースでGDPの成長率が注目されるんだ！
+        </p>
+
+    </div>
+</body>
+</html>
