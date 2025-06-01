@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>インフレの種類別説明：補完情報</title>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <style>
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      line-height: 1.8;
+      margin: 20px;
+      background-color: #fdfdfd;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #1a237e;
+    }
+    .mermaid {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 1em;
+      margin: 2em 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>インフレの種類別説明：補完情報</h1>
+
+  <h2>デマンドプルインフレとは？</h2>
+  <p>デマンドプルインフレとは、需要（買いたい人の数）が増えることで、物の値段が上がる現象です。</p>
+
+  <div class="mermaid">
+    graph TD
+      A[消費者の需要増加]:::good --> B[商品価格の上昇]:::neutral
+      B --> C[パン屋の利益増加]:::good
+      C --> D[パン屋の設備投資]:::good
+      D --> E[材料費の上昇]:::bad
+      E --> B
+
+    classDef good fill:#bbdefb,stroke:#2196f3,stroke-width:2px;
+    classDef neutral fill:#eeeeee,stroke:#888,stroke-width:1px;
+    classDef bad fill:#ffcdd2,stroke:#f44336,stroke-width:2px;
+  </div>
+
+  <h2>コストプッシュインフレとは？</h2>
+  <p>原材料や人件費などのコストが増えることが原因で、物の値段が上がる現象です。</p>
+
+  <div class="mermaid">
+    graph TD
+      A[原材料・人件費の上昇]:::bad --> B[商品原価の上昇]:::bad
+      B --> C[販売価格の上昇]:::bad
+      C --> D[消費者の負担増]:::bad
+      D --> E[可処分所得の減少]:::bad
+      E --> F[消費の低下]:::bad
+      F --> G[企業の利益低下]:::bad
+      G --> C
+
+    classDef bad fill:#ffcdd2,stroke:#f44336,stroke-width:2px;
+  </div>
+
+  <h2>補足：ハイパーインフレとは？</h2>
+  <p>ハイパーインフレは、物の値段が短期間に異常に跳ね上がる現象です。年間数千〜数億％の物価上昇が特徴で、経済の混乱を伴います。</p>
+
+  <div class="mermaid">
+    graph LR
+      A[通常のインフレ: 2%]:::normal --> B[高インフレ: 10%]:::warn --> C[ハイパーインフレ: 数千〜数億%]:::hyper
+
+    classDef normal fill:#c8e6c9,stroke:#4caf50,stroke-width:2px;
+    classDef warn fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
+    classDef hyper fill:#ffcdd2,stroke:#d32f2f,stroke-width:2px;
+  </div>
+
+  <p>ハイパーインフレが起きた国では、通貨が信用されなくなり、経済が崩壊状態になります。ジンバブエやヴァイマル共和国（ドイツ）などが有名な例です。</p>
+
+  <p>しかし、日本のような自国通貨建てで国債を発行している国では、<strong>ハイパーインフレを起こすこと自体が極めて困難</strong>です。<br>
+  仮に発生するとしても、数京円規模の国債発行と、同時に莫大な需要喚起（大規模給付など）を毎年続ける必要があり、<strong>現実にはまずありえません</strong>。</p>
+</body>
+</html>
