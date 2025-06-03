@@ -151,53 +151,80 @@ body {
     padding-bottom: 8px; /* Style_root.cssの元々の指定より少し調整 */
 }
 
-
 /* カテゴリーグリッド */
 .category-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 元のpage-containerのスタイルを適用 */
-    gap: 25px; /* 元のpage-containerのスタイルを適用、少し広めに */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* 現在の指定を活かす */
+    gap: 25px;
 }
 
 .category-item {
     background-color: #ffffff;
     border-radius: 6px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    overflow: hidden; /* 画像の角丸のため */
+    overflow: hidden;
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* ↓ グリッドアイテムを正方形にするための設定 (アスペクト比1:1) ↓ */
+    position: relative; /* 子要素の絶対配置の基準にする */
+    width: 100%; /* 親グリッドの幅に合わせる */
+}
+
+.category-item::before { /* 正方形を維持するための疑似要素 */
+    content: "";
+    display: block;
+    padding-top: 100%; /* 幅に対して高さを100%にする (これで1:1) */
+}
+
+.category-item a {
+    text-decoration: none;
+    color: inherit;
+    display: flex; /* 内容物を中央揃えにしやすくするため */
+    flex-direction: column; /* 画像とタイトルを縦に並べる */
+    /* ↓ 疑似要素で確保したスペース全体に広がるように絶対配置 ↓ */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.category-item .image-wrapper { /* 画像を16:9で表示するためのラッパーを追加 */
+    width: 100%;
+    position: relative;
+    /* 16:9 のアスペクト比 (9 / 16 = 0.5625 => 56.25%) */
+    padding-top: 56.25%;
+    overflow: hidden;
+    background-color: #f0f0f0; /* 画像読み込み中の背景色 (任意) */
+}
+
+.category-item .image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* アスペクト比を保ちつつコンテナを埋める */
+    display: block;
+}
+
+.category-item h3 {
+    font-size: 1.3em;
+    color: #005ab3;
+    padding: 15px;
+    margin: 0;
+    border-top: 1px solid #f0f0f0;
+    /* ↓ タイトル部分が残りの高さを埋めるように ↓ */
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .category-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
-
-.category-item a {
-    text-decoration: none;
-    color: inherit; /* 親要素の色を継承 */
-    display: block;
-}
-
-.category-item img {
-    width: 100%;
-    height: 160px; /* アスペクト比16:9を意識 (250px幅の場合 approx) */
-    object-fit: cover;
-    display: block;
-}
-
-.category-item h3 {
-    font-size: 1.3em; /* Style_root.cssの元々のh3より少し調整 */
-    color: #005ab3;
-    padding: 15px;
-    margin: 0;
-    min-height: 3.0em; /* タイトルが複数行になっても高さを揃えるため（調整が必要な場合あり） */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top: 1px solid #f0f0f0;
-}
-
 /* フッター */
 footer {
     text-align: center;
