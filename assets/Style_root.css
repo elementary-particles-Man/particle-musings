@@ -1,12 +1,205 @@
-/* === ルートindex.html専用スタイル === */
+/* === ルートindex.html専用スタイル (Style_root.css) === */
 body {
     font-family: 'Noto Sans JP', Arial, sans-serif;
-    background-color: #fefefe;
+    background-color: #f4f6f8; /* 背景色を少し柔らかく */
     color: #333;
-    line-height: 1.8;
-    margin: 20px 30px;
+    line-height: 1.7; /* 少し調整 */
+    margin: 0; /* bodyのデフォルトマージンをリセット */
+    padding: 0; /* bodyのデフォルトパディングをリセット */
 }
 
+.page-container {
+    max-width: 1200px; /* ページ全体の最大幅 */
+    margin: 20px auto; /* 上下マージンと左右中央寄せ */
+    padding: 20px;
+    background-color: #fefefe; /* コンテナ背景色 */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+/* ヘッダー */
+.site-header {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 30px;
+}
+
+.site-header .header-content h1 {
+    font-size: 2.5em; /* Style_root.cssの元々の指定 */
+    color: #005ab3;    /* Style_root.cssの元々の指定 */
+    margin: 0; /* 上下マージンをリセット */
+}
+
+/* メインレイアウト (2カラム) */
+.main-layout {
+    display: flex;
+    gap: 30px; /* カラム間の隙間 */
+}
+
+.left-pane {
+    width: 300px; /* 左ペインの幅を固定 */
+    flex-shrink: 0; /* 幅が縮まないように */
+}
+
+.right-pane {
+    flex-grow: 1; /* 右ペインが残りのスペースを埋める */
+    min-width: 0; /* flexアイテムが内容によって無限に広がるのを防ぐ */
+}
+
+/* プロフィールセクション */
+.profile-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.profile-image-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 15px auto;
+    border: 3px solid #005ab3;
+}
+
+.profile-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info h2 {
+    font-size: 1.6em; /* プロフィール名 */
+    color: #005ab3;
+    margin-top: 0;
+    margin-bottom: 5px;
+    border-bottom: none; /* h2共通スタイルを上書き */
+    padding-bottom: 0;  /* h2共通スタイルを上書き */
+}
+
+.profile-info .subtitle {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 0;
+}
+
+/* リンクセクション */
+.links-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.links-section h3 {
+    font-size: 1.3em; /* Style_root.cssの元々のh3より少し調整 */
+    color: #005ab3;
+    margin-top: 0;
+    margin-bottom: 15px; /* ulとの間隔 */
+    text-align: left; /* 中央揃えから変更 */
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 8px;
+}
+
+.links-section ul {
+    list-style-type: none; /* Style_root.cssの元々の指定 */
+    padding-left: 0; /* Style_root.cssの元々の指定 */
+    margin:0;
+}
+
+.links-section ul li {
+    margin-bottom: 10px; /* Style_root.cssの元々の指定より少し調整 */
+}
+
+.links-section ul li a {
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: 600;
+    display: block;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+}
+
+.links-section ul li a:hover {
+    color: #3498db;
+}
+
+/* 右ペインのコンテンツ一覧タイトル */
+.right-pane > h2 { /* 直下のh2に適用 */
+    font-size: 2em; /* Style_root.cssの元々の指定 */
+    color: #005ab3;  /* Style_root.cssの元々の指定 */
+    text-align: left; /* 中央揃えから変更 */
+    margin-top: 0;
+    margin-bottom: 20px; /* グリッドとの間隔 */
+    border-bottom: 2px solid #3498db; /* Style_root.cssの元々の指定より少し調整 */
+    padding-bottom: 8px; /* Style_root.cssの元々の指定より少し調整 */
+}
+
+
+/* カテゴリーグリッド */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 元のpage-containerのスタイルを適用 */
+    gap: 25px; /* 元のpage-containerのスタイルを適用、少し広めに */
+}
+
+.category-item {
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    overflow: hidden; /* 画像の角丸のため */
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.category-item a {
+    text-decoration: none;
+    color: inherit; /* 親要素の色を継承 */
+    display: block;
+}
+
+.category-item img {
+    width: 100%;
+    height: 160px; /* アスペクト比16:9を意識 (280px幅の場合 approx) */
+    object-fit: cover;
+    display: block;
+}
+
+.category-item h3 {
+    font-size: 1.3em; /* Style_root.cssの元々のh3より少し調整 */
+    color: #005ab3;
+    padding: 15px;
+    margin: 0;
+    min-height: 3.0em; /* タイトルが複数行になっても高さを揃えるため（調整が必要な場合あり） */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* フッター */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Style_root.cssの元のh1, ul, liのグローバルなスタイルは、
+   各セクション内でより具体的に指定するか、意図した共通スタイルであれば残します。
+   今回は多くをセクション内で再定義しました。 */
+/*
 h1, h2, h3 {
     color: #005ab3;
     text-align: center;
@@ -36,10 +229,15 @@ ul {
 ul li {
     margin-bottom: 15px;
 }
+*/
 
+/* 元の.page-containerのgrid指定は.category-gridに移動したため、ここではコメントアウトまたは削除 */
+/*
 .page-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
 }
+*/
 
+/* Style_root.css の末尾の余分な閉じ括弧は削除済み */
