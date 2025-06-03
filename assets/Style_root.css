@@ -31,7 +31,7 @@ body {
 }
 
 .site-header .header-content h1 {
-    font-size: 2.8em; /* 背景画像に合わせて調整することがある */
+    font-size: 2.9em; /* 背景画像に合わせて調整することがある */
     color: #ffffff; /* 背景画像に合わせて白に変更 (例) */
     margin: 0;
     /* テキストに影をつけて読みやすくする (任意) */
@@ -45,7 +45,7 @@ body {
 }
 
 .left-pane {
-    width: 300px; /* 左ペインの幅を固定 */
+    width: 250px; /* 左ペインの幅を固定 */
     flex-shrink: 0; /* 幅が縮まないように */
 }
 
@@ -80,7 +80,7 @@ body {
 }
 
 .profile-info h2 {
-    font-size: 1.2em; /* 現在のサイズ、必要に応じて調整 */
+    font-size: 1.0em; /* 現在のサイズ、必要に応じて調整 */
     color: #005ab3;
     margin-top: 0;
     margin-bottom: 5px;
@@ -155,7 +155,7 @@ body {
 /* カテゴリーグリッド */
 .category-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 元のpage-containerのスタイルを適用 */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 元のpage-containerのスタイルを適用 */
     gap: 25px; /* 元のpage-containerのスタイルを適用、少し広めに */
 }
 
@@ -181,7 +181,7 @@ body {
 
 .category-item img {
     width: 100%;
-    height: 160px; /* アスペクト比16:9を意識 (280px幅の場合 approx) */
+    height: 160px; /* アスペクト比16:9を意識 (250px幅の場合 approx) */
     object-fit: cover;
     display: block;
 }
@@ -207,49 +207,3 @@ footer {
     font-size: 0.9em;
     color: #555;
 }
-
-/* Style_root.cssの元のh1, ul, liのグローバルなスタイルは、
-   各セクション内でより具体的に指定するか、意図した共通スタイルであれば残します。
-   今回は多くをセクション内で再定義しました。 */
-/*
-h1, h2, h3 {
-    color: #005ab3;
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-h1 {
-    font-size: 2.5em;
-    margin-top: 50px;
-}
-
-h2 {
-    font-size: 2em;
-    border-bottom: 3px solid #3498db;
-    padding-bottom: 10px;
-}
-
-h3 {
-    font-size: 1.5em;
-}
-
-ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-ul li {
-    margin-bottom: 15px;
-}
-*/
-
-/* 元の.page-containerのgrid指定は.category-gridに移動したため、ここではコメントアウトまたは削除 */
-/*
-.page-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-}
-*/
-
-/* Style_root.css の末尾の余分な閉じ括弧は削除済み */
