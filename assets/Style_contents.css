@@ -1,0 +1,57 @@
+/* === 個別コンテンツ専用スタイル === */
+body {
+    font-family: 'Meiryo', 'Hiragino Kaku Gothic ProN', sans-serif;
+    line-height: 1.8;
+    color: #333;
+    background-color: #fefefe;
+    margin: 20px 30px;
+}
+
+h1, h2, h3 {
+    text-align: left;
+    color: #2c3e50;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.6em;
+    margin-top: 25px;
+}
+
+p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #2980b9;
+}
+
+ul li a:hover {
+    color: #3498db;
+}
+
+.content-padding {
+    padding: 20px;
+}

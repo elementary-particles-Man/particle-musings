@@ -1,0 +1,142 @@
+/* === サブルートインデックスページ共通スタイル (Style_sub.css) === */
+/* 「Economy/Normal/index.html」のスタイルを参考に作成 */
+
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f8; /* Normalのindex.htmlの背景色 */
+    color: #333;
+}
+
+.page-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0; /* 画像がコンテナの端まで広がるように */
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden; /* 角丸を画像や内部要素に適用するため */
+}
+
+/* 画像コンテナのスタイル */
+/* Normalのindex.htmlの .page-main-image に相当する汎用クラス */
+/* easy-ecoのindex.htmlでは .image-container を使用 */
+.image-container,
+.page-main-image {
+    width: 100%;
+    max-height: 350px; /* 画像の最大の高さ (Normalのindex.htmlに合わせる) */
+    overflow: hidden;
+    margin-bottom: 25px; /* ヘッダーテキストとの間隔 */
+    background-color: #f0f0f0; /* 画像読み込み中の背景色 (任意) */
+}
+
+.image-container img,
+.page-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* アスペクト比を保ちつつコンテナ全体を覆う */
+    display: block; /* 画像下の余白を消す */
+}
+
+header {
+    text-align: center;
+    padding: 0 25px 20px 25px; /* Normalのindex.htmlに合わせる */
+    /* Normalのindex.htmlでは画像の下にパディングがあるが、
+       画像コンテナにmargin-bottomがあるので、重複を避けるか調整が必要な場合がある */
+}
+
+header h1 {
+    font-size: 2.2em;
+    color: #2c3e50; /* Normalのindex.htmlのH1色 */
+    margin-top: 0; /* 画像コンテナにマージンがあるので調整 */
+    margin-bottom: 0; /* 下のintro-textとの間隔はintro-text側で調整 */
+}
+
+/* 本文エリアのパディング用共通クラス */
+.content-padding {
+    padding: 0 25px 25px 25px; /* Normalのindex.htmlに合わせる */
+}
+
+.intro-text {
+    font-size: 1.1em; /* Normalに合わせる */
+    color: #495057; /* Normalに合わせる */
+    margin-top: 0; /* header h1 からの変更、または header の padding-bottom で調整 */
+    margin-bottom: 30px;
+    background-color: #e9ecef; /* Normalに合わせる */
+    padding: 20px; /* Normalに合わせる */
+    border-left: 5px solid #007bff; /* Normalに合わせる */
+    border-radius: 4px; /* Normalに合わせる */
+    text-align: left; /* easy-ecoの元々のスタイルを維持する場合はコメントアウト */
+}
+
+.article-list ul {
+    list-style: none; /* Normalのulスタイル */
+    padding: 0;
+}
+
+.article-list li {
+    margin-bottom: 15px; /* Normalのliスタイル */
+    background-color: #f9f9f9; /* Normalのliスタイル */
+    border: 1px solid #e0e0e0; /* Normalのliスタイル */
+    border-radius: 6px; /* Normalのliスタイル */
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease; /* Normalのliスタイル */
+}
+
+.article-list li:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Normalのliホバースタイル */
+    transform: translateY(-2px); /* Normalのliホバースタイル */
+}
+
+.article-list a { /* article-listクラス内のaタグに限定 */
+    display: block;
+    padding: 18px 22px; /* Normalのaスタイル */
+    text-decoration: none;
+    color: #0056b3; /* Normalのaスタイル */
+    font-weight: 600; /* Normalのaスタイル */
+    font-size: 1.2em; /* Normalのaスタイル */
+}
+
+.article-list a:hover { /* article-listクラス内のaタグホバーに限定 */
+    color: #003d80; /* Normalのaホバースタイル */
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 25px; /* Normalのフッタースタイル */
+    border-top: 1px solid #e0e0e0; /* Normalのフッタースタイル */
+    font-size: 0.9em;
+}
+
+footer a {
+    color: #0056b3; /* Normalのフッターリンクスタイル */
+    text-decoration: underline; /* Normalのフッターリンクスタイル */
+}
+
+footer a:hover {
+    color: #003d80; /* Normalのフッターリンクホバースタイル */
+}
+
+/* === 以下は、以前のStyle_sub.cssにあったが、Normalのindex.htmlのスタイルに統合・調整されたもの === */
+/* (もしh2, h3の共通スタイルをサブルートインデックスで使いたい場合は残すか、
+   Normalのindex.htmlの構造に合わせて調整。Normalにはh2, h3が明示的には見当たらない) */
+/*
+h2 {
+    font-size: 1.8em;
+    text-align: center;
+    color: #007bff;
+    border-bottom: 2px solid #99ccff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.4em;
+    text-align: center;
+    color: #007bff;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+*/
