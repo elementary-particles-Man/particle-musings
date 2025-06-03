@@ -87,10 +87,6 @@ body {
     border-bottom: none;
     padding-bottom: 0;
     word-break: break-all; /* 単語の途中でも折り返すようにして、はみ出しを防ぐ */
-    /* もしくは、以下のように親要素で overflow を制御することも検討できます */
-    /* overflow: hidden; */
-    /* text-overflow: ellipsis; */ /* はみ出す場合に「...」で表示 */
-    /* white-space: nowrap; */ /* 上記とセットで使うことが多い */
 }
 
 .profile-info .subtitle {
@@ -108,23 +104,23 @@ body {
 }
 
 .links-section h3 {
-    font-size: 1.3em; /* Style_root.cssの元々のh3より少し調整 */
+    font-size: 1.3em;
     color: #005ab3;
     margin-top: 0;
-    margin-bottom: 15px; /* ulとの間隔 */
-    text-align: left; /* 中央揃えから変更 */
+    margin-bottom: 15px;
+    text-align: left;
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 8px;
 }
 
 .links-section ul {
-    list-style-type: none; /* Style_root.cssの元々の指定 */
-    padding-left: 0; /* Style_root.cssの元々の指定 */
+    list-style-type: none;
+    padding-left: 0;
     margin:0;
 }
 
 .links-section ul li {
-    margin-bottom: 10px; /* Style_root.cssの元々の指定より少し調整 */
+    margin-bottom: 10px;
 }
 
 .links-section ul li a {
@@ -141,20 +137,20 @@ body {
 }
 
 /* 右ペインのコンテンツ一覧タイトル */
-.right-pane > h2 { /* 直下のh2に適用 */
-    font-size: 2em; /* Style_root.cssの元々の指定 */
-    color: #005ab3;  /* Style_root.cssの元々の指定 */
-    text-align: left; /* 中央揃えから変更 */
+.right-pane > h2 {
+    font-size: 2em;
+    color: #005ab3;
+    text-align: left;
     margin-top: 0;
-    margin-bottom: 20px; /* グリッドとの間隔 */
-    border-bottom: 2px solid #3498db; /* Style_root.cssの元々の指定より少し調整 */
-    padding-bottom: 8px; /* Style_root.cssの元々の指定より少し調整 */
+    margin-bottom: 20px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
 }
 
 /* カテゴリーグリッド */
 .category-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* 現在の指定を活かす */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 25px;
 }
 
@@ -165,37 +161,31 @@ body {
     overflow: hidden;
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    /* ↓ グリッドアイテムを正方形にするための設定 (アスペクト比1:1) ↓ */
-    position: relative; /* 子要素の絶対配置の基準にする */
-    width: 100%; /* 親グリッドの幅に合わせる */
-}
-
-.category-item::before { /* 正方形を維持するための疑似要素 */
-    content: "";
-    display: block;
-    padding-top: 100%; /* 幅に対して高さを100%にする (これで1:1) */
+    width: 100%;
+    /* category-item::before の padding-top: 100% は削除されている前提です。 */
+    /* もしまだファイルに残っている場合は、このブロックごと削除してください。 */
+    /* .category-item::before { content: ""; display: block; padding-top: 100%; } */
 }
 
 .category-item a {
     text-decoration: none;
     color: inherit;
-    display: flex; /* 内容物を中央揃えにしやすくするため */
-    flex-direction: column; /* 画像とタイトルを縦に並べる */
-    /* ↓ 疑似要素で確保したスペース全体に広がるように絶対配置 ↓ */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    /* NEW/CHANGED: `a`タグをflexコンテナにし、その子要素（画像とタイトル）を縦に並べる */
+    display: flex;
+    flex-direction: column;
+    /* NEW/CHANGED: `a`タグが親要素（`category-item`）の高さ全体を占めるようにする */
     height: 100%;
+    width: 100%;
+    /* REMOVED: 以前の `position: absolute;` 関連のスタイルは削除しました。 */
 }
 
-.category-item .image-wrapper { /* 画像を16:9で表示するためのラッパーを追加 */
+.category-item .image-wrapper {
     width: 100%;
     position: relative;
-    /* 16:9 のアスペクト比 (9 / 16 = 0.5625 => 56.25%) */
-    padding-top: 56.25%;
+    padding-top: 56.25%; /* 16:9 のアスペクト比 */
     overflow: hidden;
-    background-color: #f0f0f0; /* 画像読み込み中の背景色 (任意) */
+    background-color: #f0f0f0;
+    flex-shrink: 0; /* 画像が縮まないようにする */
 }
 
 .category-item .image-wrapper img {
@@ -204,27 +194,31 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* アスペクト比を保ちつつコンテナを埋める */
+    object-fit: cover;
     display: block;
 }
 
 .category-item h3 {
-    font-size: 1.3em;
+    /* フォントサイズをビューポート幅に応じて調整し、最小・最大サイズを設定 */
+    font-size: clamp(0.9em, 2.8vw, 1.3em); /* 最小0.9em, 最大1.3em, 画面幅の2.8% */
     color: #005ab3;
     padding: 15px;
     margin: 0;
     border-top: 1px solid #f0f0f0;
-    /* ↓ タイトル部分が残りの高さを埋めるように ↓ */
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-grow: 1; /* タイトルが残りのスペースを埋めるようにする */
+    display: flex; /* 中央揃えのためにflexを使用 */
+    align-items: center; /* 垂直方向の中央揃え */
+    justify-content: center; /* 水平方向の中央揃え */
+    text-align: center; /* （古いブラウザ向けなどの）中央揃えのフォールバック */
+    word-break: break-word; /* 長い単語でも改行を許可 */
+    overflow-wrap: break-word; /* 新しいCSSプロパティ */
 }
 
 .category-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
+
 /* フッター */
 footer {
     text-align: center;
@@ -233,4 +227,51 @@ footer {
     border-top: 1px solid #e0e0e0;
     font-size: 0.9em;
     color: #555;
+}
+
+/* === レスポンシブデザインの調整 === */
+@media (max-width: 768px) {
+    .page-container {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .main-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .left-pane {
+        width: 100%;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 15px;
+    }
+
+    .site-header .header-content h1 {
+        font-size: 2em;
+    }
+
+    .profile-info h2 {
+        font-size: 1.1em;
+    }
+
+    .profile-info .subtitle {
+        font-size: 0.85em;
+    }
+
+    .links-section h3, .right-pane > h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-grid {
+        grid-template-columns: 1fr; /* 非常に狭い画面では1列にする */
+    }
+    .category-item h3 {
+        font-size: clamp(1.1em, 5vw, 1.6em); /* さらに狭い画面でのフォントサイズ調整 */
+    }
 }
