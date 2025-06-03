@@ -38,12 +38,6 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-.site-header .header-content h1 {
-    font-size: 2.5em; /* Style_root.cssの元々の指定 */
-    color: #005ab3;    /* Style_root.cssの元々の指定 */
-    margin: 0; /* 上下マージンをリセット */
-}
-
 /* メインレイアウト (2カラム) */
 .main-layout {
     display: flex;
@@ -86,12 +80,17 @@ body {
 }
 
 .profile-info h2 {
-    font-size: 1.6em; /* プロフィール名 */
+    font-size: 1.2em; /* 現在のサイズ、必要に応じて調整 */
     color: #005ab3;
     margin-top: 0;
     margin-bottom: 5px;
-    border-bottom: none; /* h2共通スタイルを上書き */
-    padding-bottom: 0;  /* h2共通スタイルを上書き */
+    border-bottom: none;
+    padding-bottom: 0;
+    word-break: break-all; /* 単語の途中でも折り返すようにして、はみ出しを防ぐ */
+    /* もしくは、以下のように親要素で overflow を制御することも検討できます */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */ /* はみ出す場合に「...」で表示 */
+    /* white-space: nowrap; */ /* 上記とセットで使うことが多い */
 }
 
 .profile-info .subtitle {
