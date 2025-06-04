@@ -1,0 +1,125 @@
+/* assets/css/style_LOG.css - For LSC Musing Logs (JP & EN) */
+
+/* Basic Reset & Normalization */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; /* Base font stack */
+    margin: 20px;
+    background-color: #f0f0f0; /* Light gray background for the page */
+    line-height: 1.7; /* Adjusted for readability */
+    color: #333; /* Default text color */
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Space between messages */
+    max-width: 900px; /* Max width for chat container */
+    margin: 0 auto; /* Center the chat container */
+    padding: 10px; /* Add some padding to the container itself */
+}
+
+.message {
+    padding: 12px 18px;
+    border-radius: 15px; /* Slightly more rounded */
+    max-width: 80%; /* Max width of a single message bubble */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    word-wrap: break-word; /* Ensure long words break */
+    /* font-family will be inherited from body or specified per message type if needed */
+}
+
+.message p {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+    text-align: left; /* Ensure text aligns left within bubble */
+}
+
+.message p:first-child {
+    margin-top: 0;
+}
+
+.message p:last-child {
+    margin-bottom: 0;
+}
+
+.message ul, .message ol {
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+    padding-left: 25px; /* Indent lists within messages */
+}
+
+.message li {
+    margin-bottom: 0.3em;
+}
+
+.message h3 { /* For headings within messages, if any */
+    font-size: 1.1em;
+    margin-top: 0.8em;
+    margin-bottom: 0.4em;
+    font-weight: bold;
+    color: #003366; /* Consistent heading color */
+}
+
+.message blockquote {
+    font-style: italic;
+    color: #555;
+    padding-left: 1.5em;
+    border-left: 3px solid #ccc;
+    margin: 0.8em 0 0.8em 1em; /* Adjusted margins */
+}
+
+/* Styles for "Question" (User) messages - Right aligned, light blue */
+.question {
+    align-self: flex-end; /* Align to the right */
+    background-color: #cce7ff; /* Light blue background - from original inline style */
+    color: #333; /* Text color from original inline style */
+    /* Specific font for questions if desired, e.g., 'Yu Gothic' for Japanese */
+    /* font-family: '游ゴシック体', 'Yu Gothic', 'Meiryo UI', Meiryo, sans-serif; */
+}
+
+/* Styles for "Answer" (AI) messages - Left aligned, light yellow */
+.answer {
+    align-self: flex-start; /* Align to the left */
+    background-color: #fffde7; /* Light yellow background - from original inline style */
+    color: #444; /* Text color from original inline style */
+    /* Specific font for answers if desired, e.g., 'MS PGothic' for Japanese */
+    /* font-family: 'MS Pゴシック', 'MS PGothic', 'Osaka', 'Hiragino Sans', sans-serif; */
+}
+
+/* Placeholder for code blocks if they appear in logs */
+.code-block-placeholder {
+    font-style: italic;
+    color: #777;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin: 0.8em 0;
+    white-space: pre-wrap; /* Preserve whitespace and wrap */
+    font-family: monospace;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    body {
+        margin: 10px;
+        font-size: 0.95em; /* Slightly adjust base font for mobile */
+    }
+    .chat-container {
+        gap: 12px;
+    }
+    .message {
+        max-width: 90%; /* Allow messages to be a bit wider on mobile */
+        padding: 10px 15px;
+    }
+}
