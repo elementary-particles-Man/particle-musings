@@ -1,57 +1,275 @@
-/* === 個別コンテンツ専用スタイル === */
+/* === 個別コンテンツ専用スタイル (推敲・統合版) === */
 body {
-    font-family: 'Meiryo', 'Hiragino Kaku Gothic ProN', sans-serif;
+    font-family: 'Meiryo', 'Hiragino Kaku Gothic ProN', Arial, sans-serif; /* フォントファミリーにArialを追加 */
     line-height: 1.8;
     color: #333;
-    background-color: #fefefe;
-    margin: 20px 30px;
+    background-color: #f8f9fa; /* やや明るいグレー、参考画像に近い背景 */
+    margin: 0;
+    padding: 0; /* bodyのデフォルトpaddingをリセット */
 }
 
-h1, h2, h3 {
+.page-wrapper { /* ページ全体のコンテンツを囲むラッパー */
+    max-width: 900px;
+    margin: 20px auto; /* 上下にもマージンを追加し、左右autoで中央寄せ */
+    background-color: #fff;
+    padding: 25px 30px; /* 内側の余白を調整 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08); /* 少し柔らかな影 */
+    border-radius: 8px;
+}
+
+h1, h2, h3, h4 { /* h4も追加 */
     text-align: left;
-    color: #2c3e50;
-    margin-bottom: 25px;
+    color: #2c3e50; /* 基本の見出し色 (濃い青系統) */
+    margin-top: 1.5em; /* 上マージンをem単位で調整 */
+    margin-bottom: 0.8em; /* 下マージンをem単位で調整 */
+    padding-bottom: 0.3em; /* 下パディングをem単位で調整 */
 }
 
 h1 {
-    font-size: 2.5em;
+    font-size: 2.2em; /* 参考画像に合わせて調整 */
+    text-align: center;
+    border-bottom: 2px solid #5dade2; /* 少し明るめの青で下線 */
+    color: #2c3e50; /* 他の見出しと統一感を出しつつ、主要タイトルとして明確に */
 }
 
-h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #3498db;
-    padding-bottom: 10px;
+h2 { /* 章タイトル */
+    font-size: 1.8em;
+    color: #27ae60; /* 参考画像の緑系統に近い色 */
+    border-bottom: 3px solid #27ae60;
 }
 
-h3 {
-    font-size: 1.6em;
-    margin-top: 25px;
+h3 { /* 節タイトル */
+    font-size: 1.5em;
+    color: #2980b9; /* 参考画像の青系統に近い色 */
+    border-bottom: 1px dashed #a9cce3; /* 淡い青の破線 */
+}
+
+h4 { /* 小見出し用 (必要に応じて) */
+    font-size: 1.2em;
+    color: #8e44ad; /* 紫系 */
 }
 
 p {
-    font-size: 1.1em;
-    margin-bottom: 20px;
+    font-size: 1.05em; /* 少し調整 */
+    margin-bottom: 1.2em; /* 段落下のマージン調整 */
+    text-indent: 1em; /* 字下げ */
 }
 
-ul {
-    list-style-type: square;
-    padding-left: 20px;
+ul, ol { /* olも追加 */
+    list-style-type: disc; /* ulのデフォルトをdiscに変更 */
+    padding-left: 30px; /* インデントを少し調整 */
+    margin-bottom: 1.2em;
 }
 
-ul li {
-    margin-bottom: 10px;
+ul li, ol li {
+    margin-bottom: 0.6em; /* リストアイテム間のマージン調整 */
 }
 
-ul li a {
+ul li a, ol li a { /* ol内のリンクも考慮 */
     text-decoration: none;
-    color: #2980b9;
+    color: #3498db; /* リンク色を少し明るく */
 }
 
-ul li a:hover {
-    color: #3498db;
+ul li a:hover, ol li a:hover {
+    color: #2073c4; /* ホバー時の色を少し濃く */
+    text-decoration: underline;
 }
 
-.content-padding {
+.content-padding { /* 必要であれば個別に使用 */
     padding: 20px;
+}
+
+/* --- QAセクション および まとめ風スタイル (パステルトーン) --- */
+.summary-box,
+.qa-section {
+    background-color: #eaf2f8; /* 淡いパステルブルー (参考画像の「この章のまとめ」風) */
+    border-left: 6px solid #5dade2; /* 左のアクセントボーダー (少し濃いめの青) */
+    padding: 20px 25px;
+    margin: 30px 0;
+    border-radius: 6px;
+}
+
+.summary-box p,
+.qa-section p {
+    text-indent: 0; /* ボックス内のpタグは字下げなしに */
+    margin-bottom: 0.8em;
+}
+
+.qa-question {
+    font-weight: bold;
+    color: #3498db; /* Qの文字色 (少し濃いめのパステルブルー) */
+    font-size: 1.15em; /* 少し調整 */
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+    text-indent: 0;
+}
+.qa-question:first-child {
+    margin-top: 0; /* QAセクション内の最初の質問の上マージンを消す */
+}
+
+.qa-answer {
+    padding-left: 1.5em; /* 質問からのインデントを明確に */
+    margin-bottom: 1em;
+    text-indent: 0;
+}
+
+.qa-answer p {
+    text-indent: 0;
+    margin-bottom: 0.5em;
+}
+
+/* --- 強調表示用クラス --- */
+.emphasis-red { /* 「財務省」などの強調に使えそう */
+    color: #c0392b; /* やや落ち着いた赤 */
+    font-weight: bold;
+}
+
+.highlight-yellow { /* マーカー風 */
+    background-color: #fef9e7; /* より淡い黄色 */
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    /* color: #b7950b; */ /* 文字色も指定する場合は追加 */
+}
+
+.keyword { /* 用語解説などに */
+    background-color: #e8f8f5; /* 淡いミントグリーン */
+    padding: 0.2em 0.5em;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #117a65; /* 濃い緑 */
+    border: 1px solid #a3e4d7; /* 淡い緑の枠線 */
+    font-size: 0.95em;
+}
+
+blockquote {
+    border-left: 5px solid #85c1e9; /* やや落ち着いた水色 */
+    padding: 15px 20px;
+    margin: 25px 0;
+    font-style: italic;
+    color: #566573; /* やや濃いめのグレー */
+    background-color: #f4faff; /* 非常に淡い青 */
+    border-radius: 5px;
+}
+
+blockquote p {
+    text-indent: 0;
+    margin-bottom: 0.8em;
+}
+
+/* --- Price_of_Rice.html 由来の調整 --- */
+.main-point {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #27ae60; /* 緑系統 (h2と合わせるか検討) */
+    margin-bottom: 1em;
+    text-indent: 0;
+}
+
+.emoji {
+    font-size: 1.2em;
+    margin: 0 0.2em; /* 絵文字の左右に少し余白 */
+}
+
+/* --- table スタイル (Kouzuda_Keizaburo.html などで利用想定) --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.98em; /* 少し調整 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+th, td {
+    border: 1px solid #d4e6f1; /* 淡いブルー系の枠線 */
+    padding: 10px 12px; /* パディング調整 */
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: #aed6f1; /* パステルブルー (ヘッダー背景) */
+    font-weight: bold;
+    color: #1b4f72; /* 濃い青 (ヘッダー文字色) */
+}
+
+tr:nth-child(even) td {
+    background-color: #f2f8fd; /* さらに淡いブルー (偶数行の背景) */
+}
+
+caption {
+    caption-side: bottom;
+    font-size: 0.9em;
+    color: #566573;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* === ページトップに戻るボタンなどのためのスタイル (必要に応じて) === */
+.back-to-top {
+    display: block;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.95em;
+}
+
+.back-to-top a {
+    color: #3498db;
+    text-decoration: none;
+    padding: 8px 15px;
+    border: 1px solid #aed6f1;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.back-to-top a:hover {
+    background-color: #aed6f1;
+    color: #1b4f72;
+}
+
+/* 既存の .page-container を .page-wrapper に名称変更した場合の互換性のため */
+.page-container {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 25px 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border-radius: 8px;
+}
+
+.notice-box {
+    background-color: #fff8e1; /* 薄い黄色など警告とわかる色 */
+    border: 1px solid #ffecb3;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+
+.notice-box p {
+    margin: 0;
+    text-indent: 0; /* 字下げなし */
+}
+
+.reference-entry {
+    margin-bottom: 30px; /* 各エントリー間の余白 */
+    padding-bottom: 20px; /* 各エントリーの下部の余白 */
+    border-bottom: 1px solid #eee; /* エントリー間の区切り線 */
+}
+
+.reference-entry:last-child {
+    border-bottom: none; /* 最後のエントリーの区切り線はなし */
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.reference-entry h2 { /* Web ID の見出しスタイル */
+    font-size: 1.3em; /* 少し小さめに調整 */
+    color: #5499c7; /* やや明るい青 */
+    margin-bottom: 0.5em;
+    border-bottom: none; /* 下線を削除 */
+}
+
+.reference-entry p {
+    text-indent: 0; /* 参考資料の各項目は字下げなし */
+    margin-bottom: 0.6em;
 }
