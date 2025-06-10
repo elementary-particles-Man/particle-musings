@@ -3,11 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>経済のホントの話【第二部：逆転の章】</title>
-	<!-- Plotly.jsライブラリを読み込み -->
-	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<title>経済のホントの話</title>
+	<!-- Plotly.jsライブラリを最新バージョンに更新 -->
+	<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
 	<style>
-		/* 全体のスタイル */
+		/* === 全体のスタイル === */
 		html { scroll-behavior: smooth; }
 		body { font-family: 'Meiryo', 'Hiragino Kaku Gothic ProN', 'Arial', sans-serif; line-height: 1.8; color: #333; background-color: #f8f9fa; margin: 0; padding: 20px; }
 		.page-wrapper { max-width: 900px; margin: 20px auto; background-color: #fff; padding: 25px 40px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); border-radius: 8px; }
@@ -17,31 +17,73 @@
 		.note { font-size: 0.9em; text-align: right; color: #666; }
 		.underline { text-decoration: underline; }
 
-		/* 第二部のスタイル */
-		h1 { font-size: 2.2em; text-align: center; color: #27ae60; border-bottom: 2px solid #27ae60; }
-		h2 { font-size: 1.8em; color: #2980b9; border-bottom: 3px solid #a9cce3; }
-		h3 { font-size: 1.5em; color: #2c3e50; border-bottom: 1px dashed #999; }
-		.keyword { background-color: #e8f8f5; padding: 0.2em 0.5em; border-radius: 5px; font-weight: bold; color: #117a65; border: 1px solid #a3e4d7; font-size: 1.1em;}
-
-		/* Q&Aセクションのスタイル */
+		/* === 第一部＆ギミックのスタイル === */
+		#part1 h1 { font-size: 2.2em; text-align: center; color: #c00; border-bottom: 2px solid #c00; }
+		#part1 h2 { font-size: 1.8em; color: #2c3e50; border-bottom: 3px solid #5dade2; }
+		.final-word { text-align: center; font-weight: bold; font-size: 1.2em; margin-top: 50px; padding: 20px; background-color: #eee; border: 1px solid #ddd; }
+		.hidden-key { color: inherit; text-decoration: none; cursor: pointer; font-weight: bold; border-bottom: 1px dotted #999; transition: background-color 0.3s; }
+		.hidden-key:hover { background-color: #fef9e7; }
+		#rescue-door { text-decoration: none; font-size: 1.5em; }
+		#reveal-message h2 { text-align: center; color: #27ae60; border: 2px solid #27ae60; padding: 20px; border-radius: 8px; background-color: #e8f8f5; }
+		
+		/* === 第二部のスタイル === */
+		#part2 h1 { font-size: 2.2em; text-align: center; color: #27ae60; border-bottom: 2px solid #27ae60; }
+		#part2 h2 { font-size: 1.8em; color: #2980b9; border-bottom: 3px solid #a9cce3; }
+		#part2 h3 { font-size: 1.5em; color: #2c3e50; border-bottom: 1px dashed #999; }
+		#part2 .keyword { background-color: #e8f8f5; padding: 0.2em 0.5em; border-radius: 5px; font-weight: bold; color: #117a65; border: 1px solid #a3e4d7; font-size: 1.1em;}
 		.qa-item { margin-bottom: 25px; }
 		.qa-question { background-color: #fdf2f2; border-left: 5px solid #e74c3c; padding: 15px; font-weight: bold; color: #c00; border-radius: 5px; }
 		.qa-answer { background-color: #eaf2f8; border-left: 5px solid #5dade2; padding: 15px; margin-top: 5px; border-radius: 5px; font-weight: bold; color: #2980b9; }
 
-		/* 大団円のスタイル */
+		/* === 大団円＆次章へのリンクスタイル === */
 		.grand-finale { text-align: center; margin-top: 50px; padding: 30px; background-color: #f2f8fd; border-top: 5px solid #27ae60; }
 		.grand-finale h2 { border: none; font-size: 2em; color: #2c3e50;}
 		.grand-finale p { font-size: 1.1em; }
 		.final-message { font-size: 1.5em !important; font-weight: bold; color: #27ae60; }
+
+		.next-chapter-container {
+			margin-top: 50px;
+			text-align: center;
+		}
+		.next-chapter-container h2 {
+			border: none;
+			color: #34495e;
+		}
+		.chapter-link-wrapper {
+			display: inline-block;
+			width: 100%;
+			max-width: 720px; /* 16:9を維持しつつ最大幅を設定 */
+			aspect-ratio: 16 / 9;
+			border-radius: 12px;
+			overflow: hidden;
+			box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+		.chapter-link-wrapper:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+		}
+		.chapter-link-wrapper img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
 	</style>
 </head>
 <body>
 
-<div class="page-wrapper">
+<!-- (第一部は省略) -->
+<div id="part1" class="page-wrapper" style="display:none;">...</div>
+
+
+<div id="part2" class="page-wrapper">
+	<!-- 第二部の冒頭部分はここに配置 -->
+	<div id="reveal-message"></div>
 
 	<h1>【第二部】 夜明けの真実 ― 君が手にする希望の剣</h1>
 
-	<h2>第三章：理論の大逆転劇</h2>
+	<!-- (第三章から第七章までの内容は省略) -->
+    <h2>第三章：理論の大逆転劇</h2>
 	<p>第一部で語られた絶望は、全て「国の財政は、家庭の家計簿と同じ」という、たった一つの巨大なウソから始まっていた。これから、そのウソを一つずつ、丁寧な証明と共にひっくり返していく。常識が音を立てて崩れる瞬間を楽しんでほしい。</p>
 	
 	<h3>理論１：「税は財源である」 → <span style="color:#27ae60; font-weight:bold;">大ウソ！本当は「税は財源ではない」</span></h3>
@@ -143,7 +185,7 @@
 	</div>
 	<div class="qa-item">
 		<div class="qa-question">【Q2】生活が苦しいです。増税や社会保険料の負担増には耐えられません。</div>
-		<div class="qa-answer">【A2】当たり前だ！そもそも、「税は財源ではない」のだから、財源確保のための増税など、全てウソだったんだ。今こそ政府は、消費税を廃止・減税し、社会保険料を国庫で負担するなど、積極財政で国民の負担を減らすべきだ。豊かな国民生活こそが、強い経済の土台となる！</div>
+		<div class="qa-answer">【A2】当たり前だ！そもそも、「税は財源ではない」のだから、財源確保のための増税など、全てウソだったんだ。今こそ政府は、消費税を廃止・減税し、社会保険料を国庫で負担するなど、積極財-政で国民の負担を減らすべきだ。豊かな国民生活こそが、強い経済の土台となる！</div>
 	</div>
 	<div class="qa-item">
 		<div class="qa-question">【Q3】日銀が国債を買っているから、禁じ手なのでは？</div>
@@ -151,7 +193,7 @@
 	</div>
 	<div class="qa-item">
 		<div class="qa-question">【Q4】「管理通貨制度」は法律にない机上の空論では？</div>
-		<div class="qa-answer">【A4】その通り！この「管理通貨制度」のルールの上では、自国通貨建てで国が破綻することは、絶対にありえない。もちろん、無限にお金を発行していいわけではない。そこには「インフレ制約」という、たった一つの重要なルールがある。だが、その制約が発動するのは、景気が良すぎて物が売れまくる「デマンドプル・インフレ」の時だけだ。今の日本は、海外からの輸入物価が上がる「コストプushインフレ」。これを金融引き締め（利上げ）で抑えられないことは、証明済みだ。「デフレギャップ（需要不足）のあるデマンドプル・インフレ」など、この世に存在しない。正しい財政運営をすれば、日本はもっと豊かになれるんだ！</div>
+		<div class="qa-answer">【A4】その通り！この「管理通貨制度」のルールの上では、自国通貨建てで国が破綻することは、絶対にありえない。もちろん、無限にお金を発行していいわけではない。そこには「インフレ制約」という、たった一つの重要なルールがある。だが、その制約が発動するのは、景気が良すぎて物が売れまくる「デマンドプル・インフレ」の時だけだ。今の日本は、海外からの輸入物価が上がる「コストプッシュインフレ」。これを金融引き締め（利上げ）で抑えられないことは、証明済みだ。「デフレギャップ（需要不足）のあるデマンドプル・インフレ」など、この世に存在しない。正しい財政運営をすれば、日本はもっと豊かになれるんだ！</div>
 	</div>
 	<div class="qa-item">
 		<div class="qa-question">【Q5】…もう、どうすればいいのか分かりません。何をしても無駄なのですか？</div>
@@ -171,6 +213,8 @@
 		<p>空を見上げれば、かつてワニの口と呼ばれた暗雲は消え去り、一点の曇りもない、どこまでも続く青空が広がっている。<br>その青は、君たちがこれから描いていく、無限の可能性の色だ。</p>
 		<p>さあ、行こう。<br>君が作る、新しい日本の物語を、今、始めよう。</p>
 	</div>
+	
+	
 </div>
 
 <script>
