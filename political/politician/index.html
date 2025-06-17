@@ -1,38 +1,72 @@
-<!-- File: contents/politicians/index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Japanese Politician Insights</title>
+  <title>日本の政治家 考察</title>
+  <!-- CSSファイルへの相対パス -->
   <link rel="stylesheet" href="../../assets/Style_sub.css" />
+  <style>
+      .overview-link {
+          font-size: 1.25rem;
+          font-weight: bold;
+          border: 2px solid #d9534f;
+          padding: 10px;
+          margin-bottom: 20px;
+          background-color: #f2dede;
+          display: block;
+          text-align: center;
+      }
+      .overview-link a {
+          color: #a94442;
+          text-decoration: none;
+      }
+  </style>
 </head>
 <body>
   <div class="page-container">
-  <header>
-    <img src="../../assets/images/menbers.webp" alt="Japanese Politician Insights" class="header-image" />
-    <h1>Japanese Politician Insights</h1>
-    <p>A non-ideological, fact-based review of major political figures in Japan.</p>
-  </header>
+    <header>
+      <!-- 画像ファイルへの相対パス -->
+      <img src="../../assets/images/menbers.webp" alt="国会のイメージ" class="page-main-image" />
+      <h1>日本の政治家 考察</h1>
+      <div class="intro-text">
+        <p>イデオロギーに偏らず、公開されている情報や事実に基づき、日本の主要な政治家を客観的にレビューします。</p>
+      </div>
+    </header>
 
-  <main>
-    <section>
-      <h2>Liberal Democratic Party (LDP)</h2>
-      <ul>
-        <li>
-          <a href="LDP/Shinjiro Koizumi.html">Shinjiro Koizumi: A Critical Review</a>
+    <main class="content-padding">
+      <div class="article-list">
+        
+        <!-- Overview.htmlへのリンクを最上部に追加 -->
+        <li class="overview-link">
+            <a href="./Overview.html">📌 **まずはこちらを： 日本の政治勢力図（2025年6月17日時点）**</a>
         </li>
-      </ul>
-    </section>
 
-    <section>
-      <h2>Coming Soon</h2>
-      <p>Additional profiles of Japanese politicians will be added progressively.</p>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2025 Elementary Particles Man</p>
-  </footer>
+        <section>
+          <h2>自由民主党 (LDP)</h2>
+          <ul>
+            <li>
+              <!-- 小泉進次郎氏の考察ページへの相対パス -->
+              <a href="LDP/Shinjiro Koizumi.html">小泉進次郎：詳細分析と評価</a>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>準備中</h2>
+          <ul>
+            <li>
+              <a>他の議員のプロフィールも順次追加予定です。</a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <!-- トップページへの相対パス -->
+      <p><a href="../../index.html">&larr; トップページに戻る</a></p>
+      <p>&copy; 2025 elementary-particles-Man</p>
+    </footer>
   </div>
 </body>
 </html>

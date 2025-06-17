@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>日本の政治勢力図（2025年6月17日時点）</title>
+  <!-- 参照CSSへのパス -->
+  <link rel="stylesheet" href="../../assets/Style_contents.css">
+  <!-- このページ専用のスタイル -->
+  <style>
+    body {
+        counter-reset: h2-counter;
+    }
+    h1, h2, h3 {
+        text-align: left;
+    }
+    h2::before {
+        counter-increment: h2-counter;
+        content: counter(h2-counter) ". ";
+    }
+    .chart-container {
+        display: flex;
+        flex-wrap: wrap; /* 横幅が足りない場合は折り返す */
+        justify-content: space-around;
+        gap: 20px;
+        margin: 20px 0;
+    }
+    .chart-box {
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
+    }
+    .chart-title {
+        font-size: 1.5em;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 0.5em;
+    }
+    .party-section-separator {
+        border-top: 1px solid #ccc;
+        margin-top: 40px;
+        padding-top: 20px;
+    }
+    .party-section-separator h2 {
+        font-size: 1.1em;
+        color: #555;
+        text-align: center;
+        border-bottom: none;
+    }
+    /* 区切り線ヘッダからは番号を削除 */
+    .party-section-separator h2::before {
+      content: ""; 
+    }
+    .party-box {
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+    }
+    /* 各党の背景色 */
+    .ldp-color { background-color: #d9edf7; } /* 自民党: 青 */
+    .komeito-color { background-color: #f2dede; } /* 公明党: 薄い赤 */
+    .cdp-color { background-color: #f5f5f5; } /* 立憲民主党: グレー */
+    .dpfp-color { background-color: #d1e7ff; } /* 国民民主党: 群青 (水色系で表現) */
+    .ishin-color { background-color: #dff0d8; } /* 維新: 緑 */
+    .jcp-color { background-color: #dc354540; } /* 共産党: クリムゾンレッド */
+    .reiwa-color { background-color: #f8d7da; } /* れいわ: ピンク */
+    .sansei-color, .hoshu-color, .jfp-color { background-color: #cce5ff; } /* 参政党、保守党、第一党: 水色 */
+    .sdp-color { background-color: #fce4ec; } /* 社民党: 薄いピンク */
+    .nhk-color { background-color: #d4edda; } /* NHK党: 薄い緑 */
+
+    .danger-highlight {
+        border: 2px solid #d9534f;
+        background-color: #f2dede;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 8px;
+    }
+    .danger-highlight h3 {
+        color: #d9534f;
+        margin-top: 0;
+    }
+
+    .final-statement {
+        color: #d9534f;
+        font-weight: bold;
+        font-size: 1.8em;
+        text-align: center;
+        margin-top: 40px;
+        padding: 20px;
+        border: 2px solid #d9534f;
+        background-color: #f2dede;
+    }
+    /* 画面幅に応じたグラフのレイアウト調整 */
+    @media (max-width: 800px) {
+        .chart-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+  </style>
+  <!-- Plotly.jsの読み込み -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<div class="page-wrapper">
+  <header>
+    <h1>日本の政治勢力図（2025年6月17日時点）</h1>
+  </header>
+  
+  <main>
+    <section>
+        <h2>国会勢力図</h2>
+        <div class="chart-container">
+            <div class="chart-box">
+                <div class="chart-title">【衆議院】</div>
+                <div id="reps-chart"></div>
+            </div>
+            <div class="chart-box">
+                <div class="chart-title">【参議院】</div>
+                <div id="council-chart"></div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>両院の仕組みについて</h2>
+        <ul>
+            <li><strong>衆議院（定数465議席）:</strong> 任期は4年。解散があるため、任期満了前に選挙となることが多い。</li>
+            <li><strong>参議院（定数248議席）:</strong> 任期は6年で、3年ごとに半数が改選される。解散はない。</li>
+            <li><strong>衆議院の優越:</strong> 法律案や予算、首相指名において参議院より優越的な権限を持つ。参議院が否決した法案も、衆議院で3分の2以上の賛成があれば再可決できる。</li>
+        </ul>
+    </section>
+
+    <div class="danger-highlight">
+        <h3>現在の政治状況における重大なリスク</h3>
+        <p><strong>少数与党という現実:</strong> 現在の自公連立与党は、衆議院において過半数を割り込んでおり（215議席/465議席）、法案の単独可決が不可能な「少数与党」状態にあります。これにより、政治運営は極めて不安定化しています。</p>
+        <p><strong>「アンチ・フィアット」大連立の危険性:</strong> この不安定さを背景に、先の年金改革法案では自民・公明・立憲民主の三党が合意しました。これは、本来の管理通貨制度を理解せず、緊縮財政や増税を志向する勢力が、国会で事実上の「多数派」を形成しうるという、極めて危険な兆候です。国民生活を犠牲にする財政規律が、党派を超えて推し進められるリスクが、現実のものとなっています。</p>
+    </div>
+
+    <div class="party-section-separator"><h2>与党（自公）</h2></div>
+    <section class="party-section">
+        <div class="party-box ldp-color">
+            <h3>自由民主党 (LDP)</h3>
+            <p><strong>キャッチフレーズ:</strong> "落ち行く虚星”</p>
+            <p><strong>党首:</strong> 石破 茂<br>
+            <strong>国防:</strong> 強力な国防力を支持し、反撃能力（敵基地攻撃能力）の保有を推進。<br>
+            <strong>外交:</strong> 日米同盟を基軸とし、地域情勢の安定化を重視。<br>
+            <strong>経済:</strong> 経済成長を促進し、富の再分配による中間層の強化を目指す。<br>
+            <a href="https://www.jimin.jp/" target="_blank">公式サイト</a></p>
+        </div>
+        <div class="party-box komeito-color">
+            <h3>公明党 (Komeito)</h3>
+            <p><strong>キャッチフレーズ:</strong> "創価学会どこへやら、お願いします習近平"</p>
+            <p><strong>党首:</strong> 斉藤 鉄夫<br>
+            <strong>国防:</strong> 専守防衛を堅持し、自衛隊の海外派遣拡大には慎重な立場。<br>
+            <strong>外交:</strong> 中国との対話を重視し、核兵器廃絶を党の理念として掲げる。<br>
+            <strong>経済:</strong> 「人道的な社会主義」を標榜し、社会福祉の充実と経済成長の両立を目指す。<br>
+            <a href="https://www.komei.or.jp/" target="_blank">公式サイト</a></p>
+        </div>
+    </section>
+    
+    <div class="party-section-separator"><h2>野党…？？？（立憲）</h2></div>
+    <section class="party-section">
+        <div class="party-box cdp-color">
+            <h3>立憲民主党 (CDP)</h3>
+            <p><strong>キャッチフレーズ:</strong> "公金でメシが食いたい烏合の衆"</p>
+            <p><strong>党首:</strong> 野田 佳彦<br>
+            <strong>国防:</strong> 専守防衛を徹底し、反撃能力の保有には反対。平和主義を重視。<br>
+            <strong>外交:</strong> 国連中心の多国間協調を支持。日米地位協定の見直しを求める。<br>
+            <strong>経済:</strong> 最低賃金の引き上げや福祉の拡大、ジェンダー平等の推進を政策の柱とする。<br>
+            <a href="https://cdp-japan.jp/" target="_blank">公式サイト</a></p>
+        </div>
+    </section>
+
+    <div class="party-section-separator"><h2>野党</h2></div>
+    <section class="party-section">
+        <div class="party-box dpfp-color">
+            <h3>国民民主党 (DPFP)</h3>
+            <p><strong>キャッチフレーズ:</strong> "成長過程の躓き中道"</p>
+            <p><strong>党首:</strong> 玉木 雄一郎<br>
+            <strong>国防:</strong> 現実的な安全保障政策を掲げ、段階的な防衛力の強化を主張。<br>
+            <strong>外交:</strong> 日米同盟を基軸としつつ、多角的な経済外交を展開。<br>
+            <strong>経済:</strong> 「給料が上がる経済」の実現を掲げ、人への投資と経済成長を重視。<br>
+            <a href="https://new-kokumin.jp/" target="_blank">公式サイト</a></p>
+        </div>
+        <div class="party-box ishin-color">
+            <h3>日本維新の会 (Ishin)</h3>
+            <p><strong>キャッチフレーズ:</strong> "大阪万博責任取れや"</p>
+            <p><strong>党首:</strong> 吉村 洋文<br>
+            <strong>国防:</strong> 憲法改正による自衛隊の明記、防衛費の増額に積極的。<br>
+            <strong>外交:</strong> 強い国家としての姿勢を重視し、安全保障面では自民党と近い立場。<br>
+            <strong>経済:</strong> 地方分権（大阪都構想など）や規制改革、教育の無償化などを推進。<br>
+            <a href="https://o-ishin.jp/" target="_blank">公式サイト</a></p>
+        </div>
+         <div class="party-box reiwa-color">
+            <h3>れいわ新選組 (Reiwa)</h3>
+            <p><strong>キャッチフレーズ:</strong> 「借金上等のバラマキ隊」</p>
+            <p><strong>党首:</strong> 山本 太郎<br>
+            <strong>国防:</strong> 平和主義。軍事拡大に反対し、憲法9条の維持を強調。<br>
+            <strong>外交:</strong> 国際協調と平和を優先。対米従属からの脱却を主張。<br>
+            <strong>経済:</strong> 消費税廃止、季節ごとの10万円給付金など、積極財政による徹底的な再分配を主張。<br>
+            <a href="https://reiwa-shinsengumi.com/" target="_blank">公式サイト</a></p>
+        </div>
+        <div class="party-box jcp-color">
+            <h3>日本共産党 (JCP)</h3>
+            <p><strong>キャッチフレーズ:</strong> "消えゆく学生闘争"</p>
+            <p><strong>党首:</strong> 田村 智子<br>
+            <strong>国防:</strong> 憲法9条の堅持と非武装中立を主張。日米安保条約の廃棄を求める。<br>
+            <strong>外交:</strong> 全ての国との平和・友好関係を基本とする自主独立の外交を主張。<br>
+            <strong>経済:</strong> 大企業・富裕層への課税強化と、内部留保の活用による賃上げを求める。<br>
+            <a href="https://www.jcp.or.jp/" target="_blank">公式サイト</a></p>
+        </div>
+        <div class="party-box sansei-color">
+            <h3>参政党 (Sanseito)</h3>
+            <p><strong>キャッチフレーズ:</strong> 「陰謀論で票集め隊」</p>
+            <p><strong>党首:</strong> 神谷 宗幣<br>
+            <strong>国防:</strong> 国家主義的。自主防衛力の強化と憲法改正を主張。<br>
+            <strong>外交:</strong> 日本主導の国際関係を重視し、グローバリズムに懐疑的。<br>
+            <strong>経済:</strong> 中小企業支援、食料自給率向上など、国内産業の保護を重視。<br>
+            <a href="https://www.sanseito.jp/" target="_blank">公式サイト</a></p>
+        </div>
+        <div class="party-box hoshu-color">
+            <h3>日本保守党 (Japan Conservative Party)</h3>
+            <p><strong>キャッチフレーズ:</strong> 「愛国ポエムの右翼集団」</p>
+            <p><strong>党首:</strong> 百田 尚樹<br>
+            <strong>国防:</strong> 強硬な保守主義。自衛隊の強化と憲法改正を支持。<br>
+            <strong>外交:</strong> 国益第一主義。日米同盟を維持しつつ、自主外交を強化。<br>
+            <strong>経済:</strong> 自由市場を支持しつつ、伝統産業や地方経済の保護を重視。<br>
+            <a href="https://hoshuto.jp" target="_blank">公式サイト</a></p>
+        </div>
+        <div class="party-box sdp-color">
+            <h3>社会民主党 (SDP)</h3>
+            <p><strong>キャッチフレーズ:</strong> 「軍事アレルギーの社会主義者」</p>
+            <p><strong>党首:</strong> 福島 瑞穂<br>
+            <strong>国防:</strong> 強硬な平和主義。軍事拡大に反対し、完全な軍縮を支持。<br>
+            <strong>外交:</strong> 平和外交を推進し、国際的な軍縮と多国間協力を目標とする。<br>
+            <strong>経済:</strong> 社会主義。福祉の拡大、経済格差縮小、労働者保護を重視。<br>
+            <a href="https://www5.sdp.or.jp" target="_blank">公式サイト</a></p>
+        </div>
+        <div class="party-box nhk-color">
+            <h3>NHKから国民を守る党 (NHK Party)</h3>
+            <p><strong>キャッチフレーズ:</strong> 「NHKをぶっ壊す一発屋」</p>
+            <p><strong>党首:</strong> 齊藤 健一郎<br>
+            <strong>政策:</strong> NHK受信料のスクランブル化という単一争点に特化。他の政策はほぼ皆無。<br>
+            <strong>注釈:</strong> 浜田聡議員は所属しているが、2025年6月時点で党としての議席は0。<br>
+            <a href="https://www.nhkkara.jp" target="_blank">公式サイト</a></p>
+        </div>
+    </section>
+
+    <div class="final-statement">
+        この中に、管理通貨制度（フィアットシステム）を<br>理解している勢力は、<strong>ひとつもない</strong>。
+    </div>
+  </main>
+</div>
+<script>
+const partyOrder = ['その他', '日本維新の会', '国民民主党', '立憲民主党', '公明党','自由民主党' ];
+const partyColors = {
+    '自由民主党': '#d9edf7',
+    '公明党': '#f2dede',
+    '立憲民主党': '#f5f5f5',
+    '国民民主党': '#d1e7ff',
+    '日本維新の会': '#dff0d8',
+    'その他': '#e0e0e0'
+};
+
+// 衆議院データ
+const repsValues = {
+    '自由民主党': 191,
+    '公明党': 24,
+    '立憲民主党': 148,
+    '国民民主党': 27,
+    '日本維新の会': 38,
+    'その他': 37
+};
+
+// 参議院データ
+const councilValues = {
+    '自由民主党': 115,
+    '公明党': 20,
+    '立憲民主党': 39,
+    '国民民主党': 10,
+    '日本維新の会': 20,
+    'その他': 44
+};
+
+// グラフ用データ
+const repsData = {
+    values: partyOrder.map(p => repsValues[p]),
+    labels: partyOrder,
+    marker: {
+        colors: partyOrder.map(p => partyColors[p])
+    },
+    type: 'pie',
+    sort: false,
+    textinfo: 'label+percent',
+    hoverinfo: 'label+value+percent',
+    rotation:332// 必要に応じて微調整
+};
+
+const councilData = {
+    values: partyOrder.map(p => councilValues[p]),
+    labels: partyOrder,
+    marker: {
+        colors: partyOrder.map(p => partyColors[p])
+    },
+    type: 'pie',
+    sort: false,
+    textinfo: 'label+percent',
+    hoverinfo: 'label+value+percent',
+    rotation: 297
+};
+
+const layout = {
+    showlegend: false,
+    margin: {t: 20, b: 20, l: 20, r: 20},
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)'
+};
+
+// 描画
+Plotly.newPlot('reps-chart', [repsData], layout, {responsive: true});
+Plotly.newPlot('council-chart', [councilData], layout, {responsive: true});
+</script>
+
+
+</body>
+</html>
