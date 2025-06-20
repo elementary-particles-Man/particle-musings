@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本の農業が直面する現実：現状把握（1/3）</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --primary-color: #0d6efd;
+            --border-color: #dee2e6;
+            --card-bg: #ffffff;
+            --header-bg: #343a40;
+            --header-text: #ffffff;
+            --accent-color: #dc3545;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        header p {
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        main {
+            padding: 30px 0;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        h3 {
+            font-size: 1.2em;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            margin-top: 30px;
+        }
+
+        p, ul {
+            font-size: 1em;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid #6c757d;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        ul li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .summary-box {
+            background-color: #e9ecef;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .alert-box {
+            background-color: #fff3cd;
+            border-left-color: #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+            border: 1px solid #ffeeba;
+        }
+        
+        .alert-box strong {
+            color: #664d03;
+        }
+
+        .next-step-box {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 25px;
+            margin-top: 50px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .next-step-box a {
+            color: white;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>日本の農業が直面する「現実」についての整理</h1>
+        <p>生産者の皆様の声をお聞かせいただくためのお願い（1/3）</p>
+    </header>
+
+    <div class="container">
+        <main>
+            <div class="alert-box">
+                <p><strong>はじめに</strong><br>
+                この資料は、現在の日本の農業、特に米作りを取り巻く複雑な問題を、私たちなりに真剣に分析・整理したものです。これは決して、誰かを批判したり、解決策を提示したりするものではありません。<br><br>
+                私たちは、多くの問題が絡み合った結果、有効な次の一手が見いだせない「手詰まり」の状態にあるのではないかと感じています。この認識が正しいのか、あるいは現場の皆様が感じておられることと、どれほどのズレがあるのか。それを知るためには、何よりもまず、日々現場に立つ皆様の「生の声」が必要不可欠です。この資料が、皆様の貴重な声をお聞かせいただくための、真摯な「お願い状」となれば幸いです。</p>
+            </div>
+
+            <h2>第1部：日本の農業、その「特殊性」</h2>
+            <p>なぜ、海外の成功事例や一般的な経済理論が、日本の農業には当てはまらないのでしょうか。それは、日本の農業が世界的に見ても極めて「特殊」な環境にあるからだと、私たちは考えています。</p>
+            
+            <h3>1. 極小面積での最大活用（「箱庭的精緻化」モデル）</h3>
+            <ul>
+                <li>国土の大半が山地であり、農地は狭く、分散しています。</li>
+                <li>この制約の中で、古くから「品質」と「単位面積あたりの収穫量」を極限まで高めることに最適化されてきました。</li>
+                <li>その結果、世界に誇る高品質な農作物が生まれる一方、多大な手間とコストを要する、職人芸的な生産構造が定着しました。</li>
+            </ul>
+
+            <h3>2. 世界の主流との根本的な違い（「スケールメリット」モデル）</h3>
+            <ul>
+                <li>アメリカやオーストラリアなど、世界の主要な農業国は、広大な土地で効率化を追求することを前提としています。</li>
+                <li>労働力や資本の投入量に対して、いかに収量を最大化するかを重視し、大規模な機械化が基本となっています。</li>
+            </ul>
+
+            <div class="summary-box">
+                結論：日本の農業は、世界の主流とは異なるOS（基本システム）で動いています。<br>そのため、海外の成功事例をそのまま持ち込んでも、機能しない可能性が極めて高いのです。
+            </div>
+
+            <h2>第2部：私たちが認識している「主要課題」</h2>
+            <p>上記の「特殊性」に加えて、日本の農業は、いくつもの深刻な課題を同時に抱えていると認識しています。</p>
+
+            <h3>1. 逃れられない「自然災害リスク」</h3>
+            <ul>
+                <li>台風、豪雨、猛暑、地震など、他国と比較して自然災害の頻度が極めて高い環境です。</li>
+                <li>丹精込めて育てた作物が、収穫直前に「ゼロ」になる可能性と、常に隣り合わせの事業環境にあります。</li>
+            </ul>
+
+            <h3>2. 高度で特殊な「日本の食文化」</h3>
+            <ul>
+                <li>消費者は、米一粒の食味や品質にまでこだわり、多様で高品質な副食を求めます。</li>
+                <li>この要求水準の高さが、生産者の皆様に、さらなる高品質化と多品目化を促し、結果としてコスト増につながる側面があります。</li>
+            </ul>
+
+            <h3>3. 構造的な「儲からない」という問題</h3>
+            <ul>
+                <li>上記の要因が重なった結果、「高リスク・高コスト・低リターン」という構造に陥りがちです。</li>
+                <li>これが、農業を魅力的な職業と感じにくくさせ、深刻な後継者不足の根本的な原因になっていると考えています。</li>
+            </ul>
+
+            <h2>第3部：さらに深刻化する「複合的要因」</h2>
+            <p>近年、これらの従来からの課題に、新たな問題が雪崩のように積み重なり、事態をさらに悪化させているように見えます。</p>
+            
+            <h3>1. 社会・思想の混乱</h3>
+            <ul>
+                <li>科学的根拠の薄い情報（例：「農薬は危険」など）が広まることで、生産現場に過度なプレッシャーがかかり、正規の農法までが否定されかねない状況。</li>
+            </ul>
+
+            <h3>2. 政治・行政の機能不全</h3>
+            <ul>
+                <li>今回の「米騒動」に代表される、現場の実態と乖離した政策決定。</li>
+                <li>本当に必要な支援が、必要なタイミングで届かない、あるいは見当違いな支援に終始してしまう問題。</li>
+            </ul>
+
+            <h3>3. 人的資源の枯渇</h3>
+            <ul>
+                <li>単なる後継者不足だけでなく、新規就農者を育成し、定着させるための社会的なシステムが機能していない問題。</li>
+            </ul>
+
+            <h3>4. 社会秩序の揺らぎ</h3>
+            <ul>
+                <li>農作物の盗難と、それに対する司法・行政の対応の鈍さ。これは生産者の労働意欲を根本から破壊する、極めて深刻な問題です。</li>
+            </ul>
+
+            <div class="next-step-box">
+                <p>これらが、私たちが外部から観測し、認識している日本の農業が抱える「多重の危機」です。<br>
+                しかし、これらはあくまで「部外者」の分析に過ぎません。現場の実感とは異なる点、あるいは私たちが全く認識できていない、より深刻な問題があるはずです。<br><br>
+                次の資料「1-2：なぜ解決策が見つからないのか」では、これらの課題に対して、なぜ有効な手が打てないのか、その構造的な「行き詰まり」について整理します。</p>
+                    <a href="part2-structural-deadlock.html">1-2：行き詰まりの構造</a>
+            </div>
+        </main>
+        
+        <footer>
+            <p>ご多忙のところ、本資料をお読みいただき、誠にありがとうございます。</p>
+		<a href="index.html">アンケートトップページ</a>
+		<a href="../index.html">一次産業・農業考察</a>
+		<a href="../../index.html">日本考察</a>
+		<a href="../../../index.html">TOP</a>
+        </footer>
+    </div>
+
+</body>
+</html>
