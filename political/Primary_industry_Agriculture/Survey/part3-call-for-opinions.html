@@ -122,6 +122,45 @@
             transition: background-color 0.3s, transform 0.2s;
         }
 
+.action-buttons {
+    display: flex;
+    flex-direction: column; /* ボタンを縦に並べる */
+    align-items: center;   /* ボタンを中央揃えにする */
+    gap: 15px;             /* ボタンの間のスペース */
+    margin-top: 25px;
+}
+
+.action-buttons .btn {
+    display: inline-block;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+    min-width: 320px; /* ボタンの最小幅を統一 */
+    box-sizing: border-box; /* paddingを含めて幅を計算 */
+}
+
+.action-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.action-buttons .btn-twitter {
+    background-color: #1DA1F2; /* Twitter Blue */
+}
+.action-buttons .btn-twitter:hover {
+    background-color: #0c85d0;
+}
+
+.action-buttons .btn-google {
+    background-color: #f57c00; /* Orange */
+}
+.action-buttons .btn-google:hover {
+    background-color: #e65100; /* Darker Orange */
+}
+
         .call-to-action .tweet-link:hover {
             background-color: #0c85d0;
             transform: translateY(-2px);
@@ -195,10 +234,15 @@
 
             <div class="call-to-action">
                 <h2>お願い</h2>
-                <p>皆様が感じておられること、考えておられることを、<br>以下のツイートへのリプライ（返信）という形でお寄せいただけないでしょうか。</p>
-                <a href="https://x.com/ParticlesJapan/status/1936212364787073464" class="tweet-link" target="_blank" rel="noopener noreferrer">
-                    こちらのツイートに返信する
-                </a>
+                <p>皆様が感じておられること、考えておられることを、<br>以下のような形でお寄せいただけないでしょうか。</p>
+		<div class="action-buttons">
+		<a href="https://x.com/ParticlesJapan/status/1936212364787073464" class="btn btn-twitter" target="_blank" rel="noopener noreferrer">
+		Twitterで返信する (公開)
+		</a>
+		<a href="https://forms.gle/UTSWMnzRLDQuCAwm8" class="btn btn-google" target="_blank" rel="noopener noreferrer">
+		Googleフォームで回答する (匿名可)
+		</a>
+		</div>
             </div>
 
             <div class="link-to-prev">
