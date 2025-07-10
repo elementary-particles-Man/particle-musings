@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fentanyl Investigation Process</title>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+  <h1>Fentanyl Investigation: Conceptual Flow</h1>
+  <div class="mermaid">
+    flowchart TB
+      CN[China Organization] -->|Smuggle Precursor| JP[Japan Relay]
+      JP -->|Kitchen Factory| LocalFactory[Local Manufacturing]
+      LocalFactory -->|Distribute| Market[Domestic + US Market]
+      Market -->|Huge Profits| MoneyLaundering[Money Laundering]
+      MoneyLaundering -->|Investment| IR[IR Business Model]
+
+      JP -->|Community Surveillance| IN[South Kasai Indian Community]
+      IN -->|Server Management| DB[Central DB Cloud]
+      DB -->|Realtime Monitoring| Narc[Japanese Narcotics Bureau]
+      Narc -->|CBRNE Operation| CB[CBRNE Task Force]
+      CB -->|Evacuation Protocol| Residents[Local Residents]
+      Drones -->|Legalized Drone Spy| LocalFactory
+  </div>
+</body>
+</html>
