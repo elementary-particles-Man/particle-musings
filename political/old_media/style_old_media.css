@@ -1,0 +1,111 @@
+/* 共通のベーススタイルをインポート */
+@import url('../../assets/style_sub.css');
+
+/*
+ * レポートページ用の追加スタイル
+ * style_sub.css のスタイルを継承しつつ、
+ * レポート特有の要素（引用、表、用語集など）の見た目を整えます。
+*/
+
+/* レポートコンテンツのコンテナ */
+.report-content {
+    background-color: white;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    border-radius: 0.5rem;
+}
+
+/* レポート内のh2見出しのスタイル */
+.report-content h2 {
+    padding-bottom: 0.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom-width: 2px;
+    font-size: 1.5rem; /* text-2xl */
+}
+
+/* レポート内のh3見出しのスタイル */
+.report-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem; /* text-xl */
+}
+
+/* レポートごとの見出しボーダー色 */
+.report-silence h2 {
+    border-bottom-color: #3b82f6; /* blue-500 */
+}
+.report-nhk h2 {
+    border-bottom-color: #ef4444; /* red-500 */
+}
+
+/* 用語集へのリンク */
+.term-link {
+    color: #2563eb; /* blue-600 */
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+.term-link:hover {
+    color: #1d4ed8; /* blue-800 */
+}
+
+/* 引用ブロック */
+blockquote {
+    border-left: 4px solid #d1d5db; /* gray-300 */
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: #4b5563; /* gray-600 */
+    font-style: italic;
+}
+
+/* 表のスタイル */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.9em;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+th, td {
+    border: 1px solid #e5e7eb; /* gray-200 */
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+th {
+    background-color: #f9fafb; /* gray-50 */
+}
+
+/* 用語集のスタイル */
+#glossary {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb; /* gray-200 */
+}
+#glossary dl div {
+    margin-bottom: 1.5rem;
+}
+#glossary dt {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: #111827; /* gray-900 */
+}
+#glossary dd {
+    margin-top: 0.25rem;
+    color: #374151; /* gray-700 */
+    margin-left: 0;
+}
+
+/* フッターのリンク */
+footer {
+    text-align: center;
+    padding-top: 2rem;
+}
+footer a {
+    color: #4b5563;
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
