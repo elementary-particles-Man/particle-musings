@@ -4,91 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>参考資料集 - 9.30 世界金融リセット</title>
-    <style>
-        :root {
-            --bg-color: #f8f9fa;
-            --text-color: #212529;
-            --primary-color: #0d6efd;
-            --card-bg: #ffffff;
-            --border-color: #dee2e6;
-            --header-bg: #e9ecef;
-            --link-color: #0a58ca;
-        }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #0b0c10;
-                --text-color: #e8eef2;
-                --primary-color: #88c0d0;
-                --card-bg: #11131a;
-                --border-color: #343a40;
-                --header-bg: #1a1d24;
-                --link-color: #7dd3fc;
-            }
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.7;
-            margin: 0;
-            padding: 20px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        header {
-            background-color: var(--header-bg);
-            border-bottom: 1px solid var(--border-color);
-            padding: 2.5rem 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin: 0;
-            font-weight: 700;
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .card h2 {
-            font-size: 1.5rem;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-        .card p {
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-        .card a {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--card-bg);
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            text-align: center;
-            transition: background-color 0.2s ease-in-out;
-        }
-        .card a:hover {
-            opacity: 0.8;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -99,42 +15,45 @@
         <div class="card-grid">
             
             <div class="card">
-                <h2>米国債需給と債務上限分析</h2>
-                <p>本資料は、2025年9月30日に予定されている米国債入札における入札不成立（ワルプルギス）のリスクを評価しています。この日は会計年度末かつ債務上限の「Xデー」期間中であり、利付債と短期国債合わせて3,650億ドル～4,150億ドルという前例のない規模の資金調達が要求されます。プライマリーディーラーの引き受け能力の制約や、短期金融市場からの大規模な流動性吸収が重なり、入札不成立のリスクは「中程度」と評価されています。海外投資家の需要減退も懸念され、レポ金利などの市場ストレス指標の注意深い監視が推奨されています。</p>
+                <h2 class="negative">米国債需給と債務上限分析</h2>
+                <p>本資料は、2025年9月30日に予定されている米国債入札における入札不成立（ワルプルギス）のリスクを評価しています。プライマリーディーラーの引き受け能力の制約や、短期金融市場からの大規模な流動性吸収が重なり、入札不成立のリスクは「中程度」と評価されています。</p>
                 <a href="https://docs.google.com/document/d/1Bn3mB5QBBw1FYSkpnF4OdMCBfwvV1P7Gd_jbIFRI06U/edit?usp=sharing" target="_blank" rel="noopener noreferrer">資料を開く</a>
             </div>
 
             <div class="card">
-                <h2>2025年ワルプルギス危機：お金の不安とAIによる仕事の変化が重なる時</h2>
-                <p>このレポートは、2025年9月30日に起きると予測される「ワルプルギス危機」について、詳しく分析しています。この危機は、アメリカのお金が一時的に足りなくなる問題と、AI（人工知能）が世界中のサービス業の仕事を大きく変えてしまうという、2つの大きな流れが重なることで発生します。私たちは、「お金の核」「AIによるリストラ」「追加のリスク」という3つの視点から、危機がどのように広がっていくかを追跡しました。アメリカでの資金不足から始まり、コールセンターなどの仕事を請負う海外の会社（BPO企業）で大量のリストラが起き、それがインドやフィリピンの経済を不安定にし、さらに国際的な問題へと発展する可能性を指摘しています。この危機は、これまでのように安い人件費の国に仕事を頼む時代が終わり、各国や企業がAIを上手に使い、国内での生産を増やし、AIを管理できる人材を育てることの重要性を強く訴えています。</p>
+                <h2 class="negative">2025年ワルプルギス危機：お金の不安とAIによる仕事の変化が重なる時</h2>
+                <p>このレポートは、2025年9月30日に起きると予測される「ワルプルギス危機」について、詳しく分析しています。アメリカでの資金不足から始まり、それがインドやフィリピンの経済を不安定にし、さらに国際的な問題へと発展する可能性を指摘しています。</p>
                 <a href="https://docs.google.com/document/d/1TmY1X7C4nOv8Cydk5PWfqC4r_VWiMdPds_gyb3PG1-U/edit?usp=sharing" target="_blank" rel="noopener noreferrer">資料を開く</a>
             </div>
             
             <div class="card">
-                <h2>タイトル：核抑止の実態とMADの欺瞞（英文）</h2>
-                <p>本レポートは、世界の核兵器が現在、「相互確証破壊（MAD）」という安定した抑止から「相互確証自滅（MAS）」というより不安定な状態に移行していると論じています。MASとは、核兵器の技術的信頼性の欠如、運用上の脆さ、または政治的脆弱性により、核兵器の使用が自国にとっての自殺行為となり、報復の成功が保証されない状況を指します。この移行の主な原因は、老朽化したシステム、脆弱なC2（指揮統制）ネットワーク、そして核戦力の秘匿性を損なうオープンソースインテリジェンス（OSINT）の普及です。特にインドとパキスタンのように地域の緊張が高い地域では、気候変動のような外部要因が核使用の危険性を高め、即座に双方にとって自滅的な結果を招く可能性があります。本レポートは、核態勢を評価するための新しい枠組みとしてCUS（Capability-Usability-Sustainability）インデックスを導入し、新たな政策提言によって、このより不安定な戦略環境を乗り切るための道筋を示しています。</p>
+                <h2 class="negative">核抑止の実態とMADの欺瞞（英文）</h2>
+                <p>本レポートは、世界の核兵器が現在、「相互確証破壊（MAD）」という安定した抑止から「相互確証自滅（MAS）」というより不安定な状態に移行していると論じています。この移行の主な原因は、老朽化したシステム、脆弱なC2ネットワーク、そしてOSINTの普及です。</p>
                 <a href="https://docs.google.com/document/d/1Mqbk86E-1Oaij1y0UMiRSoYofw5T7Xh4lNCUaDZSPYI/edit?usp=sharing" target="_blank" rel="noopener noreferrer">資料を開く</a>
             </div>
 
             <div class="card">
-                <h2>ドミノシナリオ：米国州債デフォルトリスクの動学的分析</h2>
-                <p>本レポートは、米国の州債市場で「州はデフォルトしない」という一般的な認識が、動的な市場の動きによって覆される可能性を検証しています。イリノイ州やカリフォルニア州のような財政が脆弱な州での債券売却が引き金となり、投資ファンドからの資金流出、保険会社への信用不安の伝播、短期金融市場の機能不全などが連鎖的に発生し、広範な流動性危機に発展するシナリオを提示。特に、連邦準備制度理事会（FRB）のような恒久的な「最後の貸し手」が州債には存在しないことが、この危機の脆弱性を決定づけるとしています。法的には破綻しない州も、市場からのアクセスを絶たれることで、事実上の支払停止に追い込まれる可能性があり、静的な財政状況だけでなく、市場シグナルの監視が重要であると結論付けています。</p>
+                <h2 class="negative">ドミノシナリオ：米国州債デフォルトリスクの動学的分析</h2>
+                <p>本レポートは、米国の州債市場で「州はデフォルトしない」という一般的な認識が、動的な市場の動きによって覆される可能性を検証しています。連邦準備制度理事会（FRB）のような恒久的な「最後の貸し手」が州債には存在しないことが、この危機の脆弱性を決定づけるとしています。</p>
                 <a href="https://docs.google.com/document/d/1Y02qKCEDdflr8VH8v-pKBt-8kRu98Hqnx21J8hsLL-Q/edit?usp=sharing" target="_blank" rel="noopener noreferrer">資料を開く</a>
             </div>
 
             <div class="card">
-                <h2>金融危機から食料危機へ：三拠点同時崩壊シナリオの検証</h2>
-                <p>本分析は、世界の食料供給を支える三つの重要な機能、すなわち「価格保険（ヘッジ）」「物流」「信用」が、金融・インフラ危機によって同時に、あるいは連鎖的に崩壊する可能性を検証しています。シカゴ（価格保険）、カリフォルニア（物流）、ウォール街（信用）という各拠点の機能不全が、それぞれ異なる経路で、しかし相互に影響し合いながら食料供給網を麻痺させると指摘。物理的に食料があっても、市場に流通しないという「現代型食料危機」の危険性を警鐘しています。このシナリオは極めて妥当性が高く、食料安全保障が最上位のインフラであることを強調し、金融システムと統合したリスク管理と、具体的な「食料防衛プレイブック」の必要性を提言しています。</p>
+                <h2 class="negative">金融危機から食料危機へ：三拠点同時崩壊シナリオの検証</h2>
+                <p>本分析は、世界の食料供給を支える三つの重要な機能（価格保険、物流、信用）が、金融・インフラ危機によって同時に、あるいは連鎖的に崩壊する可能性を検証しています。物理的に食料があっても、市場に流通しないという「現代型食料危機」の危険性を警鐘しています。</p>
                 <a href="https://docs.google.com/document/d/1lwvjRb6RJnWJID0hk_qVwVuvOs_OevTbKv9EPQmDv_k/edit?usp=sharing" target="_blank" rel="noopener noreferrer">資料を開く</a>
             </div>
 
             <div class="card">
-                <h2>「虚ろの王」無力化プロトコル策定</h2>
-                <p>この戦略評価文書は、「虚ろの王」と呼ばれる人物が、個人的な復讐心、投機的な取引、そして金銭欲に基づいて行動していると分析しています。彼はウクライナへの軍事支援停止や領土的譲歩の強要を通じて、ロシアとの間でエネルギー資源に関する大規模な「悪魔の取引」を画策し、自身の富を最大化しようとしています。この文書は、この取引を阻止するために、金融的封じ込め、情報戦、および外交的包囲網という3つの対抗プロトコルを提案しています。これには、腐敗した資金の流れを明らかにし、取引の真の目的を暴露する情報キャンペーンを展開し、ポーランドや他の欧州同盟国と協力して取引を拒否することが含まれます。</p>
+                <h2 class="negative">「虚ろの王」無力化プロトコル策定</h2>
+                <p>この戦略評価文書は、「虚ろの王」と呼ばれる人物が、個人的な復讐心、投機的な取引、そして金銭欲に基づいて行動していると分析し、その無力化プロトコルを提案しています。</p>
                 <a href="https://docs.google.com/document/d/1-FQGtdTFC68wJ9t7f3jJ-Mu9D6tSekJASVxBL3RI-CE/edit?usp=sharing" target="_blank" rel="noopener noreferrer">資料を開く</a>
             </div>
 
         </div>
+        <footer>
+            <p><a href="./index.html">トップページへ戻る</a></p>
+        </footer>
     </div>
 </body>
 </html>
