@@ -1,239 +1,102 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tier0: All-Stopper — ゼロ・バックストップ環境におけるシステミック・コラプス</title>
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #212529;
-            --header-bg: #f8f9fa;
-            --border-color: #dee2e6;
-            --primary-color: #2c3e50;
-            --accent-color: #c0392b;
-            --table-header-bg: #f2f2f2;
-            --blockquote-bg: #f9f9f9;
-            --blockquote-border: #e0e0e0;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #1c252c;
-                --text-color: #e8eef2;
-                --header-bg: #28333c;
-                --border-color: #3a4a58;
-                --primary-color: #ecf0f1;
-                --accent-color: #e57373;
-                --table-header-bg: #34495e;
-                --blockquote-bg: #212f3c;
-                --blockquote-border: #3a4a58;
-            }
-        }
-
-        body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            line-height: 1.8;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 850px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-
-        .report-header {
-            background-color: var(--header-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2rem 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .report-header h1 {
-            font-size: 2.2rem;
-            color: var(--accent-color);
-            margin: 0 0 0.5rem 0;
-        }
-
-        .report-header .subtitle {
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            opacity: 0.9;
-            margin: 0;
-        }
-
-        h2, h3, h4 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            margin-top: 3rem;
-        }
-        
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.6rem; border-bottom-style: dashed; }
-        h4 { font-size: 1.3rem; border-bottom-style: dotted; }
-
-        p, li {
-            font-size: 1rem;
-            text-align: justify;
-        }
-
-        strong {
-            color: var(--accent-color);
-        }
-
-        blockquote {
-            background-color: var(--blockquote-bg);
-            border-left: 5px solid var(--primary-color);
-            padding: 1rem 1.5rem;
-            margin: 2rem 0;
-            border-radius: 5px;
-            font-style: italic;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            font-size: 0.9rem;
-        }
-
-        th, td {
-            border: 1px solid var(--border-color);
-            padding: 0.8rem 1rem;
-            text-align: left;
-        }
-
-        th {
-            background-color: var(--table-header-bg);
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THP-DEATH：金融システムの「心停止」シナリオ</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.8;
+      margin: 0;
+      background: #f8f9fa;
+      color: #212529;
+    }
+    .container { max-width: 860px; margin: 2rem auto; padding: 0 1.2rem; }
+    header { background: #c0392b; padding: 2.5rem 2rem; border-radius: 10px; text-align: center; color: #ffffff; }
+    header h1 { margin: 0; font-size: 2.5rem; }
+    header p { margin: 0.5rem 0 0; font-size: 1.2rem; opacity: 0.9; }
+    h2 { margin-top: 3rem; border-bottom: 3px solid #c0392b; padding-bottom: 0.6rem; color: #2c3e50; font-size: 1.8rem; }
+    h3 { margin-top: 2rem; color: #2c3e50; font-size: 1.4rem; }
+    p { text-align: justify; font-size: 1.1rem; }
+    blockquote { background: #f1f3f5; border-left: 5px solid #c0392b; margin: 2rem 0; padding: 1.2rem 1.5rem; font-size: 1.2rem; font-style: italic; }
+    .highlight { color: #c0392b; font-weight: bold; }
+    footer { text-align: center; margin-top: 4rem; padding-top: 2rem; font-size: 0.9rem; color: #666; border-top: 1px solid #dee2e6; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header class="report-header">
-            <h1>Tier0: All-Stopper</h1>
-            <p class="subtitle">電力インフラ物理破壊による、金融市場そのものの停止</p>
-        </header>
+  <div class="container">
+    <header>
+      <h1>THP-DEATH: 金融システムの「心停止」</h1>
+      <p>もしも、世界経済の電源が落ちたら？<br>「All-Stopper」シナリオの全貌</p>
+    </header>
 
-        <section id="summary">
-            <h2>エグゼクティブ・サマリー</h2>
-            <p>本報告書は、「Tier0: All-Stopper（オールストッパー）」と呼称される、これまで想定されてこなかった極端なテールリスク・シナリオに関する包括的な分析と、それに対する防御的レジリエンスのフレームワークを提示するものである。All-Stopperシナリオは、社会不安や重要インフラ（電力・通信）の機能不全といった外生的ショックが、市場内部の脆弱性を突く前に、価格発見、清算、担保評価、決済という金融市場の四つの根幹機能を同時に、かつ完全に停止させる事象と定義される。</p>
-            <p>本シナリオの最も重大な前提条件は「受けゼロ（ゼロ・バックストップ）」状態である。これは、市場機能が物理的・運用的に麻痺することにより、マーケットメーカー、中央清算機関（CCP）、中央銀行の流動性供給ファシリティといった、従来のあらゆるセーフティネットが機能不全に陥る状況を指す。危機の本質は、流動性の枯渇ではなく、システムの<strong>運用不能性（inoperability）</strong>にある。</p>
-            <p>本報告書の分析は、三部構成で展開される...</p>
-            <!-- Abridged for brevity in this example response. The full content from user input follows. -->
-        </section>
+    <h2>1. はじめに：これは「危機」ではない、「停止」である</h2>
+    <p>
+      私たちが日々耳にする「金融危機」は、株価の暴落や企業の倒産といった「価値の変動」を指します。しかし、「THP-DEATH」シナリオが描くのは、それらとは全く次元の異なる事態です。これは、<span class="highlight">金融システムという社会インフラそのものが、物理的に機能しなくなる「心停止」の状態</span>を意味します。お金の流れが完全に止まるとき、私たちの社会はどうなるのでしょうか。
+    </p>
 
-        <article>
-            <!-- Part I -->
-            <h2>第I部 All-Stopper事象の構造分析</h2>
-            <p>本章では、All-Stopperシナリオの根幹をなす概念を解き明かし、社会の不安定化から金融システムの物理的・運用的な基盤の麻痺に至る因果連鎖の妥当性を検証する。</p>
-            
-            <h3>1.1. 想定を超える事態の定義：ゼロ・バックストップ下でのシステミック・コラプス</h3>
-            <h4>All-Stopperの定義の精緻化</h4>
-            <p>All-Stopperシナリオは、従来のシステミック・リスクの概念を超えるものである。従来の議論が特定の金融機関や市場の破綻に焦点を当ててきたのに対し 、All-Stopperは、全ての市場が依存する基盤インフラそのものの機能不全を起点とする 。具体的には、以下の市場の四つの柱が、相関的に、かつ同時に機能停止に陥る事態と定義される。</p>
-            <ul>
-                <li><strong>価格発見機能の喪失</strong>：取引所の運用停止、データフィードの途絶、あるいは買い注文の完全な消滅により、市場が意味のある価格を形成できなくなる状態。</li>
-                <li><strong>清算機能の不全</strong>：中央清算機関（CCP）が、インフラの喪失により、証拠金（マージン）計算、デフォルト管理、取引処理を実行できなくなる状態。</li>
-                <li><strong>担保評価機能の停止</strong>：価格フィードが存在しないため、担保資産の時価評価が不可能となり、レポ市場などの有担保資金調達市場が完全に凍結する状態。</li>
-                <li><strong>決済機能の麻痺</strong>：Fedwireのような大口決済システムが取引を完了できなくなり、金融上の請求権が価値のない帳簿上の記録と化す状態。</li>
-            </ul>
+    <h2>2. THP-DEATHとは何か？</h2>
+    <p>
+      THP-DEATHとは、アメリカの金融市場が持つ基盤機能（価格発見・清算・担保評価・決済）のすべてが、完全に凍結するシナリオのコードネームです。別名<span class="highlight">「All-Stopper」</span>。その名の通り、あらゆる金融活動が停止します。これは、中央銀行や政府ですら介入する術を失う、前例のない事態です。
+    </p>
 
-            <h4>「受けゼロ（ゼロ・バックストップ）」条件の分析</h4>
-            <p>本シナリオを特徴づける最も重要な制約が「受けゼロ」条件である。これは、All-Stopperが運用上の危機であることに起因し、従来のバックストップ機能を無力化する。</p>
-            <blockquote>危機は流動性の問題ではなく、<strong>運用不能性</strong>の問題となる。</blockquote>
+    <h2>3. なぜ起きるのか？：狙われる電力網</h2>
+    <p>
+      この「心停止」を引き起こす直接的な原因は、サイバー攻撃ではありません。より原始的で、しかし確実な<span class="highlight">電力インフラ（変圧器・送電網）の物理的な破壊</span>です。特に、金融の中枢であるニューヨークやシカゴが標的となります。
+    </p>
+    <p>
+      取引所のサーバー、決済システムのコンピューター、トレーダーの端末、そのすべてが同時に機能を失います。広範囲にわたる停電は、原因となった破壊箇所の特定すら困難にし、復旧への道を閉ざします。
+    </p>
 
-            <h4>「崩壊の来訪者」パラダイム</h4>
-            <p>本シナリオは、想定されていた市場内部の金融イベント（例えば、DR依頼書にある「9/30の大型入札」）を「前倒し（front-run）」する形で発生する外生的ショックとして位置づけられる。この外部からの「崩壊の来訪者」は、単にストレスを加えるだけでなく、システムの物理的完全性を先に攻撃することで、金融政策ツールそのものを無用の長物とし、危機の本質を根本的に変容させる。</p>
+    <h2>4. なぜシカゴが危機の震源地となりうるのか？</h2>
+    <p>
+      このシナリオで特に脆弱性を抱えるのがシカゴです。その理由は3つあります。
+    </p>
+    <h3>世界金融の心臓部：CME</h3>
+    <p>
+      シカゴには<span class="highlight">CME（シカゴ・マーカンタイル取引所）</span>が存在します。ここは世界最大級のデリバティブ取引所であり、世界の金融機関が天文学的な規模の取引を行っています。CMEの停止は、世界経済の血液循環を止めるに等しいインパクトを持ちます。
+    </p>
+    <h3>トランプ前大統領が植え付けた「戦争」の火種</h3>
+    <p>
+      シカゴが抱える社会的な脆弱性は、トランプ前大統領の在任中に決定的に深刻化しました。彼は、人種・経済・思想による社会の亀裂を意d的に利用し、支持者の結束を高める一方で、反対勢力への敵意を煽ったのです。
+    </p>
+    <p>
+      その象徴的な行動が、米国の「国防総省」を、その旧称である<span class="highlight">『戦争省』（Department of War）</span>と呼び変えたことです。彼はその理由を「我々は勝たなければならないからだ」と説明しました。これは、国外の敵だけでなく、国内の政治的対立者をも「勝利すべき敵」とみなす姿勢の表れです。このレトリックは、平和的な対話や妥協を否定し、社会の分断を「戦争」のレベルにまで引き上げました。
+    </p>
+    <p>
+      この「戦争」の論理は、移民排斥や人種差別といった感情と結びつき、一部の支持者を過激化させました。その結果、政府や社会に対する不満が、重要インフラへの破壊活動といった<span class="highlight">物理的な暴力として発露する危険性</span>を著しく高めたのです。THP-DEATHは、このような政治的リーダーシップによって社会的脆弱性が極限まで高められた結果、現実味を帯びるシナリオと言えます。
+    </p>
+    <p>
+      当然ながら、こうしたトランプ氏の発言や行動は、シカゴの当局者や市民からの強い反発を招き、大規模な抗議デモへと発展しました。これにより、シカゴは政治的な対立の象徴的な場所となり、支持者と反対派の間の緊張は、物理的な衝突さえ起こりうるレベルにまで高まっています。
+    </p>
+    <h3>脆弱な行政機能</h3>
+    <p>
+      シカゴが属するイリノイ州は、長年の財政難に苦しんでいます。累積した債務は、警察・消防といった公共サービスの質を低下させ、大規模なインフラ破壊や暴動に対応する能力を著しく削いでいます。
+    </p>
 
-            <h3>1.2. 発端となる触媒：社会不安と重要インフラの相互依存性</h3>
-            <p>（...以下、ユーザー提供の第I部の残り、第II部、第III部、結論の全文を同様に構造化して記述...）</p>
+    <h2>5. シナリオがもたらす未曾有の事態</h2>
+    <p>
+      THP-DEATHの本当の恐ろしさは、発生した瞬間に<span class="highlight">「すべての資産が意味をなさなくなる」</span>点にあります。
+    </p>
+    <blockquote>
+      銀行のATMから現金は引き出せず、クレジットカードも使えない。株や債券を売って現金化することも不可能。金や原油ですら、決済できなければただのモノになります。価値の交換手段そのものが失われるのです。
+    </blockquote>
+    <p>
+      電力網の復旧は絶望的です。無数の変圧器の中から破壊された箇所を探し出す作業は困難を極め、その間、市場はもちろん、社会全体が麻痺し続けます。部分的な復旧も、新たな破壊によって妨害されるでしょう。これは単なる経済的損失ではなく、<span class="highlight">社会秩序の崩壊</span>に直結します。
+    </p>
 
-            <!-- Table 1 Example -->
-            <h2>第III部 防御的レジリエンスのためのフレームワーク</h2>
-            <h3>3.1. 危機前フェーズ：早期警戒とプロアクティブな監視</h3>
-            <h4>複合All-Stopper脅威指数の設計</h4>
-            
-            <table>
-                <caption>表1：All-Stopper先行KPIダッシュボード</caption>
-                <thead>
-                    <tr>
-                        <th>ドメイン</th>
-                        <th>主要業績評価指標（KPI）</th>
-                        <th>データソース（施設非特定）</th>
-                        <th>しきい値（黄/橙/赤/クリムゾン）</th>
-                        <th>重要性と論拠</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>社会</strong></td>
-                        <td>社会不安指数</td>
-                        <td>ニュース報道の集計（GDELT, ACLED）、IMF報告社会不安指数</td>
-                        <td>過去のボラティリティと変化率に基づく</td>
-                        <td>社会的緊張のベースラインを測定。持続的な上昇は初期ショックの確率増加を示す。</td>
-                    </tr>
-                    <!-- ... table rows from user input ... -->
-                </tbody>
-            </table>
-            
-            <!-- Table 2 Example -->
-            <h3>3.2. 危機フェーズ：非価格ベースの緊急時運用ランブック</h3>
-            <table>
-                <caption>表2：緊急市場再開プロトコルの比較</caption>
-                <thead>
-                    <tr>
-                        <th>プロトコル</th>
-                        <th>説明</th>
-                        <th>利点</th>
-                        <th>欠点</th>
-                        <th>適用シナリオ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>段階的/時間分散型再開</strong></td>
-                        <td>市場を順次（例：レポ、次にFX、次に株式）再開し、間に長い休止を挟む。</td>
-                        <td>情報の吸収を可能にし、データストームを防ぎ、システム負荷を軽減する。</td>
-                        <td>開いている市場と閉まっている市場の間で裁定機会を生み出し、不確実性を長引かせる。</td>
-                        <td>インフラは安定しているが、情報が破損または不完全な場合に最適。データ完全性を検証する時間を与える。</td>
-                    </tr>
-                    <!-- ... table rows from user input ... -->
-                </tbody>
-            </table>
+    <h2>6. 私たちにできること：最悪を「予防」する</h2>
+    <p>
+      このシナリオに対して、事が起きてからの有効な対策は存在しません。唯一の道は、<span class="highlight">発生確率を限りなくゼロに近づける努力</span>、すなわち「予防」です。
+    </p>
+    <p>
+      電力網のような重要インフラの防護と冗長性の確保、社会の分断を煽る言動の抑制、そして経済格差や差別といった根本的な問題への取り組み。THP-DEATHは、金融の問題であると同時に、現代社会が抱える脆弱性そのものを映し出す鏡です。これを避ける努力こそが、私たちにできる唯一の現実的な「対応策」と言えるでしょう。
+    </p>
 
-            <!-- Conclusion -->
-            <h2>結論：ゼロ・バックストップ世界におけるレジリエンスから反脆弱性への転換</h2>
-            <p>本報告書の最終章として、All-Stopperシナリオによって露呈した主要な脆弱性を総括する。現在のストレステスト は、主に経済的および信用リスクに焦点を当てており、相関した物理的・社会的システムの障害に根差す危機に対処するには不十分であると論じる。</p>
-            <p>本報告書は、規制当局およびG-SIFIに対し、以下の行動を強く要請して締めくくる。</p>
-            <ol>
-                <li><strong>複合的なカスケード障害シナリオの統合</strong>：高度で多領域にわたるカスケード障害シナリオを、自らの計画策定プロセスに統合すること。</li>
-                <li><strong>インフラの多様性を考慮したレジリエンスへの投資</strong>：相関性の高いインフラ障害を考慮に入れたレジリエンスに投資すること。</li>
-                <li><strong>非価格ベースの緊急時運用ランブックの策定と演習</strong>：価格なき世界での運用手順を策定し、机上演習（ウォーゲーミング）を実施すること。</li>
-                <li><strong>ナラティブ・リスクの管理</strong>：ナラティブ・リスクを、金融安定性に対する具体的かつ定量化可能な脅威として扱い、その管理体制を構築すること。</li>
-            </ol>
-        </article>
-
-        <footer>
-            <p>The Horizon Protocol | Intelligence & Analysis Division</p>
-        </footer>
-    </div>
+    <footer>
+      <p>The Horizon Protocol | THP-DEATH専用説明ページ</p>
+    </footer>
+  </div>
 </body>
 </html>
-
