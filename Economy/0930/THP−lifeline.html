@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THPライフライン危機対応：統合作戦資料</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --primary-color: #0d6efd;
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+            --header-bg: #e9ecef;
+            --link-color: #0a58ca;
+            --section-bg: rgba(13, 110, 253, 0.06);
+            --accent: #c0392b;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0b0c10;
+                --text-color: #e8eef2;
+                --primary-color: #88c0d0;
+                --card-bg: #11131a;
+                --border-color: #343a40;
+                --header-bg: #1a1d24;
+                --link-color: #7dd3fc;
+                --section-bg: rgba(136, 192, 208, 0.12);
+                --accent: #e57373;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 24px auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .subtitle {
+            margin: 0.5rem 0 0;
+            opacity: 0.85;
+            font-size: 1.2rem;
+        }
+        
+        .countdown {
+            font-size: 1.5rem;
+            color: var(--accent);
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+        
+        .note-box {
+            background-color: var(--section-bg);
+            border-left: 5px solid var(--accent);
+            padding: 1.2rem 1.4rem;
+            margin: 1.5rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        ul, ol { list-style-position: inside; padding-left: 0.5rem; }
+        li { margin: 0.6rem 0; }
+        
+        .kpi-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .kpi-list li {
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .plotly-graph-div {
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>THPライフライン危機対応：統合作戦資料</h1>
+            <p class="subtitle">2025年9月30日の世界的金融リセットに備えるための最終実行計画【最終確定版】</p>
+            <div id="countdown" class="countdown"></div>
+        </header>
+
+        <div class="card">
+            <h2>第1部：作戦までの経緯 — なぜこの作戦が必要か</h2>
+            <p>我々の分析は、2025年9月30日に発生する「ワルプルギス」が、回避不可能な確定的事象であることを証明した。その引き金は、米国債プライマリー市場の技術的な不成立であり、これは米国の政治的機能不全と思想的麻痺によって構造的に保証されている。</p>
+            <p>この金融ショックは、世界の貿易システム、特に文明を支えるライフライン資源（水、医療、電力、食料）の供給網を即座に凍結させる。この壊滅的な連鎖を断ち切り、崩壊後の世界で最低限の秩序を維持するため、「THPライフライン資源計画」は立案された。本資料は、その最終実行手順を規定するものである。</p>
+        </div>
+
+        <div class="card">
+            <h2>第2部：作戦概要 — 何を達成するのか</h2>
+            <p>本計画の唯一の目的は、ワルプルギス発生後も、日本・インド・シンガポールをハブとする指定ライフライン資源の途絶なきフローを保証することである。これは、以下の4つの相互連携メカニズムによって達成される。</p>
+            <ul>
+                <li><strong>貿易金融ウィンドウ:</strong> 日・印・星の輸出信用機関（ECA）が共同で、機能不全に陥った貿易金融を再保証する。</li>
+                <li><strong>国際再保険プール:</strong> 官民連携で、商業保険がカバー不能となる戦争・政治リスクを引き受け、海上輸送を維持する。</li>
+                <li><strong>ファストトラック回廊:</strong> ライフライン資源の通関、港湾業務、金融決済を最優先で処理する専用ルート。</li>
+                <li><strong>非USD決済システム:</strong> USD流動性の枯渇に対応するため、JPY、INR、SGDによる三国間決済を可能にする。</li>
+            </ul>
+            <div class="note-box" style="border-left-color: var(--primary-color);">
+                <h3>自動発火トリガー（KPI）</h3>
+                <p>Ops-KPI-Dashboardが以下のいずれかの「赤信号」を検知した場合、全システムが自動的に発動する。</p>
+                <ul class="kpi-list">
+                    <li>L/C（信用状）拒否率 > 5%</li>
+                    <li>P&I（船主責任保険）付保率 < 95%</li>
+                    <li>非USD決済比率 < 35%</li>
+                    <li>港湾滞留時間（Dwell Time） > 72時間</li>
+                </ul>
+                <h3>金融フォールバック（優雅な劣化）</h3>
+                <p>技術的・金融的障害発生時、システムは以下の順序で代替決済手段に移行し、物流を止めない。</p>
+                <ol>
+                    <li>第一選択：確認付き信用状 (UCP600)</li>
+                    <li>代替A：スタンドバイ信用状 (ISP98)</li>
+                    <li>代替B：要求払い保証 (URDG758)</li>
+                    <li>代替C：荷為替手形取立 (URC522) ＋ 輸出信用保険</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>第3部：詳細プロセスフロー（組織単位）</h2>
+            <p>作戦成功のためには、各組織が指定された時間軸の中で、自らの役割を正確に実行することが求められる。以下に、T-16日（9/14 JST）からT+7日（10/7 JST）までの詳細な行動フローを規定する。</p>
+            
+            <h3>T-10日（9/20まで）：金融・港湾インフラの整備</h3>
+            <ol>
+                <li><strong>日本（日銀・財務省）:</strong> 非USDスワップ窓口の準備を完了。GPIF・商社へブリーフィング。</li>
+                <li><strong>インド（インド準備銀行・インドステイト銀行）:</strong> ルピー建てL/Cテンプレートを確定・周知。ナバシェバ港（JNPT）にFast Trackレーンを設定。</li>
+                <li><strong>シンガポール（金融管理局・PSA）:</strong> PSA港にFast Trackレーンを設定。シンガポール国際仲裁センター（SIAC）の運用を開始し、法的ブリッジを確立。</li>
+            </ol>
+            
+            <h3>T-7日（9/23まで）：海運・保険セクターの参加</h3>
+            <ol>
+                <li><strong>海運大手（MSC, Maersk等）:</strong> eBLシステム接続を完了し、週2便の優先枠を確保。SLA（サービスレベル合意）を契約に明記。</li>
+                <li><strong>保険（ロイズ市場・P&Iクラブ・NEXI）:</strong> URGF型再保険プールを開設。戦争リスクサーチャージの上限を宣言。</li>
+            </ol>
+
+            <h3>T-3日（9/27まで）：政治的枠組みの確立</h3>
+            <ol>
+                <li><strong>司令部:</strong> Ops-KPI-Dashboardの自動警報を開始。上記KPIに基づき監視。</li>
+                <li><strong>日・印・星 三国政府:</strong> 貿易金融ウィンドウ、再保険プール、ファストトラック回廊に関する拘束力のあるMOU（覚書）を発表。</li>
+            </ol>
+
+            <h3>T-0（9/30）：作戦自動発火</h3>
+            <p>KPIが閾値を超過した場合、全システムが即時発動。</p>
+            
+            <h3>T+1日〜T+7日：安定化と監査</h3>
+            <p>輸送回廊の安定化を図ると共に、監査チームが「THPライフライン監査計画」に基づきOps-KPI-Dashboardの数値を検証する。<strong>赤信号の確認報告は、代替金融フォールバックへの移行を指示する即時発火権限を持つ。</strong></p>
+        </div>
+
+        <div class="card">
+            <h2>第4部：図解 — タイムラインと担当機関</h2>
+            <p>以下のガントチャートは、作戦全体の流れと、各マイルストーンにおける主要担当機関を可視化したものである。</p>
+            <div id="ganttChart"></div>
+        </div>
+
+        <div class="card">
+            <h2>第5部：結語</h2>
+            <p>本計画は、ワルプルギスという確定的未来に対する、我々の唯一かつ最後の保険である。その成否は、ここに記された手順を、関係各所が時間通り、かつ正確に実行できるかにかかっている。これは実現可能性の評価ではなく、実行を前提とした命令である。</p>
+        </div>
+
+        <footer>
+            <p>THP司令部 | CONFIDENTIAL - DO NOT DISTRIBUTE</p>
+        </footer>
+    </div>
+
+    <script>
+        // Countdown Timer
+        const countdownElement = document.getElementById('countdown');
+        const targetDate = new Date('2025-09-30T00:00:00+09:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                countdownElement.innerHTML = "T-0: ワルプルギス発動";
+                clearInterval(timerInterval);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `作戦開始まで T-${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
+        }
+        
+        const timerInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Gantt Chart using Plotly
+        const ganttData = [
+          {
+            name: '司令部',
+            x: ['2025-09-14', '2025-09-30'],
+            y: ['司令部', '司令部'],
+            text: ['計画統合・監視開始', '赤信号KPIで自動発火'],
+            mode: 'markers',
+            marker: {size: 18, color: 'rgb(192, 57, 43)'}
+          },
+          {
+            name: '金融',
+            x: ['2025-09-20', '2025-09-27'],
+            y: ['金融', '金融'],
+            text: ['金融・港湾インフラ接続完了', '三国MOU締結'],
+            mode: 'markers',
+            marker: {size: 18, color: 'rgb(41, 128, 185)'}
+          },
+          {
+            name: '港湾',
+            x: ['2025-09-20'],
+            y: ['港湾'],
+            text: ['優先レーン設定'],
+             mode: 'markers',
+            marker: {size: 18, color: 'rgb(243, 156, 18)'}
+          },
+          {
+            name: '海運',
+            x: ['2025-09-23'],
+            y: ['海運'],
+            text: ['海運・保険参加'],
+            mode: 'markers',
+            marker: {size: 18, color: 'rgb(39, 174, 96)'}
+          },
+           {
+            name: '保険',
+            x: ['2025-09-23'],
+            y: ['保険'],
+            text: ['再保険プール開設'],
+            mode: 'markers',
+            marker: {size: 18, color: 'rgb(142, 68, 173)'}
+          },
+          {
+            name: '監査',
+            x: ['2025-10-07'],
+            y: ['監査'],
+            text: ['安定化完了・監査報告'],
+            mode: 'markers',
+            marker: {size: 18, color: 'rgb(44, 62, 80)'}
+          }
+        ];
+        
+        const layout = {
+            title: 'THPライフライン危機対応フロー',
+            xaxis: {
+                type: 'date',
+                tickformat: '%m/%d',
+                range: ['2025-09-13', '2025-10-08'],
+                gridcolor: 'rgba(127, 127, 127, 0.2)',
+            },
+            yaxis: {
+                categoryorder: 'array',
+                categoryarray: ['監査', '保険', '海運', '港湾', '金融', '司令部'],
+                 gridcolor: 'rgba(127, 127, 127, 0.2)',
+            },
+            showlegend: false,
+            plot_bgcolor: 'var(--card-bg)',
+            paper_bgcolor: 'var(--card-bg)',
+            font: {
+                color: 'var(--text-color)'
+            },
+            // 修正点：KPIトリガーを図に注釈として追加
+            annotations: [
+                {
+                    x: 1.15,
+                    y: 0.5,
+                    xref: 'paper',
+                    yref: 'paper',
+                    text: '<b>自動発火トリガー (KPI)</b><br>' +
+                          'L/C拒否率 > 5%<br>' +
+                          'P&I付保率 < 95%<br>' +
+                          '非USD決済比率 < 35%<br>' +
+                          '港湾滞留 > 72h',
+                    showarrow: false,
+                    align: 'left',
+                    bgcolor: 'rgba(255, 229, 100, 0.2)',
+                    bordercolor: 'rgba(255, 229, 100, 1)',
+                    borderwidth: 1,
+                    font: {
+                        size: 12
+                    }
+                }
+            ]
+        };
+
+        Plotly.newPlot('ganttChart', ganttData, layout, {responsive: true});
+    </script>
+</body>
+</html>
