@@ -27,7 +27,7 @@
             <ul>
                 <li><strong>貿易金融ウィンドウ:</strong> 日・印・星の輸出信用機関（ECA）が共同で、機能不全に陥った貿易金融を再保証する。</li>
                 <li><strong>国際再保険プール:</strong> 官民連携で、商業保険がカバー不能となる戦争・政治リスクを引き受け、海上輸送を維持する。</li>
-                <li><strong>ファストトラック回廊:</strong> ライフライン資源の通関、港湾業務、金融決済を最優先で処理する専用ルート。</li>
+                <li><strong>ファストトラック回廊:</strong> ライフライン資源の通関、港湾業務、金融決済を最優先で処理する専用ルート。<p class="footnote">※ HSホワイトリスト（医療・水・電力・食料・乳幼児）を付録参照。対象貨物のみ通関簡素化・eBL義務化。</p></li>
                 <li><strong>非USD決済システム:</strong> USD流動性の枯渇に対応するため、JPY、INR、SGDによる三国間決済を可能にする。</li>
             </ul>
             <div class="note-box" style="border-left-color: var(--primary-color);">
@@ -38,6 +38,8 @@
                     <li>P&I（船主責任保険）付保率 < 95%</li>
                     <li>非USD決済比率 < 35%</li>
                     <li>港湾滞留時間（Dwell Time） > 72時間</li>
+                    <li>航走KPI（スケジュール信頼性） < 60%</li>
+                    <li>為替KPI（CNH/CNYスプレッド） > 500bps</li>
                 </ul>
                 <h3>金融フォールバック（優雅な劣化）</h3>
                 <p>技術的・金融的障害発生時、システムは以下の順序で代替決済手段に移行し、物流を止めない。</p>
@@ -63,8 +65,8 @@
             
             <h3>T-7日（9/23まで）：海運・保険セクターの参加</h3>
             <ol>
-                <li><strong>海運大手（MSC, Maersk等）:</strong> eBLシステム接続を完了し、週2便の優先枠を確保。SLA（サービスレベル合意）を契約に明記。</li>
-                <li><strong>保険（ロイズ市場・P&Iクラブ・NEXI）:</strong> URGF型再保険プールを開設。戦争リスクサーチャージの上限を宣言。</li>
+                <li><strong>海運大手（MSC, Maersk等）:</strong> eBLシステム接続を完了し、週2便の優先枠を確保。SLA（サービスレベル合意）を契約に明記。<p class="footnote">※ eBLはMLETR準拠域（SG/UK等）の準拠法で物権性・単独支配を担保。未準拠域は私法条項で同等性を確保し、仲裁はSIAC。</p></li>
+                <li><strong>保険（ロイズ市場・P&Iクラブ・NEXI）:</strong> URGF型再保険プールを開設（戦争リスクサーチャージ上限：基準期比+50%以内）。</li>
             </ol>
 
             <h3>T-3日（9/27まで）：政治的枠組みの確立</h3>
@@ -193,18 +195,19 @@
             font: {
                 color: 'var(--text-color)'
             },
-            // 修正点：KPIトリガーを図に注釈として追加
             annotations: [
                 {
-                    x: 1.15,
+                    x: 1.18,
                     y: 0.5,
                     xref: 'paper',
                     yref: 'paper',
                     text: '<b>自動発火トリガー (KPI)</b><br>' +
                           'L/C拒否率 > 5%<br>' +
                           'P&I付保率 < 95%<br>' +
-                          '非USD決済比率 < 35%<br>' +
-                          '港湾滞留 > 72h',
+                          '非USD決済 < 35%<br>' +
+                          '港湾滞留 > 72h<br>' +
+                          '航走信頼性 < 60%<br>' +
+                          'CNH/CNY > 500bps',
                     showarrow: false,
                     align: 'left',
                     bgcolor: 'rgba(255, 229, 100, 0.2)',
@@ -221,3 +224,4 @@
     </script>
 </body>
 </html>
+
