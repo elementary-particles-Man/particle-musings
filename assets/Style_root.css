@@ -23,7 +23,7 @@ body {
     padding: 40px 20px; /* 上下に十分なパディングをとる */
     border-bottom: 1px solid #e0e0e0;
     margin-bottom: 30px;
-    background-image: url('./images/new-header-calm-wide.webp'); /* 相対パスはCSSファイルからの位置 */
+    background-image: url('images/new-header-calm-wide.webp'); /* 相対パスはCSSファイルからの位置 */
     background-size: cover; /* ヘッダー全体を覆うように画像を拡大縮小 */
     background-position: center; /* 画像の中央を表示 */
     background-repeat: no-repeat;
