@@ -1,290 +1,404 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>なぜ解決策が見つからないのか：行き詰まりの構造（2/3）</title>
-    <style>
-        /* 1-1と共通のスタイルを使用 */
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<title>
+	なぜ解決策が見つからないのか：行き詰まりの構造（2/3）
+	</title>
+	<style>
+	/* 1-1と共通のスタイルを使用 */
+				@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
-        :root {
-            --bg-color: #f8f9fa;
-            --text-color: #212529;
-            --primary-color: #0d6efd;
-            --border-color: #dee2e6;
-            --card-bg: #ffffff;
-            --header-bg: #343a40;
-            --header-text: #ffffff;
-            --accent-color: #dc3545;
-            --warning-color: #ffc107;
-        }
+				:root {
+						--bg-color: #f8f9fa;
+						--text-color: #212529;
+						--primary-color: #0d6efd;
+						--border-color: #dee2e6;
+						--card-bg: #ffffff;
+						--header-bg: #343a40;
+						--header-text: #ffffff;
+						--accent-color: #dc3545;
+						--warning-color: #ffc107;
+				}
 
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
+				body {
+						font-family: 'Noto Sans JP', sans-serif;
+						line-height: 1.8;
+						margin: 0;
+						padding: 0;
+						background-color: var(--bg-color);
+						color: var(--text-color);
+				}
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+				.container {
+						max-width: 800px;
+						margin: 0 auto;
+						padding: 20px;
+				}
 
-        header {
-            background-color: var(--header-bg);
-            color: var(--header-text);
-            padding: 30px 20px;
-            text-align: center;
-            border-bottom: 5px solid var(--accent-color);
-        }
+				header {
+						background-color: var(--header-bg);
+						color: var(--header-text);
+						padding: 30px 20px;
+						text-align: center;
+						border-bottom: 5px solid var(--accent-color);
+				}
 
-        header h1 {
-            margin: 0;
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-        
-        main {
-            padding: 30px 0;
-        }
+				header h1 {
+						margin: 0;
+						font-size: 1.8em;
+						font-weight: 700;
+				}
+				
+				main {
+						padding: 30px 0;
+				}
 
-        h2 {
-            font-size: 1.5em;
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        
-        h3 {
-            font-size: 1.2em;
-            border-left: 5px solid var(--primary-color);
-            padding-left: 15px;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
+				h2 {
+						font-size: 1.5em;
+						color: var(--accent-color);
+						border-bottom: 2px solid var(--border-color);
+						padding-bottom: 10px;
+						margin-top: 40px;
+						margin-bottom: 20px;
+				}
+				
+				h3 {
+						font-size: 1.2em;
+						border-left: 5px solid var(--primary-color);
+						padding-left: 15px;
+						margin-top: 30px;
+						margin-bottom: 15px;
+				}
 
-        .conflict-box {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 20px;
-            align-items: center;
-            margin: 30px 0;
-        }
+				.conflict-box {
+						display: grid;
+						grid-template-columns: 1fr auto 1fr;
+						gap: 20px;
+						align-items: center;
+						margin: 30px 0;
+				}
 
-        .conflict-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
+				.conflict-card {
+						background-color: var(--card-bg);
+						border: 1px solid var(--border-color);
+						border-radius: 5px;
+						padding: 20px;
+						box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+				}
 
-        .conflict-card h3 {
-            margin-top: 0;
-            color: var(--primary-color);
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-        
-        .vs-circle {
-            font-size: 2em;
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-        
-        ul {
-            list-style-position: inside;
-            padding-left: 5px;
-        }
+				.conflict-card h3 {
+						margin-top: 0;
+						color: var(--primary-color);
+						text-align: center;
+						border-bottom: 1px solid var(--border-color);
+						padding-bottom: 10px;
+				}
+				
+				.vs-circle {
+						font-size: 2em;
+						font-weight: 700;
+						color: var(--accent-color);
+				}
+				
+				ul {
+						list-style-position: inside;
+						padding-left: 5px;
+				}
 
-        ul li {
-            margin-bottom: 10px;
-        }
-        
-        .approach-list li {
-             background-color: var(--card-bg);
-             border: 1px solid var(--border-color);
-             padding: 15px 20px;
-             margin-bottom: 15px;
-             border-radius: 5px;
-        }
-        
-        .reason-box {
-            background-color: #fce8e6;
-            border: 1px solid #f9bdbb;
-            border-left: 5px solid var(--accent-color);
-            padding: 10px 15px;
-            margin-top: 10px;
-            border-radius: 4px;
-        }
-        
-        .reason-box strong {
-             color: var(--accent-color);
-        }
+				ul li {
+						margin-bottom: 10px;
+				}
+				
+				.approach-list li {
+						background-color: var(--card-bg);
+						border: 1px solid var(--border-color);
+						padding: 15px 20px;
+						margin-bottom: 15px;
+						border-radius: 5px;
+				}
+				
+				.reason-box {
+						background-color: #fce8e6;
+						border: 1px solid #f9bdbb;
+						border-left: 5px solid var(--accent-color);
+						padding: 10px 15px;
+						margin-top: 10px;
+						border-radius: 4px;
+				}
+				
+				.reason-box strong {
+						color: var(--accent-color);
+				}
 
-        .summary-box {
-            background-color: #e9ecef;
-            border: 1px solid var(--border-color);
-            border-left: 5px solid var(--accent-color);
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 5px;
-            font-weight: 700;
-            text-align: center;
-        }
-        
-        .alert-box {
-            background-color: #fff3cd;
-            border-left: 5px solid var(--warning-color);
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 5px;
-            border: 1px solid #ffeeba;
-        }
-        
-        .next-step-box {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 25px;
-            margin-top: 50px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        
-        .next-step-box a {
-            color: white;
-            font-weight: 700;
-            text-decoration: underline;
-        }
-        
-        @media (max-width: 600px) {
-            .conflict-box {
-                grid-template-columns: 1fr;
-            }
-            .vs-circle {
-                display: none;
-            }
-        }
-        
-    </style>
+				.summary-box {
+						background-color: #e9ecef;
+						border: 1px solid var(--border-color);
+						border-left: 5px solid var(--accent-color);
+						padding: 20px;
+						margin: 30px 0;
+						border-radius: 5px;
+						font-weight: 700;
+						text-align: center;
+				}
+				
+				.alert-box {
+						background-color: #fff3cd;
+						border-left: 5px solid var(--warning-color);
+						padding: 20px;
+						margin: 30px 0;
+						border-radius: 5px;
+						border: 1px solid #ffeeba;
+				}
+				
+				.next-step-box {
+						background-color: var(--primary-color);
+						color: white;
+						padding: 25px;
+						margin-top: 50px;
+						border-radius: 5px;
+						text-align: center;
+				}
+				
+				.next-step-box a {
+						color: white;
+						font-weight: 700;
+						text-decoration: underline;
+				}
+				
+				@media (max-width: 600px) {
+						.conflict-box {
+								grid-template-columns: 1fr;
+						}
+						.vs-circle {
+								display: none;
+						}
+				}
+	</style>
 </head>
 <body>
-
-    <header>
-        <h1>なぜ解決策が見つからないのか</h1>
-        <p>「行き詰まり」の構造を考える（2/3）</p>
-    </header>
-
-    <div class="container">
-        <main>
-            <p>前回の資料「1-1」では、日本の農業が抱える、複雑で多岐にわたる課題を整理しました。では、なぜこれらの問題は、長年にわたって解決されないままなのでしょうか。私たちは、その原因が、単一の問題ではなく、いくつかの根深い「構造的な行き詰まり」にあると考えています。</p>
-
-            <h2>1. これまで試された「解決策」とその壁</h2>
-            <p>もちろん、これまでにも様々な解決策が試みられてきました。しかし、その多くが、期待された効果を上げられないまま頓挫、あるいは限定的な成果に留まっています。その代表的なアプローチと、なぜそれが機能しなかったのかを整理します。</p>
-            
-            <ul class="approach-list">
-                <li>
-                    <h3>アプローチ①：コメ先物市場の導入</h3>
-                    <p>農家が将来の価格変動リスクを回避し、経営を安定させるための「保険」として、また、透明性の高い価格指標を作る目的で、先物市場の導入が試みられました。</p>
-                    <div class="reason-box">
-                        <strong>なぜ解決できなかったか：</strong>国内流通量の過半を握るJAグループが、自らの価格決定権が損なわれることを恐れ、組織として市場への参加をボイコット。市場が十分に機能するために不可欠な「取引の厚み」が生まれず、政治的圧力も加わった結果、2021年に一度廃止に追い込まれました。既存の巨大な利害構造が、市場原理に基づく改革を拒んだ典型例です。
-                    </div>
-                </li>
-                <li>
-                    <h3>アプローチ②：生産調整（減反政策）</h3>
-                    <p>米の供給量を人為的に減らすことで価格を高く維持し、農家の収入を安定させるという、長年の基本政策でした。</p>
-                    <div class="reason-box">
-                        <strong>なぜ解決できなかったか：</strong>価格は維持できても、根本的な「儲からない」構造は変わりませんでした。むしろ、高コストな体質を温存し、国際競争力を失わせる原因となりました。また、消費者のためにはならず、意欲ある農家の増産意欲を削ぐ結果にも繋がりました。
-                    </div>
-                </li>
-                <li>
-                    <h3>アプローチ③：農地の集約・大規模化</h3>
-                    <p>バラバラで小規模な農地を集め、大規模化することで効率を上げ、コストを削減しようという試みです。</p>
-                    <div class="reason-box">
-                        <strong>なぜ解決できなかったか：</strong>複雑な土地の権利関係や、先祖代々の土地への愛着などから、農地の集約は思うように進んでいません。「極小面積」という日本の農業の根本的な制約は、依然として解決されていません。
-                    </div>
-                </li>
-                 <li>
-                    <h3>アプローチ④：戸別所得補償制度</h3>
-                    <p>米価と生産コストの差額を、国が農家へ直接補償する制度です。市場価格に左右されず、農家の収入を安定させる狙いがありました。</p>
-                    <div class="reason-box">
-                        <strong>なぜ解決できなかったか：</strong>多額の税金を投入することから「バラマキ」との批判を受け、政治的な支持を失い、制度は大幅に縮小・変更されました。根本的な生産構造の改革には繋がらず、財政的な持続可能性にも疑問が呈されました。
-                    </div>
-                </li>
-                 <li>
-                    <h3>アプローチ⑤：機械の共同利用（レンタル・リース）</h3>
-                    <p>一台数千万円もするコンバインなどを、個人で所有するのではなく、共同で利用することで農家の負担を減らそうというアイデアです。</p>
-                    <div class="reason-box">
-                        <strong>なぜ解決できなかったか：</strong>「使う時期がみんな一緒」という根本的な問題に加え、巨大な機械を全国で輸送・整備・管理するための「主体」と「予算」が存在しません。一企業や一組織の努力では維持できない、国家レベルのインフラ構想が必要ですが、その責任を誰も負えないのが現状です。
-                    </div>
-                </li>
-            </ul>
-
-            <div class="summary-box">
-                結論：これまでの解決策は、業界の巨大な利害構造に阻まれたり、政治的に頓挫したり、あるいは日本の農業が抱える根本的な制約を乗り越えられなかったりして、いずれも「行き詰まり」に直面してきました。
-            </div>
-
-            <h2>2. 利害関係者の「正義」の衝突</h2>
-            <p>現在の米市場では、JAグループと民間の卸売業者の間で、目指す方向性について根本的な考え方の違い（断絶）が生じているように見えます。どちらにもそれぞれの「正義」や「論リ」があり、単純にどちらが正しいと断じることはできません。この対立が、業界全体としての一致した行動を困難にしています。</p>
-
-            <div class="conflict-box">
-                <div class="conflict-card">
-                    <h3>JAグループの論理<br>（防衛的 現状維持）</h3>
-                    <ul>
-                        <li><strong>使命：</strong>組合員である農家の所得を守ることが第一。特に、小規模な農家や条件の不利な地域の農家も含めた、全体を守るという協同組合としての役割。</li>
-                        <li><strong>戦略：</strong>備蓄米の流通を管理するなどして、米価の急落を防ぎ、組合員の収入を安定させる。急激な市場改革は、生産基盤の崩壊を招きかねないと懸念。</li>
-                        <li><strong>正義：</strong>「秩序と安定」を守ること。急進的な改革よりも、管理された市場の中で、日本の農業全体を維持していくことが、長期的な国益にかなう。</li>
-                    </ul>
-                </div>
-                <div class="vs-circle" aria-hidden="true">VS</div>
-                <div class="conflict-card">
-                    <h3>民間企業の論理<br>（市場適応・構造改革）</h3>
-                    <ul>
-                        <li><strong>使命：</strong>市場のニーズに応え、効率的なサプライチェーンを構築し、企業として成長することが第一。</li>
-                        <li><strong>戦略：</strong>問題の根本は「生産基盤の崩壊」にあると捉え、自ら生産者育成に投資するなど、新しいエコシステムの構築を目指す。</li>
-                        <li><strong>正義：</strong>「競争と成長」こそが、業界を強くする。非効率な旧来のシステムを維持するのではなく、市場原理に基づいて再構築しなければ、日本の農業は未来がない。</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h2>3. 政治と行政の「役割分担」の機能不全</h2>
-            <p>本来、政治は国民のために「こうあるべきだ」という大きなビジョンを示し、行政（官僚）はそのビジョンを実現するための具体的なプランに落とし込む、という役割分担が期待されます。しかし、現状ではこの歯車がうまく噛み合っていないように見えます。</p>
-
-            <ul>
-                <li><strong>ビジョン先行の政治：</strong>政治家は、国民に分かりやすい「理想」や「目標」（例：「米価を下げる」「農家の負担を減らす」）を掲げますが、それを実現するための緻密な計画や、伴うリスクへの配慮が不足しがちです。</li>
-                <li><strong>実行能力の欠如・責任転嫁する行政：</strong>行政は、政治家から示された理想を実現するための具体的なプラン（予算、人員、法整備など）を構築する能力や権限が不足しているように見えます。結果として、問題の責任を業界や農家の「意識」に転嫁したり、実現不可能な計画であると静観したりする、という事態に陥りがちです。</li>
-            </ul>
-             <div class="alert-box">
-                <strong>結果として…</strong><br>
-                「理想は立派だが、実現手段がない」という政策が繰り返され、現場は混乱し、根本的な問題は何も解決されないまま放置される、という悪循環に陥っているのではないでしょうか。
-            </div>
-
-            <div class="next-step-box">
-                <p>以上が、私たちが考える「行き詰まりの構造」です。<br>
-                このような状況では、政府や専門家によるトップダウンの解決策だけでは、もはや限界があるように思えます。<br><br>
-                だからこそ、私たちは、現場からのボトムアップの声に、解決の糸口があるのではないかと考えています。<br>
-                最後の資料「1-3：皆様の声をお聞かせください」では、この活動の核心である、皆様への具体的なお願いをさせていただきます。</p>
-		<h1><a href="part3-call-for-opinions.html">皆様の声を、お聞かせ下さい</a></h1>
-
-            </div>
-        </main>
-                <footer>
-            <p>ご多忙のところ、本資料をお読みいただき、誠にありがとうございます。</p>
-		<a href="index.html">アンケートトップページ</a>
-		<a href="../index.html">一次産業・農業考察</a>
-		<a href="../../index.html">日本考察</a>
-		<a href="../../../index.html">TOP</a>
-        </footer>
-
-    </div>
-
+	<header>
+	<h1>
+		なぜ解決策が見つからないのか
+	</h1>
+	<p>
+		「行き詰まり」の構造を考える（2/3）
+	</p>
+	</header>
+	<div class="container">
+	<main>
+		<p>
+		前回の資料「1-1」では、日本の農業が抱える、複雑で多岐にわたる課題を整理しました。では、なぜこれらの問題は、長年にわたって解決されないままなのでしょうか。私たちは、その原因が、単一の問題ではなく、いくつかの根深い「構造的な行き詰まり」にあると考えています。
+		</p>
+		<h2>
+		1. これまで試された「解決策」とその壁
+		</h2>
+		<p>
+		もちろん、これまでにも様々な解決策が試みられてきました。しかし、その多くが、期待された効果を上げられないまま頓挫、あるいは限定的な成果に留まっています。その代表的なアプローチと、なぜそれが機能しなかったのかを整理します。
+		</p>
+		<ul class="approach-list">
+		<li>
+			<h3>
+			アプローチ①：コメ先物市場の導入
+			</h3>
+			<p>
+			農家が将来の価格変動リスクを回避し、経営を安定させるための「保険」として、また、透明性の高い価格指標を作る目的で、先物市場の導入が試みられました。
+			</p>
+			<div class="reason-box">
+			<strong>
+				なぜ解決できなかったか：
+			</strong>
+			国内流通量の過半を握るJAグループが、自らの価格決定権が損なわれることを恐れ、組織として市場への参加をボイコット。市場が十分に機能するために不可欠な「取引の厚み」が生まれず、政治的圧力も加わった結果、2021年に一度廃止に追い込まれました。既存の巨大な利害構造が、市場原理に基づく改革を拒んだ典型例です。
+			</div>
+		</li>
+		<li>
+			<h3>
+			アプローチ②：生産調整（減反政策）
+			</h3>
+			<p>
+			米の供給量を人為的に減らすことで価格を高く維持し、農家の収入を安定させるという、長年の基本政策でした。
+			</p>
+			<div class="reason-box">
+			<strong>
+				なぜ解決できなかったか：
+			</strong>
+			価格は維持できても、根本的な「儲からない」構造は変わりませんでした。むしろ、高コストな体質を温存し、国際競争力を失わせる原因となりました。また、消費者のためにはならず、意欲ある農家の増産意欲を削ぐ結果にも繋がりました。
+			</div>
+		</li>
+		<li>
+			<h3>
+			アプローチ③：農地の集約・大規模化
+			</h3>
+			<p>
+			バラバラで小規模な農地を集め、大規模化することで効率を上げ、コストを削減しようという試みです。
+			</p>
+			<div class="reason-box">
+			<strong>
+				なぜ解決できなかったか：
+			</strong>
+			複雑な土地の権利関係や、先祖代々の土地への愛着などから、農地の集約は思うように進んでいません。「極小面積」という日本の農業の根本的な制約は、依然として解決されていません。
+			</div>
+		</li>
+		<li>
+			<h3>
+			アプローチ④：戸別所得補償制度
+			</h3>
+			<p>
+			米価と生産コストの差額を、国が農家へ直接補償する制度です。市場価格に左右されず、農家の収入を安定させる狙いがありました。
+			</p>
+			<div class="reason-box">
+			<strong>
+				なぜ解決できなかったか：
+			</strong>
+			多額の税金を投入することから「バラマキ」との批判を受け、政治的な支持を失い、制度は大幅に縮小・変更されました。根本的な生産構造の改革には繋がらず、財政的な持続可能性にも疑問が呈されました。
+			</div>
+		</li>
+		<li>
+			<h3>
+			アプローチ⑤：機械の共同利用（レンタル・リース）
+			</h3>
+			<p>
+			一台数千万円もするコンバインなどを、個人で所有するのではなく、共同で利用することで農家の負担を減らそうというアイデアです。
+			</p>
+			<div class="reason-box">
+			<strong>
+				なぜ解決できなかったか：
+			</strong>
+			「使う時期がみんな一緒」という根本的な問題に加え、巨大な機械を全国で輸送・整備・管理するための「主体」と「予算」が存在しません。一企業や一組織の努力では維持できない、国家レベルのインフラ構想が必要ですが、その責任を誰も負えないのが現状です。
+			</div>
+		</li>
+		</ul>
+		<div class="summary-box">
+		結論：これまでの解決策は、業界の巨大な利害構造に阻まれたり、政治的に頓挫したり、あるいは日本の農業が抱える根本的な制約を乗り越えられなかったりして、いずれも「行き詰まり」に直面してきました。
+		</div>
+		<h2>
+		2. 利害関係者の「正義」の衝突
+		</h2>
+		<p>
+		現在の米市場では、JAグループと民間の卸売業者の間で、目指す方向性について根本的な考え方の違い（断絶）が生じているように見えます。どちらにもそれぞれの「正義」や「論リ」があり、単純にどちらが正しいと断じることはできません。この対立が、業界全体としての一致した行動を困難にしています。
+		</p>
+		<div class="conflict-box">
+		<div class="conflict-card">
+			<h3>
+			JAグループの論理
+			<br/>
+			（防衛的 現状維持）
+			</h3>
+			<ul>
+			<li>
+				<strong>
+				使命：
+				</strong>
+				組合員である農家の所得を守ることが第一。特に、小規模な農家や条件の不利な地域の農家も含めた、全体を守るという協同組合としての役割。
+			</li>
+			<li>
+				<strong>
+				戦略：
+				</strong>
+				備蓄米の流通を管理するなどして、米価の急落を防ぎ、組合員の収入を安定させる。急激な市場改革は、生産基盤の崩壊を招きかねないと懸念。
+			</li>
+			<li>
+				<strong>
+				正義：
+				</strong>
+				「秩序と安定」を守ること。急進的な改革よりも、管理された市場の中で、日本の農業全体を維持していくことが、長期的な国益にかなう。
+			</li>
+			</ul>
+		</div>
+		<div aria-hidden="true" class="vs-circle">
+			VS
+		</div>
+		<div class="conflict-card">
+			<h3>
+			民間企業の論理
+			<br/>
+			（市場適応・構造改革）
+			</h3>
+			<ul>
+			<li>
+				<strong>
+				使命：
+				</strong>
+				市場のニーズに応え、効率的なサプライチェーンを構築し、企業として成長することが第一。
+			</li>
+			<li>
+				<strong>
+				戦略：
+				</strong>
+				問題の根本は「生産基盤の崩壊」にあると捉え、自ら生産者育成に投資するなど、新しいエコシステムの構築を目指す。
+			</li>
+			<li>
+				<strong>
+				正義：
+				</strong>
+				「競争と成長」こそが、業界を強くする。非効率な旧来のシステムを維持するのではなく、市場原理に基づいて再構築しなければ、日本の農業は未来がない。
+			</li>
+			</ul>
+		</div>
+		</div>
+		<h2>
+		3. 政治と行政の「役割分担」の機能不全
+		</h2>
+		<p>
+		本来、政治は国民のために「こうあるべきだ」という大きなビジョンを示し、行政（官僚）はそのビジョンを実現するための具体的なプランに落とし込む、という役割分担が期待されます。しかし、現状ではこの歯車がうまく噛み合っていないように見えます。
+		</p>
+		<ul>
+		<li>
+			<strong>
+			ビジョン先行の政治：
+			</strong>
+			政治家は、国民に分かりやすい「理想」や「目標」（例：「米価を下げる」「農家の負担を減らす」）を掲げますが、それを実現するための緻密な計画や、伴うリスクへの配慮が不足しがちです。
+		</li>
+		<li>
+			<strong>
+			実行能力の欠如・責任転嫁する行政：
+			</strong>
+			行政は、政治家から示された理想を実現するための具体的なプラン（予算、人員、法整備など）を構築する能力や権限が不足しているように見えます。結果として、問題の責任を業界や農家の「意識」に転嫁したり、実現不可能な計画であると静観したりする、という事態に陥りがちです。
+		</li>
+		</ul>
+		<div class="alert-box">
+		<strong>
+			結果として…
+		</strong>
+		<br/>
+		「理想は立派だが、実現手段がない」という政策が繰り返され、現場は混乱し、根本的な問題は何も解決されないまま放置される、という悪循環に陥っているのではないでしょうか。
+		</div>
+		<div class="next-step-box">
+		<p>
+			以上が、私たちが考える「行き詰まりの構造」です。
+			<br/>
+			このような状況では、政府や専門家によるトップダウンの解決策だけでは、もはや限界があるように思えます。
+			<br/>
+			<br/>
+			だからこそ、私たちは、現場からのボトムアップの声に、解決の糸口があるのではないかと考えています。
+			<br/>
+			最後の資料「1-3：皆様の声をお聞かせください」では、この活動の核心である、皆様への具体的なお願いをさせていただきます。
+		</p>
+		<h1>
+			<a href="part3-call-for-opinions.html">
+			皆様の声を、お聞かせ下さい
+			</a>
+		</h1>
+		</div>
+	</main>
+	<footer>
+		<p>
+		ご多忙のところ、本資料をお読みいただき、誠にありがとうございます。
+		</p>
+		<a href="index.html">
+		アンケートトップページ
+		</a>
+		<a href="../index.html">
+		一次産業・農業考察
+		</a>
+		<a href="../../index.html">
+		日本考察
+		</a>
+		<a href="../../../index.html">
+		TOP
+		</a>
+	</footer>
+	</div>
 </body>
 </html>

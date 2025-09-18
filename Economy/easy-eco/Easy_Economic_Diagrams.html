@@ -1,507 +1,1735 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>やさしい経済説明補助資料：各種グラフ</title>
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true });
-  </script>
-  <style>
-    body {
-      font-family: sans-serif;
-      line-height: 1.8;
-      background-color: #f9f9f9;
-      padding: 2em;
-    }
-    h1 {
-      color: #333;
-    }
-    h2 {
-      margin-top: 2em;
-      color: #2e7d32;
-    }
-    .mermaid {
-      background: #ffffff;
-      padding: 1em;
-      border-radius: 8px;
-      margin-bottom: 1em;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-    .keyword {
-        font-weight: bold;
-        color: #191970; /* 群青色 (MidnightBlue) */
-    }
-    .term-explanation {
-        font-size: 0.9em;
-        color: #555;
-    }
-    .point-highlight {
-        background-color: #fffde7; /* クリーム色 */
-        border: 2px solid #fdd835; /* 黄色系の枠線 */
-        padding: 1em;
-        margin: 1.5em 0;
-        border-radius: 5px;
-    }
-    .point-highlight h3 {
-        color: #c77000;
-        margin-top: 0;
-    }
-    .qa-box {
-        border: 2px solid #4caf50; /* 緑色の枠線 */
-        margin: 1.5em 0;
-        padding: 1em;
-        border-radius: 5px;
-    }
-    .qa-box .question {
-        background-color: #e8f5e9; /* 薄い緑色 */
-        padding: 0.8em;
-        border-radius: 3px;
-    }
-    .qa-box .question p strong {
-        color: #2e7d32; /* やや濃い緑色 */
-    }
-    .qa-box .answer {
-        padding: 0.8em;
-        margin-top: 0.5em;
-    }
-    .answer ol li, .answer ul li {
-        margin-bottom: 0.5em;
-    }
-    u { /* 下線のスタイル */
-        text-decoration-color: black; /* 黒下線 */
-        text-decoration-thickness: 1.5px;
-    }
-    .cost-push-emphasis {
-        color: #d32f2f; /* 赤色 */
-        font-weight: bold;
-    }
-    .demand-pull-emphasis {
-        color: #191970; /* 群青色 */
-        font-weight: bold;
-    }
-  </style>
+	<meta charset="utf-8"/>
+	<title>
+	やさしい経済説明補助資料：各種グラフ
+	</title>
+	<script type="module">
+	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+		mermaid.initialize({ startOnLoad: true });
+	</script>
+	<style>
+	body {
+			font-family: sans-serif;
+			line-height: 1.8;
+			background-color: #f9f9f9;
+			padding: 2em;
+		}
+		h1 {
+			color: #333;
+		}
+		h2 {
+			margin-top: 2em;
+			color: #2e7d32;
+		}
+		.mermaid {
+			background: #ffffff;
+			padding: 1em;
+			border-radius: 8px;
+			margin-bottom: 1em;
+			box-shadow: 0 0 5px rgba(0,0,0,0.1);
+		}
+		.keyword {
+				font-weight: bold;
+				color: #191970; /* 群青色 (MidnightBlue) */
+		}
+		.term-explanation {
+				font-size: 0.9em;
+				color: #555;
+		}
+		.point-highlight {
+				background-color: #fffde7; /* クリーム色 */
+				border: 2px solid #fdd835; /* 黄色系の枠線 */
+				padding: 1em;
+				margin: 1.5em 0;
+				border-radius: 5px;
+		}
+		.point-highlight h3 {
+				color: #c77000;
+				margin-top: 0;
+		}
+		.qa-box {
+				border: 2px solid #4caf50; /* 緑色の枠線 */
+				margin: 1.5em 0;
+				padding: 1em;
+				border-radius: 5px;
+		}
+		.qa-box .question {
+				background-color: #e8f5e9; /* 薄い緑色 */
+				padding: 0.8em;
+				border-radius: 3px;
+		}
+		.qa-box .question p strong {
+				color: #2e7d32; /* やや濃い緑色 */
+		}
+		.qa-box .answer {
+				padding: 0.8em;
+				margin-top: 0.5em;
+		}
+		.answer ol li, .answer ul li {
+				margin-bottom: 0.5em;
+		}
+		u { /* 下線のスタイル */
+				text-decoration-color: black; /* 黒下線 */
+				text-decoration-thickness: 1.5px;
+		}
+		.cost-push-emphasis {
+				color: #d32f2f; /* 赤色 */
+				font-weight: bold;
+		}
+		.demand-pull-emphasis {
+				color: #191970; /* 群青色 */
+				font-weight: bold;
+		}
+	</style>
 </head>
 <body>
-  <h1>やさしい経済説明補助資料：各種グラフ</h1>
-  <p>（この資料で説明するお金の仕組みは、<strong class="keyword">管理通貨制度</strong><span class="term-explanation">（世界では<strong class="keyword term-managed-currency">フィアットシステム</strong>と呼ばれているよ）</span>に基づいています。）</p>
-<li><strong class="keyword term-managed-currency">誤解防止：税金は様々な役割を持っており、極めて重要な仕組み</strong>です。この資料全体で、<u><strong>税は財源ではない</strong>と説明していますが、それは<strong>「税金が不要」という主張ではありません。</strong></u></li>
+	<h1>
+	やさしい経済説明補助資料：各種グラフ
+	</h1>
+	<p>
+	（この資料で説明するお金の仕組みは、
+	<strong class="keyword">
+		管理通貨制度
+	</strong>
+	<span class="term-explanation">
+		（世界では
+		<strong class="keyword term-managed-currency">
+		フィアットシステム
+		</strong>
+		と呼ばれているよ）
+	</span>
+	に基づいています。）
+	</p>
+	<li>
+	<strong class="keyword term-managed-currency">
+		誤解防止：税金は様々な役割を持っており、極めて重要な仕組み
+	</strong>
+	です。この資料全体で、
+	<u>
+		<strong>
+		税は財源ではない
+		</strong>
+		と説明していますが、それは
+		<strong>
+		「税金が不要」という主張ではありません。
+		</strong>
+	</u>
+	</li>
+	<h2>
+	1. 金本位制における通貨の循環（税は財源）
+	</h2>
+	<div class="mermaid">
+	graph LR
+			subgraph 金本位制
+				direction LR
+				Gold[金と通貨（兌換）] --&gt; CB_Gold[中央銀行が通貨発行]
+				CB_Gold --&gt; Gov_Spend_Gold[政府が支出（軍・公共事業など）]
+				Gov_Spend_Gold --&gt; Private_Circ_Gold[民間に通貨流通]
+				Private_Circ_Gold --&gt; Tax_Collect_Gold[税として回収]
+				Tax_Collect_Gold --&gt; CB_Gold
+			end
+			style Gold fill:#f0f4c3,stroke:#cddc39
+			style CB_Gold fill:#dcedc8,stroke:#8bc34a
+			style Gov_Spend_Gold fill:#bbdefb,stroke:#2196f3
+			style Private_Circ_Gold fill:#c8e6c9,stroke:#4caf50
+			style Tax_Collect_Gold fill:#ffe082,stroke:#ff9800
+	</div>
+	<details>
+	<summary>
+		詳しい説明を表示（▼）
+	</summary>
+	<div>
+		<p>
+		この図は、
+		<u>
+			昔の
+		</u>
+		<strong class="keyword term-gold-standard">
+			金本位制
+		</strong>
+		のときのお金の流れを表しているよ。
+			ポイントは、国が持っている
+		<strong class="keyword">
+			<u>
+			ゴールド（金）
+			</u>
+		</strong>
+		の量に基づいてお金（銀行券）を発行していたってこと。
+			お札は「
+		<u>
+			ゴールド引換券
+		</u>
+		」のようなものだったんだね。
+		</p>
+		<ol>
+		<li>
+			まず、「金と通貨（兌換）」とあるように、国が持っている
+			<strong class="keyword">
+			ゴールド
+			</strong>
+			と引き換えできるお札を「中央銀行が通貨発行」するよ。
+		</li>
+		<li>
+			政府はそのお札を使って、「政府が支出（軍・公共事業など）」を行うんだ。これが
+			<strong class="keyword">
+			<u>
+				財源
+			</u>
+			</strong>
+			として機能している部分だね。
+		</li>
+		<li>
+			そうして使われたお金が、「民間に通貨流通」する。
+		</li>
+		<li>
+			そして、民間は手にしたお金の一部を「税として回収」される形で国に納める。
+		</li>
+		<li>
+			集められた税金は、
+			<u>
+			再び中央銀行に戻って
+			</u>
+			、次の政府支出の準備になったりするんだ。この図では、
+			<strong class="keyword">
+			税
+			</strong>
+			がしっかりと「国のお金を集める」という
+			<strong class="keyword">
+			財源
+			</strong>
+			の役割を果たしているのがわかるね。
+		</li>
+		</ol>
+		<p>
+		この仕組みだと、お金の価値が
+		<strong class="keyword">
+			ゴールド
+		</strong>
+		で保証されていて
+		<u>
+			安心感があった
+		</u>
+		けど、ゴールドの量が足りないと
+		<u>
+			経済が成長しにくい
+		</u>
+		っていう弱点もあったんだ。
+		</p>
+	</div>
+	</details>
+	<details>
+	<summary>
+		Q&amp;Aを表示（▼）
+	</summary>
+	<div class="qa-box">
+		<div class="question">
+		<p>
+			<strong>
+			【みんなのギモン①】
+			</strong>
+			金本位制のときって、税金がないと政府は本当にお金を使えなかったの？
+		</p>
+		</div>
+		<div class="answer">
+		<p>
+			そうだね、
+			<u>
+			基本的にはその通りだよ！
+			</u>
+			金本位制では、中央銀行が発行できるお金の量は、持っているゴールドの量に
+			<u>
+			縛られていたんだ
+			</u>
+			。 だから、政府がたくさんお金を使いたくても、まずゴールドを集めるか、税金として国民からお金を集める必要があった。
+				もちろん、国債を発行してお金を借りることもあったけど、その国債も最終的にはゴールドとのつながりを意識したものだったんだ。今みたいに「
+			<u>
+			足りなければ円を発行する
+			</u>
+			」という考え方とは
+			<u>
+			大きく違うね
+			</u>
+			。
+		</p>
+		</div>
+	</div>
+	<div class="qa-box">
+		<div class="question">
+		<p>
+			<strong>
+			【みんなのギモン②】
+			</strong>
+			ゴールドって、そんなにみんな価値を認めていたの？
+		</p>
+		</div>
+		<div class="answer">
+		<p>
+			うん、昔からゴールドはピカピカしていて綺麗だし、採れる量も限られているから、
+			<u>
+			世界中の多くの人が「価値があるもの」として認めていたんだ
+			</u>
+			。 だから、国境を越えた貿易でも、ゴールドが基準として使われることが多かった。
+				「このお札は、これだけのゴールドと交換できますよ」と国が保証することで、みんなが
+			<u>
+			安心してお札を使えたんだね
+			</u>
+			。
+		</p>
+		</div>
+	</div>
+	</details>
+	<h2>
+	2. フィアット通貨の循環（税は財源ではない）
+	</h2>
+	<div class="mermaid">
+	graph LR
+			subgraph フィアット通貨
+				direction LR
+				Gov_Bond[政府が国債発行] --&gt; CB_Accept[中央銀行が引受]
+				CB_Accept --&gt; Gov_Spend_Fiat[政府が支出（インフラ・福祉等）]
+				Gov_Spend_Fiat --&gt; Private_Circ_Fiat[通貨が民間へ流通]
+				Private_Circ_Fiat --&gt; Econ_Activity[経済活動（信用創造も）]
+				Econ_Activity --&gt; Tax_Return[税として一部が戻る]
+				Tax_Return --&gt; Accounting[会計処理上の清算]
+			end
+			style Gov_Bond fill:#ffe082,stroke:#ff9800
+			style CB_Accept fill:#dcedc8,stroke:#8bc34a
+			style Gov_Spend_Fiat fill:#bbdefb,stroke:#2196f3
+			style Private_Circ_Fiat fill:#c8e6c9,stroke:#4caf50
+			style Econ_Activity fill:#b2ebf2,stroke:#00bcd4
+			style Tax_Return fill:#f8bbd0,stroke:#e91e63
+			style Accounting fill:#eeeeee,stroke:#777
+	</div>
+	<details>
+	<summary>
+		詳しい説明を表示（▼）
+	</summary>
+	<div>
+		<p>
+		こっちの図は、
+		<u>
+			今の日本の
+		</u>
+		<strong class="keyword term-managed-currency">
+			フィアットシステム
+		</strong>
+		（管理通貨制度）でのお金の流れのイメージだよ。
+		<u>
+			金本位制とは大きく違うんだ
+		</u>
+		。
+			一番のポイントは、政府がお金を使うとき、
+		<u>
+			必ずしも「まず税金を集めてから」という順番ではない
+		</u>
+		こと。
+		</p>
+		<ol>
+		<li>
+			政府はまず、「政府が国債発行」するよ。
+		</li>
+		<li>
+			それを「中央銀行（日本だと日本銀行（
+			<strong>
+			日銀
+			</strong>
+			）だけど、
+			<u>
+			実は日銀は日銀法という法律で、政府の子会社のような特殊な銀行
+			</u>
+			になってる）が引受」たりすることで、政府がお金を使えるようになるんだ。この時点で、世の中に
+			<u>
+			新しいお金（の元になるもの）が生まれる
+			</u>
+			イメージだね。
+		</li>
+		<li>
+			政府はそのお金を使って、「政府が支出（インフラ・福祉等）」する。
+		</li>
+		<li>
+			こうして政府から支払われたお金が、「通貨が民間へ流通」し、「経済活動（信用創造も）」を通じて世の中を
+			<u>
+			グルグル回る
+			</u>
+			。
+		</li>
+		<li>
+			そして、みんなが稼いだお金の一部が「税として一部が戻る」。
+		</li>
+		<li>
+			戻ってきた税金は、「会計処理上の清算」として、国債の償還（返済）などに充てられるけど、これは
+			<u>
+			<strong>
+				<span class="cost-push-emphasis">
+				「財源を確保する」という意味ではなく
+				</span>
+			</strong>
+			</u>
+			て、「
+			<u>
+			お金を回収する（それによって、行き過ぎたインフレを制御する）
+			</u>
+			」という
+			<u>
+			「お金を消す」というか、帳簿上で処理をするイメージ
+			</u>
+			。税金が集まらないと政府が何もできない、というわけではないんだ。
+		</li>
+		</ol>
+		<p>
+		この図は左から右への一方通行に見えるけど、実際には
+		<strong class="keyword">
+			税金
+		</strong>
+		の役割は「
+		<strong class="keyword">
+			<u>
+			通貨を使わせる仕組み
+			</u>
+		</strong>
+		」を作ったり、「
+		<strong class="keyword">
+			<u>
+			景気調整
+			</u>
+		</strong>
+		」をしたりと
+		<u>
+			多様で
+		</u>
+		、経済全体を循環させるための
+		<u>
+			重要な要素
+		</u>
+		なんだ。
+		<u>
+			伝統的に『
+			<strong class="keyword">
+			税
+			</strong>
+			は国の活動のためのお金（
+			<strong class="keyword">
+			財源
+			</strong>
+			）』と考えられてきたけど、
+			<strong class="keyword term-managed-currency">
+			フィアットシステム
+			</strong>
+			では、それ以外にももっと
+			<strong class="keyword">
+			重要な役割がある
+			</strong>
+			んだね
+		</u>
+		。
+		</p>
+		<li>
+		ちなみに：日銀は法律上「
+		<strong>
+			株式会社
+		</strong>
+		」の形をとっているけど、日銀法で、
+		<u>
+			資本金の55%（半分以上）を政府が保有し、総裁・副総裁・審議委員の人事も政府が行う
+		</u>
+		から、実質的には
+		<u>
+			「政府の一部」として機能
+		</u>
+		しているよ。
+		</li>
+	</div>
+	</details>
+	<details>
+	<summary>
+		Q&amp;Aを表示（▼）
+	</summary>
+	<div class="qa-box">
+		<div class="question">
+		<p>
+			<strong>
+			【みんなのギモン①】
+			</strong>
+			「国債発行」って政府の借金でしょ？借金からお金が生まれるって、どういうこと？
+		</p>
+		</div>
+		<div class="answer">
+		<p>
+			いいところに気づいたね！ 普通、私たちがお金を借りるときは、誰かがすでに持っているお金を借りるよね。でも、
+			<u>
+			政府と中央銀行の関係はちょっと特別なんだ
+			</u>
+			。
+				政府が国債を発行し、それを中央銀行が買い取ると、中央銀行は政府の口座（日銀当座預金内の政府預金口座）にお金を「
+			<u>
+			新たに記録する
+			</u>
+			」ことで支払う。これが実質的に新しいお金（の元になる
+			<strong class="keyword">
+			<u>
+				マネタリーベース
+			</u>
+			</strong>
+			<span class="term-explanation">
+			という分類のお金だよ
+			</span>
+			）を生み出す行為になるんだ。
+				「世の中に出回るお金の量」全体を指す
+			<strong class="keyword">
+			マネーサプライ
+			</strong>
+			（またはマネーストック）には、この
+			<strong class="keyword">
+			マネタリーベース
+			</strong>
+			の他に、民間銀行が生み出すお金なども含まれるよ。
+				だから、この「中央銀行が引受」の段階で増えるのは、主に
+			<u>
+			日銀当座預金の中のお金
+			</u>
+			で、これですぐにみんな（家計や企業）の手元にお金が直接届いて、
+			<u>
+			市中のお金の量が急に増えるわけじゃないんだ
+			</u>
+			。その理由は、この後の図で見ていくよ。
+		</p>
+		</div>
+	</div>
+	<div class="qa-box">
+		<div class="question">
+		<p>
+			<strong>
+			【みんなのギモン②】
+			</strong>
+			じゃあ、政府はいくらでも国債を発行して、お金を増やしてもいいの？
+		</p>
+		</div>
+		<div class="answer">
+		<p>
+			「
+			<u>
+			いくらでも
+			</u>
+			」というわけにはいかないんだ。確かに、政府が自国通貨（円）で国債を発行する限り、
+			<u>
+			理論上は「お金が足りなくて返せない！」ということにはならない
+			</u>
+			。
+でも、お金を増やしすぎることには
+			<u>
+			大きなリスク
+			</u>
+			が伴うんだ。それは、
+			<u>
+			みんなも聞いたことがあるかもしれない
+			<strong class="keyword">
+				インフレ
+			</strong>
+			（インフレーション）
+			</u>
+			だよ。
+		</p>
+		<p>
+			世の中に出回るお金の量が、モノやサービスの量（
+			<strong class="keyword">
+			供給能力
+			</strong>
+			）に対して
+			<u>
+			増えすぎてしまう
+			</u>
+			と、お金の価値が下がってしまい、モノやサービスの値段が
+			<u>
+			どんどん上がってしまう
+			</u>
+			。これがひどい
+			<strong class="keyword">
+			インフレ
+			</strong>
+			だね。
+そうなると、同じ金額のお金を持っていても買えるものが少なくなって、
+			<u>
+			みんなの生活が苦しくなってしまう
+			</u>
+			可能性があるんだ。
+		</p>
+		<p>
+			だから、政府や中央銀行は、
+			<u>
+			経済全体のバランス
+			</u>
+			を見ながら、
+			<u>
+			インフレ率
+			</u>
+			などを注意深く監視して、お金の量を調整する必要があるんだ。
+			「
+			<u>
+			破産はしない
+			</u>
+			」ということと、「
+			<u>
+			いくら増やしても問題ない
+			</u>
+			」ということは
+			<u>
+			イコールではない
+			</u>
+			、ということを覚えておこうね。この
+			<strong class="keyword">
+			インフレ
+			</strong>
+			については、後の図でまた詳しく見ていくよ。
+		</p>
+		</div>
+	</div>
+	<div class="qa-box">
+		<div class="question">
+		<p>
+			<strong>
+			【みんなのギモン③】
+			</strong>
+			税金として戻ってきたお金（「税として一部が戻る」→「会計処理上の清算」）は、その後どうなるの？ また政府が使えるの？
+		</p>
+		</div>
+		<div class="answer">
+		<p>
+			税金として集められたお金は、
+			<u>
+			会計上は政府の収入として扱われ、予算にも計上される
+			</u>
+			ね。そして、国債の利払いや償還（返済）に使われたり、次の支出の財源として計上されたりする。でも大事なのは、
+			<strong class="keyword term-managed-currency">
+			フィアットシステム
+			</strong>
+			では
+			<u>
+			政府の支出能力が『集めた税金の額』だけに直接的に縛られるわけじゃない
+			</u>
+			ってこと。
+			<u>
+			<strong class="keyword">
+				税金
+			</strong>
+			がなくても政府がお金を生み出して支出できる
+			</u>
+			、という点が
+			<strong class="keyword term-gold-standard">
+			金本位制
+			</strong>
+			と大きく違うんだ。その上で、
+			<strong class="keyword">
+			税金
+			</strong>
+			にはこんな役割があるよ。
+		</p>
+		<ul>
+			<li>
+			みんなに「
+			<u>
+				円
+			</u>
+			」を使ってもらうため
+			</li>
+			<li>
+			<u>
+				景気を調整する
+			</u>
+			ため（インフレの抑制など）
+			</li>
+			<li>
+			<u>
+				所得の格差を調整する
+			</u>
+			ため
+			</li>
+			<li>
+			<strong class="keyword">
+				<u>
+				社会にとって望ましい行動を応援
+				</u>
+			</strong>
+			（or 望ましくない行動を抑制）するため
+			<span class="term-explanation">
+				（例えば、環境に良い技術への投資を促す税制や、タバコ税などだね）
+			</span>
+			</li>
+		</ul>
+		<p>
+			といった、
+			<u>
+			もっと広い意味があるんだ
+			</u>
+			。だから、税収が直接次の支出額を決定づけるわけではない、と理解しておくといいよ。
+		</p>
+		</div>
+	</div>
+	</details>
+	<h2>
+	3. 国債発行とプライマリ市場
+	</h2>
+	<div class="mermaid">
+	graph TD
+		IssueBond[政府が国債発行] --&gt; PrimaryMarket[プライマリ市場（銀行等が購入）]
+		PrimaryMarket --&gt; BoJAccountInc[日銀当座預金の増加（政府預金）]
+		BoJAccountInc --&gt; GovSpendPrep[政府の支出準備]
+		GovSpendPrep --&gt; GovActualSpend[実際の支出があって初めて民間に流通]
 
-  <h2>1. 金本位制における通貨の循環（税は財源）</h2>
-  <div class="mermaid">
-    graph LR
-      subgraph 金本位制
-        direction LR
-        Gold[金と通貨（兌換）] --> CB_Gold[中央銀行が通貨発行]
-        CB_Gold --> Gov_Spend_Gold[政府が支出（軍・公共事業など）]
-        Gov_Spend_Gold --> Private_Circ_Gold[民間に通貨流通]
-        Private_Circ_Gold --> Tax_Collect_Gold[税として回収]
-        Tax_Collect_Gold --> CB_Gold
-      end
-      style Gold fill:#f0f4c3,stroke:#cddc39
-      style CB_Gold fill:#dcedc8,stroke:#8bc34a
-      style Gov_Spend_Gold fill:#bbdefb,stroke:#2196f3
-      style Private_Circ_Gold fill:#c8e6c9,stroke:#4caf50
-      style Tax_Collect_Gold fill:#ffe082,stroke:#ff9800
-  </div>
-<details>
-  <summary>詳しい説明を表示（▼）</summary>
-  <div>
-    <p>
-      この図は、<u>昔の</u><strong class="keyword term-gold-standard">金本位制</strong>のときのお金の流れを表しているよ。
-      ポイントは、国が持っている<strong class="keyword"><u>ゴールド（金）</u></strong>の量に基づいてお金（銀行券）を発行していたってこと。
-      お札は「<u>ゴールド引換券</u>」のようなものだったんだね。
-    </p>
-    <ol>
-      <li>まず、「金と通貨（兌換）」とあるように、国が持っている<strong class="keyword">ゴールド</strong>と引き換えできるお札を「中央銀行が通貨発行」するよ。</li>
-      <li>政府はそのお札を使って、「政府が支出（軍・公共事業など）」を行うんだ。これが<strong class="keyword"><u>財源</u></strong>として機能している部分だね。</li>
-      <li>そうして使われたお金が、「民間に通貨流通」する。</li>
-      <li>そして、民間は手にしたお金の一部を「税として回収」される形で国に納める。</li>
-      <li>集められた税金は、<u>再び中央銀行に戻って</u>、次の政府支出の準備になったりするんだ。この図では、<strong class="keyword">税</strong>がしっかりと「国のお金を集める」という<strong class="keyword">財源</strong>の役割を果たしているのがわかるね。</li>
-    </ol>
-    <p>
-      この仕組みだと、お金の価値が<strong class="keyword">ゴールド</strong>で保証されていて<u>安心感があった</u>けど、ゴールドの量が足りないと<u>経済が成長しにくい</u>っていう弱点もあったんだ。
-    </p>
-  </div>
-</details>
-<details>
-  <summary>Q&Aを表示（▼）</summary>
-  <div class="qa-box">
-    <div class="question">
-      <p><strong>【みんなのギモン①】</strong> 金本位制のときって、税金がないと政府は本当にお金を使えなかったの？</p>
-    </div>
-    <div class="answer">
-      <p>
-        そうだね、<u>基本的にはその通りだよ！</u> 金本位制では、中央銀行が発行できるお金の量は、持っているゴールドの量に<u>縛られていたんだ</u>。 だから、政府がたくさんお金を使いたくても、まずゴールドを集めるか、税金として国民からお金を集める必要があった。
-        もちろん、国債を発行してお金を借りることもあったけど、その国債も最終的にはゴールドとのつながりを意識したものだったんだ。今みたいに「<u>足りなければ円を発行する</u>」という考え方とは<u>大きく違うね</u>。
-      </p>
-    </div>
-  </div>
-  <div class="qa-box">
-    <div class="question">
-      <p><strong>【みんなのギモン②】</strong> ゴールドって、そんなにみんな価値を認めていたの？</p>
-    </div>
-    <div class="answer">
-      <p>
-        うん、昔からゴールドはピカピカしていて綺麗だし、採れる量も限られているから、<u>世界中の多くの人が「価値があるもの」として認めていたんだ</u>。 だから、国境を越えた貿易でも、ゴールドが基準として使われることが多かった。
-        「このお札は、これだけのゴールドと交換できますよ」と国が保証することで、みんなが<u>安心してお札を使えたんだね</u>。
-      </p>
-    </div>
-  </div>
-</details>
+		style IssueBond fill:#ffe082,stroke:#ff9800
+		style PrimaryMarket fill:#f5f5f5,stroke:#9e9e9e
+		style BoJAccountInc fill:#cfd8dc,stroke:#607d8b
+		style GovSpendPrep fill:#d1c4e9,stroke:#673ab7
+		style GovActualSpend fill:#c8e6c9,stroke:#4caf50
+	</div>
+	<details>
+	<summary>
+		詳しい説明を表示（▼）
+	</summary>
+	<div>
+		<p>
+		この図は、政府が
+		<strong class="keyword">
+			国債
+		</strong>
+		を発行してから、
+		<u>
+			実際にそのお金が民間に渡るまでのステップ
+		</u>
+		を少し詳しく見たものだよ。
+			前の図の「中央銀行が引受」の部分をもう少し詳しく見てみよう。
+		</p>
+		<ol>
+		<li>
+			まず「政府が国債発行」する。
+		</li>
+		<li>
+			その国債を、最初に買うのは
+			<u>
+			主に銀行などの金融機関
+			</u>
+			なんだ。この最初の取引市場を「プライマリ市場（銀行等が購入）」って呼ぶよ。
+		</li>
+		<li>
+			銀行が国債を買うと、その代金が政府に支払われる形になるんだけど、このお金のやり取りは
+			<u>
+			日本銀行の中にある当座預金口座を通じて行われる
+			</u>
+			。結果として、政府の日銀にある口座（
+			<strong class="keyword">
+			<u>
+				政府預金
+			</u>
+			</strong>
+			）の残高が増えるんだ（「日銀当座預金の増加（政府預金）」）。 これが、政府がお金を使えるようにするための「
+			<u>
+			政府の支出準備
+			</u>
+			」が整った状態だね。
+		</li>
+		<li>
+			この時点ではまだお金は
+			<u>
+			日銀の中（政府の口座）にあって
+			</u>
+			、政府が「よし、これであの事業にお金を出そう！」と決めて「
+			<u>
+			実際の支出があって初めて民間に流通
+			</u>
+			」するんだ。
+		</li>
+		</ol>
+		<p>
+		つまり、
+		<strong class="keyword">
+			国債発行
+		</strong>
+		して銀行がそれを買っただけでは、まだお金は
+		<u>
+			日銀内の政府口座に入っただけ
+		</u>
+		で、
+		<u>
+			すぐには世の中（民間）のお金が増えて
+			<strong class="keyword">
+			インフレ
+			</strong>
+			になるわけじゃない
+		</u>
+		ってこと。「
+		<u>
+			政府の支出準備が整った
+		</u>
+		」という段階なんだね。
+		</p>
+	</div>
+	</details>
+	<details>
+	<summary>
+		【重要なおさらい】インフレには種類がある！（▼）
+	</summary>
+	<div class="point-highlight">
+		<h3>
+		【重要なおさらい】インフレには種類がある！
+		</h3>
+		<p>
+		これから
+		<strong class="keyword">
+			インフレ
+		</strong>
+		の話がたくさん出てくるけど、その前に大事なおさらいだよ！
+		<strong class="keyword">
+			インフレ
+		</strong>
+		（モノやサービスの値段が全体的に上がり続けること）には、
+		<u>
+			主に２つのタイプ
+		</u>
+		があるんだ。
+		</p>
+		<ul>
+		<li>
+			<strong>
+			<span class="cost-push-emphasis">
+				コストプッシュ・インフレ
+			</span>
+			</strong>
+			：
+			<br/>
+			これは、
+			<u>
+			石油や原材料の値段が上がったり
+			</u>
+			、
+			<u>
+			円安で輸入品が高くなったり
+			</u>
+			して、モノを作るための
+			<strong class="keyword">
+			コスト
+			</strong>
+			（経費）が上がっちゃうことで起きる
+			<strong class="keyword">
+			インフレ
+			</strong>
+			だよ。企業は、上がったコスト分を商品の値段に上乗せせざるを得なくなるんだ。
+			<u>
+			みんなのお給料が上がっていなくても起こりやすい
+			</u>
+			のが特徴だね。
+		</li>
+		<li>
+			<strong>
+			<span class="demand-pull-emphasis">
+				デマンドプル・インフレ
+			</span>
+			</strong>
+			：
+			<br/>
+			これは、
+			<u>
+			みんながたくさんモノを買いたい！サービスを利用したい！
+			</u>
+			ってなって、国全体の
+			<strong class="keyword">
+			需要
+			</strong>
+			（買いたい気持ちや力）が、国全体の
+			<strong class="keyword">
+			供給能力
+			</strong>
+			（モノやサービスを作る力）を
+			<u>
+			上回っちゃう
+			</u>
+			ことで起きる
+			<strong class="keyword">
+			インフレ
+			</strong>
+			だよ。「欲しい人がいっぱいいるけど、モノが足りない！」ってなると、値段が上がっていくんだ。
+			<u>
+			景気が良くて、みんなのお給料も上がっているときに起こりやすい
+			</u>
+			よ。
+		</li>
+		</ul>
+		<p>
+		日銀などの
+		<strong class="keyword term-monetary-policy">
+			金融政策
+		</strong>
+		（金利を上げたり下げたりすること）で影響を与えやすいのは、主にこの
+		<span class="demand-pull-emphasis">
+			デマンドプル・インフレ
+		</span>
+		の方なんだ。
+		<span class="cost-push-emphasis">
+			コストプッシュ・インフレ
+		</span>
+		は、海外の資源価格とか、国際的な経済の動きが原因になることが多いから、
+		<u>
+			日本の金融政策だけで抑えるのはすごく難しい
+		</u>
+		んだ。
+		</p>
+		<p>
+		だから、ここから先で「
+		<strong class="keyword">
+			インフレ
+		</strong>
+		が心配だ！」とか「
+		<strong class="keyword">
+			インフレ
+		</strong>
+		を抑えるために…」という話が出てくるときは、
+		<u>
+			特に断りがなければ、主に
+			<span class="demand-pull-emphasis">
+			デマンドプル・インフレ
+			</span>
+			のことを指している
+		</u>
+		、と覚えておいてね！
+		</p>
+		<p>
+		ちなみに、
+		<u>
+			今（2025年度）の日本
+		</u>
+		は、海外からの原材料価格の高騰や円安などによって、
+		<span class="cost-push-emphasis">
+			コストプッシュ・インフレ
+		</span>
+		の影響を強く受けている状態だと言われているよ。
+				一方で、長引くデフレの影響もあって、みんなのお給料がなかなか上がらず、モノを買う力（
+		<strong class="keyword">
+			需要
+		</strong>
+		）が全体としてまだそこまで強くない。だから、今の状況から
+		<u>
+			いきなり激しい
+			<span class="demand-pull-emphasis">
+			デマンドプル・インフレ
+			</span>
+			に変化するのはかなり難しい
+		</u>
+		と考えられているんだ。
+				「国の借金が増えたら、明日から制御不能なハイパーインフレだ！」みたいに、
+		<u>
+			過度に心配しすぎなくても大丈夫
+		</u>
+		、という見方もあるんだよ。
+		</p>
+	</div>
+	</details>
+	<details>
+	<summary>
+		Q&amp;Aを表示（▼）
+	</summary>
+	<div class="qa-box">
+		<div class="question">
+		<p>
+			<strong>
+			【みんなのギモン①】
+			</strong>
+			「プライマリ市場」って何？なんで銀行が買うの？普通の投資家は買えないの？
+		</p>
+		</div>
+		<div class="answer">
+		<p>
+			「プライマリ市場」っていうのは、新しく発行された株や債券（この場合は国債だね）が、発行者（政府）から最初に特定の買い手（主に銀行などの金融機関）に売り渡される市場のことだよ。 スーパーで言うと、
+			<u>
+			工場からお店に商品が初めて並ぶ感じかな？
+			</u>
+			日銀当座預金関係者ではない、
+			<u>
+			普通の投資家や、個人
+			</u>
+			（みんなもそうだね）などは、このプライマリ市場で国債を
+			<u>
+			直接購入することはできないんだ
+			</u>
+			。
+		</p>
+		<p>
+			銀行が国債を買う主な理由はいくつかあるよ。一つは、銀行が持っているお金（日銀当座預金など）を、基本的に利息が付かないか、ごくわずかな日銀当座預金に置いたままにするよりも、
+			<u>
+			少しでも金利が付く国債で運用した方が有利な場合がある
+			</u>
+			から。もう一つは、国債は
+			<u>
+			比較的安全な資産
+			</u>
+			とされているからだね。
+				それに、ここでの国債の売買は、基本的に
+			<u>
+			売れ残りが出ないような仕組み
+			</u>
+			（
+			<strong class="keyword">
+			<u>
+				入札制度
+			</u>
+			</strong>
+			）を使っているから、発行された国債は
+			<u>
+			きちんと銀行などに買われることになるんだ
+			</u>
+			。
+		</p>
+		<p>
+			銀行が購入した国債は、
+			<u>
+			多くの場合、
+			<strong class="keyword">
+				満期まで保有する
+			</strong>
+			ことが多い
+			</u>
+			んだ。途中で売ったりしないで、最後まで持ち続けるということだね。だから、
+			<u>
+			発行時の国債の金利がどうだったか
+			</u>
+			、という点が銀行にとっては重要になるけど、
+			<u>
+			市場で取引される際の価格変動が銀行の基本的なスタンスにすぐに影響するわけではない
+			</u>
+			んだ。
+		</p>
+		<p>
+			国債の金利や価格の変動が主に話題になるのは、プライマリ市場の後に、金融機関同士や一部の投資家が国債を売買する「
+			<strong class="keyword">
+			<u>
+				セカンダリ市場
+			</u>
+			</strong>
+			」での話だよ。この
+			<strong class="keyword">
+			セカンダリ市場
+			</strong>
+			での取引量は、国債全体の
+			<u>
+			発行残高から見るとその一部
+			</u>
+			<span class="term-explanation">
+			（具体的な割合は経済状況によって変わるけど、例えば数％～十数％程度といったイメージだよ）
+			</span>
+			だから、
+			<u>
+			ここでの価格変動がすぐに日本経済全体を大きく揺るがすような事態には繋がりにくい
+			</u>
+			、と考えられているんだ。
+		</p>
+		</div>
+	</div>
+	<div class="qa-box">
+		<div class="question">
+		<p>
+			<strong>
+			【みんなのギモン②】
+			</strong>
+			「入札制度」ってどんな仕組みなの？
+		</p>
+		</div>
+		<div class="answer">
+		<p>
+			国債の「入札制度」っていうのは、国債を買いたい銀行などの金融機関が「
+			<u>
+			この値段（または金利）でこれだけ買いたいです
+			</u>
+			」と希望を出す仕組みのことだよ。
+			<u>
+			オークションみたいなイメージだね
+			</u>
+			。
+				国（財務省）は、できるだけ有利な条件（
+			<u>
+			低い金利
+			</u>
+			）で国債を買ってもらいたい。一方、銀行はできるだけ有利な条件（
+			<u>
+			高い金利や安い価格
+			</u>
+			）で国債を買いたい。
+				いくつかの入札方式があるけど、例えば「価格競争入札」なら、各金融機関が買いたい価格と量を提示して、
+			<u>
+			高い価格を提示したところから順番に買える権利が決まっていくんだ
+			</u>
+			。こうすることで、国は計画した量の国債を、
+			<u>
+			市場の実勢に合った条件で発行することができる
+			</u>
+			。
+				この仕組みによって、発行される国債が
+			<u>
+			売れ残ることは基本的にはないんだ
+			</u>
+			。
+		</p>
+		</div>
+	</div>
+	<div class="qa-box">
+		<div class="question">
+		<p>
+			<strong>
+			【みんなのギモン③】
+			</strong>
+			政府の借金（国債残高）はすごく多いって聞くけど、「政府の支出準備」が整うってどういうこと？ 政府はお金を使えるの？
+		</p>
+		</div>
+		<div class="answer">
+		<p>
+			それは
+			<u>
+			大事なポイント
+			</u>
+			だね。ニュースとかで「
+			<u>
+			日本の借金が大変！
+			</u>
+			」ってよく聞くよね。これは国債の残高のことを指していることが多い。
+				でも、政府が新たに国債を発行して銀行がそれを買うと、その代金は
+			<u>
+			実際に日本銀行にある政府の口座（政府預金）に入金されるんだ
+			</u>
+			。 この
+			<strong class="keyword">
+			政府預金
+			</strong>
+			を使って、政府は公共事業の支払いなど、
+			<u>
+			実際にお金を使うことができる
+			</u>
+			。つまり、「政府の支出準備が整う」というのは、文字通り、
+			<u>
+			政府が使えるお金が口座に入った
+			</u>
+			、ということなんだ。
+		</p>
+		<p>
+			「
+			<u>
+			国の借金がたくさんあるのになぜ新たにお金を使えるの？
+			</u>
+			」って不思議に思うかもしれないけど、これはフィアットシステム（管理通貨制度）の
+			<u>
+			重要な特徴
+			</u>
+			と関係があるんだ。
+				日本のように自国通貨（円）で国債を発行している場合、政府（と日本銀行）はその「
+			<u>
+			円
+			</u>
+			」を
+			<u>
+			自分たちで発行する力を持っている
+			</u>
+			。 だから、円建ての借金であれば、
+			<u>
+			理論上は返済するためのお金が足りなくなる（破産する）ということは考えにくい
+			</u>
+			、とされているんだ。
+				もちろん、無限にお金を発行できるわけではなくて、やりすぎるとひどい
+			<strong class="keyword">
+			インフレ
+			</strong>
+			になるリスクがあるから、経済全体のバランスを見ながら慎重に行う必要があるけどね。
+				「
+			<u>
+			国の借金残高が多いこと
+			</u>
+			」と、「
+			<u>
+			新たに国債を発行して支出のためのお金を用意する能力
+			</u>
+			」は、
+			<u>
+			分けて考える必要があるんだよ
+			</u>
+			。
+		</p>
+		</div>
+	</div>
+	</details>
+	<h2>
+	4. 民間に通貨が流通するルート（信用創造・政府支出）
+	</h2>
+	<div class="mermaid">
+	graph TD
+		GovSpendRoute[政府支出] --&gt; PrivateSector[民間（企業・個人）]
+		PrivateSector --&gt; BankDeposit[民間銀行への預金]
+		BankDeposit -.-&gt; BankLending[銀行の貸出（信用創造）]
+		BankLending --&gt; MoneySupplyExpansion[預金通貨の拡大]
 
-  <h2>2. フィアット通貨の循環（税は財源ではない）</h2>
-  <div class="mermaid">
-    graph LR
-      subgraph フィアット通貨
-        direction LR
-        Gov_Bond[政府が国債発行] --> CB_Accept[中央銀行が引受]
-        CB_Accept --> Gov_Spend_Fiat[政府が支出（インフラ・福祉等）]
-        Gov_Spend_Fiat --> Private_Circ_Fiat[通貨が民間へ流通]
-        Private_Circ_Fiat --> Econ_Activity[経済活動（信用創造も）]
-        Econ_Activity --> Tax_Return[税として一部が戻る]
-        Tax_Return --> Accounting[会計処理上の清算]
-      end
-      style Gov_Bond fill:#ffe082,stroke:#ff9800
-      style CB_Accept fill:#dcedc8,stroke:#8bc34a
-      style Gov_Spend_Fiat fill:#bbdefb,stroke:#2196f3
-      style Private_Circ_Fiat fill:#c8e6c9,stroke:#4caf50
-      style Econ_Activity fill:#b2ebf2,stroke:#00bcd4
-      style Tax_Return fill:#f8bbd0,stroke:#e91e63
-      style Accounting fill:#eeeeee,stroke:#777
-  </div>
-<details>
-  <summary>詳しい説明を表示（▼）</summary>
-  <div>
-    <p>
-      こっちの図は、<u>今の日本の</u><strong class="keyword term-managed-currency">フィアットシステム</strong>（管理通貨制度）でのお金の流れのイメージだよ。<u>金本位制とは大きく違うんだ</u>。
-      一番のポイントは、政府がお金を使うとき、<u>必ずしも「まず税金を集めてから」という順番ではない</u>こと。
-    </p>
-    <ol>
-      <li>政府はまず、「政府が国債発行」するよ。</li>
-      <li>それを「中央銀行（日本だと日本銀行（<strong>日銀</strong>）だけど、<u>実は日銀は日銀法という法律で、政府の子会社のような特殊な銀行</u>になってる）が引受」たりすることで、政府がお金を使えるようになるんだ。この時点で、世の中に<u>新しいお金（の元になるもの）が生まれる</u>イメージだね。</li>
-      <li>政府はそのお金を使って、「政府が支出（インフラ・福祉等）」する。</li>
-      <li>こうして政府から支払われたお金が、「通貨が民間へ流通」し、「経済活動（信用創造も）」を通じて世の中を<u>グルグル回る</u>。</li>
-      <li>そして、みんなが稼いだお金の一部が「税として一部が戻る」。</li>
-      <li>戻ってきた税金は、「会計処理上の清算」として、国債の償還（返済）などに充てられるけど、これは<u><strong><span class="cost-push-emphasis">「財源を確保する」という意味ではなく</span></strong></u>て、「<u>お金を回収する（それによって、行き過ぎたインフレを制御する）</u>」という<u>「お金を消す」というか、帳簿上で処理をするイメージ</u>。税金が集まらないと政府が何もできない、というわけではないんだ。</li>
-    </ol>
-    <p>
-      この図は左から右への一方通行に見えるけど、実際には<strong class="keyword">税金</strong>の役割は「<strong class="keyword"><u>通貨を使わせる仕組み</u></strong>」を作ったり、「<strong class="keyword"><u>景気調整</u></strong>」をしたりと<u>多様で</u>、経済全体を循環させるための<u>重要な要素</u>なんだ。<u>伝統的に『<strong class="keyword">税</strong>は国の活動のためのお金（<strong class="keyword">財源</strong>）』と考えられてきたけど、<strong class="keyword term-managed-currency">フィアットシステム</strong>では、それ以外にももっと<strong class="keyword">重要な役割がある</strong>んだね</u>。
-    </p>
-      <li>ちなみに：日銀は法律上「<strong>株式会社</strong>」の形をとっているけど、日銀法で、<u>資本金の55%（半分以上）を政府が保有し、総裁・副総裁・審議委員の人事も政府が行う</u>から、実質的には<u>「政府の一部」として機能</u>しているよ。</li>
+		style GovSpendRoute fill:#bbdefb,stroke:#2196f3
+		style PrivateSector fill:#c8e6c9,stroke:#4caf50
+		style BankDeposit fill:#e0f7fa,stroke:#00acc1
+		style BankLending fill:#dcedc8,stroke:#8bc34a
+		style MoneySupplyExpansion fill:#a5d6a7,stroke:#388e3c
+	</div>
+	<details>
+	<summary>
+		詳しい説明を表示（▼）
+	</summary>
+	<div>
+		<p>
+		この図は、政府が使ったお金が民間の人たちの手に渡って、さらに世の中全体にお金（
+		<strong class="keyword">
+			<u>
+			預金通貨
+			</u>
+		</strong>
+		<span class="term-explanation">
+			という種類のお金
+		</span>
+		）が広がっていく様子を表しているよ。
+		</p>
+		<ol>
+		<li>
+			まず、「政府支出」によって、政府が公共事業や社会保障などでお金を使うと、それが企業や個人の収入として「民間（企業・個人）」に渡るよね。
+		</li>
+		<li>
+			民間（私たち）はそのお金を銀行に預金する（「民間銀行への預金」）。
+		</li>
+		<li>
+			<u>
+			ここからがポイントだよ
+			</u>
+			。銀行は、みんなから預かったお金（預金）を
+			<u>
+			そのまま右から左へ又貸ししているわけではないんだ
+			</u>
+			。みんなからの預金は、みんなにとっては「
+			<u>
+			資産
+			</u>
+			」だけど、銀行にとっては「
+			<u>
+			いつかみんなに返さなければいけないお金
+			</u>
+			」だから「
+			<strong class="keyword">
+			<u>
+				負債（借金）
+			</u>
+			</strong>
+			」になる。 だから、これを集めて他の人にそっくりそのまま貸し付ける、という
+			<u>
+			単純な仕組みではないんだね
+			</u>
+			。
+		</li>
+		<li>
+			銀行がお金を貸し出すとき（「銀行の貸出（信用創造）」）、実は新しい「
+			<strong class="keyword">
+			<u>
+				預金通貨
+			</u>
+			</strong>
+			」というお金を
+			<u>
+			創り出している
+			</u>
+			。これを
+			<strong class="keyword">
+			<u>
+				信用創造
+			</u>
+			</strong>
+			って言うよ。 借りた人の預金口座に、貸出額が
+			<u>
+			ポンと記録される
+			</u>
+			イメージだね。これが実質的に
+			<u>
+			新しいお金（マネー）を生み出す
+			</u>
+			ことになる。
+		</li>
+		<li>
+			こうして銀行が貸し出しを行うことで、世の中のお金の量（
+			<strong class="keyword">
+			マネーサプライ
+			</strong>
+			、特に預金通貨）が増えていくんだ（「預金通貨の拡大」）。
+		</li>
+		</ol>
+		<p>
+		もちろん、銀行も
+		<u>
+			無限にお金を創り出せるわけではなくて
+		</u>
+		、日本銀行に預けておかなければいけないお金（
+		<strong class="keyword">
+			<u>
+			準備預金
+			</u>
+		</strong>
+		）の量や、銀行自身の体力（
+		<u>
+			自己資本の額など
+		</u>
+		）といった、いろいろなルールや制約の中で行われているんだ。
+			この
+		<strong class="keyword">
+			信用創造
+		</strong>
+		の詳しい仕組みは、また別の機会に見てみようね！
+		</p>
+		<p>
+		つまり、政府がお金を使うこと（
+		<strong class="keyword term-fiscal-policy">
+			財政政策
+		</strong>
+		）と、銀行がお金を貸し出すこと（
+		<strong class="keyword">
+			信用創造
+		</strong>
+		）の
+		<u>
+			合わせ技で
+		</u>
+		、世の中のお金（特にみんなが使える
+		<strong class="keyword">
+			預金通貨
+		</strong>
+		）は増えたり減ったりするんだね。フィアットシステムでは、こうやって経済の状況に合わせてお金の量を調整することができるんだ。
+		</p>
+	</div>
+	</details>
+	<details>
+	<summary>
+		Q&amp;Aを表示（▼）
+	</summary>
+	<div class="qa-box">
+		<div class="question">
+		<p>
+			<strong>
+			【みんなのギモン①】
+			</strong>
+			「信用創造」って、銀行が本当にお金を作り出してるの？ なんか不思議…
+		</p>
+		</div>
+		<div class="answer">
+		<p>
+			そうだね、初めて聞くとちょっと不思議に感じるかもしれないね！ 銀行が物理的に紙幣を印刷しているわけではないんだけど、
+			<u>
+			会計帳簿の上で「お金を創り出す」と表現できるようなことをしているんだ
+			</u>
+			。
+				例えば、Aさんが銀行から100万円を借りるとする。銀行はAさんの預金口座に「100万円」と記帳する。この時点で、Aさんは100万円という
+			<strong class="keyword">
+			預金通貨
+			</strong>
+			を手に入れたことになる。この100万円は、
+			<u>
+			誰かが預けたお金をそのままAさんに渡したわけではなく
+			</u>
+			、銀行の貸し出しという行為によって
+			<u>
+			新たに生まれたものなんだ
+			</u>
+			。
+				もちろん、銀行がこの「
+			<strong class="keyword">
+			信用創造
+			</strong>
+			」をできる金額には
+			<u>
+			上限があって
+			</u>
+			、法律で決められた
+			<strong class="keyword">
+			準備預金
+			</strong>
+			（日銀に預けておかないといけないお金の割合）や、銀行自身の財務状況（自己資本の額など）によって
+			<u>
+			制約されているよ
+			</u>
+			。だから、無尽蔵にできるわけじゃないんだ。
+		</p>
+		</div>
+	</div>
+	<div class="qa-box">
+		<div class="question">
+		<p>
+			<strong>
+			【みんなのギモン②】
+			</strong>
+			政府がお金を使わない（「政府支出」がない）と、民間のお金は全然増えないの？
+		</p>
+		</div>
+		<div class="answer">
+		<p>
+			<strong class="keyword">
+			政府支出
+			</strong>
+			は、民間にお金を供給する
+			<u>
+			大きなルートの一つ
+			</u>
+			だけど、それだけじゃないよ。
+				例えば、日本企業が海外でたくさんモノを売って、その代金（ドルなど）を日本に持ってきて円に換えれば、国内の円は増えるよね（これは
+			<strong class="keyword">
+			貿易黒字
+			</strong>
+			によるお金の供給）。
+				それから、銀行が企業や個人に積極的に貸し出しをすれば（
+			<strong class="keyword">
+			信用創造
+			</strong>
+			）、
+			<strong class="keyword">
+			政府支出
+			</strong>
+			がなくても民間のお金（
+			<strong class="keyword">
+			預金通貨
+			</strong>
+			）は増える。
+				ただ、
+			<u>
+			経済が元気ないとき（不景気）
+			</u>
+			は、企業も個人もお金を借りにくくなるし、銀行も貸し出しに慎重になることが多い。そういうときには、政府が積極的にお金を使うこと（
+			<strong class="keyword term-fiscal-policy">
+			財政出動
+			</strong>
+			）が、
+			<u>
+			経済を元気にするために重要になるんだ
+			</u>
+			。
+		</p>
+		</div>
+	</div>
+	</details>
+	<h2>
+	5. 「国債発行＝即インフレ」は誤解
+	</h2>
+	<div class="mermaid">
+	graph TD
+		IssueBond_Inf[国債発行] --&gt; CurrencyPrep_Inf[通貨準備（政府預金）]
+		CurrencyPrep_Inf --&gt; GovSpend_Inf[政府支出]
+		GovSpend_Inf -- 需要増 --&gt; DemandSupply_Inf{需要と供給のバランス}
+		DemandSupply_Inf -- 供給能力が十分 --&gt; NoInflation[インフレは起きにくい・安定]
+		DemandSupply_Inf -- 供給能力が不足／過剰な需要 --&gt; InflationRisk[過剰支出や供給制約 → インフレリスク増大]
 
-  </div>
-</details>
-<details>
-  <summary>Q&Aを表示（▼）</summary>
-  <div class="qa-box">
-    <div class="question">
-      <p><strong>【みんなのギモン①】</strong> 「国債発行」って政府の借金でしょ？借金からお金が生まれるって、どういうこと？</p>
-    </div>
-    <div class="answer">
-      <p>
-        いいところに気づいたね！ 普通、私たちがお金を借りるときは、誰かがすでに持っているお金を借りるよね。でも、<u>政府と中央銀行の関係はちょっと特別なんだ</u>。
-        政府が国債を発行し、それを中央銀行が買い取ると、中央銀行は政府の口座（日銀当座預金内の政府預金口座）にお金を「<u>新たに記録する</u>」ことで支払う。これが実質的に新しいお金（の元になる<strong class="keyword"><u>マネタリーベース</u></strong><span class="term-explanation">という分類のお金だよ</span>）を生み出す行為になるんだ。
-        「世の中に出回るお金の量」全体を指す<strong class="keyword">マネーサプライ</strong>（またはマネーストック）には、この<strong class="keyword">マネタリーベース</strong>の他に、民間銀行が生み出すお金なども含まれるよ。
-        だから、この「中央銀行が引受」の段階で増えるのは、主に<u>日銀当座預金の中のお金</u>で、これですぐにみんな（家計や企業）の手元にお金が直接届いて、<u>市中のお金の量が急に増えるわけじゃないんだ</u>。その理由は、この後の図で見ていくよ。
-      </p>
-    </div>
-  </div>
-  <div class="qa-box">
-    <div class="question">
-      <p><strong>【みんなのギモン②】</strong> じゃあ、政府はいくらでも国債を発行して、お金を増やしてもいいの？</p>
-    </div>
-  <div class="answer">
-    <p>
-      「<u>いくらでも</u>」というわけにはいかないんだ。確かに、政府が自国通貨（円）で国債を発行する限り、<u>理論上は「お金が足りなくて返せない！」ということにはならない</u>。
-でも、お金を増やしすぎることには<u>大きなリスク</u>が伴うんだ。それは、<u>みんなも聞いたことがあるかもしれない<strong class="keyword">インフレ</strong>（インフレーション）</u>だよ。
-    </p>
-    <p>
-      世の中に出回るお金の量が、モノやサービスの量（<strong class="keyword">供給能力</strong>）に対して<u>増えすぎてしまう</u>と、お金の価値が下がってしまい、モノやサービスの値段が<u>どんどん上がってしまう</u>。これがひどい<strong class="keyword">インフレ</strong>だね。
-そうなると、同じ金額のお金を持っていても買えるものが少なくなって、<u>みんなの生活が苦しくなってしまう</u>可能性があるんだ。
-    </p>
-    <p>
-      だから、政府や中央銀行は、<u>経済全体のバランス</u>を見ながら、<u>インフレ率</u>などを注意深く監視して、お金の量を調整する必要があるんだ。
-      「<u>破産はしない</u>」ということと、「<u>いくら増やしても問題ない</u>」ということは<u>イコールではない</u>、ということを覚えておこうね。この<strong class="keyword">インフレ</strong>については、後の図でまた詳しく見ていくよ。
-    </p>
-</div>
-</div>
-  <div class="qa-box">
-    <div class="question">
-      <p><strong>【みんなのギモン③】</strong> 税金として戻ってきたお金（「税として一部が戻る」→「会計処理上の清算」）は、その後どうなるの？ また政府が使えるの？</p>
-    </div>
-    <div class="answer">
-      <p>
-        税金として集められたお金は、<u>会計上は政府の収入として扱われ、予算にも計上される</u>ね。そして、国債の利払いや償還（返済）に使われたり、次の支出の財源として計上されたりする。でも大事なのは、<strong class="keyword term-managed-currency">フィアットシステム</strong>では<u>政府の支出能力が『集めた税金の額』だけに直接的に縛られるわけじゃない</u>ってこと。<u><strong class="keyword">税金</strong>がなくても政府がお金を生み出して支出できる</u>、という点が<strong class="keyword term-gold-standard">金本位制</strong>と大きく違うんだ。その上で、<strong class="keyword">税金</strong>にはこんな役割があるよ。
-      </p>
-      <ul>
-        <li>みんなに「<u>円</u>」を使ってもらうため</li>
-        <li><u>景気を調整する</u>ため（インフレの抑制など）</li>
-        <li><u>所得の格差を調整する</u>ため</li>
-        <li><strong class="keyword"><u>社会にとって望ましい行動を応援</u></strong>（or 望ましくない行動を抑制）するため<span class="term-explanation">（例えば、環境に良い技術への投資を促す税制や、タバコ税などだね）</span></li>
-      </ul>
-      <p>
-        といった、<u>もっと広い意味があるんだ</u>。だから、税収が直接次の支出額を決定づけるわけではない、と理解しておくといいよ。
-      </p>
-    </div>
-  </div>
-</details>
-
-  <h2>3. 国債発行とプライマリ市場</h2>
-  <div class="mermaid">
-  graph TD
-    IssueBond[政府が国債発行] --> PrimaryMarket[プライマリ市場（銀行等が購入）]
-    PrimaryMarket --> BoJAccountInc[日銀当座預金の増加（政府預金）]
-    BoJAccountInc --> GovSpendPrep[政府の支出準備]
-    GovSpendPrep --> GovActualSpend[実際の支出があって初めて民間に流通]
-
-    style IssueBond fill:#ffe082,stroke:#ff9800
-    style PrimaryMarket fill:#f5f5f5,stroke:#9e9e9e
-    style BoJAccountInc fill:#cfd8dc,stroke:#607d8b
-    style GovSpendPrep fill:#d1c4e9,stroke:#673ab7
-    style GovActualSpend fill:#c8e6c9,stroke:#4caf50
- </div>
-<details>
-  <summary>詳しい説明を表示（▼）</summary>
-  <div>
-    <p>
-      この図は、政府が<strong class="keyword">国債</strong>を発行してから、<u>実際にそのお金が民間に渡るまでのステップ</u>を少し詳しく見たものだよ。
-      前の図の「中央銀行が引受」の部分をもう少し詳しく見てみよう。
-    </p>
-    <ol>
-      <li>まず「政府が国債発行」する。</li>
-      <li>その国債を、最初に買うのは<u>主に銀行などの金融機関</u>なんだ。この最初の取引市場を「プライマリ市場（銀行等が購入）」って呼ぶよ。</li>
-      <li>銀行が国債を買うと、その代金が政府に支払われる形になるんだけど、このお金のやり取りは<u>日本銀行の中にある当座預金口座を通じて行われる</u>。結果として、政府の日銀にある口座（<strong class="keyword"><u>政府預金</u></strong>）の残高が増えるんだ（「日銀当座預金の増加（政府預金）」）。 これが、政府がお金を使えるようにするための「<u>政府の支出準備</u>」が整った状態だね。</li>
-      <li>この時点ではまだお金は<u>日銀の中（政府の口座）にあって</u>、政府が「よし、これであの事業にお金を出そう！」と決めて「<u>実際の支出があって初めて民間に流通</u>」するんだ。</li>
-    </ol>
-    <p>
-      つまり、<strong class="keyword">国債発行</strong>して銀行がそれを買っただけでは、まだお金は<u>日銀内の政府口座に入っただけ</u>で、<u>すぐには世の中（民間）のお金が増えて<strong class="keyword">インフレ</strong>になるわけじゃない</u>ってこと。「<u>政府の支出準備が整った</u>」という段階なんだね。
-    </p>
-  </div>
-</details>
-<details>
-  <summary>【重要なおさらい】インフレには種類がある！（▼）</summary>
-  <div class="point-highlight">
-    <h3>【重要なおさらい】インフレには種類がある！</h3>
-    <p>
-        これから<strong class="keyword">インフレ</strong>の話がたくさん出てくるけど、その前に大事なおさらいだよ！
-        <strong class="keyword">インフレ</strong>（モノやサービスの値段が全体的に上がり続けること）には、<u>主に２つのタイプ</u>があるんだ。
-    </p>
-    <ul>
-        <li><strong><span class="cost-push-emphasis">コストプッシュ・インフレ</span></strong>：<br>
-            これは、<u>石油や原材料の値段が上がったり</u>、<u>円安で輸入品が高くなったり</u>して、モノを作るための<strong class="keyword">コスト</strong>（経費）が上がっちゃうことで起きる<strong class="keyword">インフレ</strong>だよ。企業は、上がったコスト分を商品の値段に上乗せせざるを得なくなるんだ。<u>みんなのお給料が上がっていなくても起こりやすい</u>のが特徴だね。
-        </li>
-        <li><strong><span class="demand-pull-emphasis">デマンドプル・インフレ</span></strong>：<br>
-            これは、<u>みんながたくさんモノを買いたい！サービスを利用したい！</u>ってなって、国全体の<strong class="keyword">需要</strong>（買いたい気持ちや力）が、国全体の<strong class="keyword">供給能力</strong>（モノやサービスを作る力）を<u>上回っちゃう</u>ことで起きる<strong class="keyword">インフレ</strong>だよ。「欲しい人がいっぱいいるけど、モノが足りない！」ってなると、値段が上がっていくんだ。<u>景気が良くて、みんなのお給料も上がっているときに起こりやすい</u>よ。
-        </li>
-    </ul>
-    <p>
-        日銀などの<strong class="keyword term-monetary-policy">金融政策</strong>（金利を上げたり下げたりすること）で影響を与えやすいのは、主にこの<span class="demand-pull-emphasis">デマンドプル・インフレ</span>の方なんだ。
-        <span class="cost-push-emphasis">コストプッシュ・インフレ</span>は、海外の資源価格とか、国際的な経済の動きが原因になることが多いから、<u>日本の金融政策だけで抑えるのはすごく難しい</u>んだ。
-    </p>
-    <p>
-        だから、ここから先で「<strong class="keyword">インフレ</strong>が心配だ！」とか「<strong class="keyword">インフレ</strong>を抑えるために…」という話が出てくるときは、<u>特に断りがなければ、主に<span class="demand-pull-emphasis">デマンドプル・インフレ</span>のことを指している</u>、と覚えておいてね！
-    </p>
-    <p>
-        ちなみに、<u>今（2025年度）の日本</u>は、海外からの原材料価格の高騰や円安などによって、<span class="cost-push-emphasis">コストプッシュ・インフレ</span>の影響を強く受けている状態だと言われているよ。
-        一方で、長引くデフレの影響もあって、みんなのお給料がなかなか上がらず、モノを買う力（<strong class="keyword">需要</strong>）が全体としてまだそこまで強くない。だから、今の状況から<u>いきなり激しい<span class="demand-pull-emphasis">デマンドプル・インフレ</span>に変化するのはかなり難しい</u>と考えられているんだ。
-        「国の借金が増えたら、明日から制御不能なハイパーインフレだ！」みたいに、<u>過度に心配しすぎなくても大丈夫</u>、という見方もあるんだよ。
-    </p>
-  </div>
-</details>
-<details>
-  <summary>Q&Aを表示（▼）</summary>
-  <div class="qa-box">
-    <div class="question">
-      <p><strong>【みんなのギモン①】</strong> 「プライマリ市場」って何？なんで銀行が買うの？普通の投資家は買えないの？</p>
-    </div>
-    <div class="answer">
-      <p>
-        「プライマリ市場」っていうのは、新しく発行された株や債券（この場合は国債だね）が、発行者（政府）から最初に特定の買い手（主に銀行などの金融機関）に売り渡される市場のことだよ。 スーパーで言うと、<u>工場からお店に商品が初めて並ぶ感じかな？</u>
-        日銀当座預金関係者ではない、<u>普通の投資家や、個人</u>（みんなもそうだね）などは、このプライマリ市場で国債を<u>直接購入することはできないんだ</u>。
-      </p>
-      <p>
-        銀行が国債を買う主な理由はいくつかあるよ。一つは、銀行が持っているお金（日銀当座預金など）を、基本的に利息が付かないか、ごくわずかな日銀当座預金に置いたままにするよりも、<u>少しでも金利が付く国債で運用した方が有利な場合がある</u>から。もう一つは、国債は<u>比較的安全な資産</u>とされているからだね。
-        それに、ここでの国債の売買は、基本的に<u>売れ残りが出ないような仕組み</u>（<strong class="keyword"><u>入札制度</u></strong>）を使っているから、発行された国債は<u>きちんと銀行などに買われることになるんだ</u>。
-      </p>
-      <p>
-        銀行が購入した国債は、<u>多くの場合、<strong class="keyword">満期まで保有する</strong>ことが多い</u>んだ。途中で売ったりしないで、最後まで持ち続けるということだね。だから、<u>発行時の国債の金利がどうだったか</u>、という点が銀行にとっては重要になるけど、<u>市場で取引される際の価格変動が銀行の基本的なスタンスにすぐに影響するわけではない</u>んだ。
-      </p>
-      <p>
-        国債の金利や価格の変動が主に話題になるのは、プライマリ市場の後に、金融機関同士や一部の投資家が国債を売買する「<strong class="keyword"><u>セカンダリ市場</u></strong>」での話だよ。この<strong class="keyword">セカンダリ市場</strong>での取引量は、国債全体の<u>発行残高から見るとその一部</u><span class="term-explanation">（具体的な割合は経済状況によって変わるけど、例えば数％～十数％程度といったイメージだよ）</span>だから、<u>ここでの価格変動がすぐに日本経済全体を大きく揺るがすような事態には繋がりにくい</u>、と考えられているんだ。
-      </p>
-    </div>
-  </div>
-  <div class="qa-box">
-    <div class="question">
-      <p><strong>【みんなのギモン②】</strong> 「入札制度」ってどんな仕組みなの？</p>
-    </div>
-    <div class="answer">
-      <p>
-        国債の「入札制度」っていうのは、国債を買いたい銀行などの金融機関が「<u>この値段（または金利）でこれだけ買いたいです</u>」と希望を出す仕組みのことだよ。<u>オークションみたいなイメージだね</u>。
-        国（財務省）は、できるだけ有利な条件（<u>低い金利</u>）で国債を買ってもらいたい。一方、銀行はできるだけ有利な条件（<u>高い金利や安い価格</u>）で国債を買いたい。
-        いくつかの入札方式があるけど、例えば「価格競争入札」なら、各金融機関が買いたい価格と量を提示して、<u>高い価格を提示したところから順番に買える権利が決まっていくんだ</u>。こうすることで、国は計画した量の国債を、<u>市場の実勢に合った条件で発行することができる</u>。
-        この仕組みによって、発行される国債が<u>売れ残ることは基本的にはないんだ</u>。
-      </p>
-    </div>
-  </div>
-  <div class="qa-box">
-    <div class="question">
-      <p><strong>【みんなのギモン③】</strong> 政府の借金（国債残高）はすごく多いって聞くけど、「政府の支出準備」が整うってどういうこと？ 政府はお金を使えるの？</p>
-    </div>
-    <div class="answer">
-      <p>
-        それは<u>大事なポイント</u>だね。ニュースとかで「<u>日本の借金が大変！</u>」ってよく聞くよね。これは国債の残高のことを指していることが多い。
-        でも、政府が新たに国債を発行して銀行がそれを買うと、その代金は<u>実際に日本銀行にある政府の口座（政府預金）に入金されるんだ</u>。 この<strong class="keyword">政府預金</strong>を使って、政府は公共事業の支払いなど、<u>実際にお金を使うことができる</u>。つまり、「政府の支出準備が整う」というのは、文字通り、<u>政府が使えるお金が口座に入った</u>、ということなんだ。
-      </p>
-      <p>
-        「<u>国の借金がたくさんあるのになぜ新たにお金を使えるの？</u>」って不思議に思うかもしれないけど、これはフィアットシステム（管理通貨制度）の<u>重要な特徴</u>と関係があるんだ。
-        日本のように自国通貨（円）で国債を発行している場合、政府（と日本銀行）はその「<u>円</u>」を<u>自分たちで発行する力を持っている</u>。 だから、円建ての借金であれば、<u>理論上は返済するためのお金が足りなくなる（破産する）ということは考えにくい</u>、とされているんだ。
-        もちろん、無限にお金を発行できるわけではなくて、やりすぎるとひどい<strong class="keyword">インフレ</strong>になるリスクがあるから、経済全体のバランスを見ながら慎重に行う必要があるけどね。
-        「<u>国の借金残高が多いこと</u>」と、「<u>新たに国債を発行して支出のためのお金を用意する能力</u>」は、<u>分けて考える必要があるんだよ</u>。
-      </p>
-    </div>
-  </div>
-</details>
-
-  <h2>4. 民間に通貨が流通するルート（信用創造・政府支出）</h2>
-  <div class="mermaid">
-  graph TD
-    GovSpendRoute[政府支出] --> PrivateSector[民間（企業・個人）]
-    PrivateSector --> BankDeposit[民間銀行への預金]
-    BankDeposit -.-> BankLending[銀行の貸出（信用創造）]
-    BankLending --> MoneySupplyExpansion[預金通貨の拡大]
-
-    style GovSpendRoute fill:#bbdefb,stroke:#2196f3
-    style PrivateSector fill:#c8e6c9,stroke:#4caf50
-    style BankDeposit fill:#e0f7fa,stroke:#00acc1
-    style BankLending fill:#dcedc8,stroke:#8bc34a
-    style MoneySupplyExpansion fill:#a5d6a7,stroke:#388e3c
-  </div>
-<details>
-  <summary>詳しい説明を表示（▼）</summary>
-  <div>
-    <p>
-      この図は、政府が使ったお金が民間の人たちの手に渡って、さらに世の中全体にお金（<strong class="keyword"><u>預金通貨</u></strong><span class="term-explanation">という種類のお金</span>）が広がっていく様子を表しているよ。
-    </p>
-    <ol>
-      <li>まず、「政府支出」によって、政府が公共事業や社会保障などでお金を使うと、それが企業や個人の収入として「民間（企業・個人）」に渡るよね。</li>
-      <li>民間（私たち）はそのお金を銀行に預金する（「民間銀行への預金」）。</li>
-      <li><u>ここからがポイントだよ</u>。銀行は、みんなから預かったお金（預金）を<u>そのまま右から左へ又貸ししているわけではないんだ</u>。みんなからの預金は、みんなにとっては「<u>資産</u>」だけど、銀行にとっては「<u>いつかみんなに返さなければいけないお金</u>」だから「<strong class="keyword"><u>負債（借金）</u></strong>」になる。 だから、これを集めて他の人にそっくりそのまま貸し付ける、という<u>単純な仕組みではないんだね</u>。</li>
-      <li>銀行がお金を貸し出すとき（「銀行の貸出（信用創造）」）、実は新しい「<strong class="keyword"><u>預金通貨</u></strong>」というお金を<u>創り出している</u>。これを<strong class="keyword"><u>信用創造</u></strong>って言うよ。 借りた人の預金口座に、貸出額が<u>ポンと記録される</u>イメージだね。これが実質的に<u>新しいお金（マネー）を生み出す</u>ことになる。</li>
-      <li>こうして銀行が貸し出しを行うことで、世の中のお金の量（<strong class="keyword">マネーサプライ</strong>、特に預金通貨）が増えていくんだ（「預金通貨の拡大」）。</li>
-    </ol>
-    <p>
-      もちろん、銀行も<u>無限にお金を創り出せるわけではなくて</u>、日本銀行に預けておかなければいけないお金（<strong class="keyword"><u>準備預金</u></strong>）の量や、銀行自身の体力（<u>自己資本の額など</u>）といった、いろいろなルールや制約の中で行われているんだ。
-      この<strong class="keyword">信用創造</strong>の詳しい仕組みは、また別の機会に見てみようね！
-    </p>
-    <p>
-      つまり、政府がお金を使うこと（<strong class="keyword term-fiscal-policy">財政政策</strong>）と、銀行がお金を貸し出すこと（<strong class="keyword">信用創造</strong>）の<u>合わせ技で</u>、世の中のお金（特にみんなが使える<strong class="keyword">預金通貨</strong>）は増えたり減ったりするんだね。フィアットシステムでは、こうやって経済の状況に合わせてお金の量を調整することができるんだ。
-    </p>
-  </div>
-</details>
-<details>
-  <summary>Q&Aを表示（▼）</summary>
-  <div class="qa-box">
-    <div class="question">
-      <p><strong>【みんなのギモン①】</strong> 「信用創造」って、銀行が本当にお金を作り出してるの？ なんか不思議…</p>
-    </div>
-    <div class="answer">
-      <p>
-        そうだね、初めて聞くとちょっと不思議に感じるかもしれないね！ 銀行が物理的に紙幣を印刷しているわけではないんだけど、<u>会計帳簿の上で「お金を創り出す」と表現できるようなことをしているんだ</u>。
-        例えば、Aさんが銀行から100万円を借りるとする。銀行はAさんの預金口座に「100万円」と記帳する。この時点で、Aさんは100万円という<strong class="keyword">預金通貨</strong>を手に入れたことになる。この100万円は、<u>誰かが預けたお金をそのままAさんに渡したわけではなく</u>、銀行の貸し出しという行為によって<u>新たに生まれたものなんだ</u>。
-        もちろん、銀行がこの「<strong class="keyword">信用創造</strong>」をできる金額には<u>上限があって</u>、法律で決められた<strong class="keyword">準備預金</strong>（日銀に預けておかないといけないお金の割合）や、銀行自身の財務状況（自己資本の額など）によって<u>制約されているよ</u>。だから、無尽蔵にできるわけじゃないんだ。
-      </p>
-    </div>
-  </div>
-  <div class="qa-box">
-    <div class="question">
-      <p><strong>【みんなのギモン②】</strong> 政府がお金を使わない（「政府支出」がない）と、民間のお金は全然増えないの？</p>
-    </div>
-    <div class="answer">
-      <p>
-        <strong class="keyword">政府支出</strong>は、民間にお金を供給する<u>大きなルートの一つ</u>だけど、それだけじゃないよ。
-        例えば、日本企業が海外でたくさんモノを売って、その代金（ドルなど）を日本に持ってきて円に換えれば、国内の円は増えるよね（これは<strong class="keyword">貿易黒字</strong>によるお金の供給）。
-        それから、銀行が企業や個人に積極的に貸し出しをすれば（<strong class="keyword">信用創造</strong>）、<strong class="keyword">政府支出</strong>がなくても民間のお金（<strong class="keyword">預金通貨</strong>）は増える。
-        ただ、<u>経済が元気ないとき（不景気）</u>は、企業も個人もお金を借りにくくなるし、銀行も貸し出しに慎重になることが多い。そういうときには、政府が積極的にお金を使うこと（<strong class="keyword term-fiscal-policy">財政出動</strong>）が、<u>経済を元気にするために重要になるんだ</u>。
-      </p>
-    </div>
-  </div>
-</details>
-
-  <h2>5. 「国債発行＝即インフレ」は誤解</h2>
-  <div class="mermaid">
-  graph TD
-    IssueBond_Inf[国債発行] --> CurrencyPrep_Inf[通貨準備（政府預金）]
-    CurrencyPrep_Inf --> GovSpend_Inf[政府支出]
-    GovSpend_Inf -- 需要増 --> DemandSupply_Inf{需要と供給のバランス}
-    DemandSupply_Inf -- 供給能力が十分 --> NoInflation[インフレは起きにくい・安定]
-    DemandSupply_Inf -- 供給能力が不足／過剰な需要 --> InflationRisk[過剰支出や供給制約 → インフレリスク増大]
-
-    style IssueBond_Inf fill:#ffe082,stroke:#ff9800
-    style CurrencyPrep_Inf fill:#cfd8dc,stroke:#607d8b
-    style GovSpend_Inf fill:#d1c4e9,stroke:#673ab7
-    style DemandSupply_Inf fill:#c8e6c9,stroke:#4caf50
-    style NoInflation fill:#bbdefb,stroke:#2196f3
-    style InflationRisk fill:#ffcdd2,stroke:#e53935
-  </div>
-<details>
-  <summary>詳しい説明を表示（▼）</summary>
-  <div>
-    <p>
-      この図は、「国の借金（<strong class="keyword">国債発行</strong>）が増えると、すぐにひどい<strong class="keyword">インフレ</strong>（<u>主に<span class="demand-pull-emphasis">デマンドプル・インフレ</span>のことだよ！</u>）になる！」っていうのは、<u>必ずしも正しくないよ</u>、ということを説明しているよ。
-    </p>
-    <ol>
-      <li>政府が「国債発行」する。 これによって、政府の日銀口座にお金が準備される（「通貨準備（政府預金）」）。</li>
-      <li>そして、政府が実際に「政府支出」をする。 例えば、新しい道路を作ったり、みんなに給付金を配ったりする。これによって、世の中にお金が出回り、モノやサービスに対する<strong class="keyword"><u>需要</u></strong>が増える傾向があるね。</li>
-      <li>このとき、「<u>需要と供給のバランス</u>」がどうなっているかが<u>重要なんだ</u>。</li>
-      <li>もし国全体でモノやサービスを作り出す力（<strong class="keyword"><u>供給能力</u></strong>）が<u>十分にあって</u>、増えた<strong class="keyword">需要</strong>に見合うだけ供給できれば、すぐに物価が急上昇するような<strong class="keyword">インフレ</strong>にはならず、経済は比較的「安定」しやすい（「インフレは起きにくい・安定」）。 <u>欲しいものがちゃんと買える状態</u>なら、値段は安定しやすいよね。</li>
-      <li>でも、もし政府がお金を使いすぎたり（「過剰支出」）、何らかの理由でモノやサービスを作り出す力が足りなくなったり（「供給制約」）して、みんながお金をたくさん持っていても<u>モノやサービスが足りない状態</u>になると、モノの値段が上がってしまう。これが<strong class="keyword"><u>インフレ</u></strong>のリスクが高まる状態だね（「過剰支出や供給制約 → インフレリスク増大」）。</li>
-    </ol>
-    <p>
-      だから、大切なのは<strong class="keyword">国債</strong>の金額そのものよりも、経済全体の<strong class="keyword"><u>供給能力</u></strong>と、政府支出を含めたお金の使われ方（<strong class="keyword"><u>需要</u></strong>の大きさ）の<u>バランスなんだ</u>。
-      <strong class="keyword">デフレ</strong>（物価が下がり続けること）で困っている今の日本のような状況では、<strong class="keyword">供給能力</strong>にまだ余裕があると考えられるため、政府がもっとお金を使って<strong class="keyword">需要</strong>を増やすことが、<u>経済を元気にするために必要だ</u>とも言えるね。
-    </p>
-  </div>
-</details>
-<details>
-  <summary>Q&Aを表示（▼）</summary>
-  <div class="qa-box">
-    <div class="question">
-      <p><strong>【みんなのギモン①】</strong> じゃあ、インフレにならないんだったら、いくら国債を発行しても大丈夫なの？</p>
-    </div>
-    <div class="answer">
-      <p>
-        「<u>いくらでも大丈夫！</u>」とまでは言えないのが難しいところだね。確かに、自国通貨建ての国債で政府が<strong class="keyword"><u>破産することはない</u></strong>。 そして、<strong class="keyword">供給能力</strong>の範囲内であれば、政府支出がすぐに<u>悪性の<strong class="keyword">インフレ</strong></u>を引き起こすわけでもない。
-        でも、政府があまりにも無計画にお金を使いすぎると、いずれは国の<strong class="keyword">供給能力</strong>の限界を超えてしまって、ひどい<strong class="keyword">インフレ</strong>になるリスクが高まる。
-        それに、国債の量が増えすぎると、将来的に<u>金利が急上昇するんじゃないか</u>とか、<u>円の価値が下がりすぎる（<strong class="keyword">円安</strong>）んじゃないか</u>とか、別の心配事が出てくる可能性もあるんだ。
-        だから、「<u>破産はしない</u>」ことと「<u>全く問題ない</u>」ことは<u>イコールじゃない</u>。経済の状況を見ながら、<u>バランスを取ることがすごく重要なんだよ</u>。
-      </p>
-    </div>
-  </div>
-  <div class="qa-box">
-    <div class="question">
-      <p><strong>【みんなのギモン②】</strong> 「供給能力」って、具体的に何のこと？ 日本は大丈夫なの？</p>
-    </div>
-    <div class="answer">
-      <p>
-        「供給能力」っていうのは、国全体でモノやサービスをどれだけ作り出せるか、提供できるかの力のことだよ。例えば、工場がどれだけ製品を作れるか、お店がどれだけお客さんに対応できるか、農家がどれだけ野菜を作れるか、お医者さんがどれだけ患者さんを診れるか…そういったもの全部を合わせたイメージだね。
-        <u>日本の<strong class="keyword">供給能力</strong>は、技術力も高く、たくさんの工場や働く人がいて、世界的に見ても非常に高い水準にある</u>と言われているよ。だから、<u>戦争が起きたり、ものすごく大きな自然災害が続いたりするような特別なことがない限り</u>、いきなり国全体の<strong class="keyword">供給能力</strong>がガクンと落ちてしまう（これを<u>供給毀損</u>（きそん）って言うよ）みたいなことには、なかなかならないと考えられているんだ。
-      </p>
-      <p>
-        むしろ、今の日本では、<u>供給能力が足りないことよりも、<strong class="keyword">需要不足</strong></u>（みんながモノやサービスを十分に買えない・買わない状態）の方が問題視されることが多いんだ。
-        多くの人が「もっとモノを買いたい！サービスを利用したい！」と思っても、なかなかお給料が増えなかったり、将来への不安からお金を使うのを控えたりして、みんなが実際に使えるお金（<strong class="keyword"><u>可処分所得</u></strong><span class="term-explanation">っていうよ</span>）が伸び悩んでいると、全体の<strong class="keyword">需要</strong>が抑えられがちになる。
-        企業も、モノがたくさん売れる見込みがないと、新しい機械を買ったり（設備投資）、たくさん人を雇ったりしにくいよね。こういう状況では、なかなか<strong class="keyword"><u>デマンドプル・インフレ</u></strong>（良いインフレ）は起こりにくいんだ。
-      </p>
-      <p>
-        それどころか、物やサービスがあまり売れない（<strong class="keyword">需要</strong>が弱い）のに、原材料費の高騰などで商品の値段だけが上がってしまうと（これは<span class="cost-push-emphasis">コストプッシュ・インフレ</span>だね）、ますます物が売れなくなって、企業の経営が苦しくなり、働く人のお給料も上げられず、結果的に国全体の<strong class="keyword">供給能力</strong>（新しいものを作り出す力や、サービスを提供する力）までもが弱ってしまう…なんていう悪循環に陥る可能性だってあるんだ。
-      </p>
-      <p>
-        だから、<u>今の日本では、みんなが安心して使えるお金を増やして、健全な<strong class="keyword">需要</strong>を育てていくことが、経済全体を元気にして、将来の豊かな<strong class="keyword">供給能力</strong>を維持・向上させていくためにも、とっても大切</u>だと言われているんだよ。
-      </p>
-    </div>
-  </div>
-</details>
-
+		style IssueBond_Inf fill:#ffe082,stroke:#ff9800
+		style CurrencyPrep_Inf fill:#cfd8dc,stroke:#607d8b
+		style GovSpend_Inf fill:#d1c4e9,stroke:#673ab7
+		style DemandSupply_Inf fill:#c8e6c9,stroke:#4caf50
+		style NoInflation fill:#bbdefb,stroke:#2196f3
+		style InflationRisk fill:#ffcdd2,stroke:#e53935
+	</div>
+	<details>
+	<summary>
+		詳しい説明を表示（▼）
+	</summary>
+	<div>
+		<p>
+		この図は、「国の借金（
+		<strong class="keyword">
+			国債発行
+		</strong>
+		）が増えると、すぐにひどい
+		<strong class="keyword">
+			インフレ
+		</strong>
+		（
+		<u>
+			主に
+			<span class="demand-pull-emphasis">
+			デマンドプル・インフレ
+			</span>
+			のことだよ！
+		</u>
+		）になる！」っていうのは、
+		<u>
+			必ずしも正しくないよ
+		</u>
+		、ということを説明しているよ。
+		</p>
+		<ol>
+		<li>
+			政府が「国債発行」する。 これによって、政府の日銀口座にお金が準備される（「通貨準備（政府預金）」）。
+		</li>
+		<li>
+			そして、政府が実際に「政府支出」をする。 例えば、新しい道路を作ったり、みんなに給付金を配ったりする。これによって、世の中にお金が出回り、モノやサービスに対する
+			<strong class="keyword">
+			<u>
+				需要
+			</u>
+			</strong>
+			が増える傾向があるね。
+		</li>
+		<li>
+			このとき、「
+			<u>
+			需要と供給のバランス
+			</u>
+			」がどうなっているかが
+			<u>
+			重要なんだ
+			</u>
+			。
+		</li>
+		<li>
+			もし国全体でモノやサービスを作り出す力（
+			<strong class="keyword">
+			<u>
+				供給能力
+			</u>
+			</strong>
+			）が
+			<u>
+			十分にあって
+			</u>
+			、増えた
+			<strong class="keyword">
+			需要
+			</strong>
+			に見合うだけ供給できれば、すぐに物価が急上昇するような
+			<strong class="keyword">
+			インフレ
+			</strong>
+			にはならず、経済は比較的「安定」しやすい（「インフレは起きにくい・安定」）。
+			<u>
+			欲しいものがちゃんと買える状態
+			</u>
+			なら、値段は安定しやすいよね。
+		</li>
+		<li>
+			でも、もし政府がお金を使いすぎたり（「過剰支出」）、何らかの理由でモノやサービスを作り出す力が足りなくなったり（「供給制約」）して、みんながお金をたくさん持っていても
+			<u>
+			モノやサービスが足りない状態
+			</u>
+			になると、モノの値段が上がってしまう。これが
+			<strong class="keyword">
+			<u>
+				インフレ
+			</u>
+			</strong>
+			のリスクが高まる状態だね（「過剰支出や供給制約 → インフレリスク増大」）。
+		</li>
+		</ol>
+		<p>
+		だから、大切なのは
+		<strong class="keyword">
+			国債
+		</strong>
+		の金額そのものよりも、経済全体の
+		<strong class="keyword">
+			<u>
+			供給能力
+			</u>
+		</strong>
+		と、政府支出を含めたお金の使われ方（
+		<strong class="keyword">
+			<u>
+			需要
+			</u>
+		</strong>
+		の大きさ）の
+		<u>
+			バランスなんだ
+		</u>
+		。
+		<strong class="keyword">
+			デフレ
+		</strong>
+		（物価が下がり続けること）で困っている今の日本のような状況では、
+		<strong class="keyword">
+			供給能力
+		</strong>
+		にまだ余裕があると考えられるため、政府がもっとお金を使って
+		<strong class="keyword">
+			需要
+		</strong>
+		を増やすことが、
+		<u>
+			経済を元気にするために必要だ
+		</u>
+		とも言えるね。
+		</p>
+	</div>
+	</details>
+	<details>
+	<summary>
+		Q&amp;Aを表示（▼）
+	</summary>
+	<div class="qa-box">
+		<div class="question">
+		<p>
+			<strong>
+			【みんなのギモン①】
+			</strong>
+			じゃあ、インフレにならないんだったら、いくら国債を発行しても大丈夫なの？
+		</p>
+		</div>
+		<div class="answer">
+		<p>
+			「
+			<u>
+			いくらでも大丈夫！
+			</u>
+			」とまでは言えないのが難しいところだね。確かに、自国通貨建ての国債で政府が
+			<strong class="keyword">
+			<u>
+				破産することはない
+			</u>
+			</strong>
+			。 そして、
+			<strong class="keyword">
+			供給能力
+			</strong>
+			の範囲内であれば、政府支出がすぐに
+			<u>
+			悪性の
+			<strong class="keyword">
+				インフレ
+			</strong>
+			</u>
+			を引き起こすわけでもない。
+				でも、政府があまりにも無計画にお金を使いすぎると、いずれは国の
+			<strong class="keyword">
+			供給能力
+			</strong>
+			の限界を超えてしまって、ひどい
+			<strong class="keyword">
+			インフレ
+			</strong>
+			になるリスクが高まる。
+				それに、国債の量が増えすぎると、将来的に
+			<u>
+			金利が急上昇するんじゃないか
+			</u>
+			とか、
+			<u>
+			円の価値が下がりすぎる（
+			<strong class="keyword">
+				円安
+			</strong>
+			）んじゃないか
+			</u>
+			とか、別の心配事が出てくる可能性もあるんだ。
+				だから、「
+			<u>
+			破産はしない
+			</u>
+			」ことと「
+			<u>
+			全く問題ない
+			</u>
+			」ことは
+			<u>
+			イコールじゃない
+			</u>
+			。経済の状況を見ながら、
+			<u>
+			バランスを取ることがすごく重要なんだよ
+			</u>
+			。
+		</p>
+		</div>
+	</div>
+	<div class="qa-box">
+		<div class="question">
+		<p>
+			<strong>
+			【みんなのギモン②】
+			</strong>
+			「供給能力」って、具体的に何のこと？ 日本は大丈夫なの？
+		</p>
+		</div>
+		<div class="answer">
+		<p>
+			「供給能力」っていうのは、国全体でモノやサービスをどれだけ作り出せるか、提供できるかの力のことだよ。例えば、工場がどれだけ製品を作れるか、お店がどれだけお客さんに対応できるか、農家がどれだけ野菜を作れるか、お医者さんがどれだけ患者さんを診れるか…そういったもの全部を合わせたイメージだね。
+			<u>
+			日本の
+			<strong class="keyword">
+				供給能力
+			</strong>
+			は、技術力も高く、たくさんの工場や働く人がいて、世界的に見ても非常に高い水準にある
+			</u>
+			と言われているよ。だから、
+			<u>
+			戦争が起きたり、ものすごく大きな自然災害が続いたりするような特別なことがない限り
+			</u>
+			、いきなり国全体の
+			<strong class="keyword">
+			供給能力
+			</strong>
+			がガクンと落ちてしまう（これを
+			<u>
+			供給毀損
+			</u>
+			（きそん）って言うよ）みたいなことには、なかなかならないと考えられているんだ。
+		</p>
+		<p>
+			むしろ、今の日本では、
+			<u>
+			供給能力が足りないことよりも、
+			<strong class="keyword">
+				需要不足
+			</strong>
+			</u>
+			（みんながモノやサービスを十分に買えない・買わない状態）の方が問題視されることが多いんだ。
+				多くの人が「もっとモノを買いたい！サービスを利用したい！」と思っても、なかなかお給料が増えなかったり、将来への不安からお金を使うのを控えたりして、みんなが実際に使えるお金（
+			<strong class="keyword">
+			<u>
+				可処分所得
+			</u>
+			</strong>
+			<span class="term-explanation">
+			っていうよ
+			</span>
+			）が伸び悩んでいると、全体の
+			<strong class="keyword">
+			需要
+			</strong>
+			が抑えられがちになる。
+				企業も、モノがたくさん売れる見込みがないと、新しい機械を買ったり（設備投資）、たくさん人を雇ったりしにくいよね。こういう状況では、なかなか
+			<strong class="keyword">
+			<u>
+				デマンドプル・インフレ
+			</u>
+			</strong>
+			（良いインフレ）は起こりにくいんだ。
+		</p>
+		<p>
+			それどころか、物やサービスがあまり売れない（
+			<strong class="keyword">
+			需要
+			</strong>
+			が弱い）のに、原材料費の高騰などで商品の値段だけが上がってしまうと（これは
+			<span class="cost-push-emphasis">
+			コストプッシュ・インフレ
+			</span>
+			だね）、ますます物が売れなくなって、企業の経営が苦しくなり、働く人のお給料も上げられず、結果的に国全体の
+			<strong class="keyword">
+			供給能力
+			</strong>
+			（新しいものを作り出す力や、サービスを提供する力）までもが弱ってしまう…なんていう悪循環に陥る可能性だってあるんだ。
+		</p>
+		<p>
+			だから、
+			<u>
+			今の日本では、みんなが安心して使えるお金を増やして、健全な
+			<strong class="keyword">
+				需要
+			</strong>
+			を育てていくことが、経済全体を元気にして、将来の豊かな
+			<strong class="keyword">
+				供給能力
+			</strong>
+			を維持・向上させていくためにも、とっても大切
+			</u>
+			だと言われているんだよ。
+		</p>
+		</div>
+	</div>
+	</details>
 </body>
 </html>

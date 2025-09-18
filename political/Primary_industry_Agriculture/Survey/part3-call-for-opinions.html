@@ -1,267 +1,306 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>皆様の声をお聞かせください：お願い（3/3）</title>
-    <style>
-        /* 1-1, 1-2と共通のスタイルを使用 */
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<title>
+	皆様の声をお聞かせください：お願い（3/3）
+	</title>
+	<style>
+	/* 1-1, 1-2と共通のスタイルを使用 */
+				@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
-        :root {
-            --bg-color: #f8f9fa;
-            --text-color: #212529;
-            --primary-color: #198754; /* Green color for the final part */
-            --border-color: #dee2e6;
-            --card-bg: #ffffff;
-            --header-bg: #343a40;
-            --header-text: #ffffff;
-            --accent-color: #0d6efd;
-        }
+				:root {
+						--bg-color: #f8f9fa;
+						--text-color: #212529;
+						--primary-color: #198754; /* Green color for the final part */
+						--border-color: #dee2e6;
+						--card-bg: #ffffff;
+						--header-bg: #343a40;
+						--header-text: #ffffff;
+						--accent-color: #0d6efd;
+				}
 
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
+				body {
+						font-family: 'Noto Sans JP', sans-serif;
+						line-height: 1.8;
+						margin: 0;
+						padding: 0;
+						background-color: var(--bg-color);
+						color: var(--text-color);
+				}
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+				.container {
+						max-width: 800px;
+						margin: 0 auto;
+						padding: 20px;
+				}
 
-        header {
-            background-color: var(--header-bg);
-            color: var(--header-text);
-            padding: 30px 20px;
-            text-align: center;
-            border-bottom: 5px solid var(--primary-color);
-        }
+				header {
+						background-color: var(--header-bg);
+						color: var(--header-text);
+						padding: 30px 20px;
+						text-align: center;
+						border-bottom: 5px solid var(--primary-color);
+				}
 
-        header h1 {
-            margin: 0;
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-        
-        main {
-            padding: 30px 0;
-        }
+				header h1 {
+						margin: 0;
+						font-size: 1.8em;
+						font-weight: 700;
+				}
+				
+				main {
+						padding: 30px 0;
+				}
 
-        h2 {
-            font-size: 1.5em;
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
+				h2 {
+						font-size: 1.5em;
+						color: var(--primary-color);
+						border-bottom: 2px solid var(--border-color);
+						padding-bottom: 10px;
+						margin-top: 40px;
+						margin-bottom: 20px;
+				}
 
-        .intro-text {
-            background-color: var(--card-bg);
-            padding: 25px;
-            border-radius: 5px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 30px;
-        }
+				.intro-text {
+						background-color: var(--card-bg);
+						padding: 25px;
+						border-radius: 5px;
+						border: 1px solid var(--border-color);
+						margin-bottom: 30px;
+				}
 
-        .qa-section .qa-item {
-            margin-bottom: 20px;
-        }
+				.qa-section .qa-item {
+						margin-bottom: 20px;
+				}
 
-        .qa-section .question {
-            font-weight: 700;
-            background-color: #eaf3ff;
-            padding: 10px 15px;
-            border-radius: 5px 5px 0 0;
-            border: 1px solid var(--border-color);
-            border-bottom: none;
-            color: var(--accent-color);
-        }
+				.qa-section .question {
+						font-weight: 700;
+						background-color: #eaf3ff;
+						padding: 10px 15px;
+						border-radius: 5px 5px 0 0;
+						border: 1px solid var(--border-color);
+						border-bottom: none;
+						color: var(--accent-color);
+				}
 
-        .qa-section .answer {
-            background-color: var(--card-bg);
-            padding: 15px;
-            border-radius: 0 0 5px 5px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .call-to-action {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 30px;
-            margin-top: 50px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .call-to-action h2 {
-            color: white;
-            border: none;
-            margin-top: 0;
-        }
+				.qa-section .answer {
+						background-color: var(--card-bg);
+						padding: 15px;
+						border-radius: 0 0 5px 5px;
+						border: 1px solid var(--border-color);
+				}
+				
+				.call-to-action {
+						background-color: var(--primary-color);
+						color: white;
+						padding: 30px;
+						margin-top: 50px;
+						border-radius: 8px;
+						text-align: center;
+						box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+				}
+				
+				.call-to-action h2 {
+						color: white;
+						border: none;
+						margin-top: 0;
+				}
 
-        .call-to-action p {
-            font-size: 1.1em;
-            margin-bottom: 25px;
-        }
-        
-        .call-to-action .tweet-link {
-            display: inline-block;
-            background-color: #1DA1F2; /* Twitter Blue */
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: background-color 0.3s, transform 0.2s;
-        }
+				.call-to-action p {
+						font-size: 1.1em;
+						margin-bottom: 25px;
+				}
+				
+				.call-to-action .tweet-link {
+						display: inline-block;
+						background-color: #1DA1F2; /* Twitter Blue */
+						color: white;
+						padding: 12px 25px;
+						border-radius: 50px;
+						text-decoration: none;
+						font-weight: 700;
+						transition: background-color 0.3s, transform 0.2s;
+				}
 
 .action-buttons {
-    display: flex;
-    flex-direction: column; /* ボタンを縦に並べる */
-    align-items: center;   /* ボタンを中央揃えにする */
-    gap: 15px;             /* ボタンの間のスペース */
-    margin-top: 25px;
+		display: flex;
+		flex-direction: column; /* ボタンを縦に並べる */
+		align-items: center;   /* ボタンを中央揃えにする */
+		gap: 15px;             /* ボタンの間のスペース */
+		margin-top: 25px;
 }
 
 .action-buttons .btn {
-    display: inline-block;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    transition: background-color 0.3s, transform 0.2s;
-    min-width: 320px; /* ボタンの最小幅を統一 */
-    box-sizing: border-box; /* paddingを含めて幅を計算 */
+		display: inline-block;
+		color: white;
+		padding: 12px 25px;
+		border-radius: 50px;
+		text-decoration: none;
+		font-weight: 700;
+		transition: background-color 0.3s, transform 0.2s;
+		min-width: 320px; /* ボタンの最小幅を統一 */
+		box-sizing: border-box; /* paddingを含めて幅を計算 */
 }
 
 .action-buttons .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .action-buttons .btn-twitter {
-    background-color: #1DA1F2; /* Twitter Blue */
+		background-color: #1DA1F2; /* Twitter Blue */
 }
 .action-buttons .btn-twitter:hover {
-    background-color: #0c85d0;
+		background-color: #0c85d0;
 }
 
 .action-buttons .btn-google {
-    background-color: #f57c00; /* Orange */
+		background-color: #f57c00; /* Orange */
 }
 .action-buttons .btn-google:hover {
-    background-color: #e65100; /* Darker Orange */
+		background-color: #e65100; /* Darker Orange */
 }
 
-        .call-to-action .tweet-link:hover {
-            background-color: #0c85d0;
-            transform: translateY(-2px);
-        }
-        
-        .link-to-prev {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .link-to-prev a {
-            color: var(--accent-color);
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        .link-to-prev a:hover {
-            text-decoration: underline;
-        }
+				.call-to-action .tweet-link:hover {
+						background-color: #0c85d0;
+						transform: translateY(-2px);
+				}
+				
+				.link-to-prev {
+						text-align: center;
+						margin-top: 30px;
+				}
+				.link-to-prev a {
+						color: var(--accent-color);
+						text-decoration: none;
+						margin: 0 10px;
+				}
+				.link-to-prev a:hover {
+						text-decoration: underline;
+				}
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #6c757d;
-        }
-
-    </style>
+				footer {
+						text-align: center;
+						padding: 20px;
+						margin-top: 40px;
+						font-size: 0.9em;
+						color: #6c757d;
+				}
+	</style>
 </head>
 <body>
-
-    <header>
-        <h1>皆様の声をお聞かせください</h1>
-        <p>未来への糸口を探すためのお願い（3/3）</p>
-    </header>
-
-    <div class="container">
-        <main>
-            <div class="intro-text">
-                <p>ここまで、私たちが認識している日本の農業の「現状」と、解決策が見つからない「行き詰まりの構造」についてお読みいただき、誠にありがとうございます。</p>
-                <p>分析を進めれば進めるほど、専門家や行政によるトップダウンの改革だけでは、この複雑な問題を乗り越えることはできないのではないか、という思いを強くしています。</p>
-                <p><strong>本当の解決の糸口は、日々、土に触れ、天候と向き合い、市場と戦っておられる皆様の「実感」の中にこそあるはずです。</strong></p>
-                <p>そこで、この活動の結論として、皆様に、心からのお願いがございます。</p>
-            </div>
-
-            <h2>皆様の「生の声」をお聞かせください</h2>
-
-            <div class="qa-section">
-                <!-- ここからQA項目。後でmdで相互認証する部分です -->
-                <div class="qa-item">
-                    <div class="question">Q. どのような意見でもいいのですか？</div>
-                    <div class="answer">
-                        <p>はい、どのようなご意見でも結構です。「ここが違う」「こういう問題もある」「理想論だ」といったご批判はもちろん、「今、一番困っていること」「馬鹿げていると思うルール」「こうなれば良いのにという小さな希望」など、皆様が日々感じておられることを、そのままお聞かせください。</p>
-                    </div>
-                </div>
-
-                <div class="qa-item">
-                    <div class="question">Q. 専門家ではありませんが、意見を言ってもいいですか？</div>
-                    <div class="answer">
-                        <p>もちろんです。私たちが求めているのは、専門的な分析ではなく、日々の作業の中で感じておられる実感、現場の「生の声」です。皆様お一人おひとりが、それぞれの持ち場における、最高の専門家であると私たちは考えています。</p>
-                    </div>
-                </div>
-
-                <div class="qa-item">
-                    <div class="question">Q. この活動の目的は何ですか？</div>
-                    <div class="answer">
-                        <p>トップダウンの解決策が行き詰まる中、現場からのボトムアップの知見を集め、共有することで、問題解決への新たな糸口を見つけることを目的としています。いただいた声は、今後の分析や提言の基礎となる、何よりも貴重な一次情報です。</p>
-                    </div>
-                </div>
-                <!-- QA項目ここまで -->
-            </div>
-
-            <div class="call-to-action">
-                <h2>お願い</h2>
-                <p>皆様が感じておられること、考えておられることを、<br>以下のような形でお寄せいただけないでしょうか。</p>
-		<div class="action-buttons">
-		<a href="https://x.com/ParticlesJapan/status/1936212364787073464" class="btn btn-twitter" target="_blank" rel="noopener noreferrer">
-		Twitterで返信する (公開)
-		</a>
-		<a href="https://forms.gle/UTSWMnzRLDQuCAwm8" class="btn btn-google" target="_blank" rel="noopener noreferrer">
-		Googleフォームで回答する (匿名可)
-		</a>
+	<header>
+	<h1>
+		皆様の声をお聞かせください
+	</h1>
+	<p>
+		未来への糸口を探すためのお願い（3/3）
+	</p>
+	</header>
+	<div class="container">
+	<main>
+		<div class="intro-text">
+		<p>
+			ここまで、私たちが認識している日本の農業の「現状」と、解決策が見つからない「行き詰まりの構造」についてお読みいただき、誠にありがとうございます。
+		</p>
+		<p>
+			分析を進めれば進めるほど、専門家や行政によるトップダウンの改革だけでは、この複雑な問題を乗り越えることはできないのではないか、という思いを強くしています。
+		</p>
+		<p>
+			<strong>
+			本当の解決の糸口は、日々、土に触れ、天候と向き合い、市場と戦っておられる皆様の「実感」の中にこそあるはずです。
+			</strong>
+		</p>
+		<p>
+			そこで、この活動の結論として、皆様に、心からのお願いがございます。
+		</p>
 		</div>
-            </div>
-
-            <div class="link-to-prev">
-                <p>
-                    <a href="part1-current-situation.html">← 1-1：現状把握に戻る</a> | 
-                    <a href="part2-structural-deadlock.html">1-2：行き詰まりの構造に戻る →</a>
-                </p>
-            </div>
-
-        </main>
-        
-        <footer>
-                <p>皆様の貴重なお時間が、日本の農業の未来に繋がることを、心より願っております。</p>
-		<a href="index.html">アンケートトップページ</a>
-		<a href="../index.html">一次産業・農業考察</a>
-		<a href="../../index.html">日本考察</a>
-		<a href="../../../index.html">TOP</a>
-        </footer>
-    </div>
-
+		<h2>
+		皆様の「生の声」をお聞かせください
+		</h2>
+		<div class="qa-section">
+		<!-- ここからQA項目。後でmdで相互認証する部分です -->
+		<div class="qa-item">
+			<div class="question">
+			Q. どのような意見でもいいのですか？
+			</div>
+			<div class="answer">
+			<p>
+				はい、どのようなご意見でも結構です。「ここが違う」「こういう問題もある」「理想論だ」といったご批判はもちろん、「今、一番困っていること」「馬鹿げていると思うルール」「こうなれば良いのにという小さな希望」など、皆様が日々感じておられることを、そのままお聞かせください。
+			</p>
+			</div>
+		</div>
+		<div class="qa-item">
+			<div class="question">
+			Q. 専門家ではありませんが、意見を言ってもいいですか？
+			</div>
+			<div class="answer">
+			<p>
+				もちろんです。私たちが求めているのは、専門的な分析ではなく、日々の作業の中で感じておられる実感、現場の「生の声」です。皆様お一人おひとりが、それぞれの持ち場における、最高の専門家であると私たちは考えています。
+			</p>
+			</div>
+		</div>
+		<div class="qa-item">
+			<div class="question">
+			Q. この活動の目的は何ですか？
+			</div>
+			<div class="answer">
+			<p>
+				トップダウンの解決策が行き詰まる中、現場からのボトムアップの知見を集め、共有することで、問題解決への新たな糸口を見つけることを目的としています。いただいた声は、今後の分析や提言の基礎となる、何よりも貴重な一次情報です。
+			</p>
+			</div>
+		</div>
+		<!-- QA項目ここまで -->
+		</div>
+		<div class="call-to-action">
+		<h2>
+			お願い
+		</h2>
+		<p>
+			皆様が感じておられること、考えておられることを、
+			<br/>
+			以下のような形でお寄せいただけないでしょうか。
+		</p>
+		<div class="action-buttons">
+			<a class="btn btn-twitter" href="https://x.com/ParticlesJapan/status/1936212364787073464" rel="noopener noreferrer" target="_blank">
+			Twitterで返信する (公開)
+			</a>
+			<a class="btn btn-google" href="https://forms.gle/UTSWMnzRLDQuCAwm8" rel="noopener noreferrer" target="_blank">
+			Googleフォームで回答する (匿名可)
+			</a>
+		</div>
+		</div>
+		<div class="link-to-prev">
+		<p>
+			<a href="part1-current-situation.html">
+			← 1-1：現状把握に戻る
+			</a>
+			|
+			<a href="part2-structural-deadlock.html">
+			1-2：行き詰まりの構造に戻る →
+			</a>
+		</p>
+		</div>
+	</main>
+	<footer>
+		<p>
+		皆様の貴重なお時間が、日本の農業の未来に繋がることを、心より願っております。
+		</p>
+		<a href="index.html">
+		アンケートトップページ
+		</a>
+		<a href="../index.html">
+		一次産業・農業考察
+		</a>
+		<a href="../../index.html">
+		日本考察
+		</a>
+		<a href="../../../index.html">
+		TOP
+		</a>
+	</footer>
+	</div>
 </body>
 </html>

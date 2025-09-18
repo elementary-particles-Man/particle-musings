@@ -1,178 +1,266 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>お金はどこから来るの？</title>
-    <style>
-        body {
-            font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
-            line-height: 1.8;
-            margin: 20px;
-            background-color: #f0f8ff; /* 明るい背景色 */
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #28a745; /* 緑系の見出し色 */
-            text-align: center;
-            border-bottom: 3px solid #28a745;
-            padding-bottom: 10px;
-            font-size: 2em;
-        }
-        h2 {
-            color: #17a2b8; /* シアン系の見出し色 */
-            border-left: 5px solid #17a2b8;
-            padding-left: 10px;
-            margin-top: 30px;
-        }
-        .qa-box {
-            margin-bottom: 25px;
-        }
-        .question {
-            background-color: #e2f7f3; /* やや緑がかった水色 */
-            padding: 15px;
-            border-radius: 8px 8px 0 0; /* 上角を丸める */
-            font-weight: bold;
-            color: #0d6efd;
-            border-left: 5px solid #0d6efd;
-        }
-        .question::before {
-            content: "Q.";
-            margin-right: 5px;
-            font-size: 1.2em;
-        }
-        .answer {
-            background-color: #fff;
-            padding: 15px;
-            border: 1px solid #e2f7f3; /* Qに合わせた枠線 */
-            border-top: none; /* 上枠線はなし */
-            border-radius: 0 0 8px 8px; /* 下角を丸める */
-        }
-        .answer::before {
-            content: "A.";
-            margin-right: 5px;
-            font-weight: bold;
-            color: #dc3545; /* 赤系のA */
-        }
-        strong { /* 強調 */
-            color: #dc3545; /* 赤色 */
-            font-weight: bold;
-        }
-        .point { /* ちょっとしたポイント */
-            background-color: #fff3cd; /* 黄色系の背景 */
-            border: 1px dashed #ffeeba;
-            padding: 10px;
-            margin: 15px 0;
-            border-radius: 5px;
-            font-size: 0.9em;
-        }
-        .point::before{
-            content:"💡POINT:";
-            font-weight: bold;
-            color: #856404;
-            margin-right: 5px;
-        }
-        .flowchart {
-            border: 1px solid #ccc;
-            padding: 15px;
-            border-radius: 5px;
-            background-color: #f8f9fa;
-            margin: 15px 0;
-            font-size: 0.9em;
-            text-align: center;
-        }
-        .flowchart span {
-            display: block;
-            margin: 5px 0;
-        }
-        .arrow {
-            font-size: 1.2em;
-            color: #17a2b8;
-        }
-    </style>
+	<meta charset="utf-8"/>
+	<title>
+	お金はどこから来るの？
+	</title>
+	<style>
+	body {
+						font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+						line-height: 1.8;
+						margin: 20px;
+						background-color: #f0f8ff; /* 明るい背景色 */
+						color: #333;
+				}
+				.container {
+						max-width: 800px;
+						margin: auto;
+						background-color: #fff;
+						padding: 30px;
+						border-radius: 10px;
+						box-shadow: 0 0 15px rgba(0,0,0,0.1);
+				}
+				h1 {
+						color: #28a745; /* 緑系の見出し色 */
+						text-align: center;
+						border-bottom: 3px solid #28a745;
+						padding-bottom: 10px;
+						font-size: 2em;
+				}
+				h2 {
+						color: #17a2b8; /* シアン系の見出し色 */
+						border-left: 5px solid #17a2b8;
+						padding-left: 10px;
+						margin-top: 30px;
+				}
+				.qa-box {
+						margin-bottom: 25px;
+				}
+				.question {
+						background-color: #e2f7f3; /* やや緑がかった水色 */
+						padding: 15px;
+						border-radius: 8px 8px 0 0; /* 上角を丸める */
+						font-weight: bold;
+						color: #0d6efd;
+						border-left: 5px solid #0d6efd;
+				}
+				.question::before {
+						content: "Q.";
+						margin-right: 5px;
+						font-size: 1.2em;
+				}
+				.answer {
+						background-color: #fff;
+						padding: 15px;
+						border: 1px solid #e2f7f3; /* Qに合わせた枠線 */
+						border-top: none; /* 上枠線はなし */
+						border-radius: 0 0 8px 8px; /* 下角を丸める */
+				}
+				.answer::before {
+						content: "A.";
+						margin-right: 5px;
+						font-weight: bold;
+						color: #dc3545; /* 赤系のA */
+				}
+				strong { /* 強調 */
+						color: #dc3545; /* 赤色 */
+						font-weight: bold;
+				}
+				.point { /* ちょっとしたポイント */
+						background-color: #fff3cd; /* 黄色系の背景 */
+						border: 1px dashed #ffeeba;
+						padding: 10px;
+						margin: 15px 0;
+						border-radius: 5px;
+						font-size: 0.9em;
+				}
+				.point::before{
+						content:"💡POINT:";
+						font-weight: bold;
+						color: #856404;
+						margin-right: 5px;
+				}
+				.flowchart {
+						border: 1px solid #ccc;
+						padding: 15px;
+						border-radius: 5px;
+						background-color: #f8f9fa;
+						margin: 15px 0;
+						font-size: 0.9em;
+						text-align: center;
+				}
+				.flowchart span {
+						display: block;
+						margin: 5px 0;
+				}
+				.arrow {
+						font-size: 1.2em;
+						color: #17a2b8;
+				}
+	</style>
 </head>
 <body>
-    <div class="container">
-        <h1>💰 お金はどこから来るの？ ～日銀当預からみんなの財布へ～ 💰</h1>
-        <p>
-            「日本銀行がお金を発行する」って言うけど、それってどういうこと？ 日銀の特別な預金「日銀当座預金（にちぎんとうざよきん）」から、どうやって私たちのお財布にお金が届くんだろう？ その仕組みを、Q&Aで探ってみよう！
-        </p>
-
-        <h2>🏦 まずは復習！「日銀当座預金」って何だっけ？</h2>
-        <div class="point">
-             日銀当座預金は、銀行や証券会社など<strong>金融機関だけが使える、日本銀行にある特別な口座</strong>のことだよ。銀行同士のお金のやり取りや、政府とのやり取り（国債の売買など）に使われる、いわば「銀行のためのお金」なんだ 。私たち個人が直接使うことはないよ。
-        </div>
-
-        <h2>💸 日銀当預から民間へ！ お金の流れを知ろう</h2>
-
-        <div class="qa-box">
-            <div class="question">政府がお金を使う（公共事業とか）と、どうしてお金が増えるの？</div>
-            <div class="answer">
-                これが、日銀当預のお金が間接的に私たちの使うお金になる一番わかりやすい流れだよ！<br><br>
-                <strong>【政府支出によるお金の流れ】</strong>
-                <div class="flowchart">
-                    <span>① 政府が国債を発行 → 銀行などが「日銀当預」を使って購入</span>
-                    <span class="arrow">↓</span>
-                    <span>② 政府は、国債を売って得たお金を政府の口座（日銀など）に入れる</span>
-                    <span class="arrow">↓</span>
-                    <span>③ 政府がそのお金を使う！（例：公共事業で建設会社に代金を支払う、みんなに給付金を配る、公務員にお給料を払う）</span>
-                    <span class="arrow">↓</span>
-                    <span>④ 政府の口座から、支払い先の会社や個人の<strong>「民間銀行の口座」</strong>にお金が振り込まれる</span>
-                    <span class="arrow">↓</span>
-                    <span>⑤ みんなの銀行預金が<strong>増える！</strong>✨ これが私たちが使えるお金になるんだ。</span>
-                </div>
-                政府がお金を使うことで、日銀と金融機関の間で動いていたお金（日銀当預）が、形を変えて（銀行預金として）、<strong>民間（会社や個人）に流れ込んでくる</strong>んだね。
-            </div>
-        </div>
-
-        <div class="qa-box">
-            <div class="question">銀行が会社や個人にお金を貸す（融資する）ことでも、お金って増えるの？</div>
-            <div class="answer">
-                その通り！ これは<strong>「信用創造（しんようそうぞう）」</strong>と呼ばれる、銀行のすごい仕組みなんだ 。<br>
-                例えば、パン屋さんが新しいオーブンを買うために銀行から100万円を借りるとするね 。
-                <div class="flowchart">
-                    <span>① 銀行がパン屋さんに100万円を貸すことを決定！</span>
-                    <span class="arrow">↓</span>
-                    <span>② 銀行は、パン屋さんの<strong>銀行口座に「100万円」と書き込む</strong>（預金を「創造」する！）。現金を手渡しするわけじゃないんだ。</span>
-                    <span class="arrow">↓</span>
-                    <span>③ パン屋さんの口座には、使えるお金（預金）が100万円増える！パン屋さんはこれでオーブンを買えるね。</span>
-                </div>
-                この時、銀行は誰かの預金を移動させたわけじゃなく、<strong>「貸し出す」という行為と同時に「預金」というお金を生み出した</strong>んだ 。これが信用創造！ この新しく生まれた預金も、みんなが使えるお金になるんだよ。<br>
-                <div class="point">
-                    もちろん、銀行も無限にお金を生み出せるわけじゃない。銀行が持っている日銀当預の量（準備金）や、自己資本、貸し出し先の信用力などによって、貸し出せる金額には限りがあるんだよ 。そして、ローンが返済されると、創造された信用（預金）は消えていくんだ（信用消滅）。
-                </div>
-            </div>
-        </div>
-
-        <div class="qa-box">
-            <div class="question">日銀が国債などを買うこと（金融緩和）でも、私たちのお金は増えるの？</div>
-            <div class="answer">
-                これはちょっと間接的なんだ。<br>
-                日銀が金融機関から国債などを買うと、その代金は金融機関の<strong>「日銀当座預金」</strong>に入る。だから、日銀当預の量は増えるんだけど、それが直接みんなの預金になるわけじゃないんだ。<br>
-                日銀の狙いは、金融機関がお金をたくさん持つようにして、さっき説明した<strong>「信用創造（銀行の貸し出し）」がもっと活発になるように後押しする</strong>ことなんだ。銀行がたくさんお金を貸し出せば、世の中に出回るお金が増える、という考え方だね。効果があるかどうかは、色々な意見があるけどね。
-            </div>
-        </div>
-
-        <h2>まとめ</h2>
-        <p>
-            普段私たちが使っている銀行預金という「お金」は、主に次の２つのルートで世の中に生まれてくるんだね！
-        </p>
-        <ul>
-            <li><strong>① 政府が使う（国債発行→政府支出→民間口座へ）</strong></li>
-            <li><strong>② 銀行が貸し出す（信用創造）</strong></li>
-        </ul>
-        <p>
-            日銀当座預金は、これらのプロセスを裏で支える「銀行のためのお金」だけど、それが形を変えて、私たちの生活を支える「みんなのお金」になっていくんだ。お金の流れを知ると、経済ニュースの見方も変わってくるかもしれないね！
-        </p>
-
-    </div>
+	<div class="container">
+	<h1>
+		💰 お金はどこから来るの？ ～日銀当預からみんなの財布へ～ 💰
+	</h1>
+	<p>
+		「日本銀行がお金を発行する」って言うけど、それってどういうこと？ 日銀の特別な預金「日銀当座預金（にちぎんとうざよきん）」から、どうやって私たちのお財布にお金が届くんだろう？ その仕組みを、Q&amp;Aで探ってみよう！
+	</p>
+	<h2>
+		🏦 まずは復習！「日銀当座預金」って何だっけ？
+	</h2>
+	<div class="point">
+		日銀当座預金は、銀行や証券会社など
+		<strong>
+		金融機関だけが使える、日本銀行にある特別な口座
+		</strong>
+		のことだよ。銀行同士のお金のやり取りや、政府とのやり取り（国債の売買など）に使われる、いわば「銀行のためのお金」なんだ 。私たち個人が直接使うことはないよ。
+	</div>
+	<h2>
+		💸 日銀当預から民間へ！ お金の流れを知ろう
+	</h2>
+	<div class="qa-box">
+		<div class="question">
+		政府がお金を使う（公共事業とか）と、どうしてお金が増えるの？
+		</div>
+		<div class="answer">
+		これが、日銀当預のお金が間接的に私たちの使うお金になる一番わかりやすい流れだよ！
+		<br/>
+		<br/>
+		<strong>
+			【政府支出によるお金の流れ】
+		</strong>
+		<div class="flowchart">
+			<span>
+			① 政府が国債を発行 → 銀行などが「日銀当預」を使って購入
+			</span>
+			<span class="arrow">
+			↓
+			</span>
+			<span>
+			② 政府は、国債を売って得たお金を政府の口座（日銀など）に入れる
+			</span>
+			<span class="arrow">
+			↓
+			</span>
+			<span>
+			③ 政府がそのお金を使う！（例：公共事業で建設会社に代金を支払う、みんなに給付金を配る、公務員にお給料を払う）
+			</span>
+			<span class="arrow">
+			↓
+			</span>
+			<span>
+			④ 政府の口座から、支払い先の会社や個人の
+			<strong>
+				「民間銀行の口座」
+			</strong>
+			にお金が振り込まれる
+			</span>
+			<span class="arrow">
+			↓
+			</span>
+			<span>
+			⑤ みんなの銀行預金が
+			<strong>
+				増える！
+			</strong>
+			✨ これが私たちが使えるお金になるんだ。
+			</span>
+		</div>
+		政府がお金を使うことで、日銀と金融機関の間で動いていたお金（日銀当預）が、形を変えて（銀行預金として）、
+		<strong>
+			民間（会社や個人）に流れ込んでくる
+		</strong>
+		んだね。
+		</div>
+	</div>
+	<div class="qa-box">
+		<div class="question">
+		銀行が会社や個人にお金を貸す（融資する）ことでも、お金って増えるの？
+		</div>
+		<div class="answer">
+		その通り！ これは
+		<strong>
+			「信用創造（しんようそうぞう）」
+		</strong>
+		と呼ばれる、銀行のすごい仕組みなんだ 。
+		<br/>
+		例えば、パン屋さんが新しいオーブンを買うために銀行から100万円を借りるとするね 。
+		<div class="flowchart">
+			<span>
+			① 銀行がパン屋さんに100万円を貸すことを決定！
+			</span>
+			<span class="arrow">
+			↓
+			</span>
+			<span>
+			② 銀行は、パン屋さんの
+			<strong>
+				銀行口座に「100万円」と書き込む
+			</strong>
+			（預金を「創造」する！）。現金を手渡しするわけじゃないんだ。
+			</span>
+			<span class="arrow">
+			↓
+			</span>
+			<span>
+			③ パン屋さんの口座には、使えるお金（預金）が100万円増える！パン屋さんはこれでオーブンを買えるね。
+			</span>
+		</div>
+		この時、銀行は誰かの預金を移動させたわけじゃなく、
+		<strong>
+			「貸し出す」という行為と同時に「預金」というお金を生み出した
+		</strong>
+		んだ 。これが信用創造！ この新しく生まれた預金も、みんなが使えるお金になるんだよ。
+		<br/>
+		<div class="point">
+			もちろん、銀行も無限にお金を生み出せるわけじゃない。銀行が持っている日銀当預の量（準備金）や、自己資本、貸し出し先の信用力などによって、貸し出せる金額には限りがあるんだよ 。そして、ローンが返済されると、創造された信用（預金）は消えていくんだ（信用消滅）。
+		</div>
+		</div>
+	</div>
+	<div class="qa-box">
+		<div class="question">
+		日銀が国債などを買うこと（金融緩和）でも、私たちのお金は増えるの？
+		</div>
+		<div class="answer">
+		これはちょっと間接的なんだ。
+		<br/>
+		日銀が金融機関から国債などを買うと、その代金は金融機関の
+		<strong>
+			「日銀当座預金」
+		</strong>
+		に入る。だから、日銀当預の量は増えるんだけど、それが直接みんなの預金になるわけじゃないんだ。
+		<br/>
+		日銀の狙いは、金融機関がお金をたくさん持つようにして、さっき説明した
+		<strong>
+			「信用創造（銀行の貸し出し）」がもっと活発になるように後押しする
+		</strong>
+		ことなんだ。銀行がたくさんお金を貸し出せば、世の中に出回るお金が増える、という考え方だね。効果があるかどうかは、色々な意見があるけどね。
+		</div>
+	</div>
+	<h2>
+		まとめ
+	</h2>
+	<p>
+		普段私たちが使っている銀行預金という「お金」は、主に次の２つのルートで世の中に生まれてくるんだね！
+	</p>
+	<ul>
+		<li>
+		<strong>
+			① 政府が使う（国債発行→政府支出→民間口座へ）
+		</strong>
+		</li>
+		<li>
+		<strong>
+			② 銀行が貸し出す（信用創造）
+		</strong>
+		</li>
+	</ul>
+	<p>
+		日銀当座預金は、これらのプロセスを裏で支える「銀行のためのお金」だけど、それが形を変えて、私たちの生活を支える「みんなのお金」になっていくんだ。お金の流れを知ると、経済ニュースの見方も変わってくるかもしれないね！
+	</p>
+	</div>
 </body>
 </html>
-

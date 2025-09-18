@@ -1,591 +1,718 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>金本位制シミュレーション</title>
-<style>
- body {
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   margin: 0;
-   padding: 10px;
-   background-color: #f0f8ff; /* AliceBlue */
-   color: #333;
- }
- h1, h2, h3 { margin: 5px 0; color: #2c3e50; /* Midnight Blue */ }
- .simulation-container {
-   display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-   gap: 15px;
-   width: 95%;
-   max-width: 1200px;
-   margin-bottom: 10px;
- }
- .actor-panel {
-   border: 1px solid #7f8c8d; /* Asbestos */
-   background-color: #ecf0f1; /* Clouds */
-   padding: 10px;
-   border-radius: 8px;
-   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
- }
- .actor-panel h3 {
-   border-bottom: 2px solid #3498db; /* Peter River */
-   padding-bottom: 5px;
-   margin-top: 0;
- }
- .asset { margin: 8px 0; font-size: 0.9em; }
- .asset-name { font-weight: bold; color: #2980b9; /* Belize Hole */ }
- .asset-value { float: right; font-weight: bold; }
- .bar-chart-container {
-   width: 100%;
-   height: 100px; /* Adjust as needed */
-   background-color: #bdc3c7; /* Silver */
-   margin-top: 5px;
-   position: relative;
-   border-radius: 3px;
-   overflow: hidden; /* To clip bars if they exceed container */
- }
- .bar {
-   position: absolute;
-   bottom: 0;
-   width: 18%; /* Adjust based on number of bars */
-   background-color: #3498db; /* Peter River */
-   transition: height 0.5s ease-out, background-color 0.3s;
-   border-top-left-radius: 3px;
-   border-top-right-radius: 3px;
- }
- /* Bar colors */
- .bar-gold { background-color: #f1c40f; left: 5%; } /* Sun Flower */
- .bar-currency { background-color: #2ecc71; left: 28%; } /* Emerald */
- .bar-bonds { background-color: #e74c3c; left: 51%; } /* Alizarin */
- .bar-deposits { background-color: #9b59b6; left: 74%; } /* Amethyst */
- .bar-boj-deposits { background-color: #ffffff; border: 1px solid #7f8c8d; left: 74%; } /* White for BOJ Deposits */
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<title>
+	金本位制シミュレーション
+	</title>
+	<style>
+	body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0;
+	padding: 10px;
+	background-color: #f0f8ff; /* AliceBlue */
+	color: #333;
+}
+h1, h2, h3 { margin: 5px 0; color: #2c3e50; /* Midnight Blue */ }
+.simulation-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 15px;
+	width: 95%;
+	max-width: 1200px;
+	margin-bottom: 10px;
+}
+.actor-panel {
+	border: 1px solid #7f8c8d; /* Asbestos */
+	background-color: #ecf0f1; /* Clouds */
+	padding: 10px;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.actor-panel h3 {
+	border-bottom: 2px solid #3498db; /* Peter River */
+	padding-bottom: 5px;
+	margin-top: 0;
+}
+.asset { margin: 8px 0; font-size: 0.9em; }
+.asset-name { font-weight: bold; color: #2980b9; /* Belize Hole */ }
+.asset-value { float: right; font-weight: bold; }
+.bar-chart-container {
+	width: 100%;
+	height: 100px; /* Adjust as needed */
+	background-color: #bdc3c7; /* Silver */
+	margin-top: 5px;
+	position: relative;
+	border-radius: 3px;
+	overflow: hidden; /* To clip bars if they exceed container */
+}
+.bar {
+	position: absolute;
+	bottom: 0;
+	width: 18%; /* Adjust based on number of bars */
+	background-color: #3498db; /* Peter River */
+	transition: height 0.5s ease-out, background-color 0.3s;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+/* Bar colors */
+.bar-gold { background-color: #f1c40f; left: 5%; } /* Sun Flower */
+.bar-currency { background-color: #2ecc71; left: 28%; } /* Emerald */
+.bar-bonds { background-color: #e74c3c; left: 51%; } /* Alizarin */
+.bar-deposits { background-color: #9b59b6; left: 74%; } /* Amethyst */
+.bar-boj-deposits { background-color: #ffffff; border: 1px solid #7f8c8d; left: 74%; } /* White for BOJ Deposits */
 
 
- #animation-canvas {
-   width: 95%;
-   max-width: 1200px;
-   height: 200px; /* Adjust as needed */
-   border: 1px solid #7f8c8d;
-   background-color: #ffffff;
-   margin-bottom: 10px;
-   border-radius: 8px;
- }
- .controls, .status-display {
-   width: 95%;
-   max-width: 1200px;
-   padding: 10px;
-   background-color: #ecf0f1;
-   border: 1px solid #7f8c8d;
-   border-radius: 8px;
-   margin-bottom: 10px;
-   text-align: center;
- }
- .controls button {
-   padding: 10px 20px;
-   font-size: 1em;
-   background-color: #27ae60; /* Nephritis */
-   color: white;
-   border: none;
-   border-radius: 5px;
-   cursor: pointer;
-   margin: 5px;
-   transition: background-color 0.3s;
- }
- .controls button:hover { background-color: #229954; /* Darker Nephritis */ }
- .controls button:disabled { background-color: #95a5a6; cursor: not-allowed; } /* Concrete */
+#animation-canvas {
+	width: 95%;
+	max-width: 1200px;
+	height: 200px; /* Adjust as needed */
+	border: 1px solid #7f8c8d;
+	background-color: #ffffff;
+	margin-bottom: 10px;
+	border-radius: 8px;
+}
+.controls, .status-display {
+	width: 95%;
+	max-width: 1200px;
+	padding: 10px;
+	background-color: #ecf0f1;
+	border: 1px solid #7f8c8d;
+	border-radius: 8px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+.controls button {
+	padding: 10px 20px;
+	font-size: 1em;
+	background-color: #27ae60; /* Nephritis */
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 5px;
+	transition: background-color 0.3s;
+}
+.controls button:hover { background-color: #229954; /* Darker Nephritis */ }
+.controls button:disabled { background-color: #95a5a6; cursor: not-allowed; } /* Concrete */
 
- #popup-report {
-   position: fixed;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   width: 80%;
-   max-width: 600px;
-   background-color: white;
-   padding: 25px;
-   border: 1px solid #7f8c8d;
-   border-radius: 10px;
-   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-   z-index: 1000;
-   display: none; /* Initially hidden */
- }
- #popup-report h2 { margin-top: 0; }
- #report-content { margin-bottom: 20px; white-space: pre-wrap; }
- .log-message {
-   padding: 8px; margin: 5px 0; border-radius: 4px; font-size: 0.9em;
-   border-left: 4px solid;
- }
- .log-info { background-color: #e8f6f3; border-color: #1abc9c; /* Turquoise */ }
- .log-warning { background-color: #fef9e7; border-color: #f1c40f; /* Sun Flower */ }
- .log-error { background-color: #fdedec; border-color: #e74c3c; /* Alizarin */ }
-
-</style>
+#popup-report {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	max-width: 600px;
+	background-color: white;
+	padding: 25px;
+	border: 1px solid #7f8c8d;
+	border-radius: 10px;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+	z-index: 1000;
+	display: none; /* Initially hidden */
+}
+#popup-report h2 { margin-top: 0; }
+#report-content { margin-bottom: 20px; white-space: pre-wrap; }
+.log-message {
+	padding: 8px; margin: 5px 0; border-radius: 4px; font-size: 0.9em;
+	border-left: 4px solid;
+}
+.log-info { background-color: #e8f6f3; border-color: #1abc9c; /* Turquoise */ }
+.log-warning { background-color: #fef9e7; border-color: #f1c40f; /* Sun Flower */ }
+.log-error { background-color: #fdedec; border-color: #e74c3c; /* Alizarin */ }
+	</style>
 </head>
 <body>
+	<h1>
+	金本位制シミュレーション
+	</h1>
+	<div class="status-display">
+	<span id="year-display">
+		経過年：0年
+	</span>
+	|
+	<span id="phase-display">
+		フェーズ：待機中
+	</span>
+	|
+	経済規模：
+	<span id="economy-scale-display">
+		10000
+	</span>
+	<div id="log-area" style="max-height: 100px; overflow-y: auto; text-align: left; margin-top:10px; background-color: #fff; padding: 5px; border-radius: 4px;">
+	</div>
+	</div>
+	<canvas id="animation-canvas">
+	</canvas>
+	<div class="simulation-container">
+	<div class="actor-panel">
+		<h3>
+		政府
+		</h3>
+		<div class="asset">
+		<span class="asset-name">
+			日銀当座預金:
+		</span>
+		<span class="asset-value" id="gov-boj-deposits">
+			0
+		</span>
+		</div>
+		<div class="asset">
+		<span class="asset-name">
+			国債発行残高:
+		</span>
+		<span class="asset-value" id="gov-bonds-issued">
+			0
+		</span>
+		</div>
+		<div class="bar-chart-container">
+		<div class="bar bar-boj-deposits" id="gov-boj-deposits-bar" title="日銀当座預金 (白)">
+		</div>
+		<div class="bar bar-bonds" id="gov-bonds-issued-bar" style="background-color: transparent; border: 1px dashed #e74c3c;" title="国債発行残高 (赤)">
+		</div>
+		</div>
+	</div>
+	<div class="actor-panel">
+		<h3>
+		日本銀行
+		</h3>
+		<div class="asset">
+		<span class="asset-name">
+			金保有:
+		</span>
+		<span class="asset-value" id="boj-gold">
+			500
+		</span>
+		</div>
+		<div class="asset">
+		<span class="asset-name">
+			国債保有:
+		</span>
+		<span class="asset-value" id="boj-bonds-held">
+			0
+		</span>
+		</div>
+		<div class="asset">
+		<span class="asset-name">
+			対政府預金(負債):
+		</span>
+		<span class="asset-value" id="boj-gov-deposits-lia">
+			0
+		</span>
+		</div>
+		<div class="asset">
+		<span class="asset-name">
+			対市銀預金(負債):
+		</span>
+		<span class="asset-value" id="boj-cb-deposits-lia">
+			0
+		</span>
+		</div>
+		<div class="asset">
+		<span class="asset-name">
+			発行限度(対金):
+		</span>
+		<span class="asset-value" id="boj-credit-limit">
+			1500
+		</span>
+		</div>
+		<div class="bar-chart-container">
+		<div class="bar bar-gold" id="boj-gold-bar" title="金保有 (黄)">
+		</div>
+		<div class="bar bar-bonds" id="boj-bonds-held-bar" title="国債保有 (赤)">
+		</div>
+		<div class="bar" id="boj-credit-limit-bar-bg" style="left:51%; background-color: #bdc3c7; width: 20%;" title="発行限度背景">
+		</div>
+		<div class="bar" id="boj-credit-used-bar" style="left:51%; background-color: #16a085; width: 0%;" title="発行済み信用">
+		</div>
+		</div>
+	</div>
+	<div class="actor-panel">
+		<h3>
+		市中銀行 (合計)
+		</h3>
+		<div class="asset">
+		<span class="asset-name">
+			日銀当座預金:
+		</span>
+		<span class="asset-value" id="cb-boj-deposits">
+			0
+		</span>
+		</div>
+		<div class="asset">
+		<span class="asset-name">
+			国債保有:
+		</span>
+		<span class="asset-value" id="cb-bonds-held">
+			0
+		</span>
+		</div>
+		<div class="asset">
+		<span class="asset-name">
+			対国民貸付:
+		</span>
+		<span class="asset-value" id="cb-loans-to-people">
+			0
+		</span>
+		</div>
+		<div class="asset">
+		<span class="asset-name">
+			国民預金(負債):
+		</span>
+		<span class="asset-value" id="cb-people-deposits-lia">
+			0
+		</span>
+		</div>
+		<div class="bar-chart-container">
+		<div class="bar bar-boj-deposits" id="cb-boj-deposits-bar" title="日銀当座預金 (白)">
+		</div>
+		<div class="bar bar-bonds" id="cb-bonds-held-bar" title="国債保有 (赤)">
+		</div>
+		<div class="bar bar-currency" id="cb-loans-to-people-bar" title="対国民貸付 (青)">
+		</div>
+		</div>
+	</div>
+	<div class="actor-panel">
+		<h3>
+		国民
+		</h3>
+		<div class="asset">
+		<span class="asset-name">
+			預金通貨:
+		</span>
+		<span class="asset-value" id="people-deposits">
+			1000
+		</span>
+		</div>
+		<div class="asset">
+		<span class="asset-name">
+			借入金(負債):
+		</span>
+		<span class="asset-value" id="people-loans-lia">
+			0
+		</span>
+		</div>
+		<div class="bar-chart-container">
+		<div class="bar bar-currency" id="people-deposits-bar" title="預金通貨 (青)">
+		</div>
+		</div>
+	</div>
+	</div>
+	<div class="controls">
+	<button id="start-year-btn">
+		シミュレーション開始 / 次の年へ
+	</button>
+	<button id="reset-btn">
+		リセット
+	</button>
+	</div>
+	<div id="popup-report">
+	<h2>
+		年間結果レポート (
+		<span id="report-year">
+		</span>
+		年目)
+	</h2>
+	<div id="report-content">
+	</div>
+	<button id="continue-btn">
+		次の年へ進む
+	</button>
+	<button id="stop-btn">
+		終了する
+	</button>
+	</div>
+	<script>
+	// --- グローバル設定 ---
+const GOLD_RESERVE_RATIO_MULTIPLIER = 3; // 金準備の何倍まで信用創造可能か
+const NUM_COMMERCIAL_BANKS = 3;
+const PHASE_DURATION = 1500; // 各フェーズのアニメーション時間(ms)
+const TAX_RATE = 0.1; // 税率10%
 
- <h1>金本位制シミュレーション</h1>
+// --- DOM要素取得 ---
+const yearDisplay = document.getElementById('year-display');
+const phaseDisplay = document.getElementById('phase-display');
+const economyScaleDisplay = document.getElementById('economy-scale-display');
+const logArea = document.getElementById('log-area');
 
- <div class="status-display">
-   <span id="year-display">経過年：0年</span> |
-   <span id="phase-display">フェーズ：待機中</span> |
-   経済規模：<span id="economy-scale-display">10000</span>
-   <div id="log-area" style="max-height: 100px; overflow-y: auto; text-align: left; margin-top:10px; background-color: #fff; padding: 5px; border-radius: 4px;"></div>
- </div>
+// アクターの資産表示要素
+const govBOJDepositsDisplay = document.getElementById('gov-boj-deposits');
+const govBondsIssuedDisplay = document.getElementById('gov-bonds-issued');
+const bojGoldDisplay = document.getElementById('boj-gold');
+const bojBondsHeldDisplay = document.getElementById('boj-bonds-held');
+const bojGovDepositsLiaDisplay = document.getElementById('boj-gov-deposits-lia');
+const bojCBDepositsLiaDisplay = document.getElementById('boj-cb-deposits-lia');
+const bojCreditLimitDisplay = document.getElementById('boj-credit-limit');
+const cbBOJDepositsDisplay = document.getElementById('cb-boj-deposits');
+const cbBondsHeldDisplay = document.getElementById('cb-bonds-held');
+const cbLoansToPeopleDisplay = document.getElementById('cb-loans-to-people');
+const cbPeopleDepositsLiaDisplay = document.getElementById('cb-people-deposits-lia');
+const peopleDepositsDisplay = document.getElementById('people-deposits');
+const peopleLoansLiaDisplay = document.getElementById('people-loans-lia');
 
- <canvas id="animation-canvas"></canvas>
-
- <div class="simulation-container">
-   <div class="actor-panel">
-     <h3>政府</h3>
-     <div class="asset"><span class="asset-name">日銀当座預金:</span> <span id="gov-boj-deposits" class="asset-value">0</span></div>
-     <div class="asset"><span class="asset-name">国債発行残高:</span> <span id="gov-bonds-issued" class="asset-value">0</span></div>
-     <div class="bar-chart-container">
-       <div class="bar bar-boj-deposits" id="gov-boj-deposits-bar" title="日銀当座預金 (白)"></div>
-       <div class="bar bar-bonds" style="background-color: transparent; border: 1px dashed #e74c3c;" id="gov-bonds-issued-bar" title="国債発行残高 (赤)"></div>
-     </div>
-   </div>
-
-   <div class="actor-panel">
-     <h3>日本銀行</h3>
-     <div class="asset"><span class="asset-name">金保有:</span> <span id="boj-gold" class="asset-value">500</span></div>
-     <div class="asset"><span class="asset-name">国債保有:</span> <span id="boj-bonds-held" class="asset-value">0</span></div>
-     <div class="asset"><span class="asset-name">対政府預金(負債):</span> <span id="boj-gov-deposits-lia" class="asset-value">0</span></div>
-     <div class="asset"><span class="asset-name">対市銀預金(負債):</span> <span id="boj-cb-deposits-lia" class="asset-value">0</span></div>
-     <div class="asset"><span class="asset-name">発行限度(対金):</span> <span id="boj-credit-limit" class="asset-value">1500</span></div>
-     <div class="bar-chart-container">
-       <div class="bar bar-gold" id="boj-gold-bar" title="金保有 (黄)"></div>
-       <div class="bar bar-bonds" id="boj-bonds-held-bar" title="国債保有 (赤)"></div>
-       <div class="bar" style="left:51%; background-color: #bdc3c7; width: 20%;" id="boj-credit-limit-bar-bg" title="発行限度背景"></div>
-       <div class="bar" style="left:51%; background-color: #16a085; width: 0%;" id="boj-credit-used-bar" title="発行済み信用"></div>
-
-     </div>
-   </div>
-
-   <div class="actor-panel">
-     <h3>市中銀行 (合計)</h3>
-     <div class="asset"><span class="asset-name">日銀当座預金:</span> <span id="cb-boj-deposits" class="asset-value">0</span></div>
-     <div class="asset"><span class="asset-name">国債保有:</span> <span id="cb-bonds-held" class="asset-value">0</span></div>
-     <div class="asset"><span class="asset-name">対国民貸付:</span> <span id="cb-loans-to-people" class="asset-value">0</span></div>
-     <div class="asset"><span class="asset-name">国民預金(負債):</span> <span id="cb-people-deposits-lia" class="asset-value">0</span></div>
-      <div class="bar-chart-container">
-       <div class="bar bar-boj-deposits" id="cb-boj-deposits-bar" title="日銀当座預金 (白)"></div>
-       <div class="bar bar-bonds" id="cb-bonds-held-bar" title="国債保有 (赤)"></div>
-       <div class="bar bar-currency" id="cb-loans-to-people-bar" title="対国民貸付 (青)"></div>
-     </div>
-   </div>
-
-   <div class="actor-panel">
-     <h3>国民</h3>
-     <div class="asset"><span class="asset-name">預金通貨:</span> <span id="people-deposits" class="asset-value">1000</span></div>
-     <div class="asset"><span class="asset-name">借入金(負債):</span> <span id="people-loans-lia" class="asset-value">0</span></div>
-      <div class="bar-chart-container">
-       <div class="bar bar-currency" id="people-deposits-bar" title="預金通貨 (青)"></div>
-     </div>
-   </div>
- </div>
-
- <div class="controls">
-   <button id="start-year-btn">シミュレーション開始 / 次の年へ</button>
-   <button id="reset-btn">リセット</button>
- </div>
-
- <div id="popup-report">
-   <h2>年間結果レポート (<span id="report-year"></span>年目)</h2>
-   <div id="report-content"></div>
-   <button id="continue-btn">次の年へ進む</button>
-   <button id="stop-btn">終了する</button>
- </div>
-
-<script>
- // --- グローバル設定 ---
- const GOLD_RESERVE_RATIO_MULTIPLIER = 3; // 金準備の何倍まで信用創造可能か
- const NUM_COMMERCIAL_BANKS = 3;
- const PHASE_DURATION = 1500; // 各フェーズのアニメーション時間(ms)
- const TAX_RATE = 0.1; // 税率10%
-
- // --- DOM要素取得 ---
- const yearDisplay = document.getElementById('year-display');
- const phaseDisplay = document.getElementById('phase-display');
- const economyScaleDisplay = document.getElementById('economy-scale-display');
- const logArea = document.getElementById('log-area');
-
- // アクターの資産表示要素
- const govBOJDepositsDisplay = document.getElementById('gov-boj-deposits');
- const govBondsIssuedDisplay = document.getElementById('gov-bonds-issued');
- const bojGoldDisplay = document.getElementById('boj-gold');
- const bojBondsHeldDisplay = document.getElementById('boj-bonds-held');
- const bojGovDepositsLiaDisplay = document.getElementById('boj-gov-deposits-lia');
- const bojCBDepositsLiaDisplay = document.getElementById('boj-cb-deposits-lia');
- const bojCreditLimitDisplay = document.getElementById('boj-credit-limit');
- const cbBOJDepositsDisplay = document.getElementById('cb-boj-deposits');
- const cbBondsHeldDisplay = document.getElementById('cb-bonds-held');
- const cbLoansToPeopleDisplay = document.getElementById('cb-loans-to-people');
- const cbPeopleDepositsLiaDisplay = document.getElementById('cb-people-deposits-lia');
- const peopleDepositsDisplay = document.getElementById('people-deposits');
- const peopleLoansLiaDisplay = document.getElementById('people-loans-lia');
-
- // 棒グラフ要素
- // (各要素を取得 - 長くなるので一部省略、実装時に全て取得)
- const govBOJDepositsBar = document.getElementById('gov-boj-deposits-bar');
- const bojGoldBar = document.getElementById('boj-gold-bar');
- const bojCreditUsedBar = document.getElementById('boj-credit-used-bar');
- const bojCreditLimitBarBg = document.getElementById('boj-credit-limit-bar-bg'); // 発行限度の背景バー
- const peopleDepositsBar = document.getElementById('people-deposits-bar');
+// 棒グラフ要素
+// (各要素を取得 - 長くなるので一部省略、実装時に全て取得)
+const govBOJDepositsBar = document.getElementById('gov-boj-deposits-bar');
+const bojGoldBar = document.getElementById('boj-gold-bar');
+const bojCreditUsedBar = document.getElementById('boj-credit-used-bar');
+const bojCreditLimitBarBg = document.getElementById('boj-credit-limit-bar-bg'); // 発行限度の背景バー
+const peopleDepositsBar = document.getElementById('people-deposits-bar');
 
 
- const startYearBtn = document.getElementById('start-year-btn');
- const resetBtn = document.getElementById('reset-btn');
- const popupReport = document.getElementById('popup-report');
- const reportContent = document.getElementById('report-content');
- const reportYearDisplay = document.getElementById('report-year');
- const continueBtn = document.getElementById('continue-btn');
- const stopBtn = document.getElementById('stop-btn');
+const startYearBtn = document.getElementById('start-year-btn');
+const resetBtn = document.getElementById('reset-btn');
+const popupReport = document.getElementById('popup-report');
+const reportContent = document.getElementById('report-content');
+const reportYearDisplay = document.getElementById('report-year');
+const continueBtn = document.getElementById('continue-btn');
+const stopBtn = document.getElementById('stop-btn');
 
- const canvas = document.getElementById('animation-canvas');
- const ctx = canvas.getContext('2d');
- canvas.width = canvas.getBoundingClientRect().width; // Ensure canvas internal size matches display size
- canvas.height = 200;
-
-
- // --- 状態変数 ---
- let currentYear = 0;
- let currentPhase = 0;
- let economyScale = 10000;
- let simulationRunning = false;
- let particles = [];
- let animationFrameId;
-
- let initialState = {}; // リセット用
-
- // 資産 (初期値)
- let govState = { bojDeposits: 0, bondsIssued: 0 };
- let bojState = { gold: 500, bondsHeld: 0, govDepositsLia: 0, cbDepositsLia: 0, get creditLimit() { return this.gold * GOLD_RESERVE_RATIO_MULTIPLIER; }, get currentCreditUsed() { return this.govDepositsLia + this.cbDepositsLia; /* 他にもあれば加算 */} };
- let cbState = { bojDeposits: 200, bondsHeld: 0, loansToPeople: 0, peopleDepositsLia: 1000 }; // 初期に国民が預金を持っている前提
- let peopleState = { deposits: 1000, loansLia: 0 };
+const canvas = document.getElementById('animation-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = canvas.getBoundingClientRect().width; // Ensure canvas internal size matches display size
+canvas.height = 200;
 
 
- // --- 初期化 ---
- function saveInitialState() {
-   initialState = {
-     currentYear: 0, economyScale: 10000,
-     govState: { ...govState },
-     bojState: { ...bojState, gold: bojState.gold }, // goldは固定値なのでそのままコピー
-     cbState: { ...cbState },
-     peopleState: { ...peopleState }
-   };
- }
+// --- 状態変数 ---
+let currentYear = 0;
+let currentPhase = 0;
+let economyScale = 10000;
+let simulationRunning = false;
+let particles = [];
+let animationFrameId;
 
- function resetSimulation() {
-   currentYear = initialState.currentYear;
-   currentPhase = 0;
-   economyScale = initialState.economyScale;
-   govState = { ...initialState.govState };
-   // bojStateのgoldは初期値を維持する。その他はリセット。
-   bojState = { gold: initialState.bojState.gold, bondsHeld: 0, govDepositsLia: 0, cbDepositsLia: 0, get creditLimit() { return this.gold * GOLD_RESERVE_RATIO_MULTIPLIER; }, get currentCreditUsed() { return this.govDepositsLia + this.cbDepositsLia; } };
-   cbState = { ...initialState.cbState };
-   peopleState = { ...initialState.peopleState };
-   
-   logArea.innerHTML = "";
-   addLog("シミュレーションをリセットしました。", "info");
-   updateDisplays();
-   startYearBtn.disabled = false;
-   popupReport.style.display = 'none';
-   phaseDisplay.textContent = "フェーズ：待機中";
- }
- 
- function init() {
-   saveInitialState(); // 現在の状態を初期状態として保存
-   updateDisplays();
-   resetBtn.addEventListener('click', resetSimulation);
-   startYearBtn.addEventListener('click', () => {
-     if (!simulationRunning) {
-       currentYear++;
-       startYearCycle();
-     }
-   });
-   continueBtn.addEventListener('click', () => {
-     popupReport.style.display = 'none';
-     currentYear++;
-     startYearCycle();
-   });
-   stopBtn.addEventListener('click', () => {
-     popupReport.style.display = 'none';
-     resetSimulation(); // Or just enable start button without resetting all values
-   });
- }
+let initialState = {}; // リセット用
 
- // --- 表示更新 ---
- function updateDisplays() {
-   yearDisplay.textContent = `経過年：${currentYear}年`;
-   economyScaleDisplay.textContent = economyScale.toFixed(0);
-
-   govBOJDepositsDisplay.textContent = govState.bojDeposits.toFixed(0);
-   govBondsIssuedDisplay.textContent = govState.bondsIssued.toFixed(0);
-   bojGoldDisplay.textContent = bojState.gold.toFixed(0);
-   bojBondsHeldDisplay.textContent = bojState.bondsHeld.toFixed(0);
-   bojGovDepositsLiaDisplay.textContent = bojState.govDepositsLia.toFixed(0);
-   bojCBDepositsLiaDisplay.textContent = bojState.cbDepositsLia.toFixed(0);
-   bojCreditLimitDisplay.textContent = bojState.creditLimit.toFixed(0);
-   cbBOJDepositsDisplay.textContent = cbState.bojDeposits.toFixed(0);
-   cbBondsHeldDisplay.textContent = cbState.bondsHeld.toFixed(0);
-   cbLoansToPeopleDisplay.textContent = cbState.loansToPeople.toFixed(0);
-   cbPeopleDepositsLiaDisplay.textContent = cbState.peopleDepositsLia.toFixed(0);
-   peopleDepositsDisplay.textContent = peopleState.deposits.toFixed(0);
-   peopleLoansLiaDisplay.textContent = peopleState.loansLia.toFixed(0);
-
-   updateBarCharts();
- }
-
- function updateBarCharts() {
-   // 各アクターの最大資産額を基準にバーの高さを正規化する必要がある。
-   // ここでは単純に値を高さにマップするが、実際は最大値で割るなど。
-   // 例: govBOJDepositsBar.style.height = Math.min(100, govState.bojDeposits / 10) + '%'; (1000で100%とする例)
-   // bojGoldBar.style.height = Math.min(100, bojState.gold / 10) + '%';
-   // peopleDepositsBar.style.height = Math.min(100, peopleState.deposits / 20) + '%';
-
-   // BOJの信用発行状況バー
-   const creditUsedPercentage = bojState.creditLimit > 0 ? (bojState.currentCreditUsed / bojState.creditLimit) * 100 : 0;
-   bojCreditUsedBar.style.width = Math.min(100, creditUsedPercentage) + '%';
-   if (creditUsedPercentage > 80) bojCreditUsedBar.style.backgroundColor = '#e67e22'; // Warning color
-   else bojCreditUsedBar.style.backgroundColor = '#16a085';
+// 資産 (初期値)
+let govState = { bojDeposits: 0, bondsIssued: 0 };
+let bojState = { gold: 500, bondsHeld: 0, govDepositsLia: 0, cbDepositsLia: 0, get creditLimit() { return this.gold * GOLD_RESERVE_RATIO_MULTIPLIER; }, get currentCreditUsed() { return this.govDepositsLia + this.cbDepositsLia; /* 他にもあれば加算 */} };
+let cbState = { bojDeposits: 200, bondsHeld: 0, loansToPeople: 0, peopleDepositsLia: 1000 }; // 初期に国民が預金を持っている前提
+let peopleState = { deposits: 1000, loansLia: 0 };
 
 
-   // 簡単な高さ設定（最大値は仮）
-   const maxAssetForBar = 2000; // グラフの最大値（適宜調整）
-   govBOJDepositsBar.style.height = `${(govState.bojDeposits / maxAssetForBar) * 100}%`;
-   bojGoldBar.style.height = `${(bojState.gold / maxAssetForBar) * 100}%`;
-   // 他のバーも同様に設定
-   document.getElementById('boj-bonds-held-bar').style.height = `${(bojState.bondsHeld / maxAssetForBar) * 100}%`;
-   document.getElementById('cb-boj-deposits-bar').style.height = `${(cbState.bojDeposits / maxAssetForBar) * 100}%`;
-   document.getElementById('cb-bonds-held-bar').style.height = `${(cbState.bondsHeld / maxAssetForBar) * 100}%`;
-   document.getElementById('cb-loans-to-people-bar').style.height = `${(cbState.loansToPeople / maxAssetForBar) * 100}%`;
-   peopleDepositsBar.style.height = `${(peopleState.deposits / maxAssetForBar) * 100}%`;
- }
+// --- 初期化 ---
+function saveInitialState() {
+	initialState = {
+		currentYear: 0, economyScale: 10000,
+		govState: { ...govState },
+		bojState: { ...bojState, gold: bojState.gold }, // goldは固定値なのでそのままコピー
+		cbState: { ...cbState },
+		peopleState: { ...peopleState }
+	};
+}
 
- // --- アニメーション ---
- class Particle {
-   constructor(startX, startY, endX, endY, color, size = 5) {
-     this.x = startX;
-     this.y = startY;
-     this.endX = endX;
-     this.endY = endY;
-     this.color = color;
-     this.size = size;
-     this.speed = 3; // pixels per frame
-     const angle = Math.atan2(endY - startY, endX - startX);
-     this.dx = Math.cos(angle) * this.speed;
-     this.dy = Math.sin(angle) * this.speed;
-     this.reached = false;
-   }
-   draw() {
-     ctx.beginPath();
-     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-     ctx.fillStyle = this.color;
-     ctx.fill();
-   }
-   update() {
-     if (this.reached) return;
-     this.x += this.dx;
-     this.y += this.dy;
-     if (Math.sqrt((this.endX - this.x)**2 + (this.endY - this.y)**2) < this.speed * 1.5) {
-       this.x = this.endX;
-       this.y = this.endY;
-       this.reached = true;
-     }
-   }
- }
+function resetSimulation() {
+	currentYear = initialState.currentYear;
+	currentPhase = 0;
+	economyScale = initialState.economyScale;
+	govState = { ...initialState.govState };
+	// bojStateのgoldは初期値を維持する。その他はリセット。
+	bojState = { gold: initialState.bojState.gold, bondsHeld: 0, govDepositsLia: 0, cbDepositsLia: 0, get creditLimit() { return this.gold * GOLD_RESERVE_RATIO_MULTIPLIER; }, get currentCreditUsed() { return this.govDepositsLia + this.cbDepositsLia; } };
+	cbState = { ...initialState.cbState };
+	peopleState = { ...initialState.peopleState };
+	
+	logArea.innerHTML = "";
+	addLog("シミュレーションをリセットしました。", "info");
+	updateDisplays();
+	startYearBtn.disabled = false;
+	popupReport.style.display = 'none';
+	phaseDisplay.textContent = "フェーズ：待機中";
+}
 
- function animateParticles(onComplete) {
-   ctx.clearRect(0, 0, canvas.width, canvas.height);
-   let allReached = true;
-   for (let p of particles) {
-     p.draw();
-     p.update();
-     if (!p.reached) allReached = false;
-   }
+function init() {
+	saveInitialState(); // 現在の状態を初期状態として保存
+	updateDisplays();
+	resetBtn.addEventListener('click', resetSimulation);
+	startYearBtn.addEventListener('click', () => {
+		if (!simulationRunning) {
+			currentYear++;
+			startYearCycle();
+		}
+	});
+	continueBtn.addEventListener('click', () => {
+		popupReport.style.display = 'none';
+		currentYear++;
+		startYearCycle();
+	});
+	stopBtn.addEventListener('click', () => {
+		popupReport.style.display = 'none';
+		resetSimulation(); // Or just enable start button without resetting all values
+	});
+}
 
-   if (allReached && particles.length > 0) {
-     particles = []; // Clear particles after animation
-     ctx.clearRect(0, 0, canvas.width, canvas.height); // Final clear
-     if (typeof onComplete === 'function') {
-       onComplete(); // Execute callback when all particles reached destination
-     }
-     return; // Stop animation loop
-   }
-   if (particles.length > 0) { // Only continue if there are particles
-       animationFrameId = requestAnimationFrame(() => animateParticles(onComplete));
-   } else {
-       ctx.clearRect(0, 0, canvas.width, canvas.height); // Ensure canvas is clear if no particles
-       if (typeof onComplete === 'function') onComplete(); // If no particles, still call onComplete
-   }
- }
+// --- 表示更新 ---
+function updateDisplays() {
+	yearDisplay.textContent = `経過年：${currentYear}年`;
+	economyScaleDisplay.textContent = economyScale.toFixed(0);
 
- function addLog(message, type = "info") { // type: info, warning, error
-     const logEntry = document.createElement('div');
-     logEntry.className = `log-message log-${type}`;
-     logEntry.textContent = `[${type.toUpperCase()}] ${message}`;
-     logArea.appendChild(logEntry);
-     logArea.scrollTop = logArea.scrollHeight; // Scroll to bottom
- }
+	govBOJDepositsDisplay.textContent = govState.bojDeposits.toFixed(0);
+	govBondsIssuedDisplay.textContent = govState.bondsIssued.toFixed(0);
+	bojGoldDisplay.textContent = bojState.gold.toFixed(0);
+	bojBondsHeldDisplay.textContent = bojState.bondsHeld.toFixed(0);
+	bojGovDepositsLiaDisplay.textContent = bojState.govDepositsLia.toFixed(0);
+	bojCBDepositsLiaDisplay.textContent = bojState.cbDepositsLia.toFixed(0);
+	bojCreditLimitDisplay.textContent = bojState.creditLimit.toFixed(0);
+	cbBOJDepositsDisplay.textContent = cbState.bojDeposits.toFixed(0);
+	cbBondsHeldDisplay.textContent = cbState.bondsHeld.toFixed(0);
+	cbLoansToPeopleDisplay.textContent = cbState.loansToPeople.toFixed(0);
+	cbPeopleDepositsLiaDisplay.textContent = cbState.peopleDepositsLia.toFixed(0);
+	peopleDepositsDisplay.textContent = peopleState.deposits.toFixed(0);
+	peopleLoansLiaDisplay.textContent = peopleState.loansLia.toFixed(0);
 
- // --- シミュレーションサイクル ---
- let yearReport = "";
- async function startYearCycle() {
-   simulationRunning = true;
-   startYearBtn.disabled = true;
-   currentPhase = 0;
-   yearReport = `--- ${currentYear}年目レポート ---\n`;
-   addLog(`${currentYear}年目のシミュレーションを開始します。`, "info");
+	updateBarCharts();
+}
 
-   await runPhase(1, "政府: 国債発行と日銀引受");
-   await runPhase(2, "市中銀行: 日銀からの資金調達準備");
-   await runPhase(3, "国民: 市中銀行からの借入");
-   await runPhase(4, "経済活動");
-   await runPhase(5, "政府: 徴税");
-   
-   showYearReport();
-   simulationRunning = false;
-   // startYearBtn.disabled = false; // ポップアップで制御
- }
+function updateBarCharts() {
+	// 各アクターの最大資産額を基準にバーの高さを正規化する必要がある。
+	// ここでは単純に値を高さにマップするが、実際は最大値で割るなど。
+	// 例: govBOJDepositsBar.style.height = Math.min(100, govState.bojDeposits / 10) + '%'; (1000で100%とする例)
+	// bojGoldBar.style.height = Math.min(100, bojState.gold / 10) + '%';
+	// peopleDepositsBar.style.height = Math.min(100, peopleState.deposits / 20) + '%';
 
- function runPhase(phaseNumber, phaseName) {
-   return new Promise(resolve => {
-       currentPhase = phaseNumber;
-       phaseDisplay.textContent = `フェーズ${currentPhase}：${phaseName}`;
-       addLog(`フェーズ${currentPhase}：${phaseName} を開始。`, "info");
+	// BOJの信用発行状況バー
+	const creditUsedPercentage = bojState.creditLimit > 0 ? (bojState.currentCreditUsed / bojState.creditLimit) * 100 : 0;
+	bojCreditUsedBar.style.width = Math.min(100, creditUsedPercentage) + '%';
+	if (creditUsedPercentage > 80) bojCreditUsedBar.style.backgroundColor = '#e67e22'; // Warning color
+	else bojCreditUsedBar.style.backgroundColor = '#16a085';
 
-       let animationNeeded = true;
-       // アニメーションの始点と終点（仮）
-       // これらは各パネルの位置に基づいて動的に計算するのが望ましい
-       const govPos = { x: canvas.width * 0.15, y: canvas.height * 0.5 };
-       const bojPos = { x: canvas.width * 0.38, y: canvas.height * 0.5 };
-       const cbPos = { x: canvas.width * 0.62, y: canvas.height * 0.5 };
-       const peoplePos = { x: canvas.width * 0.85, y: canvas.height * 0.5 };
 
-       switch (currentPhase) {
-       case 1: // 政府「通貨発行！」(国債発行)
-           const issueAmount = 200;
-           yearReport += `政府: 国債を${issueAmount}発行予定。\n`;
-           if (bojState.currentCreditUsed + issueAmount <= bojState.creditLimit) {
-               govState.bondsIssued += issueAmount;
-               bojState.bondsHeld += issueAmount;
-               govState.bojDeposits += issueAmount;
-               bojState.govDepositsLia += issueAmount;
-               yearReport += `  日銀が国債${issueAmount}を引受け、政府当預に${issueAmount}記帳。\n`;
-               addLog(`日銀が国債${issueAmount}を引受け、政府日銀当座預金に${issueAmount}供給。`, "info");
-               particles.push(new Particle(govPos.x, govPos.y, bojPos.x, bojPos.y, '#e74c3c')); // 国債(赤)
-               particles.push(new Particle(bojPos.x, bojPos.y, govPos.x, govPos.y, '#ffffff')); // 日銀当預(白)
-           } else {
-               const possibleAmount = bojState.creditLimit - bojState.currentCreditUsed;
-               if (possibleAmount > 0) {
-                   govState.bondsIssued += possibleAmount;
-                   bojState.bondsHeld += possibleAmount;
-                   govState.bojDeposits += possibleAmount;
-                   bojState.govDepositsLia += possibleAmount;
-                   yearReport += `  金準備の制約により、日銀は国債${possibleAmount}のみ引受。\n`;
-                   addLog(`金準備の制約! 日銀は国債${possibleAmount}のみ引受け(上限到達)。`, "warning");
-                   particles.push(new Particle(govPos.x, govPos.y, bojPos.x, bojPos.y, '#e74c3c')); 
-                   particles.push(new Particle(bojPos.x, bojPos.y, govPos.x, govPos.y, '#ffffff'));
-               } else {
-                   yearReport += `  金準備の制約により、日銀は国債引受不可。\n`;
-                   addLog("金準備の制約! 日銀は国債引受不可。", "error");
-                   animationNeeded = false;
-               }
-           }
-           break;
-       case 2: // 市中銀行「国債買うよ！」(日銀からの資金調達準備)
-           const cbFundingAmount = 150;
-           yearReport += `市中銀行: 日銀から${cbFundingAmount}の資金調達を試みます。\n`;
-           if (bojState.currentCreditUsed + cbFundingAmount <= bojState.creditLimit) {
-               bojState.cbDepositsLia += cbFundingAmount;
-               cbState.bojDeposits += cbFundingAmount;
-               yearReport += `  日銀が市中銀行に${cbFundingAmount}資金供給。\n`;
-               addLog(`日銀が市中銀行の日銀当座預金に${cbFundingAmount}供給。`, "info");
-               particles.push(new Particle(bojPos.x, bojPos.y, cbPos.x, cbPos.y, '#ffffff')); // 日銀当預(白)
-           } else {
-               // (制約時の処理、上記と同様)
-               yearReport += `  金準備の制約により、日銀は市中銀行への資金供給を制限。\n`;
-               addLog("金準備の制約! 日銀は市中銀行への資金供給を制限。", "warning");
-               animationNeeded = false;
-           }
-           break;
-       case 3: // 国民「お金貸して！」
-           const loanAmount = 100;
-           yearReport += `国民: 市中銀行から${loanAmount}の借入を試みます。\n`;
-           if (cbState.bojDeposits >= loanAmount * 0.1) { // 預金準備率的なもの(簡略化)
-               cbState.loansToPeople += loanAmount;
-               cbState.peopleDepositsLia += loanAmount; // 信用創造
-               peopleState.deposits += loanAmount;
-               peopleState.loansLia += loanAmount;
-               yearReport += `  市中銀行が国民に${loanAmount}貸付 (預金創造)。\n`;
-               addLog(`市中銀行が国民に${loanAmount}貸付し、同額の預金通貨を創造。`, "info");
-               particles.push(new Particle(cbPos.x, cbPos.y, peoplePos.x, peoplePos.y, '#2ecc71')); // 通貨(青)
-           } else {
-               yearReport += `  市中銀行の準備預金不足により貸付不可。\n`;
-               addLog("市中銀行の準備預金が不足し、国民への貸付不可。", "warning");
-               animationNeeded = false;
-           }
-           break;
-       case 4: // 国民「頑張るぞ！」(経済活動)
-           const economicGrowth = peopleState.deposits * 0.05; // 預金額の5%が成長寄与と仮定
-           economyScale += economicGrowth;
-           peopleState.deposits += economicGrowth * 0.5; // 所得増として一部還元
-           yearReport += `経済活動: 経済規模が${economicGrowth.toFixed(0)}成長。\n`;
-           addLog(`経済活動により経済規模が${economicGrowth.toFixed(0)}成長。国民所得も一部増加。`, "info");
-           animationNeeded = false; // 経済規模の数値とグラフはupdateDisplaysで更新
-           break;
-       case 5: // 政府「税金貰うね！」
-           const taxAmount = peopleState.deposits * TAX_RATE;
-           if (peopleState.deposits >= taxAmount) {
-               peopleState.deposits -= taxAmount;
-               govState.bojDeposits += taxAmount; // 税収は政府の日銀当預へ
-               yearReport += `政府: 国民から税金${taxAmount.toFixed(0)}を徴収。\n`;
-               addLog(`政府が国民から税金${taxAmount.toFixed(0)}を徴収。`, "info");
-               particles.push(new Particle(peoplePos.x, peoplePos.y, govPos.x, govPos.y, '#2ecc71')); // 通貨(青)
-           } else {
-               yearReport += `政府: 国民の預金不足により十分な徴税不可。\n`;
-               addLog("国民の預金が不足し、十分な徴税不可。", "warning");
-               animationNeeded = false;
-           }
-           break;
-       default:
-           animationNeeded = false;
-           break;
-       }
+	// 簡単な高さ設定（最大値は仮）
+	const maxAssetForBar = 2000; // グラフの最大値（適宜調整）
+	govBOJDepositsBar.style.height = `${(govState.bojDeposits / maxAssetForBar) * 100}%`;
+	bojGoldBar.style.height = `${(bojState.gold / maxAssetForBar) * 100}%`;
+	// 他のバーも同様に設定
+	document.getElementById('boj-bonds-held-bar').style.height = `${(bojState.bondsHeld / maxAssetForBar) * 100}%`;
+	document.getElementById('cb-boj-deposits-bar').style.height = `${(cbState.bojDeposits / maxAssetForBar) * 100}%`;
+	document.getElementById('cb-bonds-held-bar').style.height = `${(cbState.bondsHeld / maxAssetForBar) * 100}%`;
+	document.getElementById('cb-loans-to-people-bar').style.height = `${(cbState.loansToPeople / maxAssetForBar) * 100}%`;
+	peopleDepositsBar.style.height = `${(peopleState.deposits / maxAssetForBar) * 100}%`;
+}
 
-       updateDisplays(); // 数値を先に更新
+// --- アニメーション ---
+class Particle {
+	constructor(startX, startY, endX, endY, color, size = 5) {
+		this.x = startX;
+		this.y = startY;
+		this.endX = endX;
+		this.endY = endY;
+		this.color = color;
+		this.size = size;
+		this.speed = 3; // pixels per frame
+		const angle = Math.atan2(endY - startY, endX - startX);
+		this.dx = Math.cos(angle) * this.speed;
+		this.dy = Math.sin(angle) * this.speed;
+		this.reached = false;
+	}
+	draw() {
+		ctx.beginPath();
+		ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+		ctx.fillStyle = this.color;
+		ctx.fill();
+	}
+	update() {
+		if (this.reached) return;
+		this.x += this.dx;
+		this.y += this.dy;
+		if (Math.sqrt((this.endX - this.x)**2 + (this.endY - this.y)**2) < this.speed * 1.5) {
+			this.x = this.endX;
+			this.y = this.endY;
+			this.reached = true;
+		}
+	}
+}
 
-       if (animationNeeded && particles.length > 0) {
-           animateParticles(() => { // アニメーション完了後にPromiseを解決
-               setTimeout(resolve, PHASE_DURATION / 3); // アニメーション後少し待つ
-           });
-       } else {
-           setTimeout(resolve, PHASE_DURATION); // アニメーションがない場合も待機
-       }
-   });
- }
+function animateParticles(onComplete) {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	let allReached = true;
+	for (let p of particles) {
+		p.draw();
+		p.update();
+		if (!p.reached) allReached = false;
+	}
 
- function showYearReport() {
-   phaseDisplay.textContent = "フェーズ：年間レポート";
-   addLog(`${currentYear}年目のシミュレーションが完了しました。年間レポートを表示します。`, "info");
-   yearReport += `\n--- ${currentYear}年目終了時点サマリー ---\n`;
-   yearReport += `経済規模: ${economyScale.toFixed(0)}\n`;
-   yearReport += `政府日銀当預: ${govState.bojDeposits.toFixed(0)}\n`;
-   yearReport += `国民預金通貨: ${peopleState.deposits.toFixed(0)}\n`;
-   yearReport += `日銀金保有: ${bojState.gold.toFixed(0)} (発行限度: ${bojState.creditLimit.toFixed(0)}, 使用済み: ${bojState.currentCreditUsed.toFixed(0)})\n`;
-   
-   reportYearDisplay.textContent = currentYear;
-   reportContent.textContent = yearReport;
-   popupReport.style.display = 'block';
- }
+	if (allReached && particles.length > 0) {
+		particles = []; // Clear particles after animation
+		ctx.clearRect(0, 0, canvas.width, canvas.height); // Final clear
+		if (typeof onComplete === 'function') {
+			onComplete(); // Execute callback when all particles reached destination
+		}
+		return; // Stop animation loop
+	}
+	if (particles.length > 0) { // Only continue if there are particles
+			animationFrameId = requestAnimationFrame(() => animateParticles(onComplete));
+	} else {
+			ctx.clearRect(0, 0, canvas.width, canvas.height); // Ensure canvas is clear if no particles
+			if (typeof onComplete === 'function') onComplete(); // If no particles, still call onComplete
+	}
+}
 
- // --- 初期化実行 ---
- init();
+function addLog(message, type = "info") { // type: info, warning, error
+		const logEntry = document.createElement('div');
+		logEntry.className = `log-message log-${type}`;
+		logEntry.textContent = `[${type.toUpperCase()}] ${message}`;
+		logArea.appendChild(logEntry);
+		logArea.scrollTop = logArea.scrollHeight; // Scroll to bottom
+}
 
-</script>
+// --- シミュレーションサイクル ---
+let yearReport = "";
+async function startYearCycle() {
+	simulationRunning = true;
+	startYearBtn.disabled = true;
+	currentPhase = 0;
+	yearReport = `--- ${currentYear}年目レポート ---\n`;
+	addLog(`${currentYear}年目のシミュレーションを開始します。`, "info");
+
+	await runPhase(1, "政府: 国債発行と日銀引受");
+	await runPhase(2, "市中銀行: 日銀からの資金調達準備");
+	await runPhase(3, "国民: 市中銀行からの借入");
+	await runPhase(4, "経済活動");
+	await runPhase(5, "政府: 徴税");
+	
+	showYearReport();
+	simulationRunning = false;
+	// startYearBtn.disabled = false; // ポップアップで制御
+}
+
+function runPhase(phaseNumber, phaseName) {
+	return new Promise(resolve => {
+			currentPhase = phaseNumber;
+			phaseDisplay.textContent = `フェーズ${currentPhase}：${phaseName}`;
+			addLog(`フェーズ${currentPhase}：${phaseName} を開始。`, "info");
+
+			let animationNeeded = true;
+			// アニメーションの始点と終点（仮）
+			// これらは各パネルの位置に基づいて動的に計算するのが望ましい
+			const govPos = { x: canvas.width * 0.15, y: canvas.height * 0.5 };
+			const bojPos = { x: canvas.width * 0.38, y: canvas.height * 0.5 };
+			const cbPos = { x: canvas.width * 0.62, y: canvas.height * 0.5 };
+			const peoplePos = { x: canvas.width * 0.85, y: canvas.height * 0.5 };
+
+			switch (currentPhase) {
+			case 1: // 政府「通貨発行！」(国債発行)
+					const issueAmount = 200;
+					yearReport += `政府: 国債を${issueAmount}発行予定。\n`;
+					if (bojState.currentCreditUsed + issueAmount <= bojState.creditLimit) {
+							govState.bondsIssued += issueAmount;
+							bojState.bondsHeld += issueAmount;
+							govState.bojDeposits += issueAmount;
+							bojState.govDepositsLia += issueAmount;
+							yearReport += `  日銀が国債${issueAmount}を引受け、政府当預に${issueAmount}記帳。\n`;
+							addLog(`日銀が国債${issueAmount}を引受け、政府日銀当座預金に${issueAmount}供給。`, "info");
+							particles.push(new Particle(govPos.x, govPos.y, bojPos.x, bojPos.y, '#e74c3c')); // 国債(赤)
+							particles.push(new Particle(bojPos.x, bojPos.y, govPos.x, govPos.y, '#ffffff')); // 日銀当預(白)
+					} else {
+							const possibleAmount = bojState.creditLimit - bojState.currentCreditUsed;
+							if (possibleAmount > 0) {
+									govState.bondsIssued += possibleAmount;
+									bojState.bondsHeld += possibleAmount;
+									govState.bojDeposits += possibleAmount;
+									bojState.govDepositsLia += possibleAmount;
+									yearReport += `  金準備の制約により、日銀は国債${possibleAmount}のみ引受。\n`;
+									addLog(`金準備の制約! 日銀は国債${possibleAmount}のみ引受け(上限到達)。`, "warning");
+									particles.push(new Particle(govPos.x, govPos.y, bojPos.x, bojPos.y, '#e74c3c')); 
+									particles.push(new Particle(bojPos.x, bojPos.y, govPos.x, govPos.y, '#ffffff'));
+							} else {
+									yearReport += `  金準備の制約により、日銀は国債引受不可。\n`;
+									addLog("金準備の制約! 日銀は国債引受不可。", "error");
+									animationNeeded = false;
+							}
+					}
+					break;
+			case 2: // 市中銀行「国債買うよ！」(日銀からの資金調達準備)
+					const cbFundingAmount = 150;
+					yearReport += `市中銀行: 日銀から${cbFundingAmount}の資金調達を試みます。\n`;
+					if (bojState.currentCreditUsed + cbFundingAmount <= bojState.creditLimit) {
+							bojState.cbDepositsLia += cbFundingAmount;
+							cbState.bojDeposits += cbFundingAmount;
+							yearReport += `  日銀が市中銀行に${cbFundingAmount}資金供給。\n`;
+							addLog(`日銀が市中銀行の日銀当座預金に${cbFundingAmount}供給。`, "info");
+							particles.push(new Particle(bojPos.x, bojPos.y, cbPos.x, cbPos.y, '#ffffff')); // 日銀当預(白)
+					} else {
+							// (制約時の処理、上記と同様)
+							yearReport += `  金準備の制約により、日銀は市中銀行への資金供給を制限。\n`;
+							addLog("金準備の制約! 日銀は市中銀行への資金供給を制限。", "warning");
+							animationNeeded = false;
+					}
+					break;
+			case 3: // 国民「お金貸して！」
+					const loanAmount = 100;
+					yearReport += `国民: 市中銀行から${loanAmount}の借入を試みます。\n`;
+					if (cbState.bojDeposits >= loanAmount * 0.1) { // 預金準備率的なもの(簡略化)
+							cbState.loansToPeople += loanAmount;
+							cbState.peopleDepositsLia += loanAmount; // 信用創造
+							peopleState.deposits += loanAmount;
+							peopleState.loansLia += loanAmount;
+							yearReport += `  市中銀行が国民に${loanAmount}貸付 (預金創造)。\n`;
+							addLog(`市中銀行が国民に${loanAmount}貸付し、同額の預金通貨を創造。`, "info");
+							particles.push(new Particle(cbPos.x, cbPos.y, peoplePos.x, peoplePos.y, '#2ecc71')); // 通貨(青)
+					} else {
+							yearReport += `  市中銀行の準備預金不足により貸付不可。\n`;
+							addLog("市中銀行の準備預金が不足し、国民への貸付不可。", "warning");
+							animationNeeded = false;
+					}
+					break;
+			case 4: // 国民「頑張るぞ！」(経済活動)
+					const economicGrowth = peopleState.deposits * 0.05; // 預金額の5%が成長寄与と仮定
+					economyScale += economicGrowth;
+					peopleState.deposits += economicGrowth * 0.5; // 所得増として一部還元
+					yearReport += `経済活動: 経済規模が${economicGrowth.toFixed(0)}成長。\n`;
+					addLog(`経済活動により経済規模が${economicGrowth.toFixed(0)}成長。国民所得も一部増加。`, "info");
+					animationNeeded = false; // 経済規模の数値とグラフはupdateDisplaysで更新
+					break;
+			case 5: // 政府「税金貰うね！」
+					const taxAmount = peopleState.deposits * TAX_RATE;
+					if (peopleState.deposits >= taxAmount) {
+							peopleState.deposits -= taxAmount;
+							govState.bojDeposits += taxAmount; // 税収は政府の日銀当預へ
+							yearReport += `政府: 国民から税金${taxAmount.toFixed(0)}を徴収。\n`;
+							addLog(`政府が国民から税金${taxAmount.toFixed(0)}を徴収。`, "info");
+							particles.push(new Particle(peoplePos.x, peoplePos.y, govPos.x, govPos.y, '#2ecc71')); // 通貨(青)
+					} else {
+							yearReport += `政府: 国民の預金不足により十分な徴税不可。\n`;
+							addLog("国民の預金が不足し、十分な徴税不可。", "warning");
+							animationNeeded = false;
+					}
+					break;
+			default:
+					animationNeeded = false;
+					break;
+			}
+
+			updateDisplays(); // 数値を先に更新
+
+			if (animationNeeded && particles.length > 0) {
+					animateParticles(() => { // アニメーション完了後にPromiseを解決
+							setTimeout(resolve, PHASE_DURATION / 3); // アニメーション後少し待つ
+					});
+			} else {
+					setTimeout(resolve, PHASE_DURATION); // アニメーションがない場合も待機
+			}
+	});
+}
+
+function showYearReport() {
+	phaseDisplay.textContent = "フェーズ：年間レポート";
+	addLog(`${currentYear}年目のシミュレーションが完了しました。年間レポートを表示します。`, "info");
+	yearReport += `\n--- ${currentYear}年目終了時点サマリー ---\n`;
+	yearReport += `経済規模: ${economyScale.toFixed(0)}\n`;
+	yearReport += `政府日銀当預: ${govState.bojDeposits.toFixed(0)}\n`;
+	yearReport += `国民預金通貨: ${peopleState.deposits.toFixed(0)}\n`;
+	yearReport += `日銀金保有: ${bojState.gold.toFixed(0)} (発行限度: ${bojState.creditLimit.toFixed(0)}, 使用済み: ${bojState.currentCreditUsed.toFixed(0)})\n`;
+	
+	reportYearDisplay.textContent = currentYear;
+	reportContent.textContent = yearReport;
+	popupReport.style.display = 'block';
+}
+
+// --- 初期化実行 ---
+init();
+	</script>
 </body>
 </html>

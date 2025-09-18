@@ -1,113 +1,151 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>やさしい政治の危機と法治の仕組み</title>
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true });
-  </script>
-  <style>
-    body {
-      font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-      line-height: 1.8;
-      margin: 20px;
-      background-color: #fefefe;
-      color: #222;
-    }
-    h1, h2 {
-      color: #1a237e;
-    }
-    .qa {
-      background-color: #e3f2fd;
-      border-left: 5px solid #1976d2;
-      padding: 10px;
-      margin: 20px 0;
-    }
-    .qa p {
-      margin: 5px 0;
-    }
-    .mermaid {
-      margin: 20px 0;
-      background: #ffffff;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-  </style>
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<title>
+	やさしい政治の危機と法治の仕組み
+	</title>
+	<script type="module">
+	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+		mermaid.initialize({ startOnLoad: true });
+	</script>
+	<style>
+	body {
+			font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+			line-height: 1.8;
+			margin: 20px;
+			background-color: #fefefe;
+			color: #222;
+		}
+		h1, h2 {
+			color: #1a237e;
+		}
+		.qa {
+			background-color: #e3f2fd;
+			border-left: 5px solid #1976d2;
+			padding: 10px;
+			margin: 20px 0;
+		}
+		.qa p {
+			margin: 5px 0;
+		}
+		.mermaid {
+			margin: 20px 0;
+			background: #ffffff;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+	</style>
 </head>
 <body>
-  <h1>やさしい政治制度とその危機</h1>
-
-  <p>
-    日本はよく「法治国家」と言われますが、それは一体どういう意味なのでしょうか？<br>
-    また、最近の政治の中で「それが本当に守られているのか？」と疑問が出てきています。
-  </p>
-
-  <h2>法治国家ってなに？</h2>
-  <p>
-    法治国家とは、「人の気分や力関係ではなく、法律に基づいて政治が行われる国」のことです。つまり、どんな人でも法律の下に平等で、政治家や大臣も勝手なことはできません。
-  </p>
-
-  <h2>三権分立（さんけんぶんりつ）とは？</h2>
-  <p>
-    政治には「立法」「行政」「司法」という3つの力があります。これを三権分立といいます。<br>
-    それぞれが別々の役割をもち、お互いにチェックし合うことで、独裁を防ぐ仕組みです。
-  </p>
-
-  <div class="mermaid">
-    graph TD
-      A[国民] --> B[立法（国会）]
-      A --> C[行政（内閣・省庁）]
-      A --> D[司法（裁判所）]
-      B -->|法律を作る| C
-      C -->|法律に従って政治を行う| D
-      D -->|法律が守られているか判断| B
-  </div>
-
-  <h2>憲法と法律の関係</h2>
-  <p>
-    日本のルールの中で一番上にあるのが「憲法」です。その下に「法律」があります。<br>
-    だから、すべての法律や政治の行動は、憲法に合っていなければいけません。
-  </p>
-
-  <h2>最近の問題点</h2>
-  <p>
-    ある政治家が「外国人も人道的理由で生活保護を受けるべきだ」と言いました。<br>
-    でも、日本の法律では生活保護は「日本国民」に限られていますし、最高裁判所もそう判断しています。
-  </p>
-
-  <div class="qa">
-    <p><strong>Q1: 外国人に生活保護はダメなの？</strong></p>
-    <p>A1: 現在の法律では外国人は対象外ですが、実際には行政の裁量で受けている人もいます。</p>
-  </div>
-
-  <div class="qa">
-    <p><strong>Q2: じゃあ行政が勝手にルールを変えていいの？</strong></p>
-    <p>A2: 本来、行政は法律に従うべきなので、勝手に変えてはいけません。</p>
-  </div>
-
-  <div class="qa">
-    <p><strong>Q3: なぜ問題になるの？</strong></p>
-    <p>A3: 行政が法律や判決を無視すると、「法治国家」ではなくなってしまうからです。</p>
-  </div>
-
-  <div class="qa">
-    <p><strong>Q4: 三権分立が守られないとどうなるの？</strong></p>
-    <p>A4: 一つの権力が暴走しやすくなり、国民の権利が守られなくなるおそれがあります。</p>
-  </div>
-
-  <div class="qa">
-    <p><strong>Q5: 私たちにできることはある？</strong></p>
-    <p>A5: 正しい情報を学び、選挙でしっかり判断することが第一歩です。</p>
-  </div>
-
-  <h2>まとめ</h2>
-  <p>
-    法律はみんなのルールです。<br>
-    でも、そのルールが守られていなければ、私たちの生活や未来にも影響があります。<br>
-    まずは「仕組み」を知ること、そして「どうすれば良くなるか」を考えることが大切です。
-  </p>
+	<h1>
+	やさしい政治制度とその危機
+	</h1>
+	<p>
+	日本はよく「法治国家」と言われますが、それは一体どういう意味なのでしょうか？
+	<br/>
+	また、最近の政治の中で「それが本当に守られているのか？」と疑問が出てきています。
+	</p>
+	<h2>
+	法治国家ってなに？
+	</h2>
+	<p>
+	法治国家とは、「人の気分や力関係ではなく、法律に基づいて政治が行われる国」のことです。つまり、どんな人でも法律の下に平等で、政治家や大臣も勝手なことはできません。
+	</p>
+	<h2>
+	三権分立（さんけんぶんりつ）とは？
+	</h2>
+	<p>
+	政治には「立法」「行政」「司法」という3つの力があります。これを三権分立といいます。
+	<br/>
+	それぞれが別々の役割をもち、お互いにチェックし合うことで、独裁を防ぐ仕組みです。
+	</p>
+	<div class="mermaid">
+	graph TD
+			A[国民] --&gt; B[立法（国会）]
+			A --&gt; C[行政（内閣・省庁）]
+			A --&gt; D[司法（裁判所）]
+			B --&gt;|法律を作る| C
+			C --&gt;|法律に従って政治を行う| D
+			D --&gt;|法律が守られているか判断| B
+	</div>
+	<h2>
+	憲法と法律の関係
+	</h2>
+	<p>
+	日本のルールの中で一番上にあるのが「憲法」です。その下に「法律」があります。
+	<br/>
+	だから、すべての法律や政治の行動は、憲法に合っていなければいけません。
+	</p>
+	<h2>
+	最近の問題点
+	</h2>
+	<p>
+	ある政治家が「外国人も人道的理由で生活保護を受けるべきだ」と言いました。
+	<br/>
+	でも、日本の法律では生活保護は「日本国民」に限られていますし、最高裁判所もそう判断しています。
+	</p>
+	<div class="qa">
+	<p>
+		<strong>
+		Q1: 外国人に生活保護はダメなの？
+		</strong>
+	</p>
+	<p>
+		A1: 現在の法律では外国人は対象外ですが、実際には行政の裁量で受けている人もいます。
+	</p>
+	</div>
+	<div class="qa">
+	<p>
+		<strong>
+		Q2: じゃあ行政が勝手にルールを変えていいの？
+		</strong>
+	</p>
+	<p>
+		A2: 本来、行政は法律に従うべきなので、勝手に変えてはいけません。
+	</p>
+	</div>
+	<div class="qa">
+	<p>
+		<strong>
+		Q3: なぜ問題になるの？
+		</strong>
+	</p>
+	<p>
+		A3: 行政が法律や判決を無視すると、「法治国家」ではなくなってしまうからです。
+	</p>
+	</div>
+	<div class="qa">
+	<p>
+		<strong>
+		Q4: 三権分立が守られないとどうなるの？
+		</strong>
+	</p>
+	<p>
+		A4: 一つの権力が暴走しやすくなり、国民の権利が守られなくなるおそれがあります。
+	</p>
+	</div>
+	<div class="qa">
+	<p>
+		<strong>
+		Q5: 私たちにできることはある？
+		</strong>
+	</p>
+	<p>
+		A5: 正しい情報を学び、選挙でしっかり判断することが第一歩です。
+	</p>
+	</div>
+	<h2>
+	まとめ
+	</h2>
+	<p>
+	法律はみんなのルールです。
+	<br/>
+	でも、そのルールが守られていなければ、私たちの生活や未来にも影響があります。
+	<br/>
+	まずは「仕組み」を知ること、そして「どうすれば良くなるか」を考えることが大切です。
+	</p>
 </body>
 </html>

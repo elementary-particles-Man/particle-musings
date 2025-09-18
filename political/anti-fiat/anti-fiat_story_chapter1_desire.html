@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>経済のホントの話</title>
-	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<title>
+	経済のホントの話
+	</title>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js">
+	</script>
 	<style>
-		/* === 全体のスタイル === */
+	/* === 全体のスタイル === */
 		html { scroll-behavior: smooth; }
 		body { font-family: 'Meiryo', 'Hiragino Kaku Gothic ProN', 'Arial', sans-serif; line-height: 1.8; color: #333; background-color: #f8f9fa; margin: 0; padding: 20px; }
 		.page-wrapper { max-width: 900px; margin: 20px auto; background-color: #fff; padding: 25px 40px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); border-radius: 8px; }
@@ -85,113 +88,407 @@
 	</style>
 </head>
 <body>
-	<div id="part1" class="page-wrapper">
-		<h1>【第一部】 終わりなき絶望 ― 法と権威が導く日本の黄昏</h1>
-		
-		<h2>序章：赤信号のニッポン</h2>
-		<p>ニュースを開けば、未来を暗くする言葉ばかりが目に飛び込んでくる。「<span class="emphasis-red">国の借金、過去最大の1200兆円超え</span>」「少子高齢化で社会保障は<span class="emphasis-red">崩壊寸前</span>」「このままでは<span class="emphasis-red">財政破綻</span>は避けられない」。私たちは、真面目に働き、節約を重ね、少しでも良い明日を信じて頑張ってきた。なのに、<span style="background-color: #ffff99;"><strong>なぜ私たちの生活は良くならないのか</strong></span>。その答えは、<span style="background-color: #993300; color: #ffffff;">この国が抱える「借金」という巨大な病</span>にあるのだ、と彼らは言う。これから語られるのは、<span class="underline">そんな「常識」と「正義」が導く、<strong>絶望の物語</strong></span>だ。</p>
-		
-		<h2>第1章：データが示す「待ったなし」の危機</h2>
-		<p>言葉を尽くすよりも、まず、この国の偽らざる現実をデータで直視していただきたい。ここに提示するグラフは全て、<strong>財務省の公式発表に基づく</strong>、客観的な事実である。グラフにマウスカーソルを合わせ、その詳細な数値を確認してほしい。</p>
-		<h3>【グラフ１】国家予算の内訳（2024年度）</h3>
-		<p>国の収入と支出の内訳だ。これを見れば、いかに日本の財政が危機的か、一目でわかるだろう。</p>
-		<div id="pieChartContainer" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-			<div id="pieChartIn" style="width: 100%; max-width: 400px;"></div>
-			<div id="pieChartOut" style="width: 100%; max-width: 400px;"></div>
+	<div class="page-wrapper" id="part1">
+	<h1>
+		【第一部】 終わりなき絶望 ― 法と権威が導く日本の黄昏
+	</h1>
+	<h2>
+		序章：赤信号のニッポン
+	</h2>
+	<p>
+		ニュースを開けば、未来を暗くする言葉ばかりが目に飛び込んでくる。「
+		<span class="emphasis-red">
+		国の借金、過去最大の1200兆円超え
+		</span>
+		」「少子高齢化で社会保障は
+		<span class="emphasis-red">
+		崩壊寸前
+		</span>
+		」「このままでは
+		<span class="emphasis-red">
+		財政破綻
+		</span>
+		は避けられない」。私たちは、真面目に働き、節約を重ね、少しでも良い明日を信じて頑張ってきた。なのに、
+		<span style="background-color: #ffff99;">
+		<strong>
+			なぜ私たちの生活は良くならないのか
+		</strong>
+		</span>
+		。その答えは、
+		<span style="background-color: #993300; color: #ffffff;">
+		この国が抱える「借金」という巨大な病
+		</span>
+		にあるのだ、と彼らは言う。これから語られるのは、
+		<span class="underline">
+		そんな「常識」と「正義」が導く、
+		<strong>
+			絶望の物語
+		</strong>
+		</span>
+		だ。
+	</p>
+	<h2>
+		第1章：データが示す「待ったなし」の危機
+	</h2>
+	<p>
+		言葉を尽くすよりも、まず、この国の偽らざる現実をデータで直視していただきたい。ここに提示するグラフは全て、
+		<strong>
+		財務省の公式発表に基づく
+		</strong>
+		、客観的な事実である。グラフにマウスカーソルを合わせ、その詳細な数値を確認してほしい。
+	</p>
+	<h3>
+		【グラフ１】国家予算の内訳（2024年度）
+	</h3>
+	<p>
+		国の収入と支出の内訳だ。これを見れば、いかに日本の財政が危機的か、一目でわかるだろう。
+	</p>
+	<div id="pieChartContainer" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+		<div id="pieChartIn" style="width: 100%; max-width: 400px;">
 		</div>
-		<p class="note">（財務省の公式発表に基づく）</p>
-		<p>国の収入（歳入）の実に<strong>3分の1</strong>が、新たな<span class="emphasis-red">[借金]</span>である<span class="underline">公債金に依存</span>している。一方で支出（歳出）は、<strong>社会保障費と過去の借金返済（国債費）だけで全体の半分以上を占め</strong>、自由に使えるお金は<strong>ほとんど残されていない</strong>のだ。</p>
-		<h3>【グラフ２】税収と歳出の推移（ワニの口）</h3>
-		<p>次に、この国の構造的な問題を示すのが、この「ワニの口」と呼ばれるグラフだ。<span class="underline">支出と収入の差</span>が、毎年新たな借金を生み出している<strong>動かぬ証拠</strong>である。</p>
-		<div id="lineChartWaani" style="width: 100%;"></div>
-		<p class="note">（財務省の公式発表に基づく）</p>
-		<h3>【グラフ３】主要国の政府債務残高 国際比較</h3>
-		<p>そして、この危機的状況は、世界と比較してどうなのか。目を覆いたくなるような現実が、ここにある。</p>
-		<div id="barChartDebt" style="width: 100%;"></div>
-		<p class="note">（財務省の公式発表に基づく。IMFの2023年データより）</p>
-		<p>これらの事実は、我々財務省が、国民の皆様にご理解いただくため、日々努力を重ね、作成している以下の資料でも、より詳細に、そして分かりやすくお示ししている。</p>
-		<blockquote>
-			<strong>財務省ウェブサイト「日本の財政を考える」</strong><br>
-			<a href="https://www.mof.go.jp/zaisei/current-situation/" target="_blank" rel="noopener">https://www.mof.go.jp/zaisei/current-situation/</a>
-		</blockquote>
-		<p>我々は、ここまで丁寧に、客観的なデータを示して国民に語りかけている。これを読んでもなお、我々の政策を批判する者がいるとすれば、それは単に、この国の現実を直視する知性が足りないか、あるいは、意図的に目を背けているだけだ。</p>
-
-		<h2>第2章：絶望の問答 ～砕かれる希望、これが「現実」だ～</h2>
-		<div class="qa-item">
-			<div class="qa-question">【Q1】景気対策のため、政府はもっとお金を使うべきでは？</div>
-			<div class="qa-answer"><strong>【A1】</strong>極めて無責任な発想です。これ以上<strong>借金</strong>を増やせば<strong>国債の信用が失われ</strong>、<strong>金利が急騰</strong>します。そうなれば<strong>経済は大混乱</strong>に陥ります。目先の景気のために国家の土台を破壊するのですか？</div>
-		</div>
-		<div class="qa-item">
-			<div class="qa-question">【Q2】生活が苦しいです。増税や社会保険料の負担増には耐えられません。</div>
-			<div class="qa-answer"><strong>【A2】</strong>今、私たちが少しの痛みに耐えなければ、未来にはもっと大きな破滅が待っています。国民一丸となって痛みを分かち合い、<span class="underline">財政再建を成し遂げる以外に道はありません。</span></div>
-		</div>
-		<div class="qa-item">
-			<div class="qa-question">【Q3】日銀が国債をたくさん買っているから、大丈夫だと聞きましたが？</div>
-			<div class="qa-answer"><strong>【A3】</strong>それは禁じ手です。中央銀行による国債の直接引き受け（財政ファイナンス）は、<strong>財政法で固く禁じられています</strong>。今の日銀の政策はあくまで<strong>一時的な例外措置</strong>。このような異常な状態が未来永劫続くという考えは、麻薬に溺れるのと同じ、<span class="underline">極めて危険な幻想</span>です。</div>
-		</div>
-		
-		<div class="qa-item">
-			<div class="qa-question">【Q4】「管理通貨制度」という考え方なら、破綻しないと主張する人がいます。</div>
-			<div class="qa-answer"><strong>【A4】</strong>所詮は、一部の学者が唱える机上の空論です。「<a href="javascript:void(0);" id="hidden-key" class="hidden-key">管理通貨制度</a>」などという言葉は、<span class="underline">日本の法律のどこにも書かれていません</span>。我々は<strong>財政法</strong>、<strong>財務省設置法</strong>に基づき、<strong>法的に正しい財政運営</strong>をしているだけです。国家財政を簡単に語らないでいただきたい。<strong>日本は法治国家です。法に従いなさい。</strong></div>
-		</div>
-		
-		<div class="qa-item">
-			<div class="qa-question">【Q5】…もう、どうすればいいのか分かりません。何をしても無駄なのですか？</div>
-			<div class="qa-answer"><strong>【A5】</strong>…無駄、ではありません。我々国民にできることは、この厳しい現実を直視し、受け入れることです。現に、<strong>石破茂総理</strong>も、<strong>鈴木俊一財務大臣</strong>も、日本の財政状況は「<strong>先進国で最悪</strong>」「<strong>ギリシャよりも悪い</strong>」と繰り返し警鐘を鳴らしています。<span class="underline">国のトップがこれほどの危機感を表明している</span>のです。これを批判する人々は、単に<strong>事実から目を背ける愚か者</strong>か、あるいは、あのギリシャの悲劇がどのようなものであったかすら知らない、<strong>救いようのない無能</strong>なのです。</div>
-		</div>
-		<blockquote>
-			<p><strong>【コラム】財政規律を失った国の末路 ～ギリシャの悲劇～</strong></p>
-			<p>ギリシャでは、まず<span class="underline">公務員の給料が3割カットされ、ボーナスは消えました</span>。次に、国民の<span class="underline">年金が4割も削減</span>され、老後の生活設計は粉々に砕け散ったのです。<span class="underline">失業率は25%を超え</span>、若者に至っては<span class="underline">2人に1人が職を失い</span>、希望を奪われて海外に流出しました。<span class="underline">病院は薬不足で機能不全</span>に陥り、街にはゴミが溢れ、人々は<strong>明日の食料を求めてゴミ箱を漁った</strong>のです。<br><br>これが、<span class="emphasis-red">財政破綻の現実</span>です。<span class="underline">我々が「鬼」と呼ばれようと緊縮財政を断行するのは、愛する日本を、我々の家族を、このような地獄絵図に陥らせないため</span>なのです。</p>
-		</blockquote>
-
-		<div class="final-word">
-			<p>さあ、覚悟を決めなさい。<br>我々には、この道しかないのですから。</p>
-			<p style="font-size: 0.8em; color: #999;">（…本当に、そうなのでしょうか？実は、この絶望的な話の中に、全てのウソを暴く「鍵」が隠されています。それは、この国の「最高法規」とも呼ばれる、忘れられたルール…）</p>
-			<p style="font-size: 0.8em; color: #999;">見つからなかった人は&rarr; <a href="javascript:void(0);" id="rescue-door" title="答えを見る">🚪</a></p>
+		<div id="pieChartOut" style="width: 100%; max-width: 400px;">
 		</div>
 	</div>
-
-	<div id="part2" class="page-wrapper" style="display:none; border-top: 5px solid #27ae60;">
-		
-		<div id="reveal-message"></div>
-		
-		<h1>【第二部】 夜明けの真実 ― 君が手にする希望の剣</h1>
-
-		<h2>第一章：逆転の狼煙</h2>
-
-		<p>鍵を見つけられた人も、お手上げになってここに辿り着いた人も、大丈夫。</p>
-		<p>第一部で語られた、あの圧倒的な絶望。それは、たった一つの「真実」を知るだけで、全てが音を立てて崩れ去る、砂上の楼閣に過ぎない。</p>
-		<p>そして、その真実を支えるのは、法治国家である日本にとっての最高規範。全ての公務員が、必ず守らなければならない、唯一絶対のルール。</p>
-		<p>―――それは、**「憲法」**だ。</p>
-
-		<h2>第二章：希望のキーワード</h2>
-
-		<p>憲法が国民に保障する権利（第二部の後半で詳しく解説するよ）。その権利を守るために、国が行うべき経済運営の考え方。それは、かつての「金本位制」という、時代遅れの通貨制度の次世代にして、現在の世界標準。もちろん、日本も含めた、殆どの国の「当たり前の通貨制度」だ。</p>
-		<p>財務省は、実は知っている。知っていて、知らないフリをしている。どうして？</p>
-		<p>自分たちが半世紀近くも続けてきた緊縮財政が、実は間違いでした、と「ごめんなさい」ができないからだ。</p>
-		<p>ごめんなさいをするなんて、人として当たり前のことなのにね。それだけ、「国民に対して悪いことをしてきた」という自覚があるのかもしれない。</p>
-		<p>この言葉が、全てをひっくり返す。絶望を希望に。破綻を盤石に。</p>
-		<p>オセロの黒いコマを、全て真っ白に塗り替える、希望のキーワード。その名は―――</p>
-
-		<h2 style="text-align:center; font-size: 2em; border:none; color: #16a085;">
-			<span class="keyword">Global Standard Money System: Fiat</span><br>
+	<p class="note">
+		（財務省の公式発表に基づく）
+	</p>
+	<p>
+		国の収入（歳入）の実に
+		<strong>
+		3分の1
+		</strong>
+		が、新たな
+		<span class="emphasis-red">
+		[借金]
+		</span>
+		である
+		<span class="underline">
+		公債金に依存
+		</span>
+		している。一方で支出（歳出）は、
+		<strong>
+		社会保障費と過去の借金返済（国債費）だけで全体の半分以上を占め
+		</strong>
+		、自由に使えるお金は
+		<strong>
+		ほとんど残されていない
+		</strong>
+		のだ。
+	</p>
+	<h3>
+		【グラフ２】税収と歳出の推移（ワニの口）
+	</h3>
+	<p>
+		次に、この国の構造的な問題を示すのが、この「ワニの口」と呼ばれるグラフだ。
+		<span class="underline">
+		支出と収入の差
+		</span>
+		が、毎年新たな借金を生み出している
+		<strong>
+		動かぬ証拠
+		</strong>
+		である。
+	</p>
+	<div id="lineChartWaani" style="width: 100%;">
+	</div>
+	<p class="note">
+		（財務省の公式発表に基づく）
+	</p>
+	<h3>
+		【グラフ３】主要国の政府債務残高 国際比較
+	</h3>
+	<p>
+		そして、この危機的状況は、世界と比較してどうなのか。目を覆いたくなるような現実が、ここにある。
+	</p>
+	<div id="barChartDebt" style="width: 100%;">
+	</div>
+	<p class="note">
+		（財務省の公式発表に基づく。IMFの2023年データより）
+	</p>
+	<p>
+		これらの事実は、我々財務省が、国民の皆様にご理解いただくため、日々努力を重ね、作成している以下の資料でも、より詳細に、そして分かりやすくお示ししている。
+	</p>
+	<blockquote>
+		<strong>
+		財務省ウェブサイト「日本の財政を考える」
+		</strong>
+		<br/>
+		<a href="https://www.mof.go.jp/zaisei/current-situation/" rel="noopener" target="_blank">
+		https://www.mof.go.jp/zaisei/current-situation/
+		</a>
+	</blockquote>
+	<p>
+		我々は、ここまで丁寧に、客観的なデータを示して国民に語りかけている。これを読んでもなお、我々の政策を批判する者がいるとすれば、それは単に、この国の現実を直視する知性が足りないか、あるいは、意図的に目を背けているだけだ。
+	</p>
+	<h2>
+		第2章：絶望の問答 ～砕かれる希望、これが「現実」だ～
+	</h2>
+	<div class="qa-item">
+		<div class="qa-question">
+		【Q1】景気対策のため、政府はもっとお金を使うべきでは？
+		</div>
+		<div class="qa-answer">
+		<strong>
+			【A1】
+		</strong>
+		極めて無責任な発想です。これ以上
+		<strong>
+			借金
+		</strong>
+		を増やせば
+		<strong>
+			国債の信用が失われ
+		</strong>
+		、
+		<strong>
+			金利が急騰
+		</strong>
+		します。そうなれば
+		<strong>
+			経済は大混乱
+		</strong>
+		に陥ります。目先の景気のために国家の土台を破壊するのですか？
+		</div>
+	</div>
+	<div class="qa-item">
+		<div class="qa-question">
+		【Q2】生活が苦しいです。増税や社会保険料の負担増には耐えられません。
+		</div>
+		<div class="qa-answer">
+		<strong>
+			【A2】
+		</strong>
+		今、私たちが少しの痛みに耐えなければ、未来にはもっと大きな破滅が待っています。国民一丸となって痛みを分かち合い、
+		<span class="underline">
+			財政再建を成し遂げる以外に道はありません。
+		</span>
+		</div>
+	</div>
+	<div class="qa-item">
+		<div class="qa-question">
+		【Q3】日銀が国債をたくさん買っているから、大丈夫だと聞きましたが？
+		</div>
+		<div class="qa-answer">
+		<strong>
+			【A3】
+		</strong>
+		それは禁じ手です。中央銀行による国債の直接引き受け（財政ファイナンス）は、
+		<strong>
+			財政法で固く禁じられています
+		</strong>
+		。今の日銀の政策はあくまで
+		<strong>
+			一時的な例外措置
+		</strong>
+		。このような異常な状態が未来永劫続くという考えは、麻薬に溺れるのと同じ、
+		<span class="underline">
+			極めて危険な幻想
+		</span>
+		です。
+		</div>
+	</div>
+	<div class="qa-item">
+		<div class="qa-question">
+		【Q4】「管理通貨制度」という考え方なら、破綻しないと主張する人がいます。
+		</div>
+		<div class="qa-answer">
+		<strong>
+			【A4】
+		</strong>
+		所詮は、一部の学者が唱える机上の空論です。「
+		<a class="hidden-key" href="javascript:void(0);" id="hidden-key">
 			管理通貨制度
+		</a>
+		」などという言葉は、
+		<span class="underline">
+			日本の法律のどこにも書かれていません
+		</span>
+		。我々は
+		<strong>
+			財政法
+		</strong>
+		、
+		<strong>
+			財務省設置法
+		</strong>
+		に基づき、
+		<strong>
+			法的に正しい財政運営
+		</strong>
+		をしているだけです。国家財政を簡単に語らないでいただきたい。
+		<strong>
+			日本は法治国家です。法に従いなさい。
+		</strong>
+		</div>
+	</div>
+	<div class="qa-item">
+		<div class="qa-question">
+		【Q5】…もう、どうすればいいのか分かりません。何をしても無駄なのですか？
+		</div>
+		<div class="qa-answer">
+		<strong>
+			【A5】
+		</strong>
+		…無駄、ではありません。我々国民にできることは、この厳しい現実を直視し、受け入れることです。現に、
+		<strong>
+			石破茂総理
+		</strong>
+		も、
+		<strong>
+			鈴木俊一財務大臣
+		</strong>
+		も、日本の財政状況は「
+		<strong>
+			先進国で最悪
+		</strong>
+		」「
+		<strong>
+			ギリシャよりも悪い
+		</strong>
+		」と繰り返し警鐘を鳴らしています。
+		<span class="underline">
+			国のトップがこれほどの危機感を表明している
+		</span>
+		のです。これを批判する人々は、単に
+		<strong>
+			事実から目を背ける愚か者
+		</strong>
+		か、あるいは、あのギリシャの悲劇がどのようなものであったかすら知らない、
+		<strong>
+			救いようのない無能
+		</strong>
+		なのです。
+		</div>
+	</div>
+	<blockquote>
+		<p>
+		<strong>
+			【コラム】財政規律を失った国の末路 ～ギリシャの悲劇～
+		</strong>
+		</p>
+		<p>
+		ギリシャでは、まず
+		<span class="underline">
+			公務員の給料が3割カットされ、ボーナスは消えました
+		</span>
+		。次に、国民の
+		<span class="underline">
+			年金が4割も削減
+		</span>
+		され、老後の生活設計は粉々に砕け散ったのです。
+		<span class="underline">
+			失業率は25%を超え
+		</span>
+		、若者に至っては
+		<span class="underline">
+			2人に1人が職を失い
+		</span>
+		、希望を奪われて海外に流出しました。
+		<span class="underline">
+			病院は薬不足で機能不全
+		</span>
+		に陥り、街にはゴミが溢れ、人々は
+		<strong>
+			明日の食料を求めてゴミ箱を漁った
+		</strong>
+		のです。
+		<br/>
+		<br/>
+		これが、
+		<span class="emphasis-red">
+			財政破綻の現実
+		</span>
+		です。
+		<span class="underline">
+			我々が「鬼」と呼ばれようと緊縮財政を断行するのは、愛する日本を、我々の家族を、このような地獄絵図に陥らせないため
+		</span>
+		なのです。
+		</p>
+	</blockquote>
+	<div class="final-word">
+		<p>
+		さあ、覚悟を決めなさい。
+		<br/>
+		我々には、この道しかないのですから。
+		</p>
+		<p style="font-size: 0.8em; color: #999;">
+		（…本当に、そうなのでしょうか？実は、この絶望的な話の中に、全てのウソを暴く「鍵」が隠されています。それは、この国の「最高法規」とも呼ばれる、忘れられたルール…）
+		</p>
+		<p style="font-size: 0.8em; color: #999;">
+		見つからなかった人は→
+		<a href="javascript:void(0);" id="rescue-door" title="答えを見る">
+			🚪
+		</a>
+		</p>
+	</div>
+	</div>
+	<div class="page-wrapper" id="part2" style="display:none; border-top: 5px solid #27ae60;">
+	<div id="reveal-message">
+	</div>
+	<h1>
+		【第二部】 夜明けの真実 ― 君が手にする希望の剣
+	</h1>
+	<h2>
+		第一章：逆転の狼煙
+	</h2>
+	<p>
+		鍵を見つけられた人も、お手上げになってここに辿り着いた人も、大丈夫。
+	</p>
+	<p>
+		第一部で語られた、あの圧倒的な絶望。それは、たった一つの「真実」を知るだけで、全てが音を立てて崩れ去る、砂上の楼閣に過ぎない。
+	</p>
+	<p>
+		そして、その真実を支えるのは、法治国家である日本にとっての最高規範。全ての公務員が、必ず守らなければならない、唯一絶対のルール。
+	</p>
+	<p>
+		―――それは、**「憲法」**だ。
+	</p>
+	<h2>
+		第二章：希望のキーワード
+	</h2>
+	<p>
+		憲法が国民に保障する権利（第二部の後半で詳しく解説するよ）。その権利を守るために、国が行うべき経済運営の考え方。それは、かつての「金本位制」という、時代遅れの通貨制度の次世代にして、現在の世界標準。もちろん、日本も含めた、殆どの国の「当たり前の通貨制度」だ。
+	</p>
+	<p>
+		財務省は、実は知っている。知っていて、知らないフリをしている。どうして？
+	</p>
+	<p>
+		自分たちが半世紀近くも続けてきた緊縮財政が、実は間違いでした、と「ごめんなさい」ができないからだ。
+	</p>
+	<p>
+		ごめんなさいをするなんて、人として当たり前のことなのにね。それだけ、「国民に対して悪いことをしてきた」という自覚があるのかもしれない。
+	</p>
+	<p>
+		この言葉が、全てをひっくり返す。絶望を希望に。破綻を盤石に。
+	</p>
+	<p>
+		オセロの黒いコマを、全て真っ白に塗り替える、希望のキーワード。その名は―――
+	</p>
+	<h2 style="text-align:center; font-size: 2em; border:none; color: #16a085;">
+		<span class="keyword">
+		Global Standard Money System: Fiat
+		</span>
+		<br/>
+		管理通貨制度
+	</h2>
+	<hr/>
+	<div class="page-wrapper" style="text-align: center; border-top: 3px solid #666; margin-top: 40px;">
+		<h2>
+		そして、本当の物語がここから始まる
 		</h2>
-		<hr>
-			<div class="page-wrapper" style="text-align: center; border-top: 3px solid #666; margin-top: 40px;">
-				<h2>そして、本当の物語がここから始まる</h2>
-				<p>君はその手にした剣で、何を守り、何と戦うのか。</p>
-		
-				<div style="margin: 30px 0;">
-				<a href="./The_Othello_Flip.mp4" target="_blank" class="video-link">
-					▶ この逆転劇を映像で体験する
-				</a>
-			</div>
-			<div class="next-chapter-link">
-				<a href="anti-fiat_story_chapter2_final.html" title="第二部・最終章へ">
-					<img src="anti-fiat_story_chapter1_to_2.webp" alt="大逆転の管理通貨制度 &rarr; ラストバトル &rarr; 大団円" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: box-shadow 0.3s;">
-				</a>
-			</div>
+		<p>
+		君はその手にした剣で、何を守り、何と戦うのか。
+		</p>
+		<div style="margin: 30px 0;">
+		<a class="video-link" href="./The_Othello_Flip.mp4" target="_blank">
+			▶ この逆転劇を映像で体験する
+		</a>
+		</div>
+		<div class="next-chapter-link">
+		<a href="anti-fiat_story_chapter2_final.html" title="第二部・最終章へ">
+			<img alt="大逆転の管理通貨制度 → ラストバトル → 大団円" src="anti-fiat_story_chapter1_to_2.webp" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: box-shadow 0.3s;"/>
+		</a>
+		</div>
 	</div>
 	<script>
 		// グラフ描画スクリプト（省略）
@@ -240,5 +537,6 @@
 			revealPart2(false);
 		});
 	</script>
+	</div>
 </body>
 </html>

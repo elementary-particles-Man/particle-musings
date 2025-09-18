@@ -1,233 +1,257 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>通貨発行と徴税シミュレーション</title>
-<style>
-  body {
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    background-color: #f4f4f4;
-  }
-  .container {
-    display: flex;
-    justify-content: space-around;
-    width: 80%;
-    max-width: 700px;
-    margin-bottom: 20px;
-  }
-  .actor {
-    border: 1px solid #ccc;
-    padding: 20px;
-    width: 200px;
-    text-align: center;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  .actor h2 {
-    margin-top: 0;
-    color: #333;
-  }
-  .money {
-    font-size: 24px;
-    font-weight: bold;
-    color: #e67e22; /* 金色っぽい色 */
-    margin: 10px 0;
-  }
-  canvas {
-    border: 1px solid #000;
-    background-color: #e9f5ff; /* 薄い青背景 */
-    display: block; /* 中央寄せやマージン調整のため */
-    margin: 20px auto;
-  }
-  .controls {
-    margin-top: 20px;
-  }
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 0 10px;
-    cursor: pointer;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  button:hover {
-    background-color: #2980b9;
-  }
-  #explanation {
-    margin-top: 15px;
-    font-size: 0.9em;
-    color: #555;
-  }
-</style>
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<title>
+	通貨発行と徴税シミュレーション
+	</title>
+	<style>
+	body {
+		font-family: sans-serif;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 20px;
+		background-color: #f4f4f4;
+	}
+	.container {
+		display: flex;
+		justify-content: space-around;
+		width: 80%;
+		max-width: 700px;
+		margin-bottom: 20px;
+	}
+	.actor {
+		border: 1px solid #ccc;
+		padding: 20px;
+		width: 200px;
+		text-align: center;
+		background-color: #fff;
+		border-radius: 8px;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	}
+	.actor h2 {
+		margin-top: 0;
+		color: #333;
+	}
+	.money {
+		font-size: 24px;
+		font-weight: bold;
+		color: #e67e22; /* 金色っぽい色 */
+		margin: 10px 0;
+	}
+	canvas {
+		border: 1px solid #000;
+		background-color: #e9f5ff; /* 薄い青背景 */
+		display: block; /* 中央寄せやマージン調整のため */
+		margin: 20px auto;
+	}
+	.controls {
+		margin-top: 20px;
+	}
+	button {
+		padding: 10px 20px;
+		font-size: 16px;
+		margin: 0 10px;
+		cursor: pointer;
+		background-color: #3498db;
+		color: white;
+		border: none;
+		border-radius: 5px;
+		transition: background-color 0.3s;
+	}
+	button:hover {
+		background-color: #2980b9;
+	}
+	#explanation {
+		margin-top: 15px;
+		font-size: 0.9em;
+		color: #555;
+	}
+	</style>
 </head>
 <body>
+	<h1>
+	金本位制（風） 通貨シミュレーション
+	</h1>
+	<div class="container">
+	<div class="actor" id="government">
+		<h2>
+		政府
+		</h2>
+		<p>
+		金保有 (裏付資産):
+		<span class="money" id="govGold">
+			1000
+		</span>
+		</p>
+		<p>
+		発行済み通貨:
+		<span class="money" id="govIssuedCurrency">
+			0
+		</span>
+		</p>
+	</div>
+	<div class="actor" id="people">
+		<h2>
+		国民
+		</h2>
+		<p>
+		保有通貨:
+		<span class="money" id="peopleMoney">
+			0
+		</span>
+		</p>
+	</div>
+	</div>
+	<canvas id="animationCanvas">
+	</canvas>
+	<div class="controls">
+	<button id="issueCurrencyBtn">
+		通貨発行 (100)
+	</button>
+	<button id="collectTaxBtn">
+		徴税 (50)
+	</button>
+	</div>
+	<p id="explanation">
+	通貨発行：政府の金(裏付資産)を基に国民へ通貨を供給します。
+	<br/>
+	徴税：国民から政府へ通貨(税)を回収します。
+	</p>
+	<script>
+	const canvas = document.getElementById('animationCanvas');
+	const ctx = canvas.getContext('2d');
 
-<h1>金本位制（風） 通貨シミュレーション</h1>
+	// Canvasのサイズ設定
+	canvas.width = 600;
+	canvas.height = 150;
 
-<div class="container">
-  <div class="actor" id="government">
-    <h2>政府</h2>
-    <p>金保有 (裏付資産): <span id="govGold" class="money">1000</span></p>
-    <p>発行済み通貨: <span id="govIssuedCurrency" class="money">0</span></p>
-  </div>
-  <div class="actor" id="people">
-    <h2>国民</h2>
-    <p>保有通貨: <span id="peopleMoney" class="money">0</span></p>
-  </div>
-</div>
+	// アクターの位置情報 (Canvas内での基準点)
+	const governmentPos = { x: canvas.width * 0.2, y: canvas.height / 2 };
+	const peoplePos = { x: canvas.width * 0.8, y: canvas.height / 2 };
 
-<canvas id="animationCanvas"></canvas>
+	// 金額表示用DOM要素
+	const govGoldDisplay = document.getElementById('govGold');
+	const govIssuedCurrencyDisplay = document.getElementById('govIssuedCurrency');
+	const peopleMoneyDisplay = document.getElementById('peopleMoney');
 
-<div class="controls">
-  <button id="issueCurrencyBtn">通貨発行 (100)</button>
-  <button id="collectTaxBtn">徴税 (50)</button>
-</div>
-<p id="explanation">通貨発行：政府の金(裏付資産)を基に国民へ通貨を供給します。<br>徴税：国民から政府へ通貨(税)を回収します。</p>
+	// 初期状態
+	let governmentGold = 1000; // 政府の金保有 (兌換紙幣の裏付けとなる資産)
+	let governmentIssuedCurrency = 0; // 政府が発行した通貨の総量
+	let peopleMoney = 0;   // 国民の保有通貨
 
+	let particles = []; // アニメーション用のお金の粒
 
-<script>
-  const canvas = document.getElementById('animationCanvas');
-  const ctx = canvas.getContext('2d');
+	function updateDisplays() {
+		govGoldDisplay.textContent = governmentGold;
+		govIssuedCurrencyDisplay.textContent = governmentIssuedCurrency;
+		peopleMoneyDisplay.textContent = peopleMoney;
+	}
 
-  // Canvasのサイズ設定
-  canvas.width = 600;
-  canvas.height = 150;
+	// お金の粒のクラス
+	class Particle {
+		constructor(startX, startY, endX, endY, amount, color = 'gold') {
+			this.x = startX;
+			this.y = startY;
+			this.endX = endX;
+			this.endY = endY;
+			this.amount = amount; // 表示用だが、ここでは使わない
+			this.color = color;
+			this.radius = 5;
+			this.speed = 3;
+			const angle = Math.atan2(endY - startY, endX - startX);
+			this.dx = Math.cos(angle) * this.speed;
+			this.dy = Math.sin(angle) * this.speed;
+			this.reached = false;
+		}
 
-  // アクターの位置情報 (Canvas内での基準点)
-  const governmentPos = { x: canvas.width * 0.2, y: canvas.height / 2 };
-  const peoplePos = { x: canvas.width * 0.8, y: canvas.height / 2 };
+		draw() {
+			ctx.beginPath();
+			ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+			ctx.fillStyle = this.color;
+			ctx.fill();
+			ctx.closePath();
+		}
 
-  // 金額表示用DOM要素
-  const govGoldDisplay = document.getElementById('govGold');
-  const govIssuedCurrencyDisplay = document.getElementById('govIssuedCurrency');
-  const peopleMoneyDisplay = document.getElementById('peopleMoney');
+		update() {
+			if (this.reached) return;
 
-  // 初期状態
-  let governmentGold = 1000; // 政府の金保有 (兌換紙幣の裏付けとなる資産)
-  let governmentIssuedCurrency = 0; // 政府が発行した通貨の総量
-  let peopleMoney = 0;   // 国民の保有通貨
+			this.x += this.dx;
+			this.y += this.dy;
 
-  let particles = []; // アニメーション用のお金の粒
+			// ターゲットに到達したかどうかの判定 (少し甘め)
+			if (Math.sqrt(Math.pow(this.endX - this.x, 2) + Math.pow(this.endY - this.y, 2)) < this.speed * 1.5) {
+				this.x = this.endX;
+				this.y = this.endY;
+				this.reached = true;
+			}
+		}
+	}
 
-  function updateDisplays() {
-    govGoldDisplay.textContent = governmentGold;
-    govIssuedCurrencyDisplay.textContent = governmentIssuedCurrency;
-    peopleMoneyDisplay.textContent = peopleMoney;
-  }
+	function animate() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height); // Canvasをクリア
 
-  // お金の粒のクラス
-  class Particle {
-    constructor(startX, startY, endX, endY, amount, color = 'gold') {
-      this.x = startX;
-      this.y = startY;
-      this.endX = endX;
-      this.endY = endY;
-      this.amount = amount; // 表示用だが、ここでは使わない
-      this.color = color;
-      this.radius = 5;
-      this.speed = 3;
-      const angle = Math.atan2(endY - startY, endX - startX);
-      this.dx = Math.cos(angle) * this.speed;
-      this.dy = Math.sin(angle) * this.speed;
-      this.reached = false;
-    }
+		let allReached = true;
+		particles.forEach(p => {
+			p.draw();
+			p.update();
+			if (!p.reached) {
+				allReached = false;
+			}
+		});
 
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
-      ctx.fill();
-      ctx.closePath();
-    }
+		if (allReached) {
+			particles = []; // 全て到達したらクリア
+			updateDisplays(); // アニメーション完了後に数値を最終更新
+		} else {
+			requestAnimationFrame(animate);
+		}
+	}
 
-    update() {
-      if (this.reached) return;
+	// 通貨発行ボタンの処理
+	document.getElementById('issueCurrencyBtn').addEventListener('click', () => {
+		const amount = 100;
+		if (governmentGold >= amount) { // 発行できる金があるか (簡略化モデル)
+			governmentGold -= amount;         // 裏付け資産が減る
+			governmentIssuedCurrency += amount; // 発行済み通貨が増える
+			peopleMoney += amount;            // 国民の保有通貨が増える
+			
+			// アニメーション用のパーティクルを生成
+			for (let i = 0; i < 5; i++) { // 5つの粒で表現
+					particles.push(new Particle(governmentPos.x, governmentPos.y, peoplePos.x, peoplePos.y, amount/5, 'orange'));
+			}
+			animate(); // アニメーション開始
+		} else {
+			alert('政府の金が不足しており、これ以上通貨を発行できません。');
+		}
+		updateDisplays(); // ボタン押下時に即時反映（アニメーション完了時にも再度更新）
+	});
 
-      this.x += this.dx;
-      this.y += this.dy;
+	// 徴税ボタンの処理
+	document.getElementById('collectTaxBtn').addEventListener('click', () => {
+		const amount = 50;
+		if (peopleMoney >= amount) {
+			peopleMoney -= amount;
+			// 金本位制では税収は紙幣で回収し、それを消却するか、金の裏付けとして再編入するか等モデルによる
+			// ここでは簡略化し、政府の「金保有」が直接増える（回収した紙幣分の金が戻るイメージ）とする
+			governmentGold += amount; 
+			governmentIssuedCurrency -= amount; // 流通している発行済み通貨が減る
+			if(governmentIssuedCurrency < 0) governmentIssuedCurrency = 0; // マイナスにならないように
 
-      // ターゲットに到達したかどうかの判定 (少し甘め)
-      if (Math.sqrt(Math.pow(this.endX - this.x, 2) + Math.pow(this.endY - this.y, 2)) < this.speed * 1.5) {
-        this.x = this.endX;
-        this.y = this.endY;
-        this.reached = true;
-      }
-    }
-  }
+			for (let i = 0; i < 3; i++) { // 3つの粒で表現
+				particles.push(new Particle(peoplePos.x, peoplePos.y, governmentPos.x, governmentPos.y, amount/3, 'darkgoldenrod'));
+			}
+			animate();
+		} else {
+			alert('国民の保有通貨が不足しており、徴税できません。');
+		}
+		updateDisplays();
+	});
 
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Canvasをクリア
-
-    let allReached = true;
-    particles.forEach(p => {
-      p.draw();
-      p.update();
-      if (!p.reached) {
-        allReached = false;
-      }
-    });
-
-    if (allReached) {
-      particles = []; // 全て到達したらクリア
-      updateDisplays(); // アニメーション完了後に数値を最終更新
-    } else {
-      requestAnimationFrame(animate);
-    }
-  }
-
-  // 通貨発行ボタンの処理
-  document.getElementById('issueCurrencyBtn').addEventListener('click', () => {
-    const amount = 100;
-    if (governmentGold >= amount) { // 発行できる金があるか (簡略化モデル)
-      governmentGold -= amount;         // 裏付け資産が減る
-      governmentIssuedCurrency += amount; // 発行済み通貨が増える
-      peopleMoney += amount;            // 国民の保有通貨が増える
-      
-      // アニメーション用のパーティクルを生成
-      for (let i = 0; i < 5; i++) { // 5つの粒で表現
-          particles.push(new Particle(governmentPos.x, governmentPos.y, peoplePos.x, peoplePos.y, amount/5, 'orange'));
-      }
-      animate(); // アニメーション開始
-    } else {
-      alert('政府の金が不足しており、これ以上通貨を発行できません。');
-    }
-    updateDisplays(); // ボタン押下時に即時反映（アニメーション完了時にも再度更新）
-  });
-
-  // 徴税ボタンの処理
-  document.getElementById('collectTaxBtn').addEventListener('click', () => {
-    const amount = 50;
-    if (peopleMoney >= amount) {
-      peopleMoney -= amount;
-      // 金本位制では税収は紙幣で回収し、それを消却するか、金の裏付けとして再編入するか等モデルによる
-      // ここでは簡略化し、政府の「金保有」が直接増える（回収した紙幣分の金が戻るイメージ）とする
-      governmentGold += amount; 
-      governmentIssuedCurrency -= amount; // 流通している発行済み通貨が減る
-      if(governmentIssuedCurrency < 0) governmentIssuedCurrency = 0; // マイナスにならないように
-
-      for (let i = 0; i < 3; i++) { // 3つの粒で表現
-        particles.push(new Particle(peoplePos.x, peoplePos.y, governmentPos.x, governmentPos.y, amount/3, 'darkgoldenrod'));
-      }
-      animate();
-    } else {
-      alert('国民の保有通貨が不足しており、徴税できません。');
-    }
-    updateDisplays();
-  });
-
-  // 初期表示更新
-  updateDisplays();
-</script>
-
+	// 初期表示更新
+	updateDisplays();
+	</script>
 </body>
 </html>
-
