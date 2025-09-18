@@ -21,8 +21,7 @@ def compute_style_href(doc_path: str) -> str:
         depth = len(parent.parts)
     steps = depth + 1
     prefix = '../' * steps
-    return f"{prefix}style.css"
-
+    return f"{prefix}assets/css/Style_root.css"
 
 
 def slugify(text: str) -> str:
