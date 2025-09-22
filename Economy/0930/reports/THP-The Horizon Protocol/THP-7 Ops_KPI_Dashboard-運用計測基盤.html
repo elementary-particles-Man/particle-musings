@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>G:\マイドライブ\Guide-Website\Economy\0930\reports\THP-The Horizon Protocol\THP-7 Ops_KPI_Dashboard-運用計測基盤.md</title>
+    <link rel="stylesheet" href="/assets/css/Economy_0930-E_style.css"/>
+</head>
+<body>
+    <div class="container">
+        <p>本ダッシュボードは、ワルプルギス危機の前兆をリアルタイムで検知し、THPの各プロトコルを自動的かつ段階的に発動させるための統合作戦監視盤である。全ての指標は、単独ではなく、相互の関連性と時間的シーケンスの中で評価される。</p>
+<p>|Gate|ステータス|条件|THPステータスへの影響|
+|---|---|---|---|
+|<strong>Gate-A</strong>|<strong>注意 (WATCH)</strong>|`MOVE > 140` <strong>かつ</strong> `HY OAS 週次+150bp` に到達。|🟢GREEN → 🟡WATCH|
+|<strong>Gate-B</strong>|<strong>警戒 (ARMED)</strong>|Gate-A条件に加え、米国債入札において3指標〈テール+5bp｜B/C<2.10｜間接<50%〉のうち<strong>2つ以上</strong>が同時に基準値に到達。|🟡WATCH → 🔶ALERT|
+|<strong>Gate-C</strong>|<strong>発火 (FIRE)</strong>|Gate-B条件に加え、`DXY` `Gold` `WTI`の3指標が同時に急騰（相関係数ρ > 0.6）、または米国債入札3指標が全て基準値に到達。|🔶ALERT → 🔴CRITICAL|
+<!-- THP-GATED_ROW_v1 -->
+|<strong>Gate-D</strong>|<strong>終端 (TERMINAL)</strong>|`CCR<40%(48h)`・`GSC<85%(24h/3系中2)`・`CLS(95pctl×3 + CCP停止/強制ノビション)` の <strong>2/3</strong> 同時充足で即時昇格|🔴CRITICAL → ☠ TERMINAL（<strong>THP-Aftermathへ強制遷移</strong>）|</p>
+<p>|指標分類|指標名|現在値|状況|執行トリガー (Execution Trigger)|ステータス|
+|---|---|---|---|---|---|
+|<strong>金利変動</strong>|<strong>MOVE Index</strong>|125|安定|`> 140` (Gate-A) / `> 170` (Gate-B)|🟢|
+|<strong>信用リスク</strong>|<strong>HY OAS</strong>|+350bp|安定|週次 `+150bp` (Gate-A)|🟢|
+|<strong>米国債入札</strong>|<strong>テール / B/C / 間接入札</strong>|正常|安定|3点中2点到達 (Gate-B) / 3点同時到達 (Gate-C)¹|🟢|
+|<strong>複合リスク</strong>|<strong>DXY, Gold, WTI</strong>|正常|安定|3指標の同時急騰 (ρ > 0.6) (Gate-C)|🟢|
+|<strong>為替介入</strong>|<strong>円高抑止オペ</strong>|無し|正常|<strong>本オペレーションの検知は禁忌事項</strong>²|🟢|</p>
+<p>¹ <strong>脚注：UST入札3点セット</strong> - 3点同時到達はGate-C条件の一つと見なす。</p>
+<p>- 3点中2点到達でGate-B（Armed）を発動し、早期警戒体制に移行する。</p>
+<p>² <strong>脚注：円高抑止（ドル買い）介入の禁忌</strong> - <strong>禁止理由:</strong> ①ドル逃避局面での逆行支援は外貨準備の無駄撃ち、②通貨スワップのベーシスを悪化させ調達コストを増大させる、③市場に誤ったシグナルを発信する、④THPの多通貨ライフライン回廊設計の思想的根幹を毀損する。</p>
+<p>- <strong>検知プロキシ:</strong> ①指標に連動しないUSD/JPYの"花火型"スパイクとそれに続く失速、②USD/JPY通貨ベーシススワップのマイナス方向への急拡大、③T-Bill/FB増発やGCレポ市場の不自然な変動、④翌営業日の日銀当座預金残高・コール市場の異常な伸縮。これらの複合的発生はGate判定を一段階引き上げる要因となる。</p>
+<p>- <strong>運用サイクル:</strong>
+    
+    - <strong>時点Ⅰ (09:00 JST):</strong> 東京市場オープン後の状況を反映。
+        
+    - <strong>時点Ⅱ (23:00 JST):</strong> ロンドンFix後の状況を反映。
+        
+    - <strong>時点Ⅲ (22:30 JST):</strong> 米国現物市場開始後の状況を反映。
+        
+    - <strong>臨時:</strong> 米国債入札結果発表時（02:00–03:00 JST）。
+        
+- <strong>標準ログ・フォーマット:</strong>
+    
+    - <strong>観測:</strong> `MOVE=158, HY OAS=+190bp/w, Tail=+6.2bp, Indirect=48%`
+        
+    - <strong>判定:</strong> `Gate-B, THP-Status=🟡→🔶`
+        
+    - <strong>解釈:</strong> `ドル逃避が加速し、セカンダリ市場の買い需要が蒸発。入札機能不全の前兆。`
+        
+    - <strong>THP接続:</strong> `LM-02(Toolkit)=ARMED, LM-05(Legal)=ARMED, LM-07(Comms)=PREPARE`</p>
+<p>- <strong>T-13〜10:</strong> HY OASが拡大し、格付機関が同週内にネガティブ・ウォッチ等の措置を発表。<strong>Gate-A</strong>発動。
+    
+- <strong>T-9〜6:</strong> MOVE指数が170に接近し、米国債入札で3指標中2つが悪化。<strong>Gate-B</strong>発動。
+    
+- <strong>T-5〜2:</strong> DXY, Gold, WTIが同時上昇（ρ > 0.6）。<strong>Gate-C</strong>発動。ナイアガラ・フォール（市場の垂直落下）直前。
+    
+- <strong>T-1〜0:</strong> 入札でプライマリー・ディーラーへの過大な配分が確定。SLR/レポ市場が逼迫し、CCPによる追加証拠金請求が連鎖的に発生。
+    
+- <strong>T-0:</strong> 入札不成立を市場が完全に織り込み、THPプロトコルが正式に発動。</p>
+<p>| 指標分類     | 指標名             | 現在値  | 状況  | 執行トリガー (Execution Trigger) | ステータス   |
+| -------- | --------------- | ---- | --- | -------------------------- | ------- |
+| <strong>資産格差</strong> | <strong>下位50％の資産シェア</strong> | 2.5% | 安定  | `≤ 2.0%` に低下               | 🟡WATCH |
+| <strong>社会心理</strong> | <strong>格差ナラティブ発話</strong>   | 増加中  | 監視  | 同一週に「海外支援批判＋家計簿財政言説」が重なる   | 🟡WATCH |
+| <strong>社会安定</strong> | <strong>暴動・抗議件数</strong>     | 極小   | 沈静化 | 「抗議行動ゼロ」＋「インフレ率上昇」が同時発生    | 🔴ALERT |
+<!-- THP-DEATH_OPS_KPI_v1 -->
+<h2>Gate-D（☠ DEATH / TERMINAL）— 追記</h2></p>
+<p>> <strong>宣言文（Dashboard表示）</strong>  
+> <strong>THP STATUS = ☠ Gate-D (TERMINAL)</strong> — 可逆復帰不能。事後秩序系（THP-Aftermath）へ強制遷移。</p>
+    </div>
+</body>
+</html>
