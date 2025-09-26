@@ -1,0 +1,15 @@
+最終更新日時: 2025年9月24日水曜日
+
+処理済みファイル数: 2 / 441
+- F:\マイドライブ\Guide-Website\Economy\0930\Daily\DailyReport.html
+- F:\マイドライブ\Guide-Website\World\index.html
+
+次に処理を開始するファイル:
+- F:\マイドライブ\Guide-Website\political\Primary_industry_Agriculture\Survey\index.html
+
+適用中の置換ルール:
+1. href="/particle-musings/assets/" を href="assets/" に置換
+2. src="/particle-musings/assets/" を src="assets/" に置換
+3. href="/assets/" を href="assets/" に置換
+4. src="/assets/" を src="assets/" に置換
+5. src="//assets/images/" を src="assets/images/" に置換
