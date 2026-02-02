@@ -1,160 +1,80 @@
-# THP-5: Lexicon (Unified Version)
+# THP-5: Lexicon - Glossary (Complete Edition)
 
-This lexicon describes the main concepts in The Horizon Protocol (THP) in a two-tiered structure of **academic version (strict definition)** and **explanatory version (plain explanation)**.
-Each term clearly indicates the reference relationship with the **article number of the THP-2 Ethics Charter** and related charters and appendices.
+This lexicon describes the core concepts of The Horizon Protocol (THP) in a two-layer structure: **Academic version (strict definitions)** and **Explanation (plain-language notes)**.
 
----
+Each term explicitly indicates its references to **THP-2 Ethics Charter** and related charters/appendices.
 
-## Humanity / Ethics [See: THP-2 Preface, Article 1]
+## Humanity / Ethics (Humanity / Ethics) [Reference: THP-2 Preamble, Article 1]
 
-- Academic Version
-    "Humanity" is a protective wall necessary for humans to exist as "humans," and is the foundation of collective self-defense against the law-of-the-jungle environment of reality. Order is maintained by making this humanity the sole standard and classifying sins into atonement and condemnation.
+- **Academic version** "Humanity/Ethics" is the protective wall required for humans to exist as humans, and it forms the foundation of collective self-defense against a ruthless, survival-of-the-fittest reality. Order uses this Humanity/Ethics as its sole criterion and is maintained by classifying actions into "atonement" and "condemnation."
+- **Explanation** Humanity/Ethics is "the path humans must protect." It is like a wall that protects everyone from a harsh world. Breaking the wall becomes "sin." If you atone, you can return inside (atonement); if it is deemed absolutely unforgivable, you are expelled (condemnation).
 
-- Explanatory Version
-    Humanity is "the path to be followed as a person." It is like a wall that protects everyone from a harsh world. The act of breaking the wall is a "sin," and if you atone for it, you can return inside (atonement), and if you are deemed unforgivable, you will be exiled (condemnation).
+## Order (Order) [Reference: THP-2 Preamble]
 
----
+- **Academic version** Order is a system that uses Humanity/Ethics as the sole criterion and maintains collective self-defense through atonement and condemnation. Internal norms within each group are left to that group's discretion, but at the human-civilization scale, the universal order defined by this Charter applies.
+- **Explanation** Order is "the system for surviving together by keeping the rules of Humanity/Ethics." Each country or group can have its own rules, but for humanity as a whole, Humanity/Ethics is the shared rule.
 
-## Order [See: THP-2 Preface]
+## Inseparability of Responsibility and Authority (Inseparability of Responsibility and Authority) [Reference: THP-2 Operational Core Principle]
 
-- Academic Version
-    Order refers to the mechanism for maintaining collective self-defense through atonement and condemnation, with humanity as the sole standard. The internal norms of individual groups are left to the discretion of the subject, but on a human scale, a universal order based on humanity is applied.
+- **Academic version**
+  1. **Principle:** The exercise of authority necessarily entails accountability for that act and responsibility for its outcomes.
+  2. **Qualification:** Any actor who is unwilling to accept the consequences must not exercise the corresponding authority.
+  3. **Constructive intent:** The moment authority is exercised, the actor is deemed to have expressed the intent to accept responsibility for the outcome.
+  4. **Nature:** This principle does not evaluate a person's value or attributes; it defines the operational relationship between action and authority.
+- **Explanation**
+  - **If you use authority, responsibility comes with it:** Anyone who uses great power or rules must be able to explain the consequences and be ready to take responsibility for them.
+  - **If you cannot take responsibility, do not use it:** Anyone who is unwilling to accept the consequences must not use that authority.
+  - **Using it means you accepted it:** Once authority is exercised, the person has effectively promised, "I will take responsibility no matter what happens."
 
-- Explanatory Version
-    Order is "the mechanism for surviving together by following the rules of humanity." Each country and organization can have its own rules, but for humanity as a whole, "humanity" is the common rule.
+## Human Rights (Human Rights) [Reference: THP-2 Article 0]
 
----
+- **Academic version** Human rights are not innate; they are a "qualification" granted only to members of a community that upholds Humanity/Ethics. The granting bodies have a two-layer structure: (1) domestic grants by the member's own group, and (2) international grants based on consensus of humanity as a whole. Actions that deviate from Humanity/Ethics cause the loss of human-rights qualification and remove the subject from the protection of collective self-defense.
+- **Explanation** Human rights are not "naturally guaranteed at birth," but rather a qualification that "we grant together to those who uphold Humanity/Ethics." Because they are fellow members who keep the rules, rights are guaranteed by both the nation and humanity as a whole.
 
-## Human Rights [See: THP-2 Article 0]
+## Universal Human Rights (Universal Human Rights) [Reference: THP-2 Article 0 / THP-3 Prohibited Practices List]
 
-- Academic Version
-    Human rights are not inherent, but are granted to subjects who protect humanity through a two-tiered procedure of (1) the agreement of the group to which they belong, and (2) the agreement of all humanity. Acts that deviate from humanity deny human rights and are placed outside of collective self-defense.
+- **Academic version** The minimum standard that takes precedence over any cultural or religious background. Acts that violate the "Prohibited Practices List" defined in the THP-3 People Charter are not justified in any context.
+- **Explanation** The minimum rules that must never be broken, in any culture or religion. Even unique customs cannot violate this standard.
 
-- Explanatory Version
-    Human rights are not "innate," but "something that everyone gives to those who protect humanity." Human rights exist only after the country and society to which a person belongs first recognizes them, and all of humanity agrees that "that is fine."
+## Universal Crimes (Universal Crimes) [Reference: THP-2 Preamble, Article 2]
 
----
+- **Academic version** The ultimate crimes subject to "condemnation" by humanity as a whole. Limited to three categories: (1) mass killing of civilians, (2) systematic persecution, and (3) repeated acts of aggression. Individual political disputes or ideological conflicts are not included.
+- **Explanation** "Crimes that absolutely cannot be forgiven by any reasonable standard." The three are mass slaughter, organized discrimination/persecution, and repeated aggression.
 
-## Universal Human Rights [See: THP-2 Article 0 / THP-3 List of Prohibited Practices]
+## Atonement / Reintegration (Atonement / Reintegration) [Reference: THP-2 Article 3]
 
-- Academic Version
-    Universal human rights are the minimum standards that take precedence over any culture or religion. Acts that violate the "List of Prohibited Practices" stipulated in the THP-3 People's Charter are not permitted, even with cultural or religious justification.
+- **Academic version** A process by which a subject that committed a crime is permitted to return to the international community (inside the protective wall of Humanity/Ethics), on the condition that full responsibility has been fulfilled and a framework for preventing recurrence is established.
+- **Explanation** A procedure by which, if one makes a full atonement and the promise of "never again" is recognized, one can return to the circle of peers.
 
-- Explanatory Version
-    Universal human rights are "the minimum rules that must be absolutely protected in any culture or religion in the world." Even the customs of a people or religion cannot violate human rights.
+## Condemnation / Irreversible Mark (Condemnation / Irreversible Mark) [Reference: THP-2 Article 4 and Appendix Draft]
 
----
+- **Academic version** The final and irreversible ethical judgment imposed on subjects that commit universal crimes, with no room for relief. While inheriting the ideals of existing international law (war crimes, crimes against humanity, etc.), it is positioned as a "historical brand of humanity" beyond judicial punishment. Based on the reality-priority clause, it also functions as a limiting provision to prevent the collapse of order.
+- **Explanation** To be permanently marked in history as having committed an absolutely unforgivable crime and to be expelled from the community of humanity.
 
-## Universal Crimes [See: THP-2 Preface, Article 2]
+## Councils of Ethics (Councils of Ethics) [Reference: THP-2 Ethics Institutions]
 
-- Academic Version
-    Universal crimes are acts that are subject to condemnation by all of humanity, and are limited to three types: large-scale civilian killing, institutional persecution, and repetition of aggression. Political issues are not subject to this.
+- **Academic version** A three-tier institutional structure responsible for maintaining Humanity/Ethics.
+  1. **Global Council of Ethics:** The highest body. It holds the sole authority to declare "condemnation" and "atonement" in the name of humanity.
+  2. **National Councils of Ethics:** Established in each country. They conduct fact-finding, evidence collection, and sentencing recommendations and submit them upward.
+  3. **Ethics Review Team:** An advisory body by the Four Sages. It holds the right to request amnesty and to reconsider condemnation, restraining the runaway of logic.
+- **Explanation** "The court of humanity." It operates with three teams: the world's final decision-makers, each nation's investigators, and a consultative group that asks, "Is this really right?"
 
-- Explanatory Version
-    Universal crimes are "absolutely unforgivable mortal sins." Examples are killing a large number of civilians, persecuting people as an institution, and repeating aggression. Only these three.
+## E-MAD (Economic Mutually Assured Deterrence) [Reference: THP-2 Article 5]
 
----
+- **Academic version** Economic Mutually Assured Deterrence. A system that automatically enforces sanctions against entities that violate the Ethics Charter, primarily through economic means. It maintains order not through violence but through isolation from economic networks and related measures.
+- **Explanation** A mechanism where those who break the rules are automatically punished through the economic system. A peace deterrent: "If you attack, you die economically; if you comply, we prosper together."
 
-## Atonement / Reintegration [See: THP-2 Article 3]
+## ECX (Echo-Collapse Exchange) [Reference: THP overall / Former name: Walpurgis]
 
-- Academic Version
-    Atonement is the official process by which a subject who has committed a sin returns to the inside of the "protective wall of humanity" with the fulfillment of responsibility and a pledge of non-recurrence.
+- **Academic version** An "echo-collapse exchange phenomenon" in which safety devices and restraint structures self-invert through mutual echoes and propagate collapse in a chain reaction. It can occur across layers such as finance (F), technology (T), and ethics (E).
+- **Explanation** "A phenomenon where protective mechanisms break themselves and collapse in a chain reaction." It can happen in money, technology, the human mind, and other domains.
 
-- Explanatory Version
-    Atonement is "saying you're sorry, promising not to do it again, and returning to everyone's company."
+## Ops-KPI Dashboard (Ops-KPI Dashboard) [Reference: THP-7]
 
----
+- **Academic version** The monitoring platform for THP operations. It measures indicators from Gate-A to C (normal times) and Gate-D onward (Aftermath/post-collapse transition) to visualize the health of order.
+- **Explanation** A monitoring screen that confirms whether THP is functioning. There is a normal screen and a hidden screen for emergencies.
 
-## Condemnation / Irreversible Mark [See: THP-2 Article 4]
+# Notes
 
-- Academic Version
-    Condemnation is an irreversible historical stigma handed down without room for salvation to a subject who has committed a universal mortal sin. The concept has some overlap with war crimes, crimes against humanity, and the crime of aggression, which are covered by existing international law (e.g., the Geneva Conventions, the Rome Statute [International Criminal Court]). However, condemnation in THP is unique in that it is not limited to judicial judgment, but is positioned as an "ethical declaration in the name of humanity."
-
-- Explanatory Version
-    Condemnation is "being eternally engraved in history as an unforgivable sin." For example, it is similar to "war crimes" and "crimes against humanity" judged by the Geneva Conventions and the Rome Statute in international law, but THP is different in that it "declares it in the name of all humanity."
-
----
-
-## Councils of Ethics [See: THP-2 Humanity Organization]
-
-- Academic Version
-    The Council of Ethics has a three-tiered structure: (1) the Global Council of Ethics (final right of declaration), (2) National Councils of Ethics (investigation and sentencing), and (3) the Humanity Study Group (advisory reconsideration and request for pardon).
-
-- Explanatory Version
-    The Council of Ethics is "three teams." The world's top (Global Council of Ethics), each country's investigators (National Councils of Ethics), and an advisory body that can speak for extenuating circumstances (Humanity Study Group).
-
----
-
-## Humanity Study Group [See: THP-2 Special Note]
-
-- Academic Version
-    The Humanity Study Group is an advisory body with the Four Sages as provisional members, and has only the right to request pardon and the right to reconsider condemnation. There is no hierarchical relationship, and it is premised on democratic restructuring in the future.
-
-- Explanatory Version
-    The Humanity Study Group is "the representative of the conscience of humanity." For now, it is composed of four provisional members, and can only say "please forgive them" or "please think about it again." It has no great authority and is scheduled to be properly re-elected later.
-
----
-
-## E-MAD (Economic Mutually Assured Deterrence) [See: THP-2 Article 5 / THP-2-S0]
-
-- Academic Version
-    E-MAD is a mechanism for automatically executing sanctions against subjects who violate the Ethics Charter by economic means. The details of the MAD score calculation formula are left to THP-2-S0, and implementation by Node.js is in progress.
-
-- Explanatory Version
-    E-MAD is "a mechanism for automatically imposing economic penalties if you break the rules." The detailed calculation method is still under development in a separate file.
-
----
-
-## Ops-KPI Dashboard [See: THP-7]
-
-- Academic Version
-    A monitoring and measurement platform for THP operations. In addition to the normal dashboards for Gates A-C, there is also a "back-end dashboard" for Gate-D and beyond, assuming a transition to the Aftermath.
-
-- Explanatory Version
-    The Ops-KPI dashboard is "a screen to check if THP is running properly." There is a normal version (Gates A-C) and a secret version for emergencies (Gate-D~).
-
----
-
-## Walpurgis [See: THP as a whole]
-
-- Academic Version
-    Walpurgis is a synonym for the collapse of order, starting with the $1.6 trillion failure risk in the US Treasury primary market scheduled for September 30, 2025. It is the starting point for the entire THP.
-
-- Explanatory Version
-    Walpurgis is the name of "a major incident that could destroy the world on September 30, 2025." THP started from there.
-
----
-
-## Social Narrative [See: Ops-KPI Auxiliary Indicators]
-
-- Academic Version
-    A social narrative refers to the impact of popular stories and political slogans on the perception of order. It is a monitoring target as an auxiliary indicator for Ops-KPI.
-
-- Explanatory Version
-    A social narrative is "a story or slogan that everyone believes in." We check it because it moves society.
-
----
-
-## Household Finance Narrative [See: Ops-KPI Auxiliary Indicators]
-
-- Academic Version
-    The household finance narrative is a fallacious discourse that equates national finance with a household budget. It is classified as an Ops-KPI auxiliary indicator because it can trigger market panic and irrational political decisions.
-
-- Explanatory Version
-    The household finance narrative is "the misunderstanding of thinking of the country's money as the same as a household budget." It is necessary to be careful because this can cause confusion in politics and the market.
-
----
-
-# Remarks
-
-- "Vendor-Issue / UNTRUSTED" is a PJ-specific term and is not included in the THP Lexicon.
-    
-- Obsolete words have been deleted.
-    
-
----
-
-Commander, this is the **full text of the Lexicon (unified version, with both academic and explanatory versions)**.
-The reference relationships with the appendix, ethics charter, and people's charter have also been organized.
-
-Do you want to finalize this as the **final draft**?
+- "Vendor-Issue / UNTRUSTED" is a project-specific term and is not included in the universal definitions in this lexicon.
+- This lexicon will be revised as needed in accordance with updates to the THP-2 Ethics Charter.
