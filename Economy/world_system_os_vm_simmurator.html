@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ワールドシステム OS/VM インフォグラフィック</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .glow-blue {
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+        .glow-red {
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+        }
+        .glow-green {
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 flex flex-col justify-between">
+
+    <!-- Header -->
+    <header class="max-w-7xl mx-auto w-full mb-8 flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-200 pb-4 gap-4">
+        <div>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="bg-blue-600 text-xs text-white px-2 py-0.5 rounded font-bold code-font">SYS_STATUS: RUNNING</span>
+                <span class="text-xs text-slate-500 code-font">v2.0.26-6</span>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
+                ワールドシステム OS/VM アーキテクチャマップ
+            </h1>
+            <p class="text-sm text-slate-500 mt-1">「経済説明：Pythonで覚える政治と経済」に基づく構造ビジュアライザ</p>
+        </div>
+        <div class="flex gap-2">
+            <button onclick="switchOS('fiat')" id="fiat-tab-btn" class="px-4 py-2 rounded-lg text-sm font-medium transition-all bg-blue-600 text-white glow-blue">
+                フィアットシステム (現行OS)
+            </button>
+            <button onclick="switchOS('gold')" id="gold-tab-btn" class="px-4 py-2 rounded-lg text-sm font-medium transition-all bg-slate-200 text-slate-700 hover:bg-slate-300">
+                金本位制 (旧OS)
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="max-w-7xl mx-auto w-full flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
+        
+        <!-- Left: Structural Diagrams (7 cols) -->
+        <div class="lg:col-span-7 flex flex-col gap-6">
+            
+            <!-- Dynamic Architecture Card -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 relative overflow-hidden shadow-sm">
+                <div class="absolute top-3 right-3 text-xs code-font text-slate-400" id="os-mode-label">FIAT_OS_ACTIVE</div>
+                <h2 class="text-lg font-bold mb-4 text-blue-600 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    システム接続イメージ
+                </h2>
+
+                <!-- The Interactive Visual Graph -->
+                <div class="bg-slate-50 rounded-lg p-6 border border-slate-200 flex flex-col gap-6 min-h-[300px] justify-center">
+                    
+                    <!-- Kernel Node -->
+                    <div class="flex justify-center">
+                        <div class="bg-blue-50 border border-blue-400 rounded-lg p-4 w-72 text-center transition-all duration-300" id="node-kernel">
+                            <div class="text-xs text-blue-600 font-bold code-font">KERNEL (特権領域)</div>
+                            <div class="font-bold text-slate-900 text-base mt-1" id="kernel-name">Gov (政府・中央銀行)</div>
+                            <div class="text-xs text-slate-600 mt-1" id="kernel-desc">gold ではなく trust と real_memory によって制約される発行・配分権限</div>
+                            
+                            <!-- Dynamic Indicators in Kernel -->
+                            <div class="mt-2 pt-2 border-t border-blue-200 flex justify-between text-[11px] code-font">
+                                <span class="text-slate-500">Total Tokens:</span>
+                                <span class="text-blue-600 font-bold" id="ui-outstanding-tokens">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flow Arrows -->
+                    <div class="flex justify-around items-center h-8 relative">
+                        <!-- Down Arrow (Spending) -->
+                        <div class="flex flex-col items-center">
+                            <div class="text-[10px] text-emerald-600 code-font animate-pulse">gov_spending()</div>
+                            <svg class="w-4 h-4 text-emerald-500 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-6l-7 7-7-7"></path></svg>
+                        </div>
+                        <!-- Up Arrow (Taxation/GC) -->
+                        <div class="flex flex-col items-center">
+                            <div class="text-[10px] text-red-600 code-font">tax_fiat() [GC]</div>
+                            <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"></path></svg>
+                        </div>
+                    </div>
+
+                    <!-- Userland Node -->
+                    <div class="flex justify-center">
+                        <div class="bg-purple-50 border border-purple-300 rounded-lg p-4 w-full transition-all duration-300" id="node-userland">
+                            <div class="text-xs text-purple-600 font-bold code-font text-center">USERLAND (一般実行スペース)</div>
+                            <div class="font-bold text-slate-900 text-base text-center mt-1">国民・企業・市場プロセス</div>
+                            
+                            <!-- Processes visually inside userland -->
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-3">
+                                <div class="bg-white border border-slate-200 rounded p-2 text-center text-xs shadow-sm" id="proc-social">
+                                    <span class="block text-slate-500">社会保障サービス</span>
+                                    <span class="text-[10px] text-emerald-600 code-font font-semibold" id="proc-social-status">RUNNING</span>
+                                </div>
+                                <div class="bg-white border border-slate-200 rounded p-2 text-center text-xs shadow-sm" id="proc-infra">
+                                    <span class="block text-slate-500">基礎生活インフラ</span>
+                                    <span class="text-[10px] text-emerald-600 code-font font-semibold" id="proc-infra-status">RUNNING</span>
+                                </div>
+                                <div class="bg-white border border-slate-200 rounded p-2 text-center text-xs shadow-sm" id="proc-education">
+                                    <span class="block text-slate-500">教育・未来研究開発</span>
+                                    <span class="text-[10px] text-emerald-600 code-font font-semibold" id="proc-edu-status">RUNNING</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Limit Line (Real Hardware Limit) -->
+                    <div class="border-t border-dashed border-red-300 pt-4 mt-2">
+                        <div class="flex justify-between items-center text-xs">
+                            <div class="text-red-600 font-bold flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                物理メモリ境界 [REAL]:
+                            </div>
+                            <div class="code-font text-slate-600">実物資源 (労働力・発電所・鉄・不可逆な時間)</div>
+                        </div>
+                        <div class="w-full bg-slate-200 h-2.5 rounded-full mt-2 overflow-hidden">
+                            <div class="bg-emerald-500 h-full rounded-full transition-all duration-300" id="hardware-usage-bar" style="width: 40%"></div>
+                        </div>
+                        <div class="flex justify-between text-[10px] text-slate-500 mt-1 code-font">
+                            <span>0% (アイドル状態)</span>
+                            <span id="hardware-usage-text">40% 負荷 (安定運転中)</span>
+                            <span>100% (物理限界)</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Conceptual Interactive Simulator Section -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <h2 class="text-lg font-bold mb-4 text-emerald-600 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                    ランタイム・シミュレータ
+                </h2>
+                <p class="text-xs text-slate-500 mb-6">システムのパラメータをチューニングして、実社会のバグや例外処理を再現します。</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Control Sliders -->
+                    <div class="flex flex-col gap-4">
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 block mb-1">
+                                市場内トークン総量 (流通貨幣量)
+                            </label>
+                            <input type="range" id="slider-tokens" min="10" max="150" value="40" class="w-full accent-blue-600" oninput="updateSim()">
+                            <div class="flex justify-between text-xs text-slate-500 mt-1 code-font">
+                                <span>少ない</span>
+                                <span class="text-blue-600 font-bold" id="val-tokens">40</span>
+                                <span>多すぎる</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 block mb-1">
+                                物理メモリ (実物供給能力: 労働力・エネルギー)
+                            </label>
+                            <input type="range" id="slider-supply" min="10" max="100" value="80" class="w-full accent-emerald-600" oninput="updateSim()">
+                            <div class="flex justify-between text-xs text-slate-500 mt-1 code-font">
+                                <span>供給破壊</span>
+                                <span class="text-emerald-600 font-bold" id="val-supply">80</span>
+                                <span>インフラ絶好調</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Debug Buttons -->
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-around gap-2">
+                        <div class="text-xs text-slate-500 font-semibold mb-1">クイックコマンド：</div>
+                        
+                        <button onclick="triggerGC()" class="w-full py-2 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 rounded text-xs font-semibold code-font flex items-center justify-center gap-1 transition-all">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            GC実行: tax_fiat() (トークン消去)
+                        </button>
+
+                        <button onclick="triggerAusterity()" class="w-full py-2 bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 rounded text-xs font-semibold code-font flex items-center justify-center gap-1 transition-all">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            緊縮財政バグ発動 (OOM-Killer)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Simulation Result Message Console -->
+                <div class="mt-6 bg-slate-900 rounded p-3 border border-slate-800 code-font text-xs flex items-start gap-2 shadow-inner">
+                    <span class="text-blue-400 font-bold">[CONSOLE]</span>
+                    <span id="console-log" class="text-emerald-400">システム正常稼働中。リソース競合は発生していません。</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right: Correspondence Table (5 cols) -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+            
+            <!-- Quick Reference Table -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col h-full shadow-sm">
+                <h2 class="text-lg font-bold mb-4 text-purple-600 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                    OS/VM 概念対応表
+                </h2>
+                <div class="text-xs text-slate-500 mb-4">社会の各要素をシステムアーキテクチャにマッピングした一覧。</div>
+
+                <div class="flex-grow flex flex-col gap-3 overflow-y-auto max-h-[600px] pr-1">
+                    
+                    <!-- VM -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 hover:border-purple-400 transition-all cursor-pointer" onclick="showConcept('vm')">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-purple-600 font-bold code-font">1. VM (仮想マシン)</span>
+                            <span class="text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded">概念</span>
+                        </div>
+                        <div class="text-sm font-bold text-slate-900 mb-1">国家システム</div>
+                        <p class="text-xs text-slate-600 line-clamp-2">物理的な地球を土台に、法制度、通貨、ルールによって作り出された仮想的な運営空間。</p>
+                    </div>
+
+                    <!-- Kernel -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 hover:border-purple-400 transition-all cursor-pointer" onclick="showConcept('kernel')">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-purple-600 font-bold code-font">2. Kernel (カーネル)</span>
+                            <span class="text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded">特権</span>
+                        </div>
+                        <div class="text-sm font-bold text-slate-900 mb-1">政府・中央銀行</div>
+                        <p class="text-xs text-slate-600 line-clamp-2">通貨発行権（信用創造）を有し、法律や予算アロケーションを決定する最上位の特権機関。</p>
+                    </div>
+
+                    <!-- Userland -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 hover:border-purple-400 transition-all cursor-pointer" onclick="showConcept('userland')">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-purple-600 font-bold code-font">3. Userland</span>
+                            <span class="text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded">領域</span>
+                        </div>
+                        <div class="text-sm font-bold text-slate-900 mb-1">民間・企業・家計</div>
+                        <p class="text-xs text-slate-600 line-clamp-2">特権レベルを持たない普通のプレイヤーが安全に並行プロセスを稼働させる実体市場。</p>
+                    </div>
+
+                    <!-- Memory -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 hover:border-purple-400 transition-all cursor-pointer" onclick="showConcept('memory')">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-purple-600 font-bold code-font">4. Real Memory</span>
+                            <span class="text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded">物理</span>
+                        </div>
+                        <div class="text-sm font-bold text-slate-900 mb-1">実物資源 (労働・時間・エネルギー)</div>
+                        <p class="text-xs text-slate-600 line-clamp-2">短期的に money だけで変更できない物理制約。長期的には技術やインフラ投資で拡張される。</p>
+                    </div>
+
+                    <!-- Token -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 hover:border-purple-400 transition-all cursor-pointer" onclick="showConcept('token')">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-purple-600 font-bold code-font">5. Token</span>
+                            <span class="text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded">記号</span>
+                        </div>
+                        <div class="text-sm font-bold text-slate-900 mb-1">お金 (法定通貨/引換券)</div>
+                        <p class="text-xs text-slate-600 line-clamp-2">実物それ自体ではなく、物理メモリを一時的に引き当てるための「番号札（アクセス権）」にすぎない。</p>
+                    </div>
+
+                    <!-- GC -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 hover:border-purple-400 transition-all cursor-pointer" onclick="showConcept('gc')">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-purple-600 font-bold code-font">6. GC (ゴミ回収)</span>
+                            <span class="text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded">機能</span>
+                        </div>
+                        <div class="text-sm font-bold text-slate-900 mb-1">租税 (Tax)</div>
+                        <p class="text-xs text-slate-600 line-clamp-2">政府の貯金箱ではなく、市場の過剰な購入要求（トークン）を回収消去してインフレを抑える調停機能。</p>
+                    </div>
+
+                    <!-- Thrashing -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 hover:border-purple-400 transition-all cursor-pointer" onclick="showConcept('thrashing')">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-purple-600 font-bold code-font">7. Thrashing</span>
+                            <span class="text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded">例外</span>
+                        </div>
+                        <div class="text-sm font-bold text-slate-900 mb-1">インフレーション</div>
+                        <p class="text-xs text-slate-600 line-clamp-2">実物（メモリ）が足りないのにトークンが多すぎ、やりくり作業に追われて経済が停止（フリーズ）する現象。</p>
+                    </div>
+
+                    <!-- OOM Killer -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 hover:border-purple-400 transition-all cursor-pointer" onclick="showConcept('oom_killer')">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-purple-600 font-bold code-font">8. OOM Killer</span>
+                            <span class="text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded">致命</span>
+                        </div>
+                        <div class="text-sm font-bold text-slate-900 mb-1">緊縮バグ</div>
+                        <p class="text-xs text-slate-600 line-clamp-2">数字（引換券）の不足を理由に、インフラや教育といった社会に不可欠なシステムサービスを強制停止させる設計ミス。</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Detailed Explanation Modal / Popup (Dynamic) -->
+    <div id="modal-box" class="fixed inset-0 bg-slate-900/60 flex items-center justify-center p-4 z-50 hidden" onclick="closeModal()">
+        <div class="bg-white border border-slate-200 max-w-lg w-full rounded-xl p-6 shadow-2xl" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-4">
+                <span class="text-xs font-bold text-purple-600 code-font" id="modal-tag">CONCEPT_DETAILS</span>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-lg">&times;</button>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2" id="modal-title">タイトル</h3>
+            <p class="text-sm text-slate-600 mb-6" id="modal-desc">説明文</p>
+            
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                <div class="text-xs text-slate-500 mb-2 font-semibold">直感的翻訳イメージ：</div>
+                <div class="text-sm text-emerald-700 font-medium" id="modal-analogy">日常のたとえ</div>
+            </div>
+            <button onclick="closeModal()" class="mt-6 w-full py-2 bg-slate-900 hover:bg-slate-800 text-white rounded text-sm font-medium transition-all shadow-sm">
+                コンソールを閉じる
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="max-w-7xl mx-auto w-full border-t border-slate-200 pt-4 flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-slate-400">
+        <div>World System Model — Derived from 'Money ≠ Memory' Axioms</div>
+        <div class="code-font text-slate-400 font-medium">REALITY IS THE ULTIMATE HARDWARE LIMIT</div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        // System state
+        let currentOS = 'fiat'; // 'fiat' or 'gold'
+        let systemStable = true;
+
+        // Details database for the modal
+        const detailsData = {
+            vm: {
+                title: "国家・世界システム (VM)",
+                desc: "1台の物理コンピュータ（地球）の中に構築された、法律・通貨・共通プロトコルに基づく独立した仮想領域。資源アクセスやプロセスアロケーションはすべてこのVMがハンドリングします。",
+                analogy: "商業ビルの同じフロアに入居する個別のアパレル店や飲食店。ビル自体の共通制約を受けつつ、テナント独自のルールで動いています。"
+            },
+            kernel: {
+                title: "特権カーネル (政府・中央銀行)",
+                desc: "システムの最深部でシステムコールやメモリマッピングを処理する、最強特権を誇るコントロールコア。gold への兌換制約なしにトークンを発行できます。ただし、実物資源・供給能力・信用・時間という real_memory 制約を超えると、インフレや供給不足として破綻します。",
+                analogy: "遊園地の運営本部。ゲームチケット（独自通貨）を何枚でも発行して配ることが可能です。"
+            },
+            userland: {
+                title: "ユーザーランド (民間・市場)",
+                desc: "一般市民、企業、市場の活動空間。カーネルのような絶対権限（シニョリッジ）を持たず、お互いにアロケートされたトークン（価値の記号）をやり取りすることで様々な並行プロセスを実行します。",
+                analogy: "遊園地で遊ぶ一般のお客さんや、出店している屋台のオーナー。"
+            },
+            memory: {
+                title: "物理メモリ (REAL: 資源・時間・物理法則)",
+                desc: "短期的には money だけで変更できない物理制約。長期的には userland の add_value、技術、教育、インフラ投資によって拡張される。",
+                analogy: "レストランにおける『コンロの物理的な口数』『客席数』『食材の在庫重量』『料理人の時間』。"
+            },
+            token: {
+                title: "トークン (お金/法定通貨)",
+                desc: "物理メモリ（実物資源）そのものではなく、その特定の空間に一時的にアロケート（確保）してアクセスするための『引換整理券』。価値の尺度を示す記号にすぎません。",
+                analogy: "マクドナルドで支払った後に渡される『番号札』。札自体は食べられませんが、現物のバーガーとの引き換え権利を保証しています。"
+            },
+            gc: {
+                title: "ガーベジコレクション [GC] (租税)",
+                desc: "不要、または溢れすぎた使わなくなった流動性（トークン）をシステムから消去（Delete）するクリーンアップ機能。政府の財源を貯めるものではなく、システムパンク（インフレ）を防ぐための調停処理です。",
+                analogy: "市場に配りすぎた『乗り物優先チケット』を定期的に回収し、シュレッダーにかけて破棄する行為。"
+            },
+            thrashing: {
+                title: "スラッシング (インフレーション)",
+                desc: "実物（メモリ）が減っているか、もしくは配られた整理券（トークン）が多すぎるため、システムが処理効率の争奪戦と調整だけに100%持っていかれてカクつき、フリーズ寸前になる状態。",
+                analogy: "限定1台のデバイスに1万枚の購入整理券を配ってしまったため、店頭で整理券を持つ1万人による暴動が起き、通常の販売がストップする状態。"
+            },
+            oom_killer: {
+                title: "OOM-Killer (緊縮バグ)",
+                desc: "トークン（数字）が足りないからという帳簿上の帳尻合わせのために、システム継続に絶対必要な基盤アプリをカーネルが強制終了させる深刻な設計アンチパターン。",
+                analogy: "家計簿を合わせるためだけに、水道の壊れた配管修繕や子供の給食費を削って家全体を壊死させる行動。"
+            }
+        };
+
+        function switchOS(mode) {
+            const fiatBtn = document.getElementById('fiat-tab-btn');
+            const goldBtn = document.getElementById('gold-tab-btn');
+            const osLabel = document.getElementById('os-mode-label');
+            const kernelName = document.getElementById('kernel-name');
+            const kernelDesc = document.getElementById('kernel-desc');
+            const tokenSlider = document.getElementById('slider-tokens');
+
+            currentOS = mode;
+
+            if (mode === 'fiat') {
+                fiatBtn.className = "px-4 py-2 rounded-lg text-sm font-medium transition-all bg-blue-600 text-white glow-blue";
+                goldBtn.className = "px-4 py-2 rounded-lg text-sm font-medium transition-all bg-slate-200 text-slate-700 hover:bg-slate-300";
+                osLabel.innerText = "FIAT_OS_ACTIVE";
+                kernelName.innerText = "Gov (政府・中央銀行)";
+                kernelDesc.innerText = "gold ではなく trust と real_memory によって制約される発行・配分権限";
+                tokenSlider.disabled = false;
+            } else {
+                goldBtn.className = "px-4 py-2 rounded-lg text-sm font-medium transition-all bg-emerald-600 text-white glow-green";
+                fiatBtn.className = "px-4 py-2 rounded-lg text-sm font-medium transition-all bg-slate-200 text-slate-700 hover:bg-slate-300";
+                osLabel.innerText = "GOLD_OS_ACTIVE";
+                kernelName.innerText = "兌換マザーボード (固定ゴールド制限)";
+                kernelDesc.innerText = "通貨発行が保管された物理ゴールド量にハードワイヤード";
+                tokenSlider.value = 40; // Hard limit applied
+                tokenSlider.disabled = true;
+            }
+            updateSim();
+        }
+
+        function updateSim() {
+            const tokens = parseInt(document.getElementById('slider-tokens').value);
+            const supply = parseInt(document.getElementById('slider-supply').value);
+            const valTokens = document.getElementById('val-tokens');
+            const valSupply = document.getElementById('val-supply');
+            const consoleLog = document.getElementById('console-log');
+            const hardwareBar = document.getElementById('hardware-usage-bar');
+            const hardwareText = document.getElementById('hardware-usage-text');
+            const uiTokens = document.getElementById('ui-outstanding-tokens');
+
+            valTokens.innerText = tokens;
+            valSupply.innerText = supply;
+            uiTokens.innerText = tokens;
+
+            // Compute "Load Factor" (Tokens relative to supply)
+            const load = Math.min(100, Math.round((tokens / supply) * 80));
+            hardwareBar.style.width = load + '%';
+
+            // Reset visual styles
+            document.getElementById('node-kernel').className = "bg-blue-50 border border-blue-400 rounded-lg p-4 w-72 text-center transition-all duration-300";
+            document.getElementById('node-userland').className = "bg-purple-50 border border-purple-300 rounded-lg p-4 w-full transition-all duration-300";
+
+            if (load < 35) {
+                hardwareBar.className = "bg-blue-500 h-full rounded-full transition-all duration-300";
+                hardwareText.innerText = `${load}% (トークン不足・デフレ警告・プロセス休止状態)`;
+                consoleLog.innerText = "[DEFLATION_ALERT] 流通トークンが少なすぎます。民間プロセスが必要な資源を引き当てられずフリーズ(休止)しています。";
+                consoleLog.className = "text-blue-400";
+            } else if (load >= 35 && load <= 75) {
+                hardwareBar.className = "bg-emerald-500 h-full rounded-full transition-all duration-300";
+                hardwareText.innerText = `${load}% (システム安定運転・リソース競合なし)`;
+                consoleLog.innerText = "[NORMAL] システム安定運転中。トークンは正常にデリファレンスされています。";
+                consoleLog.className = "text-emerald-400";
+            } else if (load > 75 && load < 95) {
+                hardwareBar.className = "bg-amber-500 h-full rounded-full transition-all duration-300";
+                hardwareText.innerText = `${load}% (インフレ・リソースの競合発生中)`;
+                consoleLog.innerText = "[WARNING_INFLATION] スラッシング発生の予兆。引換整理券（トークン）に物理メモリが追いついていません。";
+                consoleLog.className = "text-amber-400";
+            } else {
+                hardwareBar.className = "bg-red-500 h-full rounded-full transition-all duration-300";
+                hardwareText.innerText = `${load}% (完全スラッシング・限界破断状態)`;
+                consoleLog.innerText = "[CRITICAL_THRASHING] インフレーションがスラッシングに発展！トークン価値の暴落、リソース争奪によりシステムが機能停止しています。";
+                consoleLog.className = "text-red-500 font-bold";
+                document.getElementById('node-kernel').className = "bg-red-50 border-2 border-red-400 rounded-lg p-4 w-72 text-center animate-pulse duration-300";
+                document.getElementById('node-userland').className = "bg-red-50 border border-red-300 rounded-lg p-4 w-full transition-all duration-300";
+            }
+        }
+
+        function triggerGC() {
+            if (currentOS === 'gold') {
+                const consoleLog = document.getElementById('console-log');
+                consoleLog.innerText = "[GC_FAILED] 金本位制OSではGC(消去)したトークンは消去できずゴールドプールに戻す必要があります(機能の硬直)。";
+                consoleLog.className = "text-amber-500";
+                return;
+            }
+            document.getElementById('slider-tokens').value = 45;
+            updateSim();
+            const consoleLog = document.getElementById('console-log');
+            consoleLog.innerText = "[GC_COMPLETED] tax_fiat() 実行完了。余剰トークンが回収され、需要側の pressure は低下しました。ただし、供給能力そのものは増えていません。";
+            consoleLog.className = "text-emerald-400 font-bold";
+        }
+
+        function triggerAusterity() {
+            const consoleLog = document.getElementById('console-log');
+            
+            // Mark all processes in Userland as KILLED/OOM
+            document.getElementById('proc-social-status').innerText = "KILLED (OOM)";
+            document.getElementById('proc-social-status').className = "text-red-600 font-extrabold animate-pulse text-[10px]";
+            document.getElementById('proc-infra-status').innerText = "KILLED (OOM)";
+            document.getElementById('proc-infra-status').className = "text-red-600 font-extrabold animate-pulse text-[10px]";
+            document.getElementById('proc-edu-status').innerText = "KILLED (OOM)";
+            document.getElementById('proc-edu-status').className = "text-red-600 font-extrabold animate-pulse text-[10px]";
+
+            consoleLog.innerText = "[CRITICAL_OOM] Austerity_Policyを実行：国債(メモリ割当)を減らすために、インフラ・社会・教育プロセスを強制終了(Kill)しました。";
+            consoleLog.className = "text-red-500 font-bold";
+
+            // Recover after 5 seconds
+            setTimeout(() => {
+                document.getElementById('proc-social-status').innerText = "RUNNING";
+                document.getElementById('proc-social-status').className = "text-emerald-600 code-font text-[10px]";
+                document.getElementById('proc-infra-status').innerText = "RUNNING";
+                document.getElementById('proc-infra-status').className = "text-emerald-600 code-font text-[10px]";
+                document.getElementById('proc-edu-status').innerText = "RUNNING";
+                document.getElementById('proc-edu-status').className = "text-emerald-600 code-font text-[10px]";
+                updateSim();
+            }, 5000);
+        }
+
+        // Modal triggers
+        function showConcept(id) {
+            const data = detailsData[id];
+            if (!data) return;
+
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-desc').innerText = data.desc;
+            document.getElementById('modal-analogy').innerText = data.analogy;
+            document.getElementById('modal-box').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-box').classList.add('hidden');
+        }
+
+        // Initialize simulation on load
+        window.onload = function() {
+            updateSim();
+        }
+    </script>
+</body>
+</html>
