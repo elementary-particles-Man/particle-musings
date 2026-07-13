@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我が国における防諜法制と行政傍受の総合検証報告書</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --bg-main: #f8f7f2;
+            --accent-soft: #e2e8f0;
+            --accent-deep: #1e293b;
+            --highlight: #94a3b8;
+            --danger: #ef4444;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--accent-deep);
+            scroll-behavior: smooth;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+        }
+
+        .sidebar-link.active {
+            background-color: var(--accent-deep);
+            color: white;
+        }
+
+        .verdict-card {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .verdict-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .status-badge-d { background-color: #fca5a5; color: #7f1d1d; }
+        .status-badge-e { background-color: #f87171; color: #450a0a; }
+
+        @media (max-width: 768px) {
+            .chart-container { height: 300px; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+<!-- Chosen Palette: Intelligent Neutral (Sand background, Slate accents, Charcoal text) -->
+<!-- Application Structure Plan: 
+    1. Dashboard Overview: Summary of the 2026 political context and the "Verdict" scorecard.
+    2. Legal Gap Analysis: Interactive table to verify "Hypothesis B" (Which espionage acts are already covered?).
+    3. Constitutional Conflict View: Visualization of Supreme Court requirements vs Proposed Administrative Intercept.
+    4. Technical Realities: Comparison of data accessibility in 2026 (Interception vs Encryption).
+    5. AI Attribution Flow: Diagram showing why AI agents break the attribution chain.
+    6. Global Matrix: Comparative analysis of international laws and their actual "prevention" records.
+    7. Final Verification: The 10-point final judgment interface.
+    The structure prioritizes the "Verification" logic requested, guiding the user from 'What exists now' to 'Why the new proposal fails technically and legally'.
+-->
+<!-- Visualization & Content Choices: 
+    - Radar Chart: Comparing proposed capabilities vs legal/technical constraints.
+    - Status Table: Interactive filtering of existing laws to show functional gaps.
+    - Attribution Flowchart (HTML/CSS): Visualizing the "Divided AI Sequence".
+    - Scorecards: The 10 verification points for quick consumption.
+    - Confirming NO SVG/Mermaid: All icons use Unicode characters or CSS-styled HTML elements.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<div class="flex flex-col md:flex-row min-h-screen">
+    <!-- Navigation Sidebar -->
+    <nav class="w-full md:w-64 bg-slate-900 text-slate-300 p-6 space-y-8 sticky top-0 h-auto md:h-screen z-50">
+        <div class="text-white font-bold text-xl mb-8 border-b border-slate-700 pb-4">
+            防諜法制検証 2026
+        </div>
+        <div class="flex flex-col space-y-2">
+            <button onclick="showSection('overview')" id="btn-overview" class="sidebar-link active flex items-center p-3 rounded-lg transition text-left">
+                <span class="mr-3">⊞</span> 概要・総合判定
+            </button>
+            <button onclick="showSection('legal')" id="btn-legal" class="sidebar-link flex items-center p-3 rounded-lg transition text-left">
+                <span class="mr-3">⚖</span> 現行法の空白検証
+            </button>
+            <button onclick="showSection('const')" id="btn-const" class="sidebar-link flex items-center p-3 rounded-lg transition text-left">
+                <span class="mr-3">📜</span> 憲法適合性
+            </button>
+            <button onclick="showSection('tech')" id="btn-tech" class="sidebar-link flex items-center p-3 rounded-lg transition text-left">
+                <span class="mr-3">📡</span> 技術的実効性・AI
+            </button>
+            <button onclick="showSection('global')" id="btn-global" class="sidebar-link flex items-center p-3 rounded-lg transition text-left">
+                <span class="mr-3">🌐</span> 先進国比較
+            </button>
+            <button onclick="showSection('verdict')" id="btn-verdict" class="sidebar-link flex items-center p-3 rounded-lg transition text-left">
+                <span class="mr-3">📋</span> 10の検証判定
+            </button>
+        </div>
+        <div class="mt-auto pt-10 text-xs text-slate-500">
+            Source: 総合検証報告書 (2026/07)
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 p-4 md:p-10 overflow-y-auto">
+        
+        <!-- Section: Overview -->
+        <section id="section-overview" class="space-y-8">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-3xl font-bold text-slate-800 mb-4">我が国における防諜法制の機能的空白と行政傍受に関する総合検証</h1>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8">
+                    本セクションでは、2026年の政治状況と「スパイ防止法」議論の背景を整理し、本報告書の最終的な判定をダッシュボード形式で提示します。地政学的変化とNYT報道がもたらした熱狂を、冷静な法理的・技術的視点から再評価することが目的です。
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="glass-panel p-6 text-center shadow-sm">
+                        <div class="text-sm text-slate-500 uppercase tracking-widest mb-2">総合評価</div>
+                        <div class="text-4xl font-bold text-red-600">D + E</div>
+                        <div class="text-xs mt-2 text-slate-400">重複過多・違憲性高・立法事実欠如</div>
+                    </div>
+                    <div class="glass-panel p-6 text-center shadow-sm">
+                        <div class="text-sm text-slate-500 uppercase tracking-widest mb-2">行政傍受の実効性</div>
+                        <div class="text-4xl font-bold text-amber-600">極めて低い</div>
+                        <div class="text-xs mt-2 text-slate-400">暗号化・AIエージェントの壁</div>
+                    </div>
+                    <div class="glass-panel p-6 text-center shadow-sm">
+                        <div class="text-sm text-slate-500 uppercase tracking-widest mb-2">憲法整合性</div>
+                        <div class="text-4xl font-bold text-red-500">衝突（不可避）</div>
+                        <div class="text-xs mt-2 text-slate-400">21条・35条・98条</div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-8 shadow-sm space-y-6">
+                    <h2 class="text-xl font-bold border-l-4 border-slate-800 pl-4">検証の起点：2026年の政治社会的背景</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-bold text-slate-700 mb-2">自民党提言 (2026.07)</h3>
+                            <ul class="text-sm space-y-2 text-slate-600">
+                                <li>・「令状なしの行政傍受」の導入検討</li>
+                                <li>・外国干渉防止法および代理人登録法</li>
+                                <li>・対外情報庁の創設</li>
+                                <li>・浜田元議員による「限定的運用」の主張</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-700 mb-2">NYT報道の非対称性</h3>
+                            <ul class="text-sm space-y-2 text-slate-600">
+                                <li>・「日本はスパイの巣窟」という言説の流布</li>
+                                <li>・欧米の工作員追放による日本へのリスク転嫁</li>
+                                <li>・米国＝審判、日本＝被審査者という戦後秩序</li>
+                                <li>・プレゼントリンクによる「背景の因果関係」の露出</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Legal Gap Analysis -->
+        <section id="section-legal" class="hidden space-y-8">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">現行法制の網羅的棚卸しと刑事法的「空白」</h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8">
+                    「スパイ防止法がないから処罰できない」という言説の真偽を検証します。現行の特定秘密保護法、不正競争防止法、外為法などのカバー範囲をマトリックスで表示し、真の「空白」がどこにあるのかを特定します。
+                </p>
+
+                <div class="glass-panel overflow-hidden shadow-sm">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-slate-800 text-white">
+                                <tr>
+                                    <th class="p-4">行為類型</th>
+                                    <th class="p-4">現行法での処罰</th>
+                                    <th class="p-4">処罰可能段階</th>
+                                    <th class="p-4">残された「空白」</th>
+                                </tr>
+                            </thead>
+                            <tbody id="legal-table-body" class="divide-y divide-slate-200">
+                                <!-- JSで挿入 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-6 bg-slate-100 rounded-lg">
+                    <h3 class="font-bold mb-2">結論：機能的空白の極小性</h3>
+                    <p class="text-sm text-slate-600">
+                        古典的な機密窃取・漏洩行為の大部分は、すでに実行前の「共謀・教唆・予備」段階から重罰でカバーされています。新規法制を正当化するには、これらの既存法をすり抜ける「具体的な行為」の特定が不可欠ですが、現状、それは「合法的なロビー活動」等に限られています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Constitutional Conflict -->
+        <section id="section-const" class="hidden space-y-8">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">憲法整合性と「行政傍受」の法理的限界</h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8">
+                    司法令状なしの行政傍受が、日本国憲法の基本的人権とどのように衝突するかを分析します。最高裁の「検閲の禁止」および「司法傍受の5要件」の判例法理に照らした適合性を検証します。
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-panel p-6 shadow-sm border-t-4 border-slate-500">
+                        <h3 class="font-bold text-lg mb-4">最高裁が定める司法傍受5要件</h3>
+                        <ul class="space-y-4 text-sm text-slate-600">
+                            <li class="flex items-start"><span class="text-slate-400 mr-2">①</span> <strong>重大な犯罪</strong>に係る被疑事件であること</li>
+                            <li class="flex items-start"><span class="text-slate-400 mr-2">②</span> <strong>十分な容疑</strong>（罪を犯した疑い）があること</li>
+                            <li class="flex items-start"><span class="text-slate-400 mr-2">③</span> 犯罪通信が行われる<strong>高度な蓋然性</strong></li>
+                            <li class="flex items-start"><span class="text-slate-400 mr-2">④</span> <strong>補充性</strong>（他手段では困難）</li>
+                            <li class="flex items-start"><span class="text-slate-400 mr-2">⑤</span> <strong>裁判官の発する令状</strong>に基づくこと</li>
+                        </ul>
+                    </div>
+                    <div class="glass-panel p-6 shadow-sm border-t-4 border-red-400">
+                        <h3 class="font-bold text-lg mb-4">行政傍受の提案内容との乖離</h3>
+                        <ul class="space-y-4 text-sm text-slate-600">
+                            <li class="flex items-start text-red-600"><span class="mr-2">✘</span> 犯罪捜査ではなく「予兆検知」目的</li>
+                            <li class="flex items-start text-red-600"><span class="mr-2">✘</span> 特定個人ではなく不特定多数の「網羅的監視」</li>
+                            <li class="flex items-start text-red-600"><span class="mr-2">✘</span> 蓋然性ではなく「バルク（大量）収集」</li>
+                            <li class="flex items-start text-red-600"><span class="mr-2">✘</span> 行政内部判断による<strong>「無令状」</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="chart-container glass-panel p-6 mt-8">
+                    <canvas id="constChart"></canvas>
+                    <p class="text-xs text-center mt-4 text-slate-400">※司法傍受判例を100%とした場合の、行政傍受の法理的充足度予測（概念図）</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Technical & AI -->
+        <section id="section-tech" class="hidden space-y-8">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">技術的実効性とAIエージェントによる帰属の分断</h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8">
+                    2026年時点の暗号化技術とAI技術が、いかに「通信傍受による防諜」を無効化しているかを解説します。特にAIエージェントを介したタスク実行が、刑事裁判における「故意」と「帰属」の証明を困難にしている点を可視化します。
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-panel p-6">
+                        <h3 class="font-bold mb-4">通信経路上での情報取得限界</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs font-bold border-b pb-1">
+                                <span>項目</span><span>取得可能性</span>
+                            </div>
+                            <div class="flex justify-between text-sm py-1 border-b">
+                                <span>メタデータ (IP, 時刻)</span><span class="text-green-600">高</span>
+                            </div>
+                            <div class="flex justify-between text-sm py-1 border-b">
+                                <span>TLS 1.3 暗号通信内容</span><span class="text-red-500">不可能</span>
+                            </div>
+                            <div class="flex justify-between text-sm py-1 border-b">
+                                <span>E2EE メッセージング</span><span class="text-red-500">不可能</span>
+                            </div>
+                            <div class="flex justify-between text-sm py-1 border-b">
+                                <span>AIプロンプト内容</span><span class="text-red-500">不可能</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 bg-slate-800 text-white">
+                        <h3 class="font-bold mb-4">AIによる帰属の分断シーケンス</h3>
+                        <div class="text-xs space-y-4">
+                            <div class="p-2 border border-slate-600 rounded">1. 最終指示者 (外国政府・非接触)</div>
+                            <div class="text-center">↓ (匿名暗号指示)</div>
+                            <div class="p-2 border border-slate-600 rounded">2. 侵害済み一般アカウント (踏み台)</div>
+                            <div class="text-center">↓ (API実行)</div>
+                            <div class="p-2 border border-blue-400 bg-blue-900 rounded">3. AIエージェント (自律的タスク生成)</div>
+                            <div class="text-center">↓ (自動探査・取得)</div>
+                            <div class="p-2 border border-slate-600 rounded">4. ターゲットサーバーからの漏洩</div>
+                        </div>
+                        <p class="text-[10px] mt-4 text-slate-400">※行政傍受で観測できるのは「3」のアクセスログのみであり、最終指示主体の「故意」立証は技術的に遮断される。</p>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-amber-50 border-l-4 border-amber-400 rounded">
+                    <h3 class="font-bold text-amber-800 mb-2">警告：副作用のリスク</h3>
+                    <p class="text-sm text-amber-700 leading-relaxed">
+                        暗号化を突破するために「クライアントサイドスキャン」や「バックドア」を導入すれば、日本全体の通信セキュリティが崩壊し、皮肉にも外国の情報機関やハッカーにとってより容易な侵入環境（脆弱性）を自ら提供することになります。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Global Comparison -->
+        <section id="section-global" class="hidden space-y-8">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">主要先進国における防諜・傍受法制の冷徹な実態</h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8">
+                    「他国には強力なスパイ防止法がある」という言説の真偽を検証。各国制度の比較と、それらが「実際に漏洩を未然に防げているか」という実効性のデータを提示します。
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Cards for countries -->
+                    <div class="glass-panel p-4 text-sm border-t-2 border-blue-800">
+                        <div class="font-bold text-lg mb-2">米国 (USA)</div>
+                        <div class="text-slate-500 mb-2">FARA / FISA 702条</div>
+                        <p class="mb-2"><strong>実態：</strong> 強力なバルク傍受を行っているが、スノーデン事件などの大規模漏洩を「未然に防ぐ」ことには悉く失敗している。</p>
+                        <div class="text-[10px] bg-slate-100 p-2 rounded">監督：FISC (情報監視裁判所)</div>
+                    </div>
+                    <div class="glass-panel p-4 text-sm border-t-2 border-red-800">
+                        <div class="font-bold text-lg mb-2">ドイツ (DEU)</div>
+                        <div class="text-slate-500 mb-2">連邦憲法擁護庁法</div>
+                        <p class="mb-2"><strong>実態：</strong> 2024年連邦憲法裁決定により、無制限な監視に「違憲」判決。人権と防諜の均衡を厳格に求めている。</p>
+                        <div class="text-[10px] bg-slate-100 p-2 rounded">監督：G10委員会 (議会独立)</div>
+                    </div>
+                    <div class="glass-panel p-4 text-sm border-t-2 border-green-800">
+                        <div class="font-bold text-lg mb-2">韓国 (KOR)</div>
+                        <div class="text-slate-500 mb-2">国家保安法</div>
+                        <p class="mb-2"><strong>実態：</strong> 過去の軍事政権による「スパイ捏造」の歴史から、違法収集証拠の排除基準が極めて厳格に運用されている。</p>
+                        <div class="text-[10px] bg-slate-100 p-2 rounded">監督：国会情報委員会</div>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-slate-800 text-white rounded-lg mt-8">
+                    <h3 class="font-bold mb-4">主要先進国の共通教訓</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                        <div class="border-l-2 border-slate-500 pl-4">
+                            <span class="block font-bold text-slate-400">1. 防諜は事後処罰が限界</span>
+                            傍受はいかに強力でも「漏洩前」の自動検知には至っておらず、結局は事件後の「特定と処罰」のツールに留まっている。
+                        </div>
+                        <div class="border-l-2 border-slate-500 pl-4">
+                            <span class="block font-bold text-slate-400">2. 産業・信頼へのダメージ</span>
+                            豪州のようにIT企業へ復号を強制する国では、民間セクターの国際的な信頼性が著しく毀損される副作用が生じている。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: 10 Verdicts -->
+        <section id="section-verdict" class="hidden space-y-8">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">総合検証に基づく最終10判定</h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8">
+                    目的の正当性、手段の適法性、および実効性の三つの軸に基づき、10の個別項目に対して下された最終判定です。
+                </p>
+
+                <div id="verdict-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- JSで挿入 -->
+                </div>
+
+                <div class="mt-12 p-10 bg-white border-2 border-red-100 rounded-2xl shadow-xl text-center">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">本調査の結論的提言</h3>
+                    <p class="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                        高市政権が防諜能力を整えようとする「目的の正当性」は理解できる。しかし、司法令状を欠いた行政傍受は明白に違憲であり、暗号・AI時代における実効性も証明されていない。2026年9月30日までの拙速な法制化は白紙撤回し、既存の捜査・分析能力の適法な向上こそが、唯一現実的な選択肢である。
+                    </p>
+                    <div class="mt-8 text-sm font-bold text-slate-400 tracking-widest uppercase">END OF REPORT</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script>
+    const legalData = [
+        { type: "国家・防衛機密の取得漏洩", law: "特定秘密保護法、自衛隊法", stage: "共謀・教唆・煽動から", gap: "一般的な行政情報の漏洩" },
+        { type: "経済安保情報の漏洩", law: "重要経済安保情報保護法", stage: "漏洩未遂から", gap: "非指定技術の自発的提供" },
+        { type: "営業秘密・産業スパイ", law: "不正競争防止法", stage: "窃取未遂・共謀から", gap: "秘密管理性のない情報" },
+        { type: "ハッキング・サイバー攻撃", law: "不正アクセス禁止法等", stage: "プログラム供用から", gap: "国外主体の主権外追及" },
+        { type: "外国勢力への利益供与", law: "収賄罪、政治資金規正法", stage: "約束・合意から", gap: "民間人への合法報酬" },
+        { type: "合法的ロビー活動", law: "規制なし (憲法21条範囲内)", stage: "不可", gap: "「影響力工作」そのもの" },
+        { type: "AIエージェントによる自動取得", law: "不正アクセス禁止法等", stage: "実行段階", gap: "人間の「故意」の立証" }
+    ];
+
+    const verdictData = [
+        { q: "追加のスパイ防止法は必要か", a: "必要性は認められない。既存法で広範にカバー済み。", status: "D" },
+        { q: "現行法で処理できない空白は何か", a: "ロビー活動等の「合法的な影響力工作」のみ。", status: "B" },
+        { q: "新法は漏洩を防止できるか", a: "防止できず、不当な捜査と誤認逮捕を増やす懸念。", status: "D" },
+        { q: "行政傍受は必要か", a: "不要。民間連携や司法傍受の体制強化で対応可能。", status: "D" },
+        { q: "司法傍受で不足する具体的理由は", a: "存在しない。行政の主観的利便性に過ぎない。", status: "E" },
+        { q: "暗号・AIの指示主体へ到達できるか", a: "技術的に不可能。AIがアトリビューションを分断する。", status: "E" },
+        { q: "憲法21,35,98条と整合するか", a: "明白に違憲。検閲の禁止、令状主義を正面から蹂躙。", status: "D" },
+        { q: "違法収集証拠排除を解決できるか", a: "解決不可。無令状情報は毒樹の果実として排除される。", status: "E" },
+        { q: "国民の自由と防諜能力は釣り合うか", a: "著しく不均衡。全市民のプライバシー崩壊を招く。", status: "E" },
+        { q: "9月30日までの法制化に合理性はあるか", a: "皆無。政治的スケジュールのための暴走である。", status: "E" }
+    ];
+
+    function showSection(sectionId) {
+        document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+        document.getElementById(`section-${sectionId}`).classList.remove('hidden');
+        
+        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+        document.getElementById(`btn-${sectionId}`).classList.add('active');
+
+        if (sectionId === 'const') renderConstChart();
+    }
+
+    function initLegalTable() {
+        const body = document.getElementById('legal-table-body');
+        body.innerHTML = legalData.map(d => `
+            <tr>
+                <td class="p-4 font-medium border-r">${d.type}</td>
+                <td class="p-4">${d.law}</td>
+                <td class="p-4">${d.stage}</td>
+                <td class="p-4 text-amber-700 bg-amber-50 font-bold">${d.gap}</td>
+            </tr>
+        `).join('');
+    }
+
+    function initVerdictGrid() {
+        const grid = document.getElementById('verdict-grid');
+        grid.innerHTML = verdictData.map((v, i) => `
+            <div class="verdict-card glass-panel p-6 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-tighter">Verification Point ${i+1}</span>
+                        <span class="status-badge-${v.status.toLowerCase()} px-3 py-1 rounded-full text-xs font-bold">${v.status} 判定</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800 mb-2">${v.q}</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">${v.a}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    let constChartInstance = null;
+    function renderConstChart() {
+        const ctx = document.getElementById('constChart').getContext('2d');
+        if (constChartInstance) constChartInstance.destroy();
+
+        constChartInstance = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['重大な犯罪(具体的)', '容疑の充足', '令状の存在', '補充性(限定)', '通信の秘密の保護'],
+                datasets: [{
+                    label: '司法傍受 (憲法適合ライン)',
+                    data: [100, 100, 100, 100, 100],
+                    backgroundColor: 'rgba(30, 41, 59, 0.1)',
+                    borderColor: 'rgba(30, 41, 59, 0.5)',
+                    borderWidth: 2,
+                    pointRadius: 0
+                }, {
+                    label: '行政傍受 (提案内容)',
+                    data: [40, 20, 0, 30, 20],
+                    backgroundColor: 'rgba(239, 68, 68, 0.3)',
+                    borderColor: 'rgba(239, 68, 68, 1)',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    }
+
+    window.onload = () => {
+        initLegalTable();
+        initVerdictGrid();
+        showSection('overview');
+    };
+</script>
+
+</body>
+</html>
