@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>戦後日本のICC対応史：東京裁判から2026年米国金融制裁まで</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sand: {
+                            50: '#fdfbf7',
+                            100: '#f7f4ec',
+                            200: '#eee7d7',
+                            300: '#e0d3b8',
+                            800: '#574e3b',
+                            900: '#383226',
+                        },
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        crimson: {
+                            700: '#9f1239',
+                            800: '#881337',
+                        },
+                        amber: {
+                            600: '#d97706',
+                            700: '#b45309',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Georgia', 'Cambria', '"Times New Roman"', 'serif'],
+                        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Chart container responsiveness and strict size constraining */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 380px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #b45309;
+            color: #0f172a;
+            font-weight: 700;
+            background-color: rgba(247, 244, 236, 0.8);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7f4ec;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<!-- Chosen Palette: Warm Neutral Harmony (Warm Sand background, Deep Navy text/accents, Heritage Crimson for Sanctions/Crisis, Muted Amber for Highlights) -->
+<!-- Application Structure Plan: The SPA is structured into 5 cohesive interactive tabs (1. Dashboard & Timeline Overview, 2. Tokyo Trials & SF Treaty Art. 11, 3. 2007 ICC Accession & Investment, 4. 2026 US Sanctions Crisis, 5. Comparative Matrix & 7 Core Questions). This non-linear, intuitive layout allows users to easily jump between 80 years of historical background, quantitative financial charts, qualitative quotes, and modern geopolitical analysis without context switching loss. -->
+<!-- Visualization & Content Choices: 
+  - Budget/Contribution Share: Interactive Chart.js Horizontal Bar Chart comparing Japan's #1 contribution (~15.4%) against Germany, France, UK, etc.
+  - Institutional System Comparison: Chart.js Bar Chart comparing System Scores (Legal Certainty, Pre-established Law, Judicial Independence, Multilateral Basis) across Tokyo Trials, ICC Design, and 2026 US Sanctioned state.
+  - Interactive Timeline: Dynamic JavaScript Stepper with detail cards for 1945, 1948, 1952, 2007, 2018, 2024, and 2026 milestones.
+  - SF Treaty Art. 11 Logic: Interactive Toggle Switch showing External International Obligations vs Internal Legal Recognition.
+  - 7 Core Questions: Filterable Accordions addressing all key thesis questions.
+  - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. All visual elements rely on pure Tailwind CSS, HTML Unicode, and Chart.js Canvas. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<body class="bg-sand-50 text-slate-800 font-sans leading-relaxed min-h-screen flex flex-col selection:bg-amber-200 selection:text-slate-900">
+
+    <!-- Header Section -->
+    <header class="bg-navy-900 text-sand-50 border-b-4 border-amber-700 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <div class="flex items-center space-x-3">
+                    <span class="inline-block px-2.5 py-1 text-xs font-semibold bg-amber-700 text-white rounded">国家史・国際法検証報告書</span>
+                    <span class="text-xs text-sand-300 font-mono">1945 - 2026</span>
+                </div>
+                <h1 class="text-xl md:text-2xl font-bold font-serif tracking-wide mt-1">
+                    敗戦後日本の国際刑事司法と「法の支配」の相克
+                </h1>
+                <p class="text-xs md:text-sm text-sand-300 mt-0.5">
+                    東京裁判の「勝者の裁き」原体験から2026年対ICC米国金融制裁に至る80年史
+                </p>
+            </div>
+            <div class="mt-3 md:mt-0 flex items-center space-x-2">
+                <button onclick="switchTab('dashboard')" class="text-xs bg-sand-800 hover:bg-amber-700 text-white px-3 py-1.5 rounded transition">
+                    🧭 ガイドツアー
+                </button>
+                <a href="#matrix" onclick="switchTab('matrix')" class="text-xs bg-crimson-800 hover:bg-crimson-700 text-white px-3 py-1.5 rounded transition">
+                    ⚖️ 三時代比較
+                </a>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="bg-navy-800 border-t border-slate-700 overflow-x-auto">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap text-xs md:text-sm">
+                <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn active px-4 py-3 text-slate-300 hover:text-white transition flex items-center gap-1.5">
+                    <span>📊</span> 概要＆80年史年表
+                </button>
+                <button onclick="switchTab('tokyo')" id="tab-tokyo" class="tab-btn px-4 py-3 text-slate-300 hover:text-white transition flex items-center gap-1.5">
+                    <span>📜</span> 東京裁判と平和条約11条
+                </button>
+                <button onclick="switchTab('icc-accession')" id="tab-icc-accession" class="tab-btn px-4 py-3 text-slate-300 hover:text-white transition flex items-center gap-1.5">
+                    <span>🏛️</span> 2007加盟と国家投資
+                </button>
+                <button onclick="switchTab('sanctions-2026')" id="tab-sanctions-2026" class="tab-btn px-4 py-3 text-slate-300 hover:text-white transition flex items-center gap-1.5">
+                    <span>⚠️</span> 2026米国制裁と高市声明
+                </button>
+                <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn px-4 py-3 text-slate-300 hover:text-white transition flex items-center gap-1.5">
+                    <span>🔍</span> 構造比較＆7つの核心問答
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- TAB 1: DASHBOARD & TIMELINE -->
+        <section id="content-dashboard" class="space-y-8">
+            <!-- Section Intro -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200">
+                <h2 class="text-lg font-bold text-navy-900 border-l-4 border-amber-600 pl-3 mb-2">
+                    ダッシュボード：戦後日本の国際司法観をつなぐ「安全装置」仮説
+                </h2>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                    2026年8月、米国が国際刑事裁判所（ICC）の赤根智子所長らに金融制裁を発動した際、高市早苗首相は「大変残念」と表明しました。本ページでは、この反応を単なる人道外交や同胞擁護だけでなく、東京裁判をめぐる法的論争、2007年のICC加盟時の政府説明、長年の財政・人的貢献を一本の制度史として読み解きます。
+                </p>
+
+                <!-- KPI Metric Cards -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                    <div class="bg-sand-100 p-4 rounded border border-sand-300 text-center">
+                        <span class="text-xs text-slate-500 font-semibold uppercase block">ICC全加盟国中</span>
+                        <span class="text-2xl md:text-3xl font-extrabold text-navy-900 my-1 block">第 1 位</span>
+                        <span class="text-xs text-amber-700 font-medium">分担金拠出国 (約15.4%)</span>
+                    </div>
+                    <div class="bg-sand-100 p-4 rounded border border-sand-300 text-center">
+                        <span class="text-xs text-slate-500 font-semibold uppercase block">分担金（2023年度）</span>
+                        <span class="text-2xl md:text-3xl font-extrabold text-navy-900 my-1 block">約30.1億円</span>
+                        <span class="text-xs text-slate-600">分担率15.39%</span>
+                    </div>
+                    <div class="bg-sand-100 p-4 rounded border border-sand-300 text-center">
+                        <span class="text-xs text-slate-500 font-semibold uppercase block">日本人初の裁判所トップ</span>
+                        <span class="text-2xl md:text-3xl font-extrabold text-navy-900 my-1 block">赤根智子</span>
+                        <span class="text-xs text-crimson-700 font-medium">2026年 米国制裁対象に</span>
+                    </div>
+                    <div class="bg-sand-100 p-4 rounded border border-sand-300 text-center">
+                        <span class="text-xs text-slate-500 font-semibold uppercase block">敗戦から現在まで</span>
+                        <span class="text-2xl md:text-3xl font-extrabold text-navy-900 my-1 block">約 80 年</span>
+                        <span class="text-xs text-slate-600">制度選択の積み重ね</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Thesis Callout Banner -->
+            <div class="bg-gradient-to-r from-navy-900 to-slate-800 text-white p-6 rounded-lg shadow-md border-l-8 border-amber-600">
+                <div class="flex items-start space-x-4">
+                    <span class="text-3xl">🎯</span>
+                    <div>
+                        <h3 class="font-bold text-amber-400 text-base mb-1">本ページの中心仮説 (Core Hypothesis)</h3>
+                        <p class="text-xs md:text-sm text-sand-100 leading-relaxed">
+                            「日本のICC支持は、単なる国際協調政策としてだけでなく、東京裁判をめぐる事後法・手続的非対称性の議論を経た日本が、あらかじめ定められた法・常設司法・罪刑法定主義・不遡及・司法独立を重視する制度選択を積み重ねてきた結果として理解できる。ICCはその意味で<strong>安全装置（フェイルセーフ）</strong>として機能する。」
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Timeline Component -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-2">
+                    <div>
+                        <h3 class="text-base font-bold text-navy-900">📜 戦後日本の国際刑事司法 80年史インタラクティブ年表</h3>
+                        <p class="text-xs text-slate-500">各年代のカードをクリックすると、詳細な法的・外交的背景が表示されます。</p>
+                    </div>
+                    <span class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-medium">1945年～2026年</span>
+                </div>
+
+                <!-- Timeline Stepper Track -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 mb-6">
+                    <button onclick="showTimelineDetail('1945')" id="tl-btn-1945" class="tl-step bg-amber-700 text-white p-2 text-center rounded text-xs font-semibold hover:opacity-90 transition">
+                        1945年<br><span class="font-normal text-[10px]">敗戦・東京裁判設置</span>
+                    </button>
+                    <button onclick="showTimelineDetail('1948')" id="tl-btn-1948" class="tl-step bg-sand-200 text-slate-800 p-2 text-center rounded text-xs font-semibold hover:bg-sand-300 transition">
+                        1948年<br><span class="font-normal text-[10px]">パール反対意見</span>
+                    </button>
+                    <button onclick="showTimelineDetail('1952')" id="tl-btn-1952" class="tl-step bg-sand-200 text-slate-800 p-2 text-center rounded text-xs font-semibold hover:bg-sand-300 transition">
+                        1952年<br><span class="font-normal text-[10px]">講和条約11条発効</span>
+                    </button>
+                    <button onclick="showTimelineDetail('2007')" id="tl-btn-2007" class="tl-step bg-sand-200 text-slate-800 p-2 text-center rounded text-xs font-semibold hover:bg-sand-300 transition">
+                        2007年<br><span class="font-normal text-[10px]">ICC正式加盟・麻生答弁</span>
+                    </button>
+                    <button onclick="showTimelineDetail('2018')" id="tl-btn-2018" class="tl-step bg-sand-200 text-slate-800 p-2 text-center rounded text-xs font-semibold hover:bg-sand-300 transition">
+                        2018年<br><span class="font-normal text-[10px]">赤根判事就任</span>
+                    </button>
+                    <button onclick="showTimelineDetail('2024')" id="tl-btn-2024" class="tl-step bg-sand-200 text-slate-800 p-2 text-center rounded text-xs font-semibold hover:bg-sand-300 transition">
+                        2024年<br><span class="font-normal text-[10px]">赤根氏 ICC所長選出</span>
+                    </button>
+                    <button onclick="showTimelineDetail('2026')" id="tl-btn-2026" class="tl-step bg-crimson-700 text-white p-2 text-center rounded text-xs font-semibold hover:opacity-90 transition">
+                        2026年<br><span class="font-normal text-[10px]">米国制裁＆高市声明</span>
+                    </button>
+                </div>
+
+                <!-- Timeline Active Detail Box -->
+                <div id="timeline-detail-box" class="bg-sand-50 p-5 rounded-lg border border-sand-300 transition-all duration-300">
+                    <!-- Dynamic Text Content loaded by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: TOKYO TRIALS & ART 11 -->
+        <section id="content-tokyo" class="hidden space-y-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200">
+                <h2 class="text-lg font-bold text-navy-900 border-l-4 border-amber-600 pl-3 mb-2">
+                    東京裁判が残した法的論点とサンフランシスコ平和条約第11条の「二層構造」
+                </h2>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                    極東国際軍事裁判（東京裁判）は、連合国最高司令官の命令に基づく特設法廷であり、罪刑法定主義・事後法禁止との関係、裁判体の構成、審理対象の非対称性などをめぐって重大な法的論争を残しました。日本政府は、平和条約上は裁判を受諾し国家間関係として異議を申し立てる立場にないとしつつ、同裁判をめぐる法的諸問題について様々な議論があることを認識してきました。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Tokyo Trial Flaws Card -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-2 text-amber-700 font-bold mb-3 border-b pb-2">
+                            <span>⚖️</span>
+                            <span>東京裁判をめぐる3つの主要論点</span>
+                        </div>
+                        <ul class="space-y-3 text-xs md:text-sm text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <span class="bg-amber-100 text-amber-800 font-bold px-1.5 py-0.5 rounded text-xs">1</span>
+                                <div>
+                                    <strong>事後法・罪刑法定主義との関係：</strong>
+                                    とりわけ「平和に対する罪」をめぐり、事後法禁止・罪刑法定主義との整合性が大きな争点となった。
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="bg-amber-100 text-amber-800 font-bold px-1.5 py-0.5 rounded text-xs">2</span>
+                                <div>
+                                    <strong>裁判体構成の非対称性：</strong>
+                                    裁判官は連合国側から選出され、敗戦国側や中立国を含まない構成であったことから、制度的中立性をめぐる批判が生じた。
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="bg-amber-100 text-amber-800 font-bold px-1.5 py-0.5 rounded text-xs">3</span>
+                                <div>
+                                    <strong>審理対象の非対称性：</strong>
+                                    連合国側の行為は同じ法廷の審理対象とならず、「勝者が敗者を裁く」構造そのものが法的・制度的論点となった。
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Judge Pal Spotlight -->
+                    <div class="mt-6 bg-sand-100 p-4 rounded border border-sand-300">
+                        <h4 class="font-bold text-navy-900 text-xs flex items-center gap-1 mb-1">
+                            <span>🇮🇳</span> ラダ・ビノード・パール判事の反対意見
+                        </h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            パール判事は全被告人を無罪とする結論を示し、事後法禁止や罪刑法定主義の観点から多数意見を厳しく批判しました。これは単純な日本擁護ではなく、戦勝国が設置した特設法廷における法の普遍性と手続的正当性を問う反対意見として位置づけられます。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SF Treaty Art. 11 Interactive Toggle Widget -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200">
+                    <div class="flex items-center justify-between mb-4 border-b pb-2">
+                        <h3 class="font-bold text-navy-900 text-sm flex items-center gap-2">
+                            <span>📖</span> サンフランシスコ平和条約第11条の二層構造
+                        </h3>
+                        <span class="text-xs bg-navy-800 text-white px-2 py-0.5 rounded">政府公式見解</span>
+                    </div>
+
+                    <p class="text-xs text-slate-600 mb-4">
+                        日本政府は1952年以来、第11条「裁判の受諾」について、国家間の義務と国内的な法的正当性の認識を厳密に分離するアプローチを採用しています。下の切り替えスイッチで内容を確認してください。
+                    </p>
+
+                    <!-- Toggle Control -->
+                    <div class="flex rounded-md bg-sand-100 p-1 mb-4 border border-sand-300">
+                        <button onclick="setArt11Layer('external')" id="btn-layer-ext" class="flex-1 py-1.5 text-xs font-semibold rounded bg-white text-navy-900 shadow-sm transition">
+                            層①：外政的受諾 (国家間義務)
+                        </button>
+                        <button onclick="setArt11Layer('internal')" id="btn-layer-int" class="flex-1 py-1.5 text-xs font-semibold rounded text-slate-600 transition">
+                            層②：法的論争の認識
+                        </button>
+                    </div>
+
+                    <!-- Toggle View Card -->
+                    <div id="art11-content-card" class="bg-sand-50 p-4 rounded border border-sand-300 text-xs md:text-sm text-slate-700 min-h-[160px]">
+                        <!-- Dynamic Content injected via JS -->
+                    </div>
+
+                    <!-- Diet Citation Quote -->
+                    <div class="mt-4 p-3 bg-amber-50 border-l-4 border-amber-600 text-xs text-slate-700">
+                        <span class="font-bold text-amber-900 block mb-1">参議院本会議 答弁（2007年4月13日 外務大臣 麻生太郎）:</span>
+                        「日本は国と国との関係において、極東軍事裁判について異議を申し立てる立場にない」としたうえで、「事後法の禁止に反するなど、法的な諸問題に関しいろいろな議論があることは承知」と答弁。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: ICC ACCESSION & INVESTMENT -->
+        <section id="content-icc-accession" class="hidden space-y-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200">
+                <h2 class="text-lg font-bold text-navy-900 border-l-4 border-amber-600 pl-3 mb-2">
+                    2007年ICC加盟と「安全装置」としての制度的選択
+                </h2>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                    日本が2007年にICCに加盟した際、当時の麻生太郎外相は同一の国会答弁で、東京裁判をめぐる「事後法の禁止に反するなど、法的な諸問題に関しいろいろな議論」と、ICCローマ規程に定められた罪刑法定主義・不遡及・裁判官等の選任制度・手続・常設性を並べて説明しました。本ページでは、この並置を戦後日本の制度選択を示す重要な接続点として扱います。
+                </p>
+            </div>
+
+            <!-- Prime Minister/Foreign Minister Quote Banner -->
+            <div class="bg-sand-100 p-6 rounded-lg border-l-4 border-navy-800 shadow-sm">
+                <div class="flex items-start space-x-3">
+                    <span class="text-2xl">🗣️</span>
+                    <div>
+                        <h3 class="font-bold text-navy-900 text-sm mb-1">
+                            2007年4月13日 参議院本会議 外務大臣 麻生太郎（第1次安倍内閣）答弁
+                        </h3>
+                        <blockquote class="text-xs md:text-sm text-slate-700 italic leading-relaxed bg-white p-4 rounded border border-sand-300 my-2">
+                            「東京裁判所を経験した我が国がICCに加盟することの意義についてのお尋ねがあっております。日本は国と国との関係において、極東軍事裁判について異議を申し立てる立場にないと考えておりますが、同裁判につきまして、御指摘のとおり、事後法の禁止に反するなど、法的な諸問題に関しいろいろな議論があることは承知をいたしております。<br>
+                            ICCは常設の国際刑事法廷として設立され、ICCローマ規程に従い運営されております。同規程には、<strong>罪刑法定主義、刑事責任の不遡及を始めとする刑法の一般原則</strong>、裁判官や検察官の選挙制度、捜査、公判の手続などが規定されており、国際社会における法の支配の促進に資するものと考えております。」
+                        </blockquote>
+                        <span class="text-[11px] text-amber-800 font-medium">👉 読み取り：東京裁判をめぐる法的論争を認識したうえで、ICCの事前法・不遡及・常設性を「法の支配」に資する制度として説明した答弁。</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Financial Contribution Chart.js Container -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-navy-900 text-sm mb-1">📊 日本のICC分担金負担（確認可能な公表値）</h3>
+                        <p class="text-xs text-slate-500 mb-4">日本は長年、ICC最大の分担金拠出国として財政面から制度を支えてきました。</p>
+                        
+                        <div class="chart-container">
+                            <canvas id="iccContributionChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="mt-4 bg-sand-50 p-3 rounded border border-sand-200 text-xs text-slate-600">
+                        <strong>財務的負担の意味：</strong> 2023年度の分担金は約30.1億円、分担率15.39%。継続的な高負担は、日本がICCを言葉だけでなく制度運営の資源面から支えてきたことを示します。
+                    </div>
+                </div>
+
+                <!-- Human Capital & Akane Spotlight -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-navy-900 text-sm mb-3 flex items-center gap-2">
+                            <span>👩‍⚖️</span> 人材的貢献と赤根智子裁判官の軌跡
+                        </h3>
+
+                        <div class="space-y-3 text-xs md:text-sm text-slate-700">
+                            <div class="p-3 bg-sand-50 rounded border border-sand-200">
+                                <span class="font-bold text-navy-900">2018年：ICC裁判官就任</span>
+                                <p class="text-xs text-slate-600 mt-0.5">元検事、法務総合研究所長。日本人3人目のICC判事として予審裁判部門を担当。</p>
+                            </div>
+                            <div class="p-3 bg-amber-50 rounded border border-amber-200">
+                                <span class="font-bold text-amber-900">2024年3月：日本人初のICC所長に選出</span>
+                                <p class="text-xs text-slate-600 mt-0.5">全裁判官による独立選挙で選出。ウクライナ情勢でのプーチン大統領逮捕状発付にも関与。</p>
+                            </div>
+                            <div class="p-3 bg-sand-50 rounded border border-sand-200">
+                                <span class="font-bold text-navy-900">2026年：次期選挙（山内由光氏）擁立</span>
+                                <p class="text-xs text-slate-600 mt-0.5">日本政府は2026年末選挙に向け山内氏を擁立し、司法機能中枢への人的貢献を継続。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 bg-navy-900 text-sand-50 rounded text-xs">
+                        <span class="font-bold text-amber-400 block mb-1">なぜこれほど人的・財政的投資を行うのか？</span>
+                        日本政府は、重大犯罪への対処と国際社会における法の支配の推進をICC支持の理由として繰り返し示してきました。財政・人的貢献は、その制度を実際に機能させるための継続的な投入です。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: 2026 SANCTIONS & TAKAICHI STATEMENT -->
+        <section id="content-sanctions-2026" class="hidden space-y-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200">
+                <h2 class="text-lg font-bold text-navy-900 border-l-4 border-crimson-700 pl-3 mb-2">
+                    2026年米国によるICC金融制裁とその実務的影響
+                </h2>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                    2026年8月18日、米国は大統領令14203号に基づき、赤根智子ICC所長とAbdoulaye Seye上級訴追弁護士を制裁対象に指定しました。米国管轄下の資産は凍結され、米国人との取引が原則禁止されます。さらに、金融機関・企業が制裁リスクを避けるため取引やサービス提供を控える過剰遵守が、第三国を含む実務上の影響を拡大させます。
+                </p>
+            </div>
+
+            <!-- Sanctions Impact Flow Diagram (Tailwind grid based) -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200">
+                <h3 class="font-bold text-navy-900 text-sm mb-4">⚡ 2026年米国金融制裁（大統領令14203号）の伝播構造</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <!-- Step 1 -->
+                    <div class="bg-crimson-50 border-t-4 border-crimson-700 p-4 rounded shadow-sm">
+                        <div class="text-crimson-800 font-bold mb-1">① 直接制裁 (SDN指定)</div>
+                        <p class="text-slate-700">米国内資産の凍結、米国入国禁止（ビザ発給停止）。赤根智子所長およびAbdoulaye Seye上級弁護士が対象（18人中9人の判事が制裁下に）。</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="bg-amber-50 border-t-4 border-amber-600 p-4 rounded shadow-sm">
+                        <div class="text-amber-900 font-bold mb-1">② 第三国への波及リスク</div>
+                        <p class="text-slate-700">米国との取引関係を持つ第三国の銀行・企業は、法的義務の範囲を超えて制裁対象との取引を回避する傾向があり、金融・決済・IT等の利用可能性に波及し得る。</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="bg-slate-100 border-t-4 border-slate-700 p-4 rounded shadow-sm">
+                        <div class="text-slate-900 font-bold mb-1">③ 過剰遵守 (Over-compliance)</div>
+                        <p class="text-slate-700">民間銀行・IT・その他サービス提供者がリスク回避のため取引を制限することで、制裁対象者の日常的な金融取引や業務遂行に実務上の障害が生じる。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prime Minister Takaichi's Response Analysis -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200">
+                    <h3 class="font-bold text-navy-900 text-sm mb-3 border-b pb-2 flex items-center gap-2">
+                        <span>🎙️</span> 高市早苗総理「大変残念」発言の外交プロトコル解釈
+                    </h3>
+
+                    <div class="space-y-3 text-xs md:text-sm text-slate-700">
+                        <div class="p-3 bg-sand-50 rounded border border-sand-200">
+                            <span class="font-bold text-navy-900">2026年8月19日 高市総理ぶら下がり答弁:</span>
+                            <blockquote class="italic text-slate-600 my-1">
+                                「大変残念に思っている。米国を含む関係国と意思疎通を継続しながら対応していく」
+                            </blockquote>
+                        </div>
+                        <div class="p-3 bg-sand-50 rounded border border-sand-200">
+                            <span class="font-bold text-navy-900">外務報道官 談話:</span>
+                            <p class="text-xs text-slate-600 my-1">
+                                「我が国は、法の支配の徹底のため、常設の国際刑事法廷であるICCを一貫して支持してきています。このような立場から、今回の措置は大変残念です。」
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 bg-amber-50 rounded border border-amber-300 text-xs text-slate-800">
+                        <strong>本ページの解釈：</strong>
+                        同盟国である米国の公式措置に対し、首相自身が「大変残念」と明言し、外務省も日本の一貫したICC支持と「法の支配」を同時に示した点は重要です。本ページでは、これを日本が長年支えてきた制度原則との衝突を確認した政治的シグナルとして読みます。
+                    </div>
+                </div>
+
+                <!-- Global South / India Connection Card -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-navy-900 text-sm mb-3 border-b pb-2 flex items-center gap-2">
+                            <span>🌏</span> インドとの歴史記憶と法的接点
+                        </h3>
+
+                        <p class="text-xs text-slate-700 leading-relaxed mb-3">
+                            2007年、安倍晋三首相はインド国会「二つの海の交わり」演説でパール判事の「気高い勇気」に言及しました。東京裁判をめぐる法的記憶と、2026年のICC制裁をめぐる司法独立の論点を並べると、日印間には国際法と権力の関係を考える歴史的接点が確認できます。
+                        </p>
+
+                        <div class="p-3 bg-sand-100 rounded border border-sand-300 text-xs text-slate-700">
+                            <span class="font-bold text-navy-900 block mb-1">日本がICC支持を堅持する外交的意義：</span>
+                            ICC支持を継続することは、日本が国際社会に対し「特定国との関係とは別に、常設司法と法の支配を重視する」という政策的一貫性を示す外交資産になります。
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 bg-crimson-800 text-white rounded text-xs">
+                        <strong>欧州側の検討：</strong> EU理事会では米国のICC制裁への対応として、既存のBlocking Statuteを含む利用可能な手段が検討対象となっています。日本については、現時点で確認できる政府方針としては関係国との意思疎通を継続しながら対応する、という段階です。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: COMPARATIVE MATRIX & 7 CORE QUESTIONS -->
+        <section id="content-matrix" class="hidden space-y-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200">
+                <h2 class="text-lg font-bold text-navy-900 border-l-4 border-amber-600 pl-3 mb-2">
+                    三時代比較マトリクスと「7つの核心的問い」への回答
+                </h2>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                    東京裁判、ICCの本来の制度設計、そして2026年の米国による制裁措置を法的・制度的に比較することで、事態の構造的本質が鮮明になります。
+                </p>
+            </div>
+
+            <!-- Interactive Comparison Table -->
+            <div class="bg-white rounded-lg shadow-sm border border-sand-200 overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs md:text-sm">
+                    <thead>
+                        <tr class="bg-navy-900 text-sand-50 border-b border-slate-700">
+                            <th class="p-3 font-bold">比較項目</th>
+                            <th class="p-3 font-bold bg-slate-800">① 東京裁判 (1945年～)</th>
+                            <th class="p-3 font-bold bg-amber-800">② ICC本来の設計 (2002年～)</th>
+                            <th class="p-3 font-bold bg-crimson-800">③ 2026年 米国制裁下</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-sand-200 text-slate-700">
+                        <tr>
+                            <td class="p-3 font-bold bg-sand-100">準拠規範</td>
+                            <td class="p-3">戦後に設置された特設法廷<br>（極東国際軍事裁判所憲章）</td>
+                            <td class="p-3 font-semibold text-amber-900">事前合意された条約<br>（ローマ規程）</td>
+                            <td class="p-3">米国内法に基づく制裁<br>＋国際金融上の波及</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold bg-sand-100">司法の独立性</td>
+                            <td class="p-3">連合国側のみで構成<br>構成上の非対称性</td>
+                            <td class="p-3 font-semibold text-amber-900">締約国選挙による裁判官<br>制度上の独立性を保障</td>
+                            <td class="p-3">金融制裁により裁判官等へ<br>外部的圧力</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold bg-sand-100">管轄権の論理</td>
+                            <td class="p-3">戦後占領下の<br>特設法廷として成立</td>
+                            <td class="p-3 font-semibold text-amber-900">領域国（パレスチナ等）の<br>同意に基づく属地管轄権</td>
+                            <td class="p-3">管轄権への異議を<br>金融制裁で外部化</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold bg-sand-100">本質的パラダイム</td>
+                            <td class="p-3 text-slate-600">勝者側が設置・運営する<br>特設司法</td>
+                            <td class="p-3 font-semibold text-navy-900">事前法・常設性・独立性を<br>制度上保障</td>
+                            <td class="p-3 text-crimson-700 font-bold">司法独立に対する<br>外部圧力の発生</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Qualitative comparison note -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200">
+                <h3 class="font-bold text-navy-900 text-sm mb-2">🧭 比較の読み方</h3>
+                <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
+                    上表は、東京裁判・ICCの制度設計・2026年米国制裁という性質の異なる三つの対象を、数値スコアではなく制度要素ごとに比較しています。歴史的・法的評価を恣意的な点数へ変換せず、準拠規範、裁判体の構成、管轄権、司法独立への外部圧力という確認可能な差異に限定して示します。
+                </p>
+            </div>
+
+            <!-- 7 Core Questions Interactive Accordion -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-sand-200">
+                <h3 class="font-bold text-navy-900 text-base border-b pb-2 mb-4 flex items-center gap-2">
+                    <span>❓</span> 本検証が答えるべき7つの最終問い（Q&A）
+                </h3>
+
+                <div class="space-y-3" id="accordion-questions">
+                    <!-- Q1 -->
+                    <div class="border border-sand-300 rounded-lg overflow-hidden">
+                        <button onclick="toggleAccordion('q1')" class="w-full text-left p-3 bg-sand-100 hover:bg-sand-200 font-bold text-xs md:text-sm text-navy-900 flex justify-between items-center transition">
+                            <span>Q1. 日本はなぜICCを支持しているのか？</span>
+                            <span id="icon-q1" class="text-slate-500">＋</span>
+                        </button>
+                        <div id="ans-q1" class="hidden p-4 text-xs md:text-sm text-slate-700 bg-white border-t border-sand-200">
+                            日本政府は、最も重大な国際犯罪への対処と、国際社会における法の支配の推進をICC支持の理由として示してきました。本検証では、そこに東京裁判をめぐる法的論争の制度記憶も重なると読みます。
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="border border-sand-300 rounded-lg overflow-hidden">
+                        <button onclick="toggleAccordion('q2')" class="w-full text-left p-3 bg-sand-100 hover:bg-sand-200 font-bold text-xs md:text-sm text-navy-900 flex justify-between items-center transition">
+                            <span>Q2. 東京裁判の経験は日本のICC支持にどう直接つながっているか？</span>
+                            <span id="icon-q2" class="text-slate-500">＋</span>
+                        </button>
+                        <div id="ans-q2" class="hidden p-4 text-xs md:text-sm text-slate-700 bg-white border-t border-sand-200">
+                            2007年の麻生外相答弁では、東京裁判について「事後法の禁止に反するなど、法的な諸問題に関しいろいろな議論がある」と述べた直後に、ICCの罪刑法定主義・不遡及・常設性・手続制度を説明し、「法の支配の促進に資する」としています。この並置が、両者を制度史として読む最大の根拠です。
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="border border-sand-300 rounded-lg overflow-hidden">
+                        <button onclick="toggleAccordion('q3')" class="w-full text-left p-3 bg-sand-100 hover:bg-sand-200 font-bold text-xs md:text-sm text-navy-900 flex justify-between items-center transition">
+                            <span>Q3. 平和条約第11条の「二層構造」とは何か？</span>
+                            <span id="icon-q3" class="text-slate-500">＋</span>
+                        </button>
+                        <div id="ans-q3" class="hidden p-4 text-xs md:text-sm text-slate-700 bg-white border-t border-sand-200">
+                            日本は平和条約第11条により裁判を受諾し、政府は「国と国との関係において異議を申し立てる立場にない」としてきました。他方で、東京裁判をめぐり法的に様々な議論があることも政府答弁で認めています。本検証では、この二つを区別して扱います。
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="border border-sand-300 rounded-lg overflow-hidden">
+                        <button onclick="toggleAccordion('q4')" class="w-full text-left p-3 bg-sand-100 hover:bg-sand-200 font-bold text-xs md:text-sm text-navy-900 flex justify-between items-center transition">
+                            <span>Q4. ICCは「勝者の裁き」を防ぐ安全装置と理解されているか？</span>
+                            <span id="icon-q4" class="text-slate-500">＋</span>
+                        </button>
+                        <div id="ans-q4" class="hidden p-4 text-xs md:text-sm text-slate-700 bg-white border-t border-sand-200">
+                            政府が公式に「安全装置」という語を用いているわけではありません。ただし、日本が最大級の分担金を負担し、裁判官を継続的に輩出してきた事実から、ICCを重要な国際司法インフラとして実質的に支えてきたことは確認できます。本検証は、その制度的意味を「安全装置」と表現しています。
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="border border-sand-300 rounded-lg overflow-hidden">
+                        <button onclick="toggleAccordion('q5')" class="w-full text-left p-3 bg-sand-100 hover:bg-sand-200 font-bold text-xs md:text-sm text-navy-900 flex justify-between items-center transition">
+                            <span>Q5. 赤根所長への米国制裁は日本の秩序観との決定的な衝突か？</span>
+                            <span id="icon-q5" class="text-slate-500">＋</span>
+                        </button>
+                        <div id="ans-q5" class="hidden p-4 text-xs md:text-sm text-slate-700 bg-white border-t border-sand-200">
+                            重大な制度的衝突と評価できます。裁判官・検察関係者への金融制裁は、裁判所の司法判断とは別の国家権力から個人へ直接圧力を加えるため、ICC自身も司法独立を損なう措置として批判しています。
+                        </div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="border border-sand-300 rounded-lg overflow-hidden">
+                        <button onclick="toggleAccordion('q6')" class="w-full text-left p-3 bg-sand-100 hover:bg-sand-200 font-bold text-xs md:text-sm text-navy-900 flex justify-between items-center transition">
+                            <span>Q6. 高市総理の「大変残念」はどの程度重い国家意思表示か？</span>
+                            <span id="icon-q6" class="text-slate-500">＋</span>
+                        </button>
+                        <div id="ans-q6" class="hidden p-4 text-xs md:text-sm text-slate-700 bg-white border-t border-sand-200">
+                            公式に確認できるのは、高市首相が「大変残念」と述べ、関係国との意思疎通を継続しながら対応するとしたことです。本検証では、外務省が同時に日本の一貫したICC支持と法の支配を明示した点を踏まえ、通常の事務的コメントより重い政治的シグナルとして読みます。
+                        </div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="border border-sand-300 rounded-lg overflow-hidden">
+                        <button onclick="toggleAccordion('q7')" class="w-full text-left p-3 bg-amber-50 hover:bg-amber-100 font-bold text-xs md:text-sm text-amber-900 flex justify-between items-center transition">
+                            <span>Q7. 日本が今回守ろうとしているものの最終的本質は何か？</span>
+                            <span id="icon-q7" class="text-amber-700">＋</span>
+                        </button>
+                        <div id="ans-q7" class="hidden p-4 text-xs md:text-sm text-slate-800 bg-sand-50 border-t border-amber-200 leading-relaxed">
+                            一人の判事や一組織だけではなく、戦後日本が継続して重視してきた<strong>「政治的・軍事的な力だけでなく、あらかじめ定められた法と独立した司法によって責任を問う」という制度原則</strong>です。これは本検証が資料群から導く中心的な解釈です。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-sand-300 border-t border-slate-800 mt-12 py-8 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <p class="font-semibold text-sand-100">戦後日本のICC対応史：国家史的検証報告書 Web SPA</p>
+                <p class="text-[11px] text-slate-400 mt-1">Source Report: 「敗戦後日本の国際刑事司法と『法の支配』の相克」 (2026年検証論文)</p>
+            </div>
+            <div class="text-center md:text-right text-[11px] text-slate-400">
+                <p>主な一次資料: 国会会議録（2007年4月13日参議院本会議） / 日本外務省 ICC資料・談話 / ICC公式資料 / 米国大統領令14203号・制裁指定</p>
+                <p class="mt-0.5">事実記述と本ページの構造解釈を区別し、解釈部分はその旨を明示しています。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Data Store
+        const timelineData = {
+            '1945': {
+                title: '1945年：敗戦と極東国際軍事裁判（東京裁判）の設置',
+                badge: '戦後司法をめぐる原点',
+                desc: '連合国軍最高司令官の命令により極東国際軍事裁判所が設置される。とりわけ「平和に対する罪」をめぐる事後法禁止・罪刑法定主義との関係、連合国側のみで構成された裁判体、連合国側行為が同一法廷の審理対象とならなかった非対称性が、後世まで法的論点として残った。'
+            },
+            '1948': {
+                title: '1948年：ラダ・ビノード・パール判事の反対意見',
+                badge: '罪刑法定主義の要求',
+                desc: 'インド代表のパール判事は長大な反対意見で全被告を無罪とする結論を示し、事後法禁止や罪刑法定主義の観点から多数意見を批判した。単純な日本擁護ではなく、戦勝国が設置した特設法廷における法の普遍性と手続的正当性を問う意見として位置づけられる。'
+            },
+            '1952': {
+                title: '1952年：サンフランシスコ平和条約第11条発効',
+                badge: '受諾と法的議論の併存',
+                desc: '日本はサンフランシスコ平和条約第11条により裁判を受諾した。政府は国と国との関係では異議を申し立てる立場にないとする一方、東京裁判をめぐる法的諸問題について様々な議論があることも認識してきた。'
+            },
+            '2007': {
+                title: '2007年：ICC正式加盟と麻生外相答弁',
+                badge: '安全装置としての制度接続',
+                desc: '日本は105番目の締約国としてICCに加盟。参院本会議で麻生太郎外相は、東京裁判をめぐる「事後法の禁止に反するなど法的な諸問題」の議論に触れたうえで、ICCの罪刑法定主義・不遡及・裁判官等の選任制度・手続・常設性を説明し、「法の支配の促進に資する」と答弁した。'
+            },
+            '2018': {
+                title: '2018年：赤根智子氏のICC裁判官就任',
+                badge: '最高水準の人的貢献',
+                desc: '元検事・法務総合研究所長である赤根智子氏が日本人3人目のICC判事として就任。予審裁判部門等を担い、国際刑事司法の中枢で活動。日本は最大分担金（15%超）の拠出も継続。'
+            },
+            '2024': {
+                title: '2024年3月：赤根氏が日本人初のICC所長に選出',
+                badge: '国際司法の独立性の体現',
+                desc: '赤根判事が全裁判官の投票により日本人で初めて第11代ICC所長に選出される。ウクライナ情勢でのロシア首脳に対する逮捕状発付等にも関与し、国際司法の独立性を体現。'
+            },
+            '2026': {
+                title: '2026年8月：米国による金融制裁と高市総理の「大変残念」表明',
+                badge: '制度原則をめぐる摩擦',
+                desc: '米国は大統領令14203号に基づき、赤根所長とAbdoulaye Seye上級訴追弁護士を制裁対象に指定。米国管轄下の資産凍結と取引禁止に加え、第三国の金融・サービス提供にも実務上の萎縮効果が生じる。高市早苗総理は「大変残念」と表明し、日本政府はICCと法の支配への一貫した支持を改めて示した。'
+            }
+        };
+
+        const art11Layers = {
+            'external': {
+                title: '外政的受諾（国家間の条約上の義務）',
+                badge: '国際法上の位置づけ',
+                text: '「我が国は、サンフランシスコ平和条約第11条により、極東国際軍事裁判所等の裁判を受諾しており、国と国との関係において同裁判に異議を申し立てる立場にはない。」（政府公式答弁）<br><br>👉 戦後秩序への復帰と国際社会での信用維持のため、裁判の結果（Judgments）と執行を受け入れる外交的選択。'
+            },
+            'internal': {
+                title: '法的論争の認識（受諾と区別して扱う）',
+                badge: '受諾と議論の区別',
+                text: '政府は、平和条約上は裁判を受諾し国と国との関係で異議を申し立てる立場にないとする一方、東京裁判について「事後法の禁止に反するなど、法的な諸問題に関しいろいろな議論がある」ことを認識しています。<br><br>👉 本検証では、条約上の受諾と、個々の法的論点に関する評価・議論を同一視しないという意味で「二層構造」と整理します。'
+            }
+        };
+
+        let iccChartInstance = null;
+
+        // Tab Switch Logic
+        function switchTab(tabName) {
+            const tabs = ['dashboard', 'tokyo', 'icc-accession', 'sanctions-2026', 'matrix'];
+            tabs.forEach(t => {
+                const content = document.getElementById(`content-${t}`);
+                const btn = document.getElementById(`tab-${t}`);
+                if (t === tabName) {
+                    content.classList.remove('hidden');
+                    btn.classList.add('active');
+                } else {
+                    content.classList.add('hidden');
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Re-render chart if switching into chart tabs
+            if (tabName === 'icc-accession' && !iccChartInstance) {
+                renderContributionChart();
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Timeline Detail Renderer
+        function showTimelineDetail(year) {
+            const data = timelineData[year];
+            const box = document.getElementById('timeline-detail-box');
+            
+            // Highlight selected button
+            Object.keys(timelineData).forEach(y => {
+                const btn = document.getElementById(`tl-btn-${y}`);
+                if (y === year) {
+                    btn.classList.remove('bg-sand-200', 'text-slate-800');
+                    btn.classList.add('bg-navy-800', 'text-white', 'ring-2', 'ring-amber-500');
+                } else if (y === '1945') {
+                    btn.className = 'tl-step bg-amber-700 text-white p-2 text-center rounded text-xs font-semibold hover:opacity-90 transition';
+                } else if (y === '2026') {
+                    btn.className = 'tl-step bg-crimson-700 text-white p-2 text-center rounded text-xs font-semibold hover:opacity-90 transition';
+                } else {
+                    btn.className = 'tl-step bg-sand-200 text-slate-800 p-2 text-center rounded text-xs font-semibold hover:bg-sand-300 transition';
+                }
+            });
+
+            box.innerHTML = `
+                <div class="flex items-center justify-between border-b border-sand-300 pb-2 mb-2">
+                    <h4 class="font-bold text-navy-900 text-sm md:text-base">${data.title}</h4>
+                    <span class="text-xs bg-amber-200 text-amber-900 font-medium px-2 py-0.5 rounded">${data.badge}</span>
+                </div>
+                <p class="text-xs md:text-sm text-slate-700 leading-relaxed">${data.desc}</p>
+            `;
+        }
+
+        // SF Treaty Art 11 Layer Switcher
+        function setArt11Layer(layerKey) {
+            const data = art11Layers[layerKey];
+            const card = document.getElementById('art11-content-card');
+            const btnExt = document.getElementById('btn-layer-ext');
+            const btnInt = document.getElementById('btn-layer-int');
+
+            if (layerKey === 'external') {
+                btnExt.className = 'flex-1 py-1.5 text-xs font-semibold rounded bg-white text-navy-900 shadow-sm transition';
+                btnInt.className = 'flex-1 py-1.5 text-xs font-semibold rounded text-slate-600 transition';
+            } else {
+                btnInt.className = 'flex-1 py-1.5 text-xs font-semibold rounded bg-white text-navy-900 shadow-sm transition';
+                btnExt.className = 'flex-1 py-1.5 text-xs font-semibold rounded text-slate-600 transition';
+            }
+
+            card.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-navy-900 text-sm">${data.title}</span>
+                    <span class="text-[11px] bg-sand-200 text-slate-700 px-2 py-0.5 rounded">${data.badge}</span>
+                </div>
+                <div class="text-xs md:text-sm leading-relaxed">${data.text}</div>
+            `;
+        }
+
+        // Accordion Toggle
+        function toggleAccordion(qId) {
+            const ans = document.getElementById(`ans-${qId}`);
+            const icon = document.getElementById(`icon-${qId}`);
+            if (ans.classList.contains('hidden')) {
+                ans.classList.remove('hidden');
+                icon.textContent = '－';
+            } else {
+                ans.classList.add('hidden');
+                icon.textContent = '＋';
+            }
+        }
+
+        // Chart 1: Japan ICC contribution share (Bar Chart)
+        function renderContributionChart() {
+            const ctx = document.getElementById('iccContributionChart').getContext('2d');
+            iccChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2022年', '2023年', '2024年（約）'],
+                    datasets: [{
+                        label: '日本のICC分担率 (%)',
+                        data: [15.4, 15.39, 15.0],
+                        backgroundColor: ['#b45309', '#b45309', '#d97706'],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` 日本の分担率: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 20,
+                            title: { display: true, text: '分担率 (%)', font: { size: 11 } }
+                        },
+                        x: {
+                            ticks: { font: { size: 11 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize Default States on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            showTimelineDetail('1945');
+            setArt11Layer('external');
+            // Default load tab
+            switchTab('dashboard');
+        });
+    </script>
+</body>
+</html>

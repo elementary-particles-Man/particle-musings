@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Chosen Palette: Slate & Warm Amber / Deep Navy (Warm Neutral Background: #f8fafc, Card: #ffffff, Navy Accent: #0f172a / #1e293b, Red/Amber Alert: #b91c1c / #d97706) -->
+<!-- Application Structure Plan:
+        1. Header & Executive Summary: State the core institutional assessment and key metrics.
+        2. Section 1: Overall Assessment and Core Structure: comparison of U.S. official claims and legal questions.
+        3. Section 2: Chronology and Causation: interactive timeline from the Netanyahu warrant applications to the Akane SDN designation.
+        4. Section 3: Legal Framework: qualitative review of countermeasure doctrine, jurisdiction, and judicial independence.
+        5. Section 4: Multi-Layer Effects: interactive tabs covering Japan, the EU, policy autonomy, and payment infrastructure.
+        6. Section 5: Generalisability and Counter-Hypothesis: interactive stress tests using China and Russia scenarios.
+        Rationale: Grouping content by analytical dimensions rather than chapter order allows users to immediately grasp the central verdict, test the legal logic, and explore geopolitical consequences interactively. -->
+<!-- Visualization & Content Choices:
+        - Core Metrics: Stat Cards with colored icons/badges.
+        - ARSIWA Legal Test: qualitative legal-criteria cards separating U.S. domestic authority from international-law questions.
+        - Protected-interest analysis: compares the text of EO 14203 with the factual sequence of ICC proceedings.
+        - Interactive Timeline: Styled HTML/CSS node-based timeline with active state display on click.
+        - Impact Matrix: Tabbed interface updating detailed textual breakdown and legal analysis dynamically using JS.
+        - Universalisability Test: Interactive Scenario Toggle using Vanilla JS to demonstrate logic propagation.
+        - NO SVG or Mermaid JS used; structured Tailwind HTML/CSS is used for all visual elements. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Structural Legal Review of U.S. Sanctions on the ICC | Final Edition, August 2026</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        amber: {
+                            600: '#d97706',
+                            700: '#b45309',
+                        },
+                        crimson: {
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-amber-100 selection:text-amber-900">
+<!-- Header & Hero -->
+<header class="bg-navy-900 text-white border-b border-slate-800 sticky top-0 z-50 shadow-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+<div>
+<div class="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1">
+<span>Structural Legal Review</span>
+<span>•</span>
+<span>August 2026 Analysis</span>
+</div>
+<h1 class="text-xl sm:text-2xl font-bold tracking-tight">Structural Legal Review of U.S. Sanctions on the ICC</h1>
+<p class="text-xs sm:text-sm text-slate-400 mt-1">Separating extraterritorial financial coercion, judicial independence, and practical spillovers to third countries</p>
+</div>
+<!-- Quick Verdict Badges -->
+<div class="flex flex-wrap gap-2 items-center">
+<div class="bg-crimson-800/90 text-red-100 px-3 py-1.5 rounded-lg border border-red-600 text-xs font-bold flex items-center shadow-sm">
+<span class="mr-1.5 text-base">⚠️</span> Assessment: Serious Institutional Tension
+                </div>
+<div class="bg-amber-700/80 text-amber-100 px-3 py-1.5 rounded-lg border border-amber-500 text-xs font-bold flex items-center shadow-sm">
+<span class="mr-1.5 text-base">⚖️</span> Focus: External Pressure on Judicial Independence
+                </div>
+</div>
+</div>
+</header>
+<!-- Main Navigation Bar -->
+<nav class="bg-white border-b border-slate-200 sticky top-[73px] z-40 shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex space-x-1 sm:space-x-4 overflow-x-auto py-2 text-xs sm:text-sm font-medium scrollbar-none">
+<button class="nav-btn px-3 py-2 rounded-md whitespace-nowrap bg-slate-900 text-white transition" onclick="scrollToSection('verdict-section')">Overview &amp; Assessment</button>
+<button class="nav-btn px-3 py-2 rounded-md whitespace-nowrap text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition" onclick="scrollToSection('timeline-section')">Chronology &amp; Causation</button>
+<button class="nav-btn px-3 py-2 rounded-md whitespace-nowrap text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition" onclick="scrollToSection('legal-section')">Legal Analysis &amp; Countermeasures</button>
+<button class="nav-btn px-3 py-2 rounded-md whitespace-nowrap text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition" onclick="scrollToSection('impact-section')">Multi-Layer Effects &amp; Japanese Law</button>
+<button class="nav-btn px-3 py-2 rounded-md whitespace-nowrap text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition" onclick="scrollToSection('universalisability-section')">Generalisability Test &amp; Counter-Hypothesis</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Container -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+<!-- Metrics Overview Section -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-slate-300 transition">
+<div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Legal Interests Asserted by the U.S.</div>
+<div class="text-2xl font-extrabold text-crimson-800 mt-2 flex items-baseline">
+                    No Direct Harm Identified <span class="text-xs font-normal text-slate-500 ml-2">(The EO asserts a national-security threat)</span>
+</div>
+<p class="text-xs text-slate-600 mt-2">EO 14203 characterises ICC activity as an “unusual and extraordinary threat” to U.S. national security and foreign policy. For the designation of President Akane, however, it does not identify direct harm to U.S. territory or property.</p>
+</div>
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-slate-300 transition">
+<div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Persons Protected Under the EO</div>
+<div class="text-2xl font-extrabold text-amber-700 mt-2">
+                    U.S. and allied “protected persons”
+                </div>
+<p class="text-xs text-slate-600 mt-2">EO 14203 expressly covers not only U.S. persons but also personnel of U.S. allies that have not consented to ICC jurisdiction, and cites ICC proceedings against Israeli leaders as a principal basis.</p>
+</div>
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-slate-300 transition">
+<div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Fit with ARSIWA Countermeasure Doctrine</div>
+<div class="text-2xl font-extrabold text-slate-900 mt-2">
+                    Direct Application Is Difficult <span class="text-xs text-red-600 font-semibold">(The U.S. does not characterise these sanctions as ARSIWA countermeasures)</span>
+</div>
+<p class="text-xs text-slate-600 mt-2">The United States does not officially present these sanctions as “countermeasures” under ARSIWA. If assessed through that framework, substantial questions arise concerning injured-state status, a prior internationally wrongful act, and proportionality.</p>
+</div>
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-slate-300 transition">
+<div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Indirect Effects in Japan</div>
+<div class="text-2xl font-extrabold text-navy-900 mt-2">
+                    Spillovers to Property and Transactions
+                </div>
+<p class="text-xs text-slate-600 mt-2">An OFAC designation does not itself operate as Japanese law, but over-compliance by financial institutions and service providers can cause practical restrictions on transactions and services in Japan.</p>
+</div>
+</section>
+<!-- SECTION 1: OVERVIEW & CORE VERDICT -->
+<section class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6" id="verdict-section">
+<div class="border-b border-slate-200 pb-4">
+<div class="inline-block px-3 py-1 bg-navy-900 text-white text-xs font-semibold rounded mb-2">SECTION 1</div>
+<h2 class="text-2xl font-bold text-slate-900">Overall Assessment: A Collision Between Domestic Sanctions Authority and International Judicial Independence</h2>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                    This section examines the U.S. sanctions announced on 18 August 2026 against ICC President Tomoko Akane and Senior Trial Lawyer Abdoulaye Seye, separating four questions: U.S. domestic legal authority, ICC jurisdiction, effects on judicial independence, and practical spillovers to third countries. The United States possesses domestic sanctions authority under EO 14203 and IEEPA; the external pressure created by its exercise on an international court and on States Parties’ treaty performance requires a separate analysis.
+                </p>
+</div>
+<!-- Verdict Details Box -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-slate-50 p-6 rounded-xl border border-slate-200 space-y-4">
+<h3 class="text-lg font-bold text-slate-900 flex items-center">
+<span class="mr-2 text-xl">🏛️</span> Overall Assessment: Tension Between Domestic Sanctions Powers and the International Judicial System
+                    </h3>
+<p class="text-sm text-slate-700 leading-relaxed">
+                        EO 14203 authorises the blocking of property and interests in property of designated persons when they are in the United States or in the possession or control of U.S. persons, and prohibits transactions by U.S. persons. The August 2026 designations of President Akane and others impose financial sanctions on individuals for conduct connected with an international judicial institution, creating direct tension with the ICC’s institutional commitment to judicial independence. The central analytical task is to distinguish the existence of U.S. domestic authority from the legitimacy and systemic effects of pressure on international adjudication.
+                    </p>
+<div class="p-4 bg-white rounded-lg border border-slate-200 text-xs text-slate-600 space-y-2">
+<div class="font-semibold text-slate-800">【Core Issue in This Review】</div>
+<p>EO 14203 protects not only U.S. personnel but also personnel of non-consenting U.S. “allies,” and expressly criticises ICC proceedings concerning Israeli leaders. The text of the order and the sequence of designations through 2026 therefore confirm that protecting allied personnel is an important purpose of the sanctions policy.</p>
+</div>
+</div>
+<div class="bg-amber-50/60 p-6 rounded-xl border border-amber-200/80 space-y-4">
+<h3 class="text-lg font-bold text-amber-900 flex items-center">
+<span class="mr-2 text-xl">🔗</span> Strategic Implication: Financial Power Meets Judicial Institutions
+                    </h3>
+<p class="text-xs text-amber-900 leading-relaxed">
+                        Expansion of the sanctions increases diplomatic friction with ICC-supporting states, over-compliance by financial institutions, operational risks for international organisations, and perceptions of political risk in dollar-based payment infrastructure. These are geoeconomic costs that should be observed separately from the policy’s stated objectives.
+                    </p>
+<ul class="text-xs text-amber-800 space-y-1.5 list-disc list-inside">
+<li>Threat Designation Takes Priority Over Proof of Direct Harm</li>
+<li>Diplomatic Friction with ICC-Supporting States</li>
+<li>Incentives for Alternative Payment and Sanctions-Resilient Infrastructure</li>
+<li>Rising Policy Costs as Sanctions Expand</li>
+</ul>
+</div>
+</div>
+<!-- Comparison Matrix Interactive Toggle -->
+<div class="mt-6">
+<h3 class="text-base font-bold text-slate-900 mb-3">U.S. Official Position and Legal Questions</h3>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs sm:text-sm border-collapse">
+<thead>
+<tr class="bg-slate-100 border-b border-slate-200 text-slate-700">
+<th class="p-3 font-semibold w-1/4">Analytical Axis</th>
+<th class="p-3 font-semibold w-3/8 text-red-900 bg-red-50/50">U.S. Government Position (EO 14203 / State Department)</th>
+<th class="p-3 font-semibold w-3/8 text-emerald-900 bg-emerald-50/50">Legal Questions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200">
+<tr>
+<td class="p-3 font-medium text-slate-900 bg-slate-50">Asserted Legal Interest</td>
+<td class="p-3 text-slate-700 bg-red-50/30">An “unusual and extraordinary threat” to U.S. sovereignty, national security, and foreign policy</td>
+<td class="p-3 text-slate-700 bg-emerald-50/30 font-medium text-emerald-900">The EO asserts a national-security and foreign-policy threat. With respect to President Akane’s designation, however, it does not identify direct harm to U.S. territory or property. The ICC, for its part, relies on Article 12(2)(a) of the Rome Statute for crimes alleged to have occurred on Palestinian territory.</td>
+</tr>
+<tr>
+<td class="p-3 font-medium text-slate-900 bg-slate-50">Validity of Jurisdiction</td>
+<td class="p-3 text-slate-700 bg-red-50/30">Improper “overreaching jurisdiction” over nationals of non-party states (the U.S. and Israel)</td>
+<td class="p-3 text-slate-700 bg-emerald-50/30">The ICC maintains that Article 12(2)(a) permits territorial jurisdiction over crimes committed on the territory of a State Party regardless of the suspect’s nationality. The United States and Israel contest that application.</td>
+</tr>
+<tr>
+<td class="p-3 font-medium text-slate-900 bg-slate-50">Character of the Targeted Officials</td>
+<td class="p-3 text-slate-700 bg-red-50/30">Improper investigative actors infringing the rights of the United States and its allies</td>
+<td class="p-3 text-slate-700 bg-emerald-50/30">The Rome Statute institutionalises the independence of judges and prosecutors and provides privileges and immunities for official functions. The extent of treaty obligations binding the United States must be analysed separately because the U.S. is not a State Party to the Rome Statute.</td>
+</tr>
+<tr>
+<td class="p-3 font-medium text-slate-900 bg-slate-50">External Legal Justification</td>
+<td class="p-3 text-slate-700 bg-red-50/30">Lawful exercise of presidential authority under domestic law (including IEEPA)</td>
+<td class="p-3 text-slate-700 bg-emerald-50/30">Domestic authority under IEEPA and related U.S. law is distinct from international-law justification. Where financial pressure is used to alter the decisions of third states or international institutions, the relationship to the non-intervention principle becomes a legal issue.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- SECTION 2: TIMELINE & CAUSALITY -->
+<section class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6" id="timeline-section">
+<div class="border-b border-slate-200 pb-4">
+<div class="inline-block px-3 py-1 bg-navy-900 text-white text-xs font-semibold rounded mb-2">SECTION 2</div>
+<h2 class="text-2xl font-bold text-slate-900">Chronology and Causation: From the Netanyahu Warrants to U.S. Sanctions</h2>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                    This timeline traces the sequence from ICC proceedings involving Israeli leaders to EO 14203 and individual U.S. designations. Causation is assessed from the reasons stated in official documents and the timing of the measures, while separating confirmed facts from inference.
+                </p>
+</div>
+<!-- Interactive Timeline Component -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Timeline Steps List (Left/Top) -->
+<div class="lg:col-span-5 space-y-3">
+<div class="timeline-node p-4 rounded-xl border-2 border-slate-200 hover:border-amber-500 cursor-pointer transition bg-amber-50/40 border-amber-500" id="time-node-1" onclick="selectTimeline(1)">
+<div class="flex justify-between items-center text-xs font-bold text-amber-700 mb-1">
+<span>STEP 1: Warrant Applications</span>
+<span>20 May 2024</span>
+</div>
+<h4 class="text-sm font-bold text-slate-900">ICC Prosecutor applies for arrest warrants for Prime Minister Netanyahu and others</h4>
+<p class="text-xs text-slate-600 mt-1 line-clamp-2">Applications for arrest warrants against Israel’s prime minister and defence minister in connection with the Gaza situation.</p>
+</div>
+<div class="timeline-node p-4 rounded-xl border-2 border-slate-200 hover:border-amber-500 cursor-pointer transition bg-white" id="time-node-2" onclick="selectTimeline(2)">
+<div class="flex justify-between items-center text-xs font-bold text-slate-500 mb-1">
+<span>STEP 2: Executive Order</span>
+<span>6 February 2025</span>
+</div>
+<h4 class="text-sm font-bold text-slate-900">President Trump signs EO 14203</h4>
+<p class="text-xs text-slate-600 mt-1 line-clamp-2">The order declares ICC activity a national emergency and makes investigations of protected persons from non-consenting allied states sanctionable.</p>
+</div>
+<div class="timeline-node p-4 rounded-xl border-2 border-slate-200 hover:border-amber-500 cursor-pointer transition bg-white" id="time-node-3" onclick="selectTimeline(3)">
+<div class="flex justify-between items-center text-xs font-bold text-slate-500 mb-1">
+<span>STEP 3: Expansion of Individual Designations</span>
+<span>July 2025 – June 2026</span>
+</div>
+<h4 class="text-sm font-bold text-slate-900">Progressive expansion of designations against ICC-related persons</h4>
+<p class="text-xs text-slate-600 mt-1 line-clamp-2">From 2025 onward, individual designations expanded to ICC prosecutors, judges, and related officials. In August 2026, President Akane and others were added.</p>
+</div>
+<div class="timeline-node p-4 rounded-xl border-2 border-slate-200 hover:border-amber-500 cursor-pointer transition bg-white" id="time-node-4" onclick="selectTimeline(4)">
+<div class="flex justify-between items-center text-xs font-bold text-slate-500 mb-1">
+<span>STEP 4: Direct Designation of the ICC President</span>
+<span>18 August 2026</span>
+</div>
+<h4 class="text-sm font-bold text-slate-900">ICC President Tomoko Akane (Japan) designated as an OFAC SDN</h4>
+<p class="text-xs text-slate-600 mt-1 line-clamp-2">The United States cited involvement in proceedings against officials of a non-consenting allied state, including Israel, as a reason for imposing financial sanctions.</p>
+</div>
+</div>
+<!-- Timeline Active Details Display (Right/Bottom) -->
+<div class="lg:col-span-7 bg-slate-900 text-white p-6 rounded-xl space-y-4 flex flex-col justify-between shadow-md">
+<div>
+<div class="flex items-center space-x-2 text-xs font-semibold text-amber-400 uppercase tracking-wider mb-2">
+<span id="timeline-detail-step">STEP 1 Legal Analysis</span>
+<span>•</span>
+<span id="timeline-detail-date">20 May 2024</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-3" id="timeline-detail-title">ICC Prosecutor’s Warrant Applications and the Starting Point of the Causal Sequence</h3>
+<div class="text-sm text-slate-300 leading-relaxed space-y-3" id="timeline-detail-body">
+<p>Prosecutor Karim Khan applied for arrest warrants for Israeli Prime Minister Benjamin Netanyahu and then-Defence Minister Yoav Gallant on allegations of crimes against humanity and war crimes arising from the Gaza situation.</p>
+<p class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 text-xs text-slate-300">
+<strong class="text-amber-300">Causation Assessment:</strong> EO 14203 later expressly cited the arrest warrants for Israeli leaders as a principal basis for the sanctions policy. The policy connection between these proceedings and subsequent sanctions is therefore documented, while prior ICC investigations involving U.S. personnel remain an additional part of the policy background.
+                            </p>
+</div>
+</div>
+<div class="border-t border-slate-800 pt-4 mt-6">
+<div class="text-xs text-slate-400 font-semibold mb-1">【Assessment】Connection to ICC Proceedings Against Israeli Leaders</div>
+<div class="text-sm font-bold text-emerald-400 flex items-center">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 mr-2"></span>
+                            Strongly supported by official documents
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: LEGAL TEST & ARSIWA EVALUATION -->
+<section class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6" id="legal-section">
+<div class="border-b border-slate-200 pb-4">
+<div class="inline-block px-3 py-1 bg-navy-900 text-white text-xs font-semibold rounded mb-2">SECTION 3</div>
+<h2 class="text-2xl font-bold text-slate-900">Legal Analysis: ARSIWA Countermeasure Doctrine, Jurisdiction, and Judicial Independence</h2>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                    The United States does not officially describe these sanctions as ARSIWA “countermeasures.” This section therefore separates three questions: how the measures would look if tested against state-responsibility countermeasure doctrine, the ICC’s territorial jurisdiction, and the independence of judges and prosecutors.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
+<div class="text-xs font-bold text-amber-800 mb-1">ARSIWA 42 / 49 / 51</div>
+<h3 class="text-sm font-bold text-slate-900">Requirements if Countermeasure Doctrine Were Invoked</h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">The United States does not characterise EO 14203 as an ARSIWA countermeasure. If that doctrine were invoked, injured-state status, a prior internationally wrongful act by the target, a purpose of inducing cessation, and proportionality would each require separate demonstration.</p>
+</div>
+<div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
+<div class="text-xs font-bold text-amber-800 mb-1">Rome Statute Art. 12(2)(a)</div>
+<h3 class="text-sm font-bold text-slate-900">ICC Territorial Jurisdiction</h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">The ICC’s position is that it may exercise territorial jurisdiction over crimes committed on the territory of a State Party even where the suspect is a national of a non-party state. The United States and Israel contest that application; this is the substantive jurisdictional dispute.</p>
+</div>
+<div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
+<div class="text-xs font-bold text-amber-800 mb-1">Rome Statute Arts. 40, 42, 48</div>
+<h3 class="text-sm font-bold text-slate-900">Independence of Judicial and Prosecutorial Functions</h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">Independence of judges and prosecutors is an institutional principle under the Rome Statute. Personal sanctions imposed by an external state for official judicial conduct create a distinct systemic concern: a potential chilling effect on judicial functions, regardless of the separate question of treaty obligations.</p>
+</div>
+<div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
+<div class="text-xs font-bold text-amber-800 mb-1">EO 14203 / IEEPA</div>
+<h3 class="text-sm font-bold text-slate-900">Effect Under U.S. Domestic Law</h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">Property and interests in property of designated persons that are in the United States or within the possession or control of U.S. persons are blocked, and U.S. persons are generally prohibited from transacting with them. Effects in third countries must be separated into direct U.S.-law application and practical spillovers caused by risk-avoidance decisions of financial institutions and other firms.</p>
+</div>
+</div>
+</section>
+<!-- SECTION 4: TRIPLE-IMPACT MATRIX & JAPANESE LAW -->
+<section class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6" id="impact-section">
+<div class="border-b border-slate-200 pb-4">
+<div class="inline-block px-3 py-1 bg-navy-900 text-white text-xs font-semibold rounded mb-2">SECTION 4</div>
+<h2 class="text-2xl font-bold text-slate-900">Multi-Layer Effects: Japan, Sovereignty, the EU, and Payment Infrastructure</h2>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                    The direct legal effect of an OFAC designation attaches through U.S. law, U.S. persons, and property under U.S. jurisdiction. In practice, however, over-compliance by financial institutions and technology providers can create spillovers in third countries. This section separates domestic effects in Japan, policy autonomy as a State Party, EU defensive tools, and longer-term implications for payment infrastructure.
+                </p>
+</div>
+<!-- Tab Navigation -->
+<div class="flex border-b border-slate-200 space-x-2 sm:space-x-4 text-xs sm:text-sm font-semibold">
+<button class="impact-tab border-b-2 border-slate-900 text-slate-900 pb-2 px-1 transition" id="tab-japan" onclick="switchImpactTab('japan')">① Practical Spillovers in Japan</button>
+<button class="impact-tab border-b-2 border-transparent text-slate-500 hover:text-slate-900 pb-2 px-1 transition" id="tab-sovereignty" onclick="switchImpactTab('sovereignty')">② Japan’s Policy Autonomy</button>
+<button class="impact-tab border-b-2 border-transparent text-slate-500 hover:text-slate-900 pb-2 px-1 transition" id="tab-eu" onclick="switchImpactTab('eu')">③ EU Defensive Tools</button>
+<button class="impact-tab border-b-2 border-transparent text-slate-500 hover:text-slate-900 pb-2 px-1 transition" id="tab-dollar" onclick="switchImpactTab('dollar')">④ Long-Term Implications for Dollar-Based Payments</button>
+</div>
+<!-- Tab Content Dynamic Panel -->
+<div class="bg-slate-50 p-6 rounded-xl border border-slate-200 space-y-4" id="impact-panel-content">
+<!-- Content inserted via JS dynamically -->
+</div>
+</section>
+<!-- SECTION 5: UNIVERSALISABILITY & COUNTER-HYPOTHESIS SIMULATOR -->
+<section class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6" id="universalisability-section">
+<div class="border-b border-slate-200 pb-4">
+<div class="inline-block px-3 py-1 bg-navy-900 text-white text-xs font-semibold rounded mb-2">SECTION 5</div>
+<h2 class="text-2xl font-bold text-slate-900">Generalisability Test &amp; Counter-Hypothesis Review</h2>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                    One way to assess the systemic implications of a policy principle is to ask what follows if the same logic is used by other states. This section generalises the U.S. sanctions logic to China and Russia as a stress test, and then considers how much explanatory force remains in the principal U.S. counter-position.
+                </p>
+</div>
+<!-- Universalisability Logic Simulator -->
+<div class="bg-navy-900 text-white p-6 rounded-xl space-y-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h3 class="text-lg font-bold text-amber-400">Interactive Legal Simulation: Generalising the Principle</h3>
+<p class="text-xs text-slate-300 mt-1">These scenarios ask what would follow if other states used financial and market-access sanctions against individuals because of their official work in international judicial institutions.</p>
+</div>
+<div class="flex space-x-2">
+<button class="px-3 py-1.5 rounded bg-amber-600 text-white text-xs font-bold hover:bg-amber-500 transition" id="sim-btn-china" onclick="runSimulation('china')">China Scenario</button>
+<button class="px-3 py-1.5 rounded bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700 transition" id="sim-btn-russia" onclick="runSimulation('russia')">Russia Scenario</button>
+</div>
+</div>
+<div class="p-4 bg-slate-800/90 rounded-lg border border-slate-700 space-y-3" id="sim-result-box">
+<!-- Dynamic Sim Results -->
+</div>
+</div>
+<!-- Counter-Hypothesis Rejection Box -->
+<div class="border border-slate-200 rounded-xl p-6 space-y-4">
+<h3 class="text-base font-bold text-slate-900">Counter-Hypothesis Review</h3>
+<div class="p-4 bg-red-50 rounded-lg border border-red-200 text-xs text-red-900 space-y-2">
+<strong class="font-bold">Counter-Hypothesis to Be Tested:</strong>
+<p>“The United States is lawfully using financial sanctions to protect its sovereignty and nationals; the measures are neither interference with ICC judicial independence nor an infringement of third-state sovereignty, and the connection to Prime Minister Netanyahu is secondary or incidental.”</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+<div class="p-3 bg-slate-50 rounded border border-slate-200 space-y-1">
+<div class="font-bold text-slate-800">Question 1: Unlawfulness of ICC Conduct</div>
+<div class="text-red-600 font-semibold">【Requires Analysis】</div>
+<p class="text-slate-600">The ICC relies on Article 12(2)(a) of the Rome Statute for territorial jurisdiction over Palestine. The United States and Israel contest its application to nationals of non-party states; that is the legal dispute.</p>
+</div>
+<div class="p-3 bg-slate-50 rounded border border-slate-200 space-y-1">
+<div class="font-bold text-slate-800">Question 2: Concrete Harm to the United States</div>
+<div class="text-red-600 font-semibold">【Requires Analysis】</div>
+<p class="text-slate-600">The designation rationale for President Akane and others does not identify direct harm to U.S. territory or property. The EO instead makes a legal finding of a “threat” to national security and foreign policy.</p>
+</div>
+<div class="p-3 bg-slate-50 rounded border border-slate-200 space-y-1">
+<div class="font-bold text-slate-800">Question 3: Availability of Legal Objections</div>
+<div class="text-red-600 font-semibold">【Requires Analysis】</div>
+<p class="text-slate-600">The United States contests ICC jurisdiction through political and diplomatic channels while also employing domestic sanctions. The distinct issue is the pressure those sanctions place on individual judicial officials and the resulting institutional side effects.</p>
+</div>
+</div>
+<div class="p-3 bg-emerald-50 rounded border border-emerald-200 text-xs text-emerald-900">
+<strong>Assessment:</strong> The United States has a consistent policy position opposing ICC jurisdiction over nationals of non-party states. At the same time, EO 14203 extends protection to allied personnel and imposes blocking measures on individual judicial officials. That creates separate questions of proportionality, effects on judicial independence, and spillovers to third countries.
+                </div>
+</div>
+</section>
+</main>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+<div class="bg-white rounded-xl border border-slate-200 p-5 text-xs text-slate-600">
+<h2 class="text-sm font-bold text-slate-900 mb-2">Principal Primary and Verification Sources</h2>
+<ul class="list-disc list-inside space-y-1">
+<li><a class="text-amber-700 underline" href="https://www.whitehouse.gov/presidential-actions/2025/02/imposing-sanctions-on-the-international-criminal-court/" rel="noopener" target="_blank">White House, Executive Order 14203 (6 Feb 2025)</a></li>
+<li><a class="text-amber-700 underline" href="https://www.mofa.go.jp/press/kaiken/kaikenwe_000001_00170.html" rel="noopener" target="_blank">Ministry of Foreign Affairs of Japan: Press conference on additional U.S. sanctions against ICC officials</a></li>
+<li><a class="text-amber-700 underline" href="https://data.consilium.europa.eu/doc/document/ST-10504-2025-INIT/en/pdf" rel="noopener" target="_blank">Council of the EU: ICC sanctions and possible EU response (18 Jun 2025)</a></li>
+<li>The 18 August 2026 designations of President Tomoko Akane and Abdoulaye Seye were cross-checked against U.S. government announcements and contemporaneous international reporting.</li>
+</ul>
+<p class="mt-2 text-slate-500">Note: This page distinguishes confirmed facts, the U.S. Government’s legal position, the ICC’s institutional position, and the analytical conclusions of this review.</p>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-navy-900 text-slate-400 py-8 border-t border-slate-800 text-xs">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div>
+<p class="font-semibold text-slate-200">Structural Legal Review of U.S. Sanctions on the ICC — Web Dashboard</p>
+<p class="mt-1 text-slate-400">Based on Structural Legal Verification Report (August 2026)</p>
+</div>
+<div class="text-slate-400">
+<span>Integrated approach: international law, geoeconomics, and comparative legal analysis</span>
+</div>
+</div>
+</footer>
+<!-- JavaScript Logic -->
+<script>
+        // Smooth Navigation Scroll
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                const yOffset = -130; 
+                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({top: y, behavior: 'smooth'});
+            }
+        }
+
+        // Timeline Data & Interactive Handler
+        const timelineData = {
+            1: {
+                step: "STEP 1 Legal Analysis",
+                date: "20 May 2024",
+                title: "ICC Prosecutor’s warrant applications and the start of the causal sequence",
+                body: `<p>Prosecutor Karim Khan applied for arrest warrants for Israeli Prime Minister Benjamin Netanyahu and then-Defence Minister Yoav Gallant on allegations of crimes against humanity and war crimes arising from the Gaza situation.</p>
+                       <p class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 text-xs text-slate-300">
+                           <strong class="text-amber-300">Causation assessment:</strong> EO 14203 later expressly cited the arrest warrants for Israeli leaders as a principal basis for the sanctions policy. The policy connection between these proceedings and subsequent sanctions is therefore documented, while prior ICC investigations involving U.S. personnel remain an additional part of the policy background.
+                       </p>`,
+                status: "Strongly supported by official documents"
+            },
+            2: {
+                step: "STEP 2 Legal Analysis",
+                date: "6 February 2025",
+                title: "President Trump issues Executive Order 14203",
+                body: `<p>President Trump signed EO 14203, authorising financial sanctions and entry restrictions against certain ICC-related persons. The order characterises ICC action against protected persons from the United States and non-consenting U.S. allies as an “unusual and extraordinary threat” to U.S. national security and foreign policy.</p>
+                       <p class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 text-xs text-slate-300">
+                           <strong class="text-amber-300">Text of the Order:</strong> EO 14203 defines “protected person” to include not only U.S. persons but also personnel of U.S. allies that have not consented to ICC jurisdiction. Protection of allied personnel is therefore an explicit policy purpose in the order itself.
+                       </p>`,
+                status: "The EO expressly extends protection to personnel of U.S. allies"
+            },
+            3: {
+                step: "STEP 3 Legal Analysis",
+                date: "July 2025 – June 2026",
+                title: "Progressive expansion of designations against ICC-related persons",
+                body: `<p>From 2025 onward, designations under EO 14203 expanded progressively to ICC prosecutors, judges, and related officials. On 18 August 2026, President Tomoko Akane and Senior Trial Lawyer Abdoulaye Seye were added, extending the sanctions to the Court’s judicial and prosecutorial leadership.</p>
+                       <p class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 text-xs text-slate-300">
+                           <strong class="text-amber-300">Policy expansion:</strong> The U.S. Government characterises ICC action as politicised and ultra vires, and has connected its jurisdictional objections to the administrative tool of financial sanctions.
+                       </p>`,
+                status: "Expansion of individual designations under EO 14203"
+            },
+            4: {
+                step: "STEP 4 Legal Analysis",
+                date: "18 August 2026",
+                title: "OFAC SDN designation of ICC President Tomoko Akane (Japan)",
+                body: `<p>The U.S. Treasury’s Office of Foreign Assets Control (OFAC) added ICC President Tomoko Akane of Japan and Senior Trial Lawyer Abdoulaye Seye of Senegal to the SDN list. Secretary Rubio stated that they had directly engaged in efforts by the ICC to investigate, arrest, detain, or prosecute officials whose governments had not consented to ICC jurisdiction.</p>
+                       <p class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 text-xs text-slate-300">
+                           <strong class="text-amber-300">Direct impact on individual judicial officials:</strong> By designating the President of the Court, the sanctions reached one of the ICC’s highest institutional offices and therefore directly implicated questions of judicial independence and operational continuity. The sanctions’ direct legal effect is tied to U.S. jurisdiction, but practical spillovers can occur through international financial infrastructure.
+                       </p>`,
+                status: "External pressure reaches the Court’s presidency"
+            }
+        };
+
+        function selectTimeline(step) {
+            document.querySelectorAll('.timeline-node').forEach(node => {
+                node.classList.remove('border-amber-500', 'bg-amber-50/40');
+                node.classList.add('bg-white', 'border-slate-200');
+            });
+
+            const selectedNode = document.getElementById(`time-node-${step}`);
+            if (selectedNode) {
+                selectedNode.classList.remove('bg-white', 'border-slate-200');
+                selectedNode.classList.add('border-amber-500', 'bg-amber-50/40');
+            }
+
+            const data = timelineData[step];
+            if (data) {
+                document.getElementById('timeline-detail-step').innerText = data.step;
+                document.getElementById('timeline-detail-date').innerText = data.date;
+                document.getElementById('timeline-detail-title').innerText = data.title;
+                document.getElementById('timeline-detail-body').innerHTML = data.body;
+            }
+        }
+
+        // Impact Domain Tab Data & Switcher
+        const impactTabData = {
+            japan: {
+                title: "① Practical Spillovers in Japan: Separating Direct Legal Effect from Over-Compliance",
+                content: `<div class="space-y-3 text-xs sm:text-sm text-slate-700">
+                            <p>Tomoko Akane is a Japanese national. An OFAC designation is not, by itself, an order under Japanese law freezing bank accounts in Japan. The direct effect of EO 14203 reaches property in the United States, property under the possession or control of U.S. persons, and transactions involving U.S. persons.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                                <div class="p-3 bg-white rounded border border-slate-200">
+                                    <strong class="text-slate-900 font-bold block mb-1">Practical Spillovers</strong>
+                                    De-risking and over-compliance by international banks, payment providers, cloud services, insurers, and other firms can restrict access to services even outside the United States.
+                                </div>
+                                <div class="p-3 bg-white rounded border border-slate-200">
+                                    <strong class="text-slate-900 font-bold block mb-1">Relationship to the Constitution of Japan</strong>
+                                    Articles 29 and 31 of the Constitution of Japan principally constrain Japanese public authority. A foreign sanction or a private firm’s compliance decision does not automatically constitute a violation of the Japanese Constitution. A separate domestic-law question remains as to how the Japanese Government protects its nationals and supports its treaty policy.
+                                </div>
+                            </div>
+                          </div>`
+            },
+            sovereignty: {
+                title: "② Japan’s Policy Autonomy: Treaty Performance and Foreign Financial Pressure",
+                content: `<div class="space-y-3 text-xs sm:text-sm text-slate-700">
+                            <p>Japan has chosen, as a State Party to the Rome Statute, to support and finance the ICC. The United States cannot by EO 14203 create a legal obligation for Japan to implement the order as Japanese law.</p>
+                            <p>If U.S. financial sanctions make ICC cooperation practically difficult through the conduct of Japanese banks and firms, they can create external pressure on a State Party’s policy autonomy. Whether that pressure reaches the threshold of prohibited intervention under international law must be assessed case by case, including the subject matter, degree of coercion, and concrete effects.</p>
+                          </div>`
+            },
+            eu: {
+                title: "③ EU Defensive Tools: Extending the Blocking Statute Is Under Discussion",
+                content: `<div class="space-y-3 text-xs sm:text-sm text-slate-700">
+                            <p>The EU Blocking Statute (Regulation (EC) No 2271/96) is an existing mechanism designed to protect EU operators from specified extraterritorial third-country sanctions. EO 14203 is not automatically covered by that Regulation.</p>
+                            <p>Since 2025, Council documents, national governments, and European parliamentarians have publicly proposed activating or extending the Blocking Statute in response to U.S. sanctions on the ICC. In May 2026, Spain also asked the European Commission to act. The current policy question is how existing EU tools should be applied to the ICC sanctions.</p>
+                          </div>`
+            },
+            dollar: {
+                title: "④ Long-Term Implications for Dollar-Based Payments: Sanctions Effectiveness and Avoidance Incentives",
+                content: `<div class="space-y-3 text-xs sm:text-sm text-slate-700">
+                            <p>Access to the dollar and U.S. financial infrastructure is an important basis of U.S. sanctions effectiveness. At the same time, as sanctions expand to judicial institutions and nationals of allied states, third countries gain incentives to reduce dependence on a single jurisdiction.</p>
+                            <p>This does not by itself imply an imminent collapse of the dollar-based system. The relevant indicators are diversification of settlement currencies, non-dollar contributions, sanctions-resilient infrastructure in Europe and elsewhere, and changes in financial-institution compliance design.</p>
+                          </div>`
+            }
+        };
+
+        function switchImpactTab(key) {
+            document.querySelectorAll('.impact-tab').forEach(tab => {
+                tab.classList.remove('border-slate-900', 'text-slate-900');
+                tab.classList.add('border-transparent', 'text-slate-500');
+            });
+            const activeTab = document.getElementById(`tab-${key}`);
+            if (activeTab) {
+                activeTab.classList.remove('border-transparent', 'text-slate-500');
+                activeTab.classList.add('border-slate-900', 'text-slate-900');
+            }
+
+            const data = impactTabData[key];
+            if (data) {
+                document.getElementById('impact-panel-content').innerHTML = `
+                    <h3 class="text-base font-bold text-slate-900 mb-2">${data.title}</h3>
+                    ${data.content}
+                `;
+            }
+        }
+
+        // Universalisability Simulator Logic
+        const simData = {
+            china: {
+                title: "【China Scenario】Renminbi sanctions against arbitrators or adjudicators",
+                text: "Suppose China used its financial and market-access powers to sanction arbitrators or international adjudicators after an adverse ruling, citing a threat to Chinese sovereignty or maritime rights.",
+                verdict: "If the same logic were generalised, states would have stronger incentives to sanction judges and arbitrators after adverse decisions, materially weakening the independence and predictability of international adjudication."
+            },
+            russia: {
+                title: "【Russia Scenario】Market and financial sanctions against ICJ judges",
+                text: "Suppose Russia imposed personal financial or market-access sanctions on ICJ judges after an adverse order concerning Ukraine, citing a threat to Russia’s security interests.",
+                verdict: "If personal sanctions for adverse judicial decisions became a general principle, comparable pressure would spread across international courts. The scenario is a reverse test of whether the principle is institutionally tolerable."
+            }
+        };
+
+        function runSimulation(type) {
+            const btnChina = document.getElementById('sim-btn-china');
+            const btnRussia = document.getElementById('sim-btn-russia');
+
+            if (type === 'china') {
+                btnChina.className = "px-3 py-1.5 rounded bg-amber-600 text-white text-xs font-bold hover:bg-amber-500 transition";
+                btnRussia.className = "px-3 py-1.5 rounded bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700 transition";
+            } else {
+                btnRussia.className = "px-3 py-1.5 rounded bg-amber-600 text-white text-xs font-bold hover:bg-amber-500 transition";
+                btnChina.className = "px-3 py-1.5 rounded bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700 transition";
+            }
+
+            const data = simData[type];
+            document.getElementById('sim-result-box').innerHTML = `
+                <div class="text-amber-400 font-bold text-sm mb-1">${data.title}</div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-2">${data.text}</p>
+                <div class="p-2.5 bg-red-950/80 rounded border border-red-800 text-xs text-red-200">
+                    <strong>Simulation result:</strong> ${data.verdict}
+                </div>
+            `;
+        }
+
+        // Initialize Page & Tailwind CSS Visualizations
+        window.addEventListener('DOMContentLoaded', () => {
+            // Initialize Default Views
+            selectTimeline(1);
+            switchImpactTab('japan');
+            runSimulation('china');
+        });
+    </script>
+</body>
+</html>
