@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#090909" />
+
+  <title>ICC Research Hub | 法の支配・戦後日本・米国制裁</title>
+  <meta
+    name="description"
+    content="戦後日本のICC支持の制度史と、2026年米国によるICC制裁の構造的法務検証をまとめたリサーチ・ハブ。"
+  />
+
+  <meta property="og:title" content="ICC Research Hub | 法の支配・戦後日本・米国制裁" />
+  <meta
+    property="og:description"
+    content="1945–2026。日本の制度選択、ICC、そして2026年米国制裁を『法の支配』の観点から読む。"
+  />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root {
+      --bg: #070707;
+      --bg-soft: #0d0d0d;
+      --panel: rgba(17, 17, 17, 0.92);
+      --panel-2: rgba(22, 22, 22, 0.95);
+      --gold: #d0b16c;
+      --gold-bright: #f1d38a;
+      --gold-dim: #8c7647;
+      --text: #f2efe7;
+      --muted: #aaa59a;
+      --line: rgba(208, 177, 108, 0.24);
+      --line-strong: rgba(208, 177, 108, 0.48);
+      --red: #a63232;
+      --shadow: 0 18px 60px rgba(0,0,0,.38);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px),
+        radial-gradient(circle at 50% -10%, rgba(208,177,108,.10), transparent 34%),
+        var(--bg);
+      background-size: 42px 42px, 42px 42px, auto, auto;
+      font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN",
+        "Yu Gothic", "YuGothic", "Noto Sans JP", sans-serif;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: rgba(7,7,7,.78);
+      border-bottom: 1px solid rgba(208,177,108,.14);
+    }
+
+    .topbar-inner {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand strong {
+      font-family: Georgia, "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+      color: var(--gold-bright);
+      letter-spacing: .08em;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: #77736b;
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .toplinks {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .toplinks a {
+      text-decoration: none;
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 5px 9px;
+      border-radius: 999px;
+      transition: .18s ease;
+    }
+
+    .toplinks a:hover {
+      color: var(--gold-bright);
+      border-color: var(--line-strong);
+      background: rgba(208,177,108,.06);
+    }
+
+    .hero {
+      padding: 86px 0 56px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      width: 44px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim));
+    }
+
+    .eyebrow::after {
+      background: linear-gradient(90deg, var(--gold-dim), transparent);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-weight: 500;
+      letter-spacing: .04em;
+      font-size: clamp(36px, 7vw, 76px);
+      line-height: 1.12;
+      color: #f4ead0;
+      text-wrap: balance;
+    }
+
+    .hero-sub {
+      margin: 20px auto 0;
+      max-width: 800px;
+      color: #c6c0b3;
+      font-size: clamp(14px, 2vw, 18px);
+      text-wrap: balance;
+    }
+
+    .hero-note {
+      margin: 26px auto 0;
+      max-width: 760px;
+      padding: 17px 22px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: #8e897f;
+      font-size: 12px;
+      letter-spacing: .02em;
+    }
+
+    .section-head {
+      margin: 18px 0 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 500;
+      color: #e9ddc0;
+      letter-spacing: .035em;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 570px;
+      color: #8f8a80;
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 62px;
+    }
+
+    .card {
+      position: relative;
+      min-height: 390px;
+      display: flex;
+      flex-direction: column;
+      padding: 26px;
+      background:
+        linear-gradient(150deg, rgba(255,255,255,.024), transparent 36%),
+        var(--panel);
+      border: 1px solid rgba(255,255,255,.075);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform .22s ease, border-color .22s ease, background .22s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0, var(--gold) 28%, var(--gold) 72%, transparent 100%);
+      opacity: .72;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--line-strong);
+      background:
+        linear-gradient(150deg, rgba(208,177,108,.045), transparent 38%),
+        var(--panel-2);
+    }
+
+    .card .tagrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 26px;
+    }
+
+    .tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--gold-bright);
+      border: 1px solid rgba(208,177,108,.25);
+      background: rgba(208,177,108,.055);
+      padding: 5px 9px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .lang {
+      color: #77736c;
+      font-size: 10px;
+      letter-spacing: .1em;
+    }
+
+    .card h3 {
+      margin: 0 0 14px;
+      color: #f0e8d6;
+      font-size: 22px;
+      line-height: 1.45;
+      font-family: Georgia, "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-weight: 500;
+    }
+
+    .card p {
+      margin: 0;
+      color: #aaa59c;
+      font-size: 13px;
+    }
+
+    .card .points {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: #89857d;
+      font-size: 11px;
+    }
+
+    .points li {
+      padding-left: 15px;
+      position: relative;
+    }
+
+    .points li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .75em;
+      width: 5px;
+      height: 5px;
+      border: 1px solid var(--gold-dim);
+      transform: rotate(45deg);
+    }
+
+    .cta {
+      margin-top: auto;
+      padding-top: 26px;
+    }
+
+    .cta a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      width: 100%;
+      text-decoration: none;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      color: #e9d49f;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      background: rgba(208,177,108,.035);
+      transition: .18s ease;
+    }
+
+    .cta a:hover {
+      background: rgba(208,177,108,.105);
+      border-color: var(--gold-dim);
+      color: #fff0c8;
+    }
+
+    .cta .arrow {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .architecture {
+      margin-bottom: 66px;
+      padding: 34px 36px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(90deg, rgba(208,177,108,.035), transparent 22%, transparent 78%, rgba(208,177,108,.035)),
+        rgba(10,10,10,.92);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .architecture::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      pointer-events: none;
+      border: 1px solid rgba(208,177,108,.07);
+    }
+
+    .architecture h2 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 20px;
+      text-align: center;
+      font-family: Georgia, "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+      color: var(--gold-bright);
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: .06em;
+    }
+
+    .architecture-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .node {
+      padding: 18px;
+      min-height: 112px;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.075);
+      border-radius: 12px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .node strong {
+      display: block;
+      color: #e7dcc2;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .node span {
+      color: #77736c;
+      font-size: 10px;
+    }
+
+    .connector {
+      color: var(--gold-dim);
+      font-size: 22px;
+    }
+
+    .closing {
+      padding: 8px 0 80px;
+      text-align: center;
+    }
+
+    .closing .line {
+      width: min(420px, 65vw);
+      height: 1px;
+      margin: 0 auto 28px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .closing blockquote {
+      margin: 0 auto;
+      max-width: 820px;
+      font-family: Georgia, "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+      color: #ded4bc;
+      font-size: clamp(18px, 3vw, 28px);
+      line-height: 1.8;
+      font-weight: 400;
+    }
+
+    .closing small {
+      display: block;
+      color: #6f6b64;
+      margin-top: 18px;
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.055);
+      background: rgba(0,0,0,.35);
+    }
+
+    .footer-inner {
+      min-height: 82px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      color: #66625b;
+      font-size: 10px;
+    }
+
+    .footer-inner a {
+      text-decoration: none;
+      color: #8f897e;
+    }
+
+    .footer-inner a:hover { color: var(--gold-bright); }
+
+    @media (max-width: 900px) {
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: 0; }
+      .architecture-grid { grid-template-columns: 1fr; }
+      .connector { transform: rotate(90deg); justify-self: center; }
+      .section-head { align-items: start; flex-direction: column; }
+      .section-head p { text-align: left; }
+    }
+
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 22px, 1180px); }
+      .topbar-inner { min-height: 56px; }
+      .brand span { display: none; }
+      .toplinks a { padding: 4px 7px; font-size: 10px; }
+      .hero { padding-top: 62px; }
+      .architecture { padding: 28px 18px; }
+      .card { padding: 22px; }
+      .footer-inner { padding: 20px 0; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">
+        <strong>ICC Research Hub</strong>
+        <span>Law · Memory · Institutions</span>
+      </div>
+      <nav class="toplinks" aria-label="Primary">
+        <a href="./icc_web_japan.html">Japan</a>
+        <a href="./icc_web_usa_final_ja.html">U.S. / 日本語</a>
+        <a href="./icc_web_usa_final_en.html">U.S. / English</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div class="eyebrow">1945 — 2026</div>
+      <h1>法の構造を、国家史から読む。</h1>
+      <p class="hero-sub">
+        東京裁判の記憶、戦後日本の制度選択、ICCへの長期的関与、
+        そして2026年の米国による金融制裁。
+        三つの公開資料を、一つの入口から辿るためのリサーチ・ハブです。
+      </p>
+      <div class="hero-note">
+        ここで扱う中心テーマは「どの国を支持するか」ではありません。
+        権力と司法が衝突したとき、あらかじめ定められた法と制度をどこまで維持できるのかを検証します。
+      </div>
+    </section>
+
+    <section class="shell" aria-labelledby="documents-title">
+      <div class="section-head">
+        <h2 id="documents-title">Published Research</h2>
+        <p>
+          日本の戦後制度史と、2026年米国制裁の構造的法務検証を相互参照できるよう、
+          日本語・英語の公開ページをまとめています。
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="tagrow">
+            <span class="tag">Japan · Institutional History</span>
+            <span class="lang">日本語</span>
+          </div>
+          <h3>戦後日本のICC対応史</h3>
+          <p>
+            東京裁判から2007年ICC加盟、赤根智子所長、2026年米国制裁まで。
+            日本がなぜICCを継続的に支えてきたのかを、戦後の制度記憶と「法の支配」の選択から辿ります。
+          </p>
+          <ul class="points">
+            <li>東京裁判が残した法的論点</li>
+            <li>サンフランシスコ平和条約第11条と政府答弁</li>
+            <li>2007年麻生外相答弁とICC加盟</li>
+            <li>財政・人的貢献と2026年の制度衝突</li>
+          </ul>
+          <div class="cta">
+            <a href="./icc_web_japan.html">
+              <span>日本のICC対応史を読む</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tagrow">
+            <span class="tag">U.S. Sanctions · Legal Review</span>
+            <span class="lang">日本語</span>
+          </div>
+          <h3>米国によるICC制裁の構造的法務検証</h3>
+          <p>
+            2026年の対ICC金融制裁について、EO 14203、IEEPA、司法独立、
+            域外的金融作用、第三国への波及を分解し、国内法上の権限と国際法上の正当性を区別して検証します。
+          </p>
+          <ul class="points">
+            <li>EO 14203と制裁の法的構造</li>
+            <li>ICC管轄権と司法独立</li>
+            <li>OFAC制裁と過剰遵守の波及</li>
+            <li>日本・EU・ドル決済網への制度的影響</li>
+          </ul>
+          <div class="cta">
+            <a href="./icc_web_usa_final_ja.html">
+              <span>日本語版を読む</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tagrow">
+            <span class="tag">U.S. Sanctions · Legal Review</span>
+            <span class="lang">English</span>
+          </div>
+          <h3>Structural Legal Review of U.S. Sanctions on the ICC</h3>
+          <p lang="en">
+            An English-language review of the 2026 U.S. sanctions against ICC officials,
+            separating domestic sanctions authority from questions of international-law legitimacy,
+            judicial independence, and third-country effects.
+          </p>
+          <ul class="points" lang="en">
+            <li>Executive Order 14203 and IEEPA</li>
+            <li>ICC jurisdiction and judicial independence</li>
+            <li>OFAC blocking effects and private-sector de-risking</li>
+            <li>Implications for allied legal and financial systems</li>
+          </ul>
+          <div class="cta">
+            <a href="./icc_web_usa_final_en.html" lang="en">
+              <span>Read the English edition</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell architecture" aria-labelledby="architecture-title">
+      <h2 id="architecture-title">一つの論点を、三つの視点から。</h2>
+      <div class="architecture-grid">
+        <div class="node">
+          <strong>歴史・制度記憶</strong>
+          <span>1945 → 1952 → 2007</span>
+        </div>
+        <div class="connector" aria-hidden="true">→</div>
+        <div class="node">
+          <strong>常設司法への制度選択</strong>
+          <span>Rome Statute · ICC · Rule of Law</span>
+        </div>
+        <div class="connector" aria-hidden="true">→</div>
+        <div class="node">
+          <strong>2026年の制度衝突</strong>
+          <span>EO 14203 · OFAC · Judicial Independence</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell closing">
+      <div class="line"></div>
+      <blockquote>
+        見える力は、見えない力に勝てない。<br />
+        法、記憶、信義、制度――国家が長い時間をかけて選び取ったものは、
+        一度の力の行使だけでは消えない。
+      </blockquote>
+      <small>LAW · MEMORY · INSTITUTIONS · 1945–2026</small>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <div>Particle Musings · ICC Research</div>
+      <div>
+        <a href="./icc_web_japan.html">Japan</a>
+        &nbsp;·&nbsp;
+        <a href="./icc_web_usa_final_ja.html">U.S. JA</a>
+        &nbsp;·&nbsp;
+        <a href="./icc_web_usa_final_en.html">U.S. EN</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
