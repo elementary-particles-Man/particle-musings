@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAPAN MESH 2026 FINAL：高市政権の国家アーキテクチャ再設計とJCB/CARDNET吸収ノード</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#06b6d4',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0f172a',
+                            accent: '#d97706',
+                            crimson: '#dc2626',
+                            emerald: '#059669',
+                            violet: '#7c3aed'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome Icon Font (No SVG) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-cyan-500 selection:text-white min-h-screen">
+
+<!-- Color Palette: Vibrant Light Modern Tech (Base: Slate-50, Surface: White, Primary: Deep Cyan #0284c7 & Blue #2563eb, Emerald #059669, Amber #d97706, Violet #7c3aed, Crimson #dc2626) -->
+
+<!-- Narrative & Structure Plan:
+    1. Navigation Bar & Hero Section: Executive Summary & Sovereign Autonomy Metrics
+    2. Core KPI Snapshot Grid: Quantified policy impact points
+    3. Historical Sequence & Execution Pipeline: Interactive Timeline from Oct 2025 to Aug 2026
+    4. Architectural Shift Matrix: SPOF US-Dependency vs Autonomous Mesh Architecture
+    5. Quantitative Visualizations Grid:
+       - Chart 1: 17 Strategic Sectors Investment & Budget Allocation
+       - Chart 2: 3-Layer Energy Reserve BCP & Physical Intervention
+       - Chart 3: Multi-Nodal Mesh Network & Autonomy Indices Across Global Allies
+       - Chart 4: Energy & Currency Settlement Dispersal (Non-USD Settlement Ratio)
+    6. Critical Analysis Case Studies: ICC Akane BCP, GCAP, FOIP Mesh, PetroRupee & LCS
+    7. JCB/CARDNET Domestic Payment Absorption Node
+    8. Domestic Dependency Remediation (Bone-Thick Policy 2026 Reform Framework)
+    8. Interactive Architecture Decision Simulator / Summary Matrix
+-->
+
+<!-- Visualization Choices Summary:
+    1. Core KPIs: HTML Stat Cards (Goal: Inform / Highlight Key Metrics -> Styled White Cards)
+    2. Chronology: HTML Vertical Process Line (Goal: Organize Timeline -> Custom Tailwind Timeline)
+    3. Structural Matrix: HTML Interactive Comparison Table (Goal: Compare -> Dual-Column Grid Table)
+    4. Sector Budget Allocation: Chart.js Stacked Horizontal Bar Chart (Goal: Compare Composition -> Canvas Chart.js)
+    5. Crude Reserve Structure: Chart.js Doughnut Chart (Goal: Show Composition/Layers -> Canvas Chart.js)
+    6. Multi-Nodal Mesh Autonomy: Chart.js Radar Chart (Goal: Multi-variable Comparison -> Canvas Chart.js)
+    7. Currency Settlement Shift: Chart.js Stacked Area / Line Chart (Goal: Trend / Change over time -> Canvas Chart.js)
+-->
+
+<!-- Explicit Confirmation: Neither Mermaid JS nor SVG graphics were used anywhere in this single-page document. All charts are rendered via Chart.js on HTML5 Canvas, and diagrams use structured Tailwind CSS HTML with FontAwesome webfont icons. -->
+
+    <!-- Sticky Light Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-lg bg-sky-600 flex items-center justify-center text-white font-black text-lg shadow-sm">
+                    <i class="fa-solid fa-network-wired"></i>
+                </div>
+                <span class="font-bold text-lg tracking-wide text-slate-900">JAPAN MESH 2026</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-semibold text-slate-600">
+                <a href="#kpis" class="hover:text-sky-600 transition">主要指標</a>
+                <a href="#timeline" class="hover:text-sky-600 transition">政策時系列</a>
+                <a href="#matrix" class="hover:text-sky-600 transition">構造転換</a>
+                <a href="#charts" class="hover:text-sky-600 transition">定量データ分析</a>
+                <a href="#cases" class="hover:text-sky-600 transition">重要分析ケース</a>
+                <a href="#payments" class="hover:text-sky-600 transition">JCB吸収ノード</a>
+                <a href="#骨太2026" class="hover:text-sky-600 transition">骨太方針2026</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- Hero Title Section -->
+        <header class="text-center space-y-4 pt-4">
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-sky-700 text-xs font-bold uppercase tracking-wider shadow-sm">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>国家アーキテクチャ検証レポート FINAL / 2026-08-26</span>
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+                対米依存SPOFからの脱却と<br class="hidden sm:inline">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-blue-600 to-emerald-600">
+                    自律的Meshシステムの構築
+                </span>
+            </h1>
+            <p class="max-w-3xl mx-auto text-slate-600 text-sm sm:text-base leading-relaxed">
+                2025年秋の政権発足から2026年夏に至る高市政権の全施策を解析。単一障害点（SPOF）たる対米一極依存を解体し、「米国が停止・敵対しても国家が停止しない」独立型多角ネットワーク（Mesh）への移行を検証する。最終版では、JCB/CARDNETを「Visa等の非常用代替」ではなく、平時から流量を受け止める国内決済の<strong>吸収ノード</strong>として統合した。
+            </p>
+        </header>
+
+        <!-- KPI Summary Section -->
+        <section id="kpis" class="space-y-4">
+            <div class="border-l-4 border-sky-600 pl-4">
+                <h2 class="text-xl font-bold text-slate-900">1. 国家再設計の中核定量指標（KPI）</h2>
+                <p class="text-xs text-slate-500">政権が1年間で実装・動員した定量的リソースと政治的信任の規模</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- KPI Card 1 -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition relative overflow-hidden group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-slate-500">衆院選・獲得議席</span>
+                        <div class="p-2.5 rounded-lg bg-sky-50 text-sky-600">
+                            <i class="fa-solid fa-check-double text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2 flex items-baseline space-x-2">
+                        <span class="text-3xl font-black text-slate-900">316</span>
+                        <span class="text-sm font-bold text-sky-600">議席</span>
+                    </div>
+                    <p class="mt-1 text-xs text-slate-500">自民単独過半数超（連立352議席）による再設計権限（Authorization）獲得</p>
+                </div>
+
+                <!-- KPI Card 2 -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition relative overflow-hidden group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-slate-500">危機管理・戦略投資枠</span>
+                        <div class="p-2.5 rounded-lg bg-emerald-50 text-emerald-600">
+                            <i class="fa-solid fa-sack-dollar text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2 flex items-baseline space-x-2">
+                        <span class="text-3xl font-black text-slate-900">370</span>
+                        <span class="text-sm font-bold text-emerald-600">兆円</span>
+                    </div>
+                    <p class="mt-1 text-xs text-slate-500">2040年度までの17戦略分野官民投資目標（骨太2026別枠設定）</p>
+                </div>
+
+                <!-- KPI Card 3 -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition relative overflow-hidden group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-slate-500">実物原油・国家備蓄放出</span>
+                        <div class="p-2.5 rounded-lg bg-amber-50 text-amber-600">
+                            <i class="fa-solid fa-oil-well text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2 flex items-baseline space-x-2">
+                        <span class="text-3xl font-black text-slate-900">850</span>
+                        <span class="text-sm font-bold text-amber-600">万kL</span>
+                    </div>
+                    <p class="mt-1 text-xs text-slate-500">2026年3月中東危機対応（約30日分・史上2回目の直接手動介入）</p>
+                </div>
+
+                <!-- KPI Card 4 -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition relative overflow-hidden group">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-slate-500">日米為替協調介入規模</span>
+                        <div class="p-2.5 rounded-lg bg-violet-50 text-violet-600">
+                            <i class="fa-solid fa-hand-holding-dollar text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2 flex items-baseline space-x-2">
+                        <span class="text-3xl font-black text-slate-900">18</span>
+                        <span class="text-sm font-bold text-violet-600">兆円</span>
+                    </div>
+                    <p class="mt-1 text-xs text-slate-500">2026年4-5月ベッセント米財務長官との共同介入（信用分離の案件共闘）</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chronology / Execution Timeline -->
+        <section id="timeline" class="space-y-6">
+            <div class="border-l-4 border-sky-600 pl-4">
+                <h2 class="text-xl font-bold text-slate-900">2. 政策形成および実装時系列（2025年10月〜2026年8月）</h2>
+                <p class="text-xs text-slate-500">国家機能維持要件が予算・法制度・外交協定へ落とし込まれたプロセス</p>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <div class="relative border-l-2 border-sky-300 ml-4 space-y-8 py-2">
+
+                    <!-- Timeline Item 1 -->
+                    <div class="relative pl-8 group">
+                        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-white border-2 border-sky-600 group-hover:scale-125 transition"></div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                            <span class="text-xs font-bold text-sky-700 uppercase tracking-wider">2025年10月 〜 12月</span>
+                            <span class="text-xs text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-full w-fit font-medium border border-slate-200">政権発足 & 制度設計</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">第2次高市内閣発足と「危機管理投資」の予算化</h3>
+                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                            所信表明演説にて「責任ある積極財政」と「危機管理投資」を一体化。従来のアベノミクスから安全保障融合型へ転換。「17の戦略分野」及び「8つの分野横断課題」を選定し、ガソリン・軽油暫定税率廃止を決定。官僚機構内部で制度の80%以上を完成。
+                        </p>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="relative pl-8 group">
+                        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-white border-2 border-amber-500 group-hover:scale-125 transition"></div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                            <span class="text-xs font-bold text-amber-700 uppercase tracking-wider">2026年1月</span>
+                            <span class="text-xs text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-full w-fit font-medium border border-slate-200">対米信用転換 & Jファイル公開</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">赤根ICC所長への金融BCP助言と「Jファイル2026」公表</h3>
+                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                            米国によるICC制裁を「現実の故障モード」と認識し、赤根智子ICC所長へ送金・金融BCPを秘密裏に助言。1月27日、完成済み統治設計図として「総合政策集2026（Jファイル）」を公開。次世代戦闘機（GCAP）政府間機構で伊メローニ首相と提携強化。
+                        </p>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="relative pl-8 group">
+                        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-white border-2 border-emerald-500 group-hover:scale-125 transition"></div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                            <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">2026年2月 〜 3月</span>
+                            <span class="text-xs text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-full w-fit font-medium border border-slate-200">衆院選 Authorization & 物理的BCP発動</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">衆院選単独316議席獲得と国家備蓄原油850万kL放出</h3>
+                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                            設計済み国家再構築案への承認権限獲得のため衆院解散。自民単独316議席の圧勝。3月中東情勢緊迫化に伴い石油備蓄法を適用、史上2回目の国家備蓄原油直接放出（850万kL）を発動。金融補助金から物理的リソース管理へ移行。
+                        </p>
+                    </div>
+
+                    <!-- Timeline Item 4 -->
+                    <div class="relative pl-8 group">
+                        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-white border-2 border-violet-500 group-hover:scale-125 transition"></div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                            <span class="text-xs font-bold text-violet-700 uppercase tracking-wider">2026年5月 〜 7月</span>
+                            <span class="text-xs text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-full w-fit font-medium border border-slate-200">FOIP再定義 & 骨太方針2026決定</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">「進化版FOIP」ハノイ演説と「骨太の方針2026」閣議決定</h3>
+                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                            5月ベトナムで米国不在でも作動するMesh型「進化版FOIP」発表。日印共同宣言（モディ首相）で10兆円投資・防衛装備移転。7月21日「骨太の方針2026」でPB黒字化目標を事実上廃棄し、『「強く豊かな日本」投資枠』を制度化。
+                        </p>
+                    </div>
+
+                    <!-- Timeline Item 5 -->
+                    <div class="relative pl-8 group">
+                        <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-white border-2 border-rose-500 group-hover:scale-125 transition"></div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                            <span class="text-xs font-bold text-rose-700 uppercase tracking-wider">2026年8月25日</span>
+                            <span class="text-xs text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-full w-fit font-medium border border-slate-200">内部評価の外部露見</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900">高市総理記者会見：対米信用評価タイムスタンプの証明</h3>
+                        <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                            米国によるICC赤根所長制裁に対し、1月時点で金融BCPを助言していた事実を公言。日本政府が1月以前から「米国は自国の意に沿わなければ同盟国へも金融的害をなす」と確信していたタイムスタンプが世界へ示される。
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Architectural Shift Matrix Section -->
+        <section id="matrix" class="space-y-6">
+            <div class="border-l-4 border-sky-600 pl-4">
+                <h2 class="text-xl font-bold text-slate-900">3. 国家アーキテクチャの構造転換対比（Shift Matrix）</h2>
+                <p class="text-xs text-slate-500">従来の単一障害点（SPOF）依存型から自律分散（Mesh）型への完全なOS書き換え</p>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                            <tr>
+                                <th class="p-3 sm:p-4 w-1/5">システム階層</th>
+                                <th class="p-3 sm:p-4 w-2/5 text-rose-800 bg-rose-50/70">従来型アーキテクチャ（対米SPOF依存）</th>
+                                <th class="p-3 sm:p-4 w-2/5 text-sky-900 bg-sky-50/70">2026年高市政権（自律Mesh型）</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-3 sm:p-4 font-bold text-slate-900 flex items-center space-x-2">
+                                    <i class="fa-solid fa-sliders text-sky-600"></i>
+                                    <span>基本設計思想</span>
+                                </td>
+                                <td class="p-3 sm:p-4 text-slate-600 bg-rose-50/20">日米同盟＝無条件の信用。米国を唯一の絶対的Rootノードとする</td>
+                                <td class="p-3 sm:p-4 text-slate-900 bg-sky-50/30 font-medium">米国を「離脱・停止しうるノード」と定義。米国不在でも作動するBCP構築</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-3 sm:p-4 font-bold text-slate-900 flex items-center space-x-2">
+                                    <i class="fa-solid fa-earth-americas text-emerald-600"></i>
+                                    <span>安全保障・外交</span>
+                                </td>
+                                <td class="p-3 sm:p-4 text-slate-600 bg-rose-50/20">Hub & Spoke型秩序（米軍プレゼンスとITAR技術規制への全面的従属）</td>
+                                <td class="p-3 sm:p-4 text-slate-900 bg-sky-50/30 font-medium">GCAP（日英伊）、日印MAHASAGAR、仏・ASEAN直接接続による多角Mesh</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-3 sm:p-4 font-bold text-slate-900 flex items-center space-x-2">
+                                    <i class="fa-solid fa-coins text-amber-600"></i>
+                                    <span>金融・決済網</span>
+                                </td>
+                                <td class="p-3 sm:p-4 text-slate-600 bg-rose-50/20">USD（米ドル）単一決済網への絶対的依存。OFAC二次制裁に脆弱</td>
+                                <td class="p-3 sm:p-4 text-slate-900 bg-sky-50/30 font-medium">ペトロルピー（INR-AED）、日印円・ルピーLCS等の非ドル平時非依存決済網</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-3 sm:p-4 font-bold text-slate-900 flex items-center space-x-2">
+                                    <i class="fa-solid fa-microchip text-violet-600"></i>
+                                    <span>産業・物資サプライ</span>
+                                </td>
+                                <td class="p-3 sm:p-4 text-slate-600 bg-rose-50/20">海外依存（米中等）の効率優先調達。チョークポイントの集中</td>
+                                <td class="p-3 sm:p-4 text-slate-900 bg-sky-50/30 font-medium">17戦略分野（AI、半導体、造船、鉱物）国内回帰およびブラジル多角化</td>
+                            </tr>
+
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-3 sm:p-4 font-bold text-slate-900 flex items-center space-x-2">
+                                    <i class="fa-solid fa-credit-card text-cyan-600"></i>
+                                    <span>国内決済・カード網</span>
+                                </td>
+                                <td class="p-3 sm:p-4 text-slate-600 bg-rose-50/20">
+                                    Visa / Mastercard等の国外ブランド網に流量・受入能力が集中し、障害時の切替を「非常用代替」に依存
+                                </td>
+                                <td class="p-3 sm:p-4 text-slate-900 bg-sky-50/30 font-medium">
+                                    JCB / CARDNETを平時から太らせ、JENIUSのリアルタイム連携・クラウドオフロード・SRE・海外issuer/acquirer拡大により、他系統から移る流量を自然吸収する構造
+                                </td>
+                            </tr>
+
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-3 sm:p-4 font-bold text-slate-900 flex items-center space-x-2">
+                                    <i class="fa-solid fa-building-columns text-sky-600"></i>
+                                    <span>国内財政・運用OS</span>
+                                </td>
+                                <td class="p-3 sm:p-4 text-slate-600 bg-rose-50/20">単年度PB黒字化至上主義（インフラ・防衛・産業供給力の脆弱化）</td>
+                                <td class="p-3 sm:p-4 text-slate-900 bg-sky-50/30 font-medium">『「強く豊かな日本」投資枠』創設。債務残高/GDP比率目標へ転換</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-3 sm:p-4 font-bold text-slate-900 flex items-center space-x-2">
+                                    <i class="fa-solid fa-bolt text-rose-600"></i>
+                                    <span>エネルギー有事</span>
+                                </td>
+                                <td class="p-3 sm:p-4 text-slate-600 bg-rose-50/20">小売価格への補助金給付（資金消費型の金融的パッチ措置）</td>
+                                <td class="p-3 sm:p-4 text-slate-900 bg-sky-50/30 font-medium">三層キャッシュ（国家・民間・産油国）から国家備蓄原油の直接物理放出</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Data & Analytical Charts Grid -->
+        <section id="charts" class="space-y-8">
+            <div class="border-l-4 border-sky-600 pl-4">
+                <h2 class="text-xl font-bold text-slate-900">4. 定量データ分析 & 構造チャート</h2>
+                <p class="text-xs text-slate-500">危機管理投資、エネルギー備蓄構造、多国間自治度、決済網の視覚化</p>
+            </div>
+
+            
+            <div class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-[11px] text-amber-900 leading-relaxed">
+                <i class="fa-solid fa-flask mr-1"></i>
+                <strong>データ境界：</strong>このセクションのRadarや一部の配分・推移値は、構造を可視化するための分析用スコア／モデル値を含む。公式統計・実測値として引用する場合は、個別の一次資料で置換・確認すること。
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <!-- Chart 1: 17 Strategic Sectors -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-base font-bold text-slate-900 flex items-center space-x-2">
+                                <i class="fa-solid fa-chart-column text-sky-600"></i>
+                                <span>危機管理17戦略分野 官民投資計画配分（2040年）</span>
+                            </h3>
+                            <span class="text-[10px] bg-sky-100 text-sky-800 border border-sky-200 px-2 py-0.5 rounded font-semibold">総額370兆円</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4">
+                            骨太2026およびJファイルで定義された主要強靱化分野への累積投資目標。AI・半導体および防衛・造船インフラへの圧倒的予算重点配分を示す。
+                        </p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="sectorsChart"></canvas>
+                    </div>
+                    <p class="text-[11px] text-slate-600 mt-3 bg-slate-50 p-2.5 rounded border border-slate-200">
+                        <i class="fa-solid fa-circle-info text-sky-600 mr-1"></i>
+                        <strong>解釈：</strong> 特定国からのハイテク・防衛サプライチェーン切断リスク（SPOF）を国内で完全に消化するための集中投資。
+                    </p>
+                </div>
+
+                <!-- Chart 2: 3-Layer Crude Reserve System -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-base font-bold text-slate-900 flex items-center space-x-2">
+                                <i class="fa-solid fa-chart-pie text-amber-600"></i>
+                                <span>日本の石油三層キャッシュ構造と放出可能量</span>
+                            </h3>
+                            <span class="text-[10px] bg-amber-100 text-amber-800 border border-amber-200 px-2 py-0.5 rounded font-semibold">2026年3月発動</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4">
+                            ホルムズ海峡リスク発生時に発動する国内三層原油キャッシュ。国家備蓄（レイヤー3）直接放出による物理的実体管理へのシフト。
+                        </p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="reservesChart"></canvas>
+                    </div>
+                    <p class="text-[11px] text-slate-600 mt-3 bg-slate-50 p-2.5 rounded border border-slate-200">
+                        <i class="fa-solid fa-circle-info text-amber-600 mr-1"></i>
+                        <strong>解釈：</strong> 金融補助金（紙のパッチ）ではなく、850万kLの物理リソースを解放し実体需給を直接沈静化させた。
+                    </p>
+                </div>
+
+                <!-- Chart 3: Multi-Nodal Mesh Autonomy Radar -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-base font-bold text-slate-900 flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-nodes text-emerald-600"></i>
+                                <span>多国間パートナーノードの自律接続指数（Mesh Radar）</span>
+                            </h3>
+                            <span class="text-[10px] bg-emerald-100 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded font-semibold">自律度比較</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4">
+                            米国依存（以前）対比での日英伊（GCAP）、日印（MAHASAGAR）、ASEAN、仏・ブラジルの接続自律度（米離脱耐性）の定量的評価。
+                        </p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="meshRadarChart"></canvas>
+                    </div>
+                    <p class="text-[11px] text-slate-600 mt-3 bg-slate-50 p-2.5 rounded border border-slate-200">
+                        <i class="fa-solid fa-circle-info text-emerald-600 mr-1"></i>
+                        <strong>解釈：</strong> 米国ノードがオフラインになっても、日英伊・日印・日ASEANのメッシュ相互接続で機能が継続される。
+                    </p>
+                </div>
+
+                <!-- Chart 4: Currency & Energy Settlement Shift -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-base font-bold text-slate-900 flex items-center space-x-2">
+                                <i class="fa-solid fa-chart-line text-violet-600"></i>
+                                <span>資源・エネルギー非米ドル決済経路の利用拡大</span>
+                            </h3>
+                            <span class="text-[10px] bg-violet-100 text-violet-800 border border-violet-200 px-2 py-0.5 rounded font-semibold">2024-2026推移</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4">
+                            ペトロルピー（INR-AED）および日印円・ルピー直接決済（LCS）の平時稼働による米ドル制裁リスク回避網の拡大。
+                        </p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="currencyShiftChart"></canvas>
+                    </div>
+                    <p class="text-[11px] text-slate-600 mt-3 bg-slate-50 p-2.5 rounded border border-slate-200">
+                        <i class="fa-solid fa-circle-info text-violet-600 mr-1"></i>
+                        <strong>解釈：</strong> 脱ドルではなく「米ドル障害時に物資調達を停止させないバックアップ回路」として平時稼働を維持。
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Deep Dive Analytical Case Studies -->
+        <section id="cases" class="space-y-6">
+            <div class="border-l-4 border-sky-600 pl-4">
+                <h2 class="text-xl font-bold text-slate-900">5. 外部故障モードに対する実証事例解析</h2>
+                <p class="text-xs text-slate-500">対米信用評価の転換とグローバル・メッシュ接続の現場事例</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+
+                <!-- Case 1: Akane ICC BCP -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-sky-300 transition">
+                    <div class="w-10 h-10 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center font-bold mb-4 text-lg">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">赤根所長BCPとタイムスタンプ</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        2026年1月時点で、日本政府は米国による赤根智子ICC所長への金融制裁を予測。「同盟国であっても意に沿わなければドル決済から排除する」という米国の故障モードを織り込み、送金支援等の金融BCPを助言。8月25日の記者会見でこのタイムスタンプが露見。
+                    </p>
+                </div>
+
+                <!-- Case 2: GCAP Autonomous Autonomy -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-emerald-300 transition">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold mb-4 text-lg">
+                        <i class="fa-solid fa-plane-jet"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">GCAP（日英伊）ITARフリー基盤</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        米国ITAR（武器国際取引規制）やブラックボックス化を完全に回避する次世代戦闘機体系。6月英スターマー首相・伊メローニ首相との首脳会談で強靭な政府間機構を固定。米国が兵站やアップデートを停止しても独自運用が維持可能な戦略的自律性を確保。
+                    </p>
+                </div>
+
+                <!-- Case 3: FOIP Evolution & Regional Nodes -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-amber-300 transition">
+                    <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold mb-4 text-lg">
+                        <i class="fa-solid fa-anchor"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">チョークポイント防衛と新FOIP</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        5月ハノイで発表された「進化版FOIP」は米国を中心としない網の目構造。インドネシアへの護衛艦「あさぎり」移転によりマラッカ・スンダ海峡の遠隔防波堤を自主構築。マレーシアとのエッジAI半導体量産協定でデジタル回廊も独自確保。
+                    </p>
+                </div>
+
+
+                <!-- Case 4: JCB/CARDNET Absorption Node -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-cyan-300 transition">
+                    <div class="w-10 h-10 rounded-lg bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold mb-4 text-lg">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">JCB / CARDNET：代替ではなく吸収ノード</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        2025〜2026年に、JENIUSのリアルタイム連携・クラウドオフロード、SRE/AI運用、CARDNET基盤のモダナイゼーション、海外issuer/acquirer接続が並行して進行。Visa停止時の「公式フェイルオーバー」は未確認だが、平時から増分トラフィックを受け止める容量プールとしての性格が強い。
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- JCB/CARDNET Absorption Node -->
+        <section id="payments" class="space-y-6">
+            <div class="border-l-4 border-cyan-600 pl-4">
+                <h2 class="text-xl font-bold text-slate-900">6. JCB / CARDNET：非常用代替ではなく「決済流量の吸収ノード」</h2>
+                <p class="text-xs text-slate-500">公開情報で確認できるのは、専用の「Visa障害BCP」ではなく、通常運用そのものをスケール可能・分散可能・海外接続可能に作り替える継続的なキャパシティ増強</p>
+            </div>
+            <div class="bg-gradient-to-br from-cyan-950 via-slate-900 to-slate-950 text-white rounded-xl p-6 shadow-md">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-300/20 text-cyan-200 text-xs font-bold"><i class="fa-solid fa-arrows-turn-to-dots"></i><span>ABSORPTION NODE / 平時稼働</span></div>
+                    <h3 class="mt-4 text-xl sm:text-2xl font-black">「Visaが止まったらJCBへ切替」ではない。<br class="hidden sm:block"><span class="text-cyan-300">流量が移った時に、JCB側がそのまま受け止める。</span></h3>
+                    <p class="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">非常用バックアップを眠らせるのではなく、平時のキャッシュレス成長・海外展開・クラウド化・運用自動化として能力を稼働させ、その結果として外部カード網からの流量変化を吸収できる構造を形成する。</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm"><div class="text-[10px] font-bold text-slate-500 uppercase tracking-wide">JCB Global Members</div><div class="mt-1 text-2xl font-black text-slate-900">1.82億</div><div class="text-[11px] text-slate-500">2026年3月末</div></div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm"><div class="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Merchant Network</div><div class="mt-1 text-2xl font-black text-slate-900">7,200万店</div><div class="text-[11px] text-slate-500">グローバル受入網</div></div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm"><div class="text-[10px] font-bold text-slate-500 uppercase tracking-wide">JCB Handling Volume</div><div class="mt-1 text-2xl font-black text-slate-900">53.39兆円</div><div class="text-[11px] text-slate-500">2025年度 53兆3,901億円</div></div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm"><div class="text-[10px] font-bold text-slate-500 uppercase tracking-wide">CARDNET Processing</div><div class="mt-1 text-2xl font-black text-slate-900">409億件/年</div><div class="text-[11px] text-slate-500">約85万端末接続</div></div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-3">
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm"><div class="text-cyan-700 font-bold text-xs mb-2"><i class="fa-solid fa-server mr-1"></i>JENIUS</div><p class="text-[11px] text-slate-600 leading-relaxed">IBM Zを正本系として維持しつつ、IBM/TISでリアルタイム連携。参照・照会負荷を外へ逃がす。</p></div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm"><div class="text-cyan-700 font-bold text-xs mb-2"><i class="fa-brands fa-aws mr-1"></i>Cloud Offload</div><p class="text-[11px] text-slate-600 leading-relaxed">AWS/ハイブリッド化により、固定した自社DC容量だけで増分を受けず、スケールアウト可能にする。</p></div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm"><div class="text-cyan-700 font-bold text-xs mb-2"><i class="fa-solid fa-network-wired mr-1"></i>CARDNET</div><p class="text-[11px] text-slate-600 leading-relaxed">Hitachiと決済インフラを段階的にモダナイズ。加盟店側の「道路」そのものを太くする。</p></div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm"><div class="text-cyan-700 font-bold text-xs mb-2"><i class="fa-solid fa-robot mr-1"></i>SRE / AI</div><p class="text-[11px] text-slate-600 leading-relaxed">運用・開発・予兆検知を自動化し、トラフィック増に対して人的処理量が比例しない構造へ。</p></div>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm"><div class="text-cyan-700 font-bold text-xs mb-2"><i class="fa-solid fa-earth-asia mr-1"></i>Overseas Edges</div><p class="text-[11px] text-slate-600 leading-relaxed">ASEAN・中東・欧州でissuer/acquirerを増やし、JCBトランザクションの海外着地点を拡張。</p></div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+                    <div class="p-5"><div class="flex items-center gap-2 text-emerald-700 font-bold text-sm"><i class="fa-solid fa-circle-check"></i>確認できたこと</div><p class="mt-2 text-xs text-slate-600 leading-relaxed">クラウドへのオフロード、基幹データのリアルタイム連携、SRE/AI運用、CARDNETモダナイゼーション、海外発行・加盟店受入網の拡大。</p></div>
+                    <div class="p-5"><div class="flex items-center gap-2 text-cyan-700 font-bold text-sm"><i class="fa-solid fa-diagram-project"></i>構造として読めること</div><p class="mt-2 text-xs text-slate-600 leading-relaxed">中央の巨大予備設備を一発で建てるのではなく、ボトルネックを各層で外し、平時の成長をそのまま障害時の受入余力へ変換している。</p></div>
+                    <div class="p-5"><div class="flex items-center gap-2 text-amber-700 font-bold text-sm"><i class="fa-solid fa-triangle-exclamation"></i>まだ確認していないこと</div><p class="mt-2 text-xs text-slate-600 leading-relaxed">政府がJCBを「Visa/Mastercard停止時の公式フェイルオーバー」と指定した事実は未確認。したがって結論は「代替指定」ではなく「吸収能力の形成」に限定する。</p></div>
+                </div>
+            </div>
+            <div class="bg-slate-900 text-slate-100 rounded-xl p-5 shadow-sm">
+                <div class="text-xs font-bold text-cyan-300 mb-3">JCB / CARDNET 吸収モデル</div>
+                <pre class="text-[11px] sm:text-xs leading-relaxed overflow-x-auto whitespace-pre-wrap font-mono">通常時:
+Visa / Mastercard / JCB / QR / 銀行系
+            │
+            ├── 各経路が平時トラフィックを処理
+            │
+            └── JCB/CARDNETは通常事業として継続的に太る
+
+外部系統で流量変化:
+国外カード網の障害・政治制約・加盟店選好変化
+            │
+            ▼
+   JCB / CARDNET側へ流量が移動
+            │
+      ┌─────┼─────┐
+      ▼     ▼     ▼
+ JENIUS   Cloud   CARDNET
+  正本系   Offload  加盟店道路
+      │     │     │
+      └─────┼─────┘
+            ▼
+      SRE / AI 運用
+            │
+            ▼
+   国内円決済へ継続着地
+
+= 「非常時に切替」ではなく
+  「平時から存在する別経路が増分を吸収」</pre>
+            </div>
+        </section>
+
+        <!-- Domestic Remediation Plan: Bone-Thick Policy 2026 -->
+        <section id="骨太2026" class="space-y-6">
+            <div class="border-l-4 border-sky-600 pl-4">
+                <h2 class="text-xl font-bold text-slate-900">7. 国内SPOF除去マスタープラン：「骨太の方針2026」</h2>
+                <p class="text-xs text-slate-500">同期ブロッキング処理型（単年度PB黒字化）から供給力重視の非同期OSへの刷新</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-sky-950 text-white rounded-xl p-6 shadow-md space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Policy Pillar 1 -->
+                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/10">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span class="px-2.5 py-1 bg-sky-500/30 text-sky-300 font-bold text-xs rounded border border-sky-400/40">新指標</span>
+                            <h3 class="text-sm font-bold text-white">PB目標から「債務残高 / GDP比率」へ</h3>
+                        </div>
+                        <p class="text-xs text-slate-200 leading-relaxed">
+                            単年度のPB（基礎的財政収支）黒字化という同期ブロッキング条件を廃棄。有事の供給能力維持・危機管理投資を優先し、分母（GDP/供給力）を増大させてシステム全体の安定性を保つアプローチへ転換。
+                        </p>
+                    </div>
+
+                    <!-- Policy Pillar 2 -->
+                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/10">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span class="px-2.5 py-1 bg-emerald-500/30 text-emerald-300 font-bold text-xs rounded border border-emerald-400/40">特別枠</span>
+                            <h3 class="text-sm font-bold text-white">『「強く豊かな日本」投資枠』の創設</h3>
+                        </div>
+                        <p class="text-xs text-slate-200 leading-relaxed">
+                            通常歳出のシーリング（要求上限）から完全に独立した複数年度投資枠を創設。つなぎ国債等を財源とし、半導体、量子、AI、防衛インフラ、医療サプライチェーンへ予算を長期固定給付。
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Structured Checklist of Domestic Bottlenecks -->
+                <div class="border-t border-slate-700/80 pt-4">
+                    <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">国内依存性修復計画（Dependency Remediation Checklist）</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                        <div class="bg-slate-900/80 p-3 rounded border border-slate-700 flex items-center space-x-2">
+                            <i class="fa-solid fa-wheat-awn text-amber-400"></i>
+                            <div>
+                                <div class="font-bold text-white">食料BCP</div>
+                                <div class="text-[10px] text-slate-300">ブラジル・南米直結</div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded border border-slate-700 flex items-center space-x-2">
+                            <i class="fa-solid fa-plug text-sky-400"></i>
+                            <div>
+                                <div class="font-bold text-white">エネルギー</div>
+                                <div class="text-[10px] text-slate-300">三層物理備蓄・原発</div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded border border-slate-700 flex items-center space-x-2">
+                            <i class="fa-solid fa-truck-ramp-box text-emerald-400"></i>
+                            <div>
+                                <div class="font-bold text-white">物流・造船</div>
+                                <div class="text-[10px] text-slate-300">国内造船枠増強</div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded border border-slate-700 flex items-center space-x-2">
+                            <i class="fa-solid fa-capsules text-violet-400"></i>
+                            <div>
+                                <div class="font-bold text-white">医薬品</div>
+                                <div class="text-[10px] text-slate-300">原薬国内製造回帰</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Dynamic Architecture Conclusion Banner -->
+        <footer class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 text-center space-y-4 shadow-sm">
+            <div class="w-12 h-12 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-diagram-project"></i>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-slate-900">
+                結論：米国が正常なら活用し、不全・敵対しても継続する「大人の新日米関係」
+            </h2>
+            <p class="max-w-3xl mx-auto text-slate-600 text-xs sm:text-sm leading-relaxed">
+                2026年高市政権が実装した国家再設計は、日米同盟の破棄を意味しない。「信用（無条件の依存）」と「案件協力（利益の一致）」を完全に分離し、為替協調介入（18兆円）に見られるようなプラグマティックな共闘を成立させつつ、米国不全時でも途絶しない重層的Meshシステムを完成させた。
+            </p>
+
+            <div class="pt-4 border-t border-slate-200 flex flex-wrap justify-center gap-2.5 text-slate-600 text-xs font-semibold">
+                <span class="bg-slate-100 px-3 py-1 rounded-full border border-slate-200">【国内自立化】</span>
+                <span class="bg-slate-100 px-3 py-1 rounded-full border border-slate-200">【多国間Mesh】</span>
+                <span class="bg-slate-100 px-3 py-1 rounded-full border border-slate-200">【複数非ドル決済】</span>
+                <span class="bg-slate-100 px-3 py-1 rounded-full border border-slate-200">【JCB/CARDNET吸収ノード】</span>
+                <span class="bg-slate-100 px-3 py-1 rounded-full border border-slate-200">【独自安全保障網】</span>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript Charts Initialization -->
+    <script>
+        // Label formatting helper to handle labels longer than 16 characters
+        function formatChartLabel(labelStr) {
+            if (Array.isArray(labelStr)) return labelStr;
+            if (typeof labelStr !== 'string') return labelStr;
+            if (labelStr.length <= 16) return labelStr;
+            
+            const lines = [];
+            for (let i = 0; i < labelStr.length; i += 14) {
+                lines.push(labelStr.substring(i, i + 14));
+            }
+            return lines;
+        }
+
+        // Global Chart.js Defaults for Light Theme
+        Chart.defaults.color = '#475569';
+        Chart.defaults.font.family = 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+
+        // Universal Tooltip Configuration Requirement Implementation
+        const universalTooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    if (!tooltipItems || !tooltipItems.length) return '';
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join('');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // Chart 1: 17 Strategic Sectors Investment Allocation (Horizontal Bar)
+        const sectorsCtx = document.getElementById('sectorsChart').getContext('2d');
+        const rawSectorsLabels = [
+            'AI・次世代半導体・量子',
+            '防衛生産・航空宇宙(GCAP)',
+            '造船・海洋重要インフラ',
+            '重要鉱物・エネルギー資源',
+            '医薬品・先端バイオ医療',
+            'サイバー・次世代通信規格'
+        ];
+        const formattedSectorsLabels = rawSectorsLabels.map(formatChartLabel);
+
+        new Chart(sectorsCtx, {
+            type: 'bar',
+            data: {
+                labels: formattedSectorsLabels,
+                datasets: [{
+                    label: '官民投資目標額 (兆円)',
+                    data: [110, 85, 55, 50, 40, 30],
+                    backgroundColor: [
+                        '#0284c7',
+                        '#2563eb',
+                        '#059669',
+                        '#d97706',
+                        '#7c3aed',
+                        '#db2777'
+                    ],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: universalTooltipConfig
+                },
+                scales: {
+                    x: {
+                        grid: { color: '#e2e8f0' },
+                        ticks: { color: '#475569' }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { color: '#1e293b', font: { size: 11, weight: '600' } }
+                    }
+                }
+            }
+        });
+
+        // Chart 2: 3-Layer Crude Reserve System (Doughnut Chart)
+        const reservesCtx = document.getElementById('reservesChart').getContext('2d');
+        const rawReservesLabels = [
+            '国家備蓄 (8,500万kL / 約140日分)',
+            '民間備蓄 (4,500万kL / 約70日分)',
+            '産油国共同備蓄 (1,000万kL / 約15日分)'
+        ];
+        const formattedReservesLabels = rawReservesLabels.map(formatChartLabel);
+
+        new Chart(reservesCtx, {
+            type: 'doughnut',
+            data: {
+                labels: formattedReservesLabels,
+                datasets: [{
+                    data: [8500, 4500, 1000],
+                    backgroundColor: [
+                        '#d97706',
+                        '#0284c7',
+                        '#2563eb'
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#334155',
+                            font: { size: 11, weight: '500' },
+                            padding: 12
+                        }
+                    },
+                    tooltip: universalTooltipConfig
+                },
+                cutout: '65%'
+            }
+        });
+
+        // Chart 3: Multi-Nodal Mesh Autonomy Radar
+        const meshRadarCtx = document.getElementById('meshRadarChart').getContext('2d');
+        const rawRadarLabels = [
+            '安全保障自律度',
+            'エネルギー調達力',
+            '半導体・AIサプライ',
+            '非米ドル決済耐性',
+            '食料・資源安全保障'
+        ];
+        const formattedRadarLabels = rawRadarLabels.map(formatChartLabel);
+
+        new Chart(meshRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: formattedRadarLabels,
+                datasets: [
+                    {
+                        label: '従来型（単一対米依存）',
+                        data: [40, 30, 45, 15, 35],
+                        borderColor: '#dc2626',
+                        backgroundColor: 'rgba(220, 38, 38, 0.12)',
+                        borderWidth: 2,
+                        pointRadius: 3
+                    },
+                    {
+                        label: '2026年自律Mesh体制',
+                        data: [88, 85, 90, 80, 82],
+                        borderColor: '#059669',
+                        backgroundColor: 'rgba(5, 150, 105, 0.2)',
+                        borderWidth: 2.5,
+                        pointRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#334155', font: { size: 11, weight: '500' } }
+                    },
+                    tooltip: universalTooltipConfig
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#cbd5e1' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { color: '#1e293b', font: { size: 11, weight: '600' } },
+                        ticks: { display: false, backdropColor: 'transparent' },
+                        min: 0,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        // Chart 4: Currency & Energy Settlement Shift (Line/Area Chart)
+        const currencyCtx = document.getElementById('currencyShiftChart').getContext('2d');
+        const rawCurrencyLabels = [
+            '2024年Q1',
+            '2024年Q3',
+            '2025年Q1',
+            '2025年Q3',
+            '2026年Q1',
+            '2026年Q3'
+        ];
+        const formattedCurrencyLabels = rawCurrencyLabels.map(formatChartLabel);
+
+        new Chart(currencyCtx, {
+            type: 'line',
+            data: {
+                labels: formattedCurrencyLabels,
+                datasets: [
+                    {
+                        label: 'USD（米ドル）直結決済比率 (%)',
+                        data: [95, 93, 88, 82, 75, 68],
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.08)',
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: '非米ドル（ペトロルピー/円・ルピーLCS/実物備蓄）比率 (%)',
+                        data: [5, 7, 12, 18, 25, 32],
+                        borderColor: '#7c3aed',
+                        backgroundColor: 'rgba(124, 58, 237, 0.15)',
+                        fill: true,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#334155', font: { size: 11, weight: '500' } }
+                    },
+                    tooltip: universalTooltipConfig
+                },
+                scales: {
+                    x: {
+                        grid: { color: '#e2e8f0' },
+                        ticks: { color: '#475569' }
+                    },
+                    y: {
+                        grid: { color: '#e2e8f0' },
+                        ticks: { color: '#475569' },
+                        min: 0,
+                        max: 100
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
