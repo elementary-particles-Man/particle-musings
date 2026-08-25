@@ -1,1 +1,4 @@
 gdoc/
+
+# Local ephemeral development helpers
+.scratch/
