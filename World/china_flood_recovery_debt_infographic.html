@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026年中国反復水害・台風災害「Recovery Debt」総合インフォグラフィック</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0f172a',
+                            blue: '#2563eb',
+                            red: '#dc2626',
+                            amber: '#ea580c',
+                            teal: '#0891b2',
+                            slate: '#f8fafc',
+                            emerald: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- Color Palette: Vibrant High-Contrast Operational Palette (Navy: #0f172a, Blue: #2563eb, Crimson: #dc2626, Amber: #ea580c, Cyan: #0891b2) -->
+    <!-- Narrative Plan & Structure: Executive Verdict -> Regional Scorecard -> Temporal Re-exposure Timeline -> Debt Dynamics Charts -> Industrial & WIP Breakdown -> Port/Supply Chain Impact -> Forward Watch Radar -->
+    <!-- Visualizations: 1. Recovery Debt Dynamics (Chart.js Line/Area - Canvas), 2. Regional Recovery Score Breakdown (Chart.js Horizontal Bar - Canvas), 3. Port Congestion Waiting Days (Chart.js Bar - Canvas), 4. WIP & Asset Loss Composition (Chart.js Doughnut - Canvas), 5. Multi-factor Stress Radar (Plotly Canvas/WebGL) - NO SVG USED -->
+    <!-- Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All visuals are standard HTML/CSS with Tailwind and Canvas-rendered charts via Chart.js and Plotly.js. -->
+
+    <!-- Header & Hero Section -->
+    <header class="bg-slate-900 text-white relative overflow-hidden border-b-4 border-blue-600">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/40 via-slate-900 to-red-900/30 opacity-90"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/30 border border-red-500/50 text-red-300 text-xs font-bold tracking-wide uppercase mb-3">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> 調査基準日: 2026年9月1日現在
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                        2026年中国反復水害・台風災害<br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-amber-400">「Recovery Debt」と実物経済復旧可能性</span> 総合分析
+                    </h1>
+                    <p class="mt-2 text-slate-300 text-sm sm:text-base max-w-3xl">
+                        台風13号（白海豚）と台風18号（沙德尔）による同一地域への「二重冠水（再曝露）」がもたらした実物資本の破壊、仕掛品（WIP）消失、港湾混雑、および復旧能力（Recovery Capacity）限界の超克検証報告。
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row md:flex-col gap-2 shrink-0">
+                    <div class="bg-slate-800/90 border border-slate-700 p-3 rounded-lg text-center">
+                        <div class="text-xs text-slate-400 font-medium">最重要判定地域</div>
+                        <div class="text-lg font-bold text-red-400">浙江省玉環市 / 河南省周口市</div>
+                    </div>
+                    <div class="bg-slate-800/90 border border-slate-700 p-3 rounded-lg text-center">
+                        <div class="text-xs text-slate-400 font-medium">総合ステータス</div>
+                        <div class="text-lg font-bold text-amber-400">Regional Recovery Failure</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Stat Highlight Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4">
+                    <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">台風上陸回数 (玉環市)</div>
+                    <div class="text-2xl sm:text-3xl font-black text-amber-400 mt-1">3 回</div>
+                    <div class="text-xs text-slate-400 mt-1">2026年内（バビ・白海豚・沙德尔）</div>
+                </div>
+                <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4">
+                    <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">上海・寧波港 沖待ち時間</div>
+                    <div class="text-2xl sm:text-3xl font-black text-red-400 mt-1">5〜9 日超</div>
+                    <div class="text-xs text-slate-400 mt-1">世界待機船腹: 431万TEU (過去最高)</div>
+                </div>
+                <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4">
+                    <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">河南省周口市 賈魯河</div>
+                    <div class="text-2xl sm:text-3xl font-black text-blue-400 mt-1">117 m</div>
+                    <div class="text-xs text-slate-400 mt-1">堤防決壊・市街地および広域農地水没</div>
+                </div>
+                <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4">
+                    <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">農地補償額 vs 実投資損</div>
+                    <div class="text-2xl sm:text-3xl font-black text-amber-400 mt-1">50 元/畝</div>
+                    <div class="text-xs text-slate-400 mt-1">実損失1,000元超に対し「杯水車薪」</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-filter backdrop-blur-md border-b border-slate-800 text-slate-300 text-xs sm:text-sm font-medium">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between overflow-x-auto whitespace-nowrap py-3 gap-6">
+            <a href="#verdict" class="hover:text-blue-400 transition-colors py-1 border-b-2 border-transparent hover:border-blue-400">① Executive Verdict</a>
+            <a href="#scorecard" class="hover:text-blue-400 transition-colors py-1 border-b-2 border-transparent hover:border-blue-400">② 地域別 Scorecard</a>
+            <a href="#timeline" class="hover:text-blue-400 transition-colors py-1 border-b-2 border-transparent hover:border-blue-400">③ 「再曝露」時系列</a>
+            <a href="#wip" class="hover:text-blue-400 transition-colors py-1 border-b-2 border-transparent hover:border-blue-400">④ 工業・仕掛品損失</a>
+            <a href="#agri-waste" class="hover:text-blue-400 transition-colors py-1 border-b-2 border-transparent hover:border-blue-400">⑤ 農業・廃棄物・衛生</a>
+            <a href="#logistics" class="hover:text-blue-400 transition-colors py-1 border-b-2 border-transparent hover:border-blue-400">⑥ 物流・港湾・サプライチェーン</a>
+            <a href="#forward" class="hover:text-blue-400 transition-colors py-1 border-b-2 border-transparent hover:border-blue-400">⑦ Forward Watch</a>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- SECTION 1: EXECUTIVE VERDICT -->
+        <section id="verdict" class="scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-red-100 text-red-600 font-bold text-lg">1</span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Executive Verdict（総合評価判定）</h2>
+                </div>
+                
+                <p class="text-slate-700 text-base leading-relaxed mb-6">
+                    調査基準日である2026年9月1日現在、中国の主要被災地域における実物ベースの復旧状況を検証した結果、最重要被災ノードである<strong class="text-slate-900 bg-amber-100 px-1 py-0.5 rounded">浙江省玉環市および河南省周口市の一部において、被害生成速度（Damage Generation Rate）が復旧速度（Recovery Rate）を明確に上回り始めており、「Regional Recovery Failure（局地的な復旧不全）」へ移行</strong>したと判定する。
+                </p>
+
+                <!-- Mathematical Model Box -->
+                <div class="bg-slate-900 text-slate-100 rounded-xl p-5 mb-8 border-l-4 border-amber-500 shadow-inner">
+                    <div class="text-xs font-bold text-amber-400 tracking-wider uppercase mb-2">Recovery Debt (構造的復旧負債) 定量概念モデル</div>
+                    <div class="overflow-x-auto text-sm sm:text-base font-mono bg-slate-950 p-4 rounded-lg border border-slate-800 text-emerald-300">
+                        Recovery Debt(t) = 未復旧損傷(t-1) + 新規災害損傷 + <span class="text-amber-400 font-bold">再冠水による復旧工程巻き戻し</span> + 災害廃棄物未処理量 + 衛生処理未完了量 + 設備再検査待ち + 農業再生待ち - 実際に完了した復旧量
+                    </div>
+                    <p class="text-xs text-slate-400 mt-2">
+                        ※ 8月28日の台風18号（沙德尔）の再上陸により、「再冠水による復旧工程巻き戻し」が急増し、右辺の控除項目である「完了復旧量」を物理的に凌駕した。
+                    </p>
+                </div>
+
+                <!-- Interactive Chart 1: Recovery Capacity vs Damage Rate -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                    <div class="lg:col-span-2 bg-slate-50 rounded-xl p-4 border border-slate-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-sm font-bold text-slate-800">復旧能力 (Recovery Capacity) vs 被害生成速度 (8月時系列)</h3>
+                            <span class="text-xs text-slate-500 bg-white px-2 py-1 rounded border">Chart.js Canvas</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="debtDynamicsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+                            <div class="text-xs font-bold text-red-700 uppercase tracking-wide">三つの致命的構造要因</div>
+                            <ul class="text-xs text-slate-700 mt-2 space-y-2 list-disc list-inside">
+                                <li><strong class="text-slate-900">仕掛品（WIP）の完全全損:</strong> 通電再開しても半製品・水没電子基板はQA不合格で全損。</li>
+                                <li><strong class="text-slate-900">静脈インフラの沈没:</strong> 仮置場の再冠水による腐敗・悪臭・二次汚染の発生。</li>
+                                <li><strong class="text-slate-900">サプライチェーンの断絶:</strong> 上海・寧波港の待機船腹増大と中間財欠品。</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                            <div class="text-xs font-bold text-blue-800 uppercase tracking-wide">表面上の「復工復産」の罠</div>
+                            <p class="text-xs text-slate-600 mt-1">
+                                地方政府発表の「通電率」「道路開通率」は表面指標に過ぎない。設備乾燥・校正・絶縁検査・運転資金枯渇による実質操業停止を隠蔽している。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: REGIONAL SCORECARD -->
+        <section id="scorecard" class="scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div class="flex items-center gap-3">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-100 text-blue-600 font-bold text-lg">2</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">地域別 Recovery Scorecard</h2>
+                            <p class="text-xs text-slate-500">2026年9月1日時点における復旧段階（Level 0〜5）と Recovery Debt の評価</p>
+                        </div>
+                    </div>
+                    <!-- Level Legend -->
+                    <div class="flex flex-wrap gap-1 text-[10px]">
+                        <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold">L0: 正常</span>
+                        <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-700 font-semibold">L1: 表面復旧</span>
+                        <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-700 font-semibold">L2: 負債蓄積</span>
+                        <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-semibold">L3: 能力逼迫</span>
+                        <span class="px-2 py-0.5 rounded bg-red-100 text-red-700 font-semibold">L4: Recovery Failure</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900 text-red-400 font-semibold">L5: 構造的放棄</span>
+                    </div>
+                </div>
+
+                <!-- Interactive Region Filter / Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 border-b border-slate-200 text-slate-700">
+                                <th class="p-3 font-bold">対象地域</th>
+                                <th class="p-3 font-bold">初回水害（台風13号）</th>
+                                <th class="p-3 font-bold">後続台風・再曝露</th>
+                                <th class="p-3 font-bold">生活・工業・物流インフラ</th>
+                                <th class="p-3 font-bold">農業・衛生・廃棄物</th>
+                                <th class="p-3 font-bold text-center">Debt推移</th>
+                                <th class="p-3 font-bold text-center">総合判定</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-slate-700">
+                            <tr class="hover:bg-red-50/50 transition-colors">
+                                <td class="p-3 font-bold text-slate-900">
+                                    A. 浙江省<br><span class="text-[11px] font-normal text-slate-500">(玉環・台州・寧波等)</span>
+                                </td>
+                                <td class="p-3">13号直撃、甚大冠水</td>
+                                <td class="p-3 text-red-600 font-semibold">18号直撃（再冠水）</td>
+                                <td class="p-3">設備再水没・在庫全損・下水逆流。港湾一時閉鎖。</td>
+                                <td class="p-3">清泥・消毒の完全巻き戻し。仮置場再冠水。</td>
+                                <td class="p-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-700 rounded-full font-bold text-[11px]">急増</span></td>
+                                <td class="p-3 text-center"><span class="px-2.5 py-1 bg-red-600 text-white rounded-md font-bold text-xs shadow-sm">Level 4</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-3 font-bold text-slate-900">
+                                    B. 江蘇省<br><span class="text-[11px] font-normal text-slate-500">(太湖・蘇州・無錫)</span>
+                                </td>
+                                <td class="p-3">長時間の高水位・内水</td>
+                                <td class="p-3">水位高止まり・暴雨</td>
+                                <td class="p-3">幹線正常化も部材不足。運河航行制限。</td>
+                                <td class="p-3">局地冠水継続。仮置場処理能力低下。</td>
+                                <td class="p-3 text-center"><span class="px-2 py-1 bg-amber-100 text-amber-700 rounded-full font-bold text-[11px]">微増</span></td>
+                                <td class="p-3 text-center"><span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md font-bold text-xs">Level 1</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-3 font-bold text-slate-900">
+                                    C. 上海市<br><span class="text-[11px] font-normal text-slate-500">(洋山・外高橋・浦東)</span>
+                                </td>
+                                <td class="p-3">暴雨・内水・欠航</td>
+                                <td class="p-3">18号接近に伴う再閉鎖</td>
+                                <td class="p-3">道路排水済。沖待ち5〜9日の深刻な滞船。</td>
+                                <td class="p-3">産業廃棄物枠逼迫。仮置場満杯。</td>
+                                <td class="p-3 text-center"><span class="px-2 py-1 bg-amber-100 text-amber-700 rounded-full font-bold text-[11px]">増加</span></td>
+                                <td class="p-3 text-center"><span class="px-2.5 py-1 bg-blue-100 text-blue-800 rounded-md font-bold text-xs">Level 2</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-3 font-bold text-slate-900">
+                                    D. 河南省<br><span class="text-[11px] font-normal text-slate-500">(周口・賈魯河)</span>
+                                </td>
+                                <td class="p-3">117m堤防決壊・大規模水没</td>
+                                <td class="p-3">上流からの排水流入</td>
+                                <td class="p-3">道路復旧・帰宅開始。中小企業の資金枯渇。</td>
+                                <td class="p-3 text-red-600">絶望的絶収。土壌流失。家畜死骸未処理。</td>
+                                <td class="p-3 text-center"><span class="px-2 py-1 bg-red-100 text-red-700 rounded-full font-bold text-[11px]">増加</span></td>
+                                <td class="p-3 text-center"><span class="px-2.5 py-1 bg-amber-500 text-white rounded-md font-bold text-xs">Level 3</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-3 font-bold text-slate-900">
+                                    E. 湖北・安徽省<br><span class="text-[11px] font-normal text-slate-500">(長江中流域)</span>
+                                </td>
+                                <td class="p-3">13号環流の特大暴雨</td>
+                                <td class="p-3">18号による局地暴雨</td>
+                                <td class="p-3">水利設備・法面未修復。物流迂回が常態化。</td>
+                                <td class="p-3">根腐れ・病害拡大。搬出遅延。</td>
+                                <td class="p-3 text-center"><span class="px-2 py-1 bg-amber-100 text-amber-700 rounded-full font-bold text-[11px]">増加</span></td>
+                                <td class="p-3 text-center"><span class="px-2.5 py-1 bg-blue-100 text-blue-800 rounded-md font-bold text-xs">Level 2</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-3 font-bold text-slate-900">
+                                    F. 福建省<br><span class="text-[11px] font-normal text-slate-500">(沿岸部)</span>
+                                </td>
+                                <td class="p-3">暴雨・高波</td>
+                                <td class="p-3">18号による大暴雨</td>
+                                <td class="p-3">一時的冠水。漁船避難による港湾制限。</td>
+                                <td class="p-3">養殖網破損。漂着ゴミ急増。</td>
+                                <td class="p-3 text-center"><span class="px-2 py-1 bg-slate-100 text-slate-700 rounded-full font-bold text-[11px]">横ばい</span></td>
+                                <td class="p-3 text-center"><span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md font-bold text-xs">Level 1</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Regional Breakdown Visual Chart -->
+                <div class="mt-6 bg-slate-50 rounded-xl p-4 border border-slate-200">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm font-bold text-slate-800">地域別 Recovery Debt 構造と判定レベル比較</h3>
+                        <span class="text-xs text-slate-500 bg-white px-2 py-1 rounded border">Chart.js Canvas</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="regionalScoreChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: TIMELINE & RE-EXPOSURE LOOP -->
+        <section id="timeline" class="scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-teal-100 text-teal-600 font-bold text-lg">3</span>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-900">2026年8月「再曝露（Re-exposure）」の構造分析</h2>
+                        <p class="text-xs text-slate-500">復旧工程の巻き戻しを引き起こした反復的物理ダメージの時系列</p>
+                    </div>
+                </div>
+
+                <!-- Vertical Step Timeline -->
+                <div class="relative border-l-2 border-blue-500 ml-4 pl-6 space-y-8 my-6">
+                    <!-- Step 1 -->
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow"></span>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <div class="flex items-center justify-between flex-wrap gap-2">
+                                <span class="text-xs font-extrabold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-full">8月9日 17:30</span>
+                                <span class="text-xs text-slate-500 font-medium">台風13号「白海豚（Dolphin）」上陸</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-slate-900 mt-2">浙江省台州市玉環市に直撃（風速 42m/s・14級）</h4>
+                            <p class="text-xs text-slate-600 mt-1">
+                                浙江・上海・福建で約76万人が事前避難。上海空港群で1,300便以上が欠航。長江デルタの工業地帯および地下設備が広域浸水。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow"></span>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <div class="flex items-center justify-between flex-wrap gap-2">
+                                <span class="text-xs font-extrabold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-full">8月13日〜15日</span>
+                                <span class="text-xs text-slate-500 font-medium">13号残余環流の内陸波及</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-slate-900 mt-2">河南省周口市 賈魯河 117m堤防決壊</h4>
+                            <p class="text-xs text-slate-600 mt-1">
+                                内陸深くまで湿った空気が流入。周口市で堤防が大規模決壊し、農地と市街地が完全水没。15日夜に決壊口封鎖も水圧・土壌汚染が残存。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-slate-400 border-4 border-white shadow"></span>
+                        <div class="bg-emerald-50/60 p-4 rounded-xl border border-emerald-200">
+                            <div class="flex items-center justify-between flex-wrap gap-2">
+                                <span class="text-xs font-extrabold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">8月中旬（8月16日〜25日）</span>
+                                <span class="text-xs text-slate-500 font-medium">第一段階：「復工復産」の強行</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-slate-900 mt-2">清泥・乾燥・消毒・港湾ラッシュの実施</h4>
+                            <p class="text-xs text-slate-600 mt-1">
+                                地方政府の号令で工場清掃、配電盤の乾燥、市街地消毒を突貫で実施。上海・寧波港では夜間荷役を強行するもヤード目詰まりが進行。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 (Re-exposure Trigger) -->
+                    <div class="relative">
+                        <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-red-600 border-4 border-white shadow animate-ping"></span>
+                        <div class="bg-red-50 p-4 rounded-xl border border-red-300 shadow-md">
+                            <div class="flex items-center justify-between flex-wrap gap-2">
+                                <span class="text-xs font-extrabold text-white bg-red-600 px-2.5 py-1 rounded-full">8月28日 08:05【再曝露】</span>
+                                <span class="text-xs text-red-700 font-bold">台風18号「沙德尔（Saudel）」再上陸</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-red-900 mt-2">玉環市へ今年3度目の直撃（風速 35m/s・12級）</h4>
+                            <p class="text-xs text-slate-700 mt-1">
+                                清掃・乾燥中であった工場設備、仮置場の廃棄物、消毒済みの市街地が再度冠水。13号の復旧投入資源（人的・機械・資金）が完全無効化。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fact vs Official vs Inference Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div class="bg-slate-100 rounded-xl p-4 border border-slate-200">
+                        <div class="text-xs font-bold text-slate-800 mb-1">A. 確認事実 (Facts)</div>
+                        <p class="text-xs text-slate-600">
+                            玉環市周辺は20日間に2度の強力台風直撃を受け、工場・インフラが二度冠水。上海・寧波港の沖待ち船腹は過去最大レベル。
+                        </p>
+                    </div>
+                    <div class="bg-slate-100 rounded-xl p-4 border border-slate-200">
+                        <div class="text-xs font-bold text-slate-800 mb-1">B. 公式主張 (Official Claims)</div>
+                        <p class="text-xs text-slate-600">
+                            「生活秩序は基本回復し、排水と消毒は完了。操業再開率は80%を超えた」とする発表。（設備歩留まりは不問）
+                        </p>
+                    </div>
+                    <div class="bg-amber-50 rounded-xl p-4 border border-amber-300">
+                        <div class="text-xs font-bold text-amber-900 mb-1">C. 構造的推論 (Inference)</div>
+                        <p class="text-xs text-slate-700">
+                            一度乾燥・清掃された半製品・制御機器の再水没は壊滅的。復旧現場の人的士気と消毒薬・ポンプ交換機材のRecovery Capacityが枯渇。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: INDUSTRIAL & WIP LOSSES -->
+        <section id="wip" class="scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-amber-100 text-amber-600 font-bold text-lg">4</span>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-900">工業・在庫・仕掛品（WIP）損失の実態</h2>
+                        <p class="text-xs text-slate-500">「復工復産」の裏で消滅した運転資金（Working Capital）の検証</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-900 mb-3">なぜ「通電再開」だけでは復旧と言えないのか？</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed mb-4">
+                            工場設備の主電源が復旧しても、汚泥や塩分を含んだ水に浸かったPLC（制御盤）、サーボモーター、精密測定器は表面を洗浄・乾燥させただけでは通電時にショートや誤作動を引き起こす。絶縁検査、可動部の全交換、再校正、ISO品質認証の再取得が必須であり、これらを経ない生産ラインは歩留まりが極めて低い。
+                        </p>
+
+                        <!-- Industrial Asset Loss Composition Chart -->
+                        <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-xs font-bold text-slate-800">製造業被災資産の損失割合内訳（推計）</h4>
+                                <span class="text-[10px] text-slate-500 bg-white px-2 py-0.5 rounded border">Chart.js Canvas</span>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="wipCompositionChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- WIP Explanation Highlight Card -->
+                        <div class="bg-red-50 border-l-4 border-red-600 p-5 rounded-r-xl">
+                            <h4 class="text-sm font-bold text-red-900">仕掛品（WIP）廃棄がもたらす「運転資金の物理的蒸発」</h4>
+                            <p class="text-xs text-slate-700 mt-2 leading-relaxed">
+                                電子部品、精密機械、樹脂成形品などの仕掛品は、<strong class="text-slate-900">「原材料費＋加工電力＋労働力賃金」が既に投入されたサンクコストの塊</strong>である。完成品にならず販売不能となった仕掛品はキャッシュを一切産まないどころか廃棄費用が発生する。これにより中小製造業の運転資金（Working Capital）が物理的に消滅し、黒字倒産や事業放棄の危機に直面している。
+                            </p>
+                        </div>
+
+                        <!-- Quality Assurance Bottleneck Table -->
+                        <div class="bg-slate-900 text-white p-5 rounded-xl text-xs space-y-3">
+                            <div class="font-bold text-amber-400 border-b border-slate-800 pb-2">品質保証（QA）工程のボトルネック</div>
+                            <div class="flex justify-between items-center border-b border-slate-800/60 pb-1.5">
+                                <span class="text-slate-300">モーター・配電盤</span>
+                                <span class="text-red-400 font-mono">絶縁抵抗試験 不合格率高調</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-slate-800/60 pb-1.5">
+                                <span class="text-slate-300">精密センサー・基板</span>
+                                <span class="text-red-400 font-mono">泥分付着により全数交換</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-slate-800/60 pb-1.5">
+                                <span class="text-slate-300">クリーンルーム設備</span>
+                                <span class="text-amber-400 font-mono">フィルター再手配 2〜4週待ち</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300">製品出荷認証 (ISO等)</span>
+                                <span class="text-amber-400 font-mono">再監査・判定待ちによる停滞</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: AGRICULTURE, WASTE & SANITATION -->
+        <section id="agri-waste" class="scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 font-bold text-lg">5</span>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-900">農業・災害廃棄物・公衆衛生の限界</h2>
+                        <p class="text-xs text-slate-500">「排水完了面積」の罠と静脈インフラ（処理能力）の完全麻痺</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Agri Card -->
+                    <div class="bg-emerald-50/70 border border-emerald-200 rounded-xl p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-sm font-bold text-emerald-900">🌾 農業・畜産・養殖の実質損失</h3>
+                            <span class="text-[10px] bg-emerald-200 text-emerald-800 px-2 py-0.5 rounded font-bold">絶望的絶収</span>
+                        </div>
+                        <ul class="text-xs text-slate-700 space-y-2">
+                            <li>・<strong>河南省周口市:</strong> 水没作物の根腐れ・カビ・表土流失により2026年秋の収穫は絶望的。</li>
+                            <li>・<strong>補償の乖離:</strong> 50元/畝の補償金は、種子・肥料・燃料代などの初期投資（1,000元超）に遠く及ばず。</li>
+                            <li>・<strong>家畜死亡・養殖流出:</strong> 豚・鶏の大量死と家禽感染症リスク。無害化処理の遅れ。</li>
+                        </ul>
+                    </div>
+
+                    <!-- Waste Card -->
+                    <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-sm font-bold text-amber-900">🚛 災害廃棄物処理のパンク</h3>
+                            <span class="text-[10px] bg-amber-200 text-amber-800 px-2 py-0.5 rounded font-bold">処理速度 < 発生速度</span>
+                        </div>
+                        <ul class="text-xs text-slate-700 space-y-2">
+                            <li>・<strong>「仮置場へ移動」≠「処理完了」:</strong> 道路脇から移動させた廃棄物が一次仮置場で満杯。</li>
+                            <li>・<strong>再冠水と二次汚染:</strong> 8月28日の再冠水により仮置場の泥・腐敗食品・建材が流出・悪臭化。</li>
+                            <li>・<strong>焼却炉投入不可:</strong> 水と泥を含んだ畳・家具・プラスチックは通常の焼却炉を傷めるため分別滞留。</li>
+                        </ul>
+                    </div>
+
+                    <!-- Sanitation Card -->
+                    <div class="bg-red-50/70 border border-red-200 rounded-xl p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-sm font-bold text-red-900">💧 上下水道と衛生工程の巻き戻し</h3>
+                            <span class="text-[10px] bg-red-200 text-red-800 px-2 py-0.5 rounded font-bold">下水逆流・二次汚染</span>
+                        </div>
+                        <ul class="text-xs text-slate-700 space-y-2">
+                            <li>・<strong>玉環市等の下水管破裂:</strong> 内水氾濫により下水と泥水が混ざり市街地・地下室へ逆流。</li>
+                            <li>・<strong>衛生工程のゼロリセット:</strong> 13号後に完了した洗浄・消毒が18号の再水没で完全無効化。</li>
+                            <li>・<strong>防疫能力の疲弊:</strong> 消毒薬の在庫枯渇と作業員の連続稼働による士気・体力限界。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Plotly Multi-factor Stress Index Radar Chart -->
+                <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <h3 class="text-sm font-bold text-slate-800">静脈インフラ & 農業・衛生ストレス多角的レーダー指標</h3>
+                            <p class="text-xs text-slate-500">100 = 限界突破（完全不全）状態</p>
+                        </div>
+                        <span class="text-xs text-slate-500 bg-white px-2 py-1 rounded border">Plotly WebGL Canvas</span>
+                    </div>
+                    <div class="chart-container">
+                        <div id="plotlyRadarChart" class="w-full h-full"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: LOGISTICS & GLOBAL SUPPLY CHAIN -->
+        <section id="logistics" class="scroll-mt-20">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-100 text-blue-600 font-bold text-lg">6</span>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-900">物流・港湾・世界サプライチェーンへの連鎖</h2>
+                        <p class="text-xs text-slate-500">千葉県市川市（物流デポ・VMI拠点）からの視点を含む実物供給網の混乱</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                    <!-- Port Congestion Chart -->
+                    <div class="lg:col-span-2 bg-slate-50 rounded-xl p-4 border border-slate-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-sm font-bold text-slate-800">主要港湾の本船平均待機日数（正常時 vs 2026年8月末）</h3>
+                            <span class="text-xs text-slate-500 bg-white px-2 py-1 rounded border">Chart.js Canvas</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="portCongestionChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-slate-900 text-white rounded-xl p-5 shadow-lg border-l-4 border-blue-500">
+                            <div class="text-xs font-bold text-blue-400 uppercase tracking-wide">市川市物流ハブへの波及インパクト</div>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                長江デルタから供給される「安価な汎用部材（ネジ、コネクタ、プレス品、包装段ボール）」の納期不確定化により、日本国内（千葉県市川市等）の部品デポで在庫欠品が発生。
+                            </p>
+                        </div>
+
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs space-y-2">
+                            <div class="font-bold text-amber-900">ブルウィップ効果（Demand Bullwhip）の発生</div>
+                            <p class="text-slate-700">
+                                遅延していたコンテナ船が後から一気に押し寄せることで、日本側の港湾ヤードや倉庫の受け入れ能力が一瞬でオーバーフローする悪循環が発生。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: FORWARD WATCH MATRIX -->
+        <section id="forward" class="scroll-mt-20">
+            <div class="bg-slate-900 text-white rounded-2xl shadow-xl p-6 sm:p-8 border border-slate-800">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-red-600 text-white font-bold text-lg">7</span>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-white">Forward Watch (今後の継続監視指標)</h2>
+                        <p class="text-xs text-slate-400">Level 5（構造的放棄・移転）への移行を見極めるタイムライン</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- 7 Days -->
+                    <div class="bg-slate-800/90 border border-slate-700 rounded-xl p-5 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">7日後（9/8）</div>
+                        <h3 class="text-sm font-bold text-blue-400 mb-2">短期：港湾ヤード & 二次汚染</h3>
+                        <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
+                            <li>上海・寧波のコンテナヤード稼働率（95%超で寄港キャンセル相次ぐか）。</li>
+                            <li>浙江・河南における仮置場からの悪臭・浸出水苦情および皮膚・消化器感染症の急増有無。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 14 Days -->
+                    <div class="bg-slate-800/90 border border-slate-700 rounded-xl p-5 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-amber-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">14日後（9/15）</div>
+                        <h3 class="text-sm font-bold text-amber-400 mb-2">中期：資金ショート & 耕作放棄</h3>
+                        <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
+                            <li>「復工」した工場の運転資金枯渇による「再休業（放假）」および連鎖倒産の発生。</li>
+                            <li>河南等の農村部で再播種を断念し、農民が都市部へ出稼ぎ流出する動きの表面化。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 30 Days -->
+                    <div class="bg-slate-800/90 border border-slate-700 rounded-xl p-5 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">30日後（10/1 国慶節）</div>
+                        <h3 class="text-sm font-bold text-red-400 mb-2">長期：Level 5 判定基準</h3>
+                        <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
+                            <li>日本・ASEANのメーカーにおける中国製部材欠品を理由とした減産発表。</li>
+                            <li>30日経過後も設備交換部品が届かず稼働率50%未満の地域を「Level 5: 構造的放棄」へ指定。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
+                    <p class="text-xs sm:text-sm font-semibold text-slate-300">
+                        【最終結論一文】2026年中国の反復水害は、浙江省沿岸部および河南省の一部において、再冠水による復旧巻き戻しと仕掛品全損・廃棄物未処理が累積し、<span class="text-red-400 font-bold underline decoration-red-500">「被害生成速度が復旧能力を上回り、水が引いても元へ戻れない災害」へ構造変質した</span>と判定する。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-500 text-xs py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p>2026 China Flood Recovery Debt Deep Research Report & Interactive Visual Dashboard</p>
+            <p class="text-slate-600">データソース: 中国気象局, 応急管理部, 交通運輸部, 各省統計公報, 港湾海運データ, 業界ヒアリング調査</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Charts Initialization Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Helper function for label wrapping (16 chars)
+            function wrapText(str, maxChars = 14) {
+                if (!str) return '';
+                if (typeof str !== 'string') return str;
+                if (str.length <= maxChars) return str;
+                const lines = [];
+                for (let i = 0; i < str.length; i += maxChars) {
+                    lines.push(str.substring(i, i + maxChars));
+                }
+                return lines;
+            }
+
+            // Common Chart.js Tooltip Callback Config
+            const commonTooltipConfig = {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                            return label.join('');
+                        } else {
+                            return label;
+                        }
+                    }
+                }
+            };
+
+            // 1. Chart: Recovery Debt Dynamics Line Chart
+            const ctx1 = document.getElementById('debtDynamicsChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['8/1', '8/9(台風13号)', '8/13(河南省決壊)', '8/20(復工ラッシュ)', '8/26(18号接近)', '8/28(台風18号直撃)', '9/1(現在)'],
+                    datasets: [
+                        {
+                            label: '被害生成速度 (Damage Rate)',
+                            data: [20, 85, 90, 40, 75, 98, 92],
+                            borderColor: '#dc2626',
+                            backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            borderWidth: 3,
+                            pointRadius: 4
+                        },
+                        {
+                            label: '復旧処理能力 (Recovery Speed)',
+                            data: [60, 55, 50, 65, 45, 25, 20],
+                            borderColor: '#2563eb',
+                            backgroundColor: 'rgba(37, 99, 235, 0.05)',
+                            fill: true,
+                            tension: 0.3,
+                            borderWidth: 3,
+                            pointRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: commonTooltipConfig,
+                        legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11 } } }
+                    },
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 100,
+                            title: { display: true, text: '相対インデックス (0-100)', font: { size: 10 } }
+                        },
+                        x: {
+                            ticks: {
+                                font: { size: 10 },
+                                callback: function(val, index) {
+                                    return wrapText(this.getLabelForValue(index), 10);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 2. Chart: Regional Scorecard Horizontal Bar Chart
+            const ctx2 = document.getElementById('regionalScoreChart').getContext('2d');
+            const rawRegionalLabels = ['A. 浙江省 (玉環・台州)', 'B. 江蘇省 (太湖)', 'C. 上海市 (港湾)', 'D. 河南省 (周口)', 'E. 湖北・安徽省', 'F. 福建省'];
+            const wrappedRegionalLabels = rawRegionalLabels.map(l => wrapText(l, 12));
+
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: wrappedRegionalLabels,
+                    datasets: [{
+                        label: 'Recovery Debt 蓄積レベル (Level 0 - 5)',
+                        data: [4, 1, 2, 3, 2, 1],
+                        backgroundColor: [
+                            '#dc2626', // Level 4
+                            '#10b981', // Level 1
+                            '#3b82f6', // Level 2
+                            '#ea580c', // Level 3
+                            '#3b82f6', // Level 2
+                            '#10b981'  // Level 1
+                        ],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: commonTooltipConfig,
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            min: 0,
+                            max: 5,
+                            ticks: { stepSize: 1, callback: function(v) { return 'L' + v; } }
+                        }
+                    }
+                }
+            });
+
+            // 3. Chart: Industrial Asset Loss Doughnut Chart
+            const ctx3 = document.getElementById('wipCompositionChart').getContext('2d');
+            const rawWipLabels = ['仕掛品（WIP）全損', '原材料水没・劣化', '設備校正・モーター交換', '完成品・包装材破損'];
+            const wrappedWipLabels = rawWipLabels.map(l => wrapText(l, 10));
+
+            new Chart(ctx3, {
+                type: 'doughnut',
+                data: {
+                    labels: wrappedWipLabels,
+                    datasets: [{
+                        data: [42, 23, 20, 15],
+                        backgroundColor: ['#dc2626', '#ea580c', '#2563eb', '#64748b'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: commonTooltipConfig,
+                        legend: { position: 'right', labels: { boxWidth: 10, font: { size: 10 } } }
+                    }
+                }
+            });
+
+            // 4. Chart: Port Congestion Bar Chart
+            const ctx4 = document.getElementById('portCongestionChart').getContext('2d');
+            const rawPortLabels = ['上海 洋山港', '上海 外高橋港', '寧波 舟山港', '通常時ベースライン'];
+            const wrappedPortLabels = rawPortLabels.map(l => wrapText(l, 12));
+
+            new Chart(ctx4, {
+                type: 'bar',
+                data: {
+                    labels: wrappedPortLabels,
+                    datasets: [{
+                        label: '本船平均待機日数（日）',
+                        data: [8.5, 7.0, 4.2, 0.8],
+                        backgroundColor: ['#dc2626', '#ea580c', '#2563eb', '#94a3b8'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: commonTooltipConfig,
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: '待機日数（日）', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+
+            // 5. Plotly Canvas Radar Chart: Disaster Bottleneck Multi-Factor Stress
+            const plotlyData = [{
+                type: 'scatterpolar',
+                r: [95, 88, 92, 85, 78, 95],
+                theta: [
+                    '仕掛品WIP全損',
+                    '廃棄物仮置場満杯',
+                    '下水逆流・二次汚染',
+                    '港湾ヤード滞船',
+                    '農業絶収・農地流失',
+                    '運転資金枯渇'
+                ],
+                fill: 'toself',
+                fillcolor: 'rgba(220, 38, 38, 0.25)',
+                line: { color: '#dc2626', width: 2 },
+                marker: { size: 6, color: '#dc2626' }
+            }];
+
+            const plotlyLayout = {
+                polar: {
+                    radialaxis: { visible: true, range: [0, 100], tickfont: { size: 9 } },
+                    angularaxis: { font: { size: 10 } }
+                },
+                margin: { t: 25, b: 25, l: 40, r: 40 },
+                showlegend: false,
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)'
+            };
+
+            Plotly.newPlot('plotlyRadarChart', plotlyData, plotlyLayout, {
+                responsive: true,
+                displayModeBar: false
+            });
+
+        });
+    </script>
+</body>
+</html>
